@@ -239,6 +239,8 @@ main {
     flex-direction: column;
     cursor: pointer;
     gap: 5px;
+    margin-left: auto;
+    margin-right: 11px;
   }
   
   .menu-toggle span {
