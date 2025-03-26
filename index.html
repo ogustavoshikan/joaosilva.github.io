@@ -1,0 +1,486 @@
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Technology AI - Seu Portal de Notícias e Insights de IA</title>
+  <meta name="description" content="Notícias e aplicações de Inteligência Artificial (IA)">
+  <meta name="keywords" content="Inteligência Artificial, IA, tecnologia, AI">
+  <meta name="author" content="Gustavo G.">
+  <meta name="robots" content="index, follow"> <!-- Adicionado para SEO -->
+
+  <!-- Ícone do site -->
+  <link rel="icon" href="assets/favicon.png" type="image/x-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Belleza&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Monomakh&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rationale&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anta&family=Genos:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anta&family=Megrim&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_right_alt">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome para ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Adicionar Swiper.js (versão 8.4.7) -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper@8.4.7/swiper-bundle.min.css" />
+  <script src="https://unpkg.com/swiper@8.4.7/swiper-bundle.min.js"></script>
+</head>
+
+<body>
+  <header class="site-header" role="banner">
+    <div class="container header-container">
+      <a href="#" class="logo">
+        <span class="logo-icon">
+          <img src="assets/favicon.png" alt="Ícone do site" class="favicon-icon">
+        </span>
+        <span class="logo-text">ECHNOLOGY AI</span>
+      </a>
+      
+      <!-- Botão menu hamburger para mobile -->
+      <button class="menu-toggle" aria-label="Abrir menu de navegação" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#">Página Inicial</a></li>
+          <li><a href="http://127.0.0.1:5500/news.html">Notícias</a></li>
+          <li><a href="#">Designs</a></li>
+          <li><a href="#">Sobre</a></li>
+          <li><a href="https://wa.me/61999999999" class="nav-button">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="hero" class="hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Explore o Futuro com IA</h1>
+          <p>
+            Mergulhe nas últimas novidades em Inteligência Artificial. Aprenda, crie e acompanhe a revolução tecnológica que está transformando o mundo. Esteja à frente das tendências e inovações!
+          </p>
+          <div class="hero-buttons">
+            <a href="#" class="btn btn-primary" aria-label="Saiba mais sobre Inteligência Artificial">Saiba Mais</a>
+            <a href="#" class="btn btn-secondary" aria-label="Comece a explorar o site">Começar</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- SEÇÃO DE NOTÍCIAS -->
+<section id="news" class="news-section" aria-labelledby="news-heading">
+  <div class="container">
+    <header class="news-header">
+      <h2 id="news-heading" class="section-title">Notícias em Destaque</h2>
+    </header>
+    <div class="news-grid">
+      <!-- Layout superior com destaque + 2 menores -->
+      <div class="top-cards-container" role="region" aria-label="Notícias principais" tabindex="0">
+        <!-- Card destaque (maior) -->
+        <article class="news-card featured">
+          <p class="loading-fallback">Carregando notícia em destaque...</p>
+        </article>
+        
+        <!-- Container para os dois cards lado a lado à direita do destaque -->
+        <div class="side-cards">
+          <p class="loading-fallback">Carregando notícias laterais...</p>
+        </div>
+      </div>
+      
+      <!-- Cards inferiores -->
+      <div class="bottom-cards-container" role="region" aria-label="Notícias adicionais" tabindex="0">
+        <p class="loading-fallback">Carregando notícias adicionais...</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- SEÇÃO COMECE POR AQUI E TÓPICOS -->
+<section id="topics-section" class="topics-section" aria-labelledby="topics-heading">
+  <div class="container">
+    <!-- Cabeçalho da seção -->
+    <div class="topics-section-header">
+      <div class="topics-section-left">
+        <i class="fas fa-play" aria-hidden="true"></i>
+        <h2 id="topics-heading" class="topics-section-title">COMECE POR AQUI</h2>
+        <a href="#mais-comece" class="topics-section-link" aria-label="Ver mais conteúdos para começar">
+          <span>MAIS</span>
+          <span class="material-symbols-outlined" aria-hidden="true">arrow_right_alt</span>
+        </a>
+      </div>
+      <div class="topics-section-right">
+        <i class="fas fa-newspaper" aria-hidden="true"></i>
+        <h2 id="topics-newsletter-heading" class="topics-section-title">TÓPICOS E NEWSLETTER</h2>
+        <a href="#mais-topicos" class="topics-section-link" aria-label="Ver mais tópicos">
+          <span>MAIS</span>
+          <span class="material-symbols-outlined" aria-hidden="true">arrow_right_alt</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Conteúdo principal da seção -->
+    <div class="topics-grid">
+      <!-- Card Médio -->
+      <div class="medium-topic-card featured-medium-card">
+        <div class="medium-card-container">
+          <div class="medium-card-slider" style="transform: translateX(0%);">
+            <p class="loading-fallback">Carregando card em destaque...</p>
+          </div>
+          <div class="medium-card-overlay" style="opacity: 1;">
+            <a href="#" target="_blank" class="medium-title-link" title="Carregando título..." aria-label="Carregando título...">
+              <p class="medium-card-title">Carregando...</p>
+            </a>
+            <p class="medium-card-description">Carregando descrição...</p>
+          </div>
+          <div class="slider-indicators"></div>
+        </div>
+        <div class="medium-navigation-buttons">
+          <button class="medium-nav-button prev" aria-label="Slide anterior" aria-controls="medium-card-slider">
+            <i class="fas fa-chevron-left" aria-hidden="true"></i>
+          </button>
+          <button class="medium-nav-button next" aria-label="Próximo slide" aria-controls="medium-card-slider">
+            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Container para os cards menores -->
+      <div class="small-topics-container">
+        <p class="loading-fallback">Carregando tópicos...</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+       <!-- SEÇÃO TENDÊNCIAS EM IA -->
+<section class="trends-section" aria-labelledby="trends-heading">
+  <div class="container">
+    <h2 id="trends-heading" class="section-title">Tendência em IA</h2>
+    <div class="trends-cards-container" role="region" aria-label="Tendências em Inteligência Artificial">
+      <!-- Exemplo de card gerado dinamicamente -->
+      <div class="trends-card">
+        <div class="trends-card-container">
+          <a href="#" class="trends-card-image-link">
+            <img src="caminho-da-imagem.jpg" alt="Descrição da imagem" class="trends-card-image">
+          </a>
+          <div class="trends-card-overlay">
+            <span class="card-date">11/03/2025</span>
+            <a href="#" class="trends-title-link" title="Título do card">
+              <h3 class="card-title">Título do Card</h3>
+            </a>
+            <p class="card-excerpt">Descrição do card...</p>
+            <span class="card-author">Por: Autor</span>
+          </div>
+        </div>
+      </div>
+      <!-- Outros cards gerados dinamicamente -->
+      <p class="loading-fallback">Carregando tendências em IA...</p>
+    </div>
+  </div>
+</section>
+
+<!-- NOVA SEÇÃO: TRANSFORME IDEIAS EM OBRAS DE ARTE COM IA -->
+<!-- NOVA SEÇÃO: TRANSFORME IDEIAS EM OBRAS DE ARTE COM IA -->
+<section class="art-section" aria-labelledby="art-heading">
+  <div class="art-container">
+    <div class="section-header">
+      <h2 id="art-heading">Transforme Ideias em Obras de Arte com IA</h2>
+    </div>
+    <p class="section-intro">
+      <a href="designs.html" class="section-intro-link">Veja exemplos incríveis de arte impulsionada e gerada por Inteligência Artificial</a>
+    </p>
+    <div class="art-carousel" role="region" aria-label="Carrossel de obras de arte geradas por IA">
+      <!-- Swiper -->
+      <div class="swiper">
+        <div class="swiper-wrapper" role="list">
+          <!-- Os slides serão inseridos aqui dinamicamente pelo JavaScript -->
+        </div>
+        <!-- Botões de navegação -->
+        <div class="swiper-button-prev" aria-label="Slide anterior" role="button" tabindex="0"></div>
+        <div class="swiper-button-next" aria-label="Próximo slide" role="button" tabindex="0"></div>
+        <!-- Paginação -->
+        <div class="swiper-pagination" role="navigation" aria-label="Paginação do carrossel"></div>
+      </div>
+    </div>
+    <div class="more-link-wrapper">
+      <a href="designs.html" class="more-link">
+        <span class="more-text">Mais</span>
+        <span class="material-symbols-outlined" aria-hidden="true">arrow_right_alt</span>
+      </a>
+    </div>
+    <!-- Subseção: O que posso criar com Inteligência Artificial? -->
+<div class="creations-section" aria-labelledby="creations-heading">
+  <h3 id="creations-heading">O que posso criar com Inteligência Artificial?</h3>
+  <div class="creations-grid">
+    <div class="creation-item">
+      <div class="creation-icon" role="img" aria-label="Ícone representando Animações">
+        <img src="assets/icons/animation.webp" alt="Ícone de Animação" loading="lazy">
+      </div>
+      <p class="creation-label">Animações</p>
+    </div>
+    <div class="creation-item">
+      <div class="creation-icon" role="img" aria-label="Ícone representando Aplicativos">
+        <img src="assets/icons/app-ai4.webp" alt="Ícone de Aplicativo" loading="lazy">
+      </div>
+      <p class="creation-label">Aplicativos</p>
+    </div>
+    <div class="creation-item">
+      <div class="creation-icon" role="img" aria-label="Ícone representando Arte Conceitual">
+        <img src="assets/icons/concept-art4.webp" alt="Ícone de Arte Conceitual" loading="lazy">
+      </div>
+      <p class="creation-label">Arte Conceitual</p>
+    </div>
+    <div class="creation-item">
+      <div class="creation-icon" role="img" aria-label="Ícone representando Assistente Virtual">
+        <img src="assets/icons/assistant-virtual.webp" alt="Ícone de Assistente Virtual" loading="lazy">
+      </div>
+      <p class="creation-label">Assistente Virtual</p>
+    </div>
+    <div class="creation-item">
+      <div class="creation-icon" role="img" aria-label="Ícone representando Avatares Personalizados">
+        <img src="assets/icons/custom-avatar.webp" alt="Ícone de Avatar" loading="lazy">
+      </div>
+      <p class="creation-label">Avatares Personalizados</p>
+    </div>
+    <div class="creation-item">
+      <div class="creation-icon" role="img" aria-label="Ícone representando Banners">
+        <img src="assets/icons/banner.webp" alt="Ícone de Pôster" loading="lazy">
+      </div>
+      <p class="creation-label">Banners</p>
+    </div>
+    <div class="creation-item">
+      <div class="creation-icon" role="img" aria-label="Ícone representando Capas de Livros">
+        <img src="assets/icons/book-cover3.webp" alt="Ícone de Capa de Livro" loading="lazy">
+      </div>
+      <p class="creation-label">Capas de Livros</p>
+    </div>
+    <div class="creation-item">
+      <div class="creation-icon" role="img" aria-label="Ícone representando Chatbots">
+        <img src="assets/icons/chatbot3.webp" alt="Ícone de Chatbots" loading="lazy">
+      </div>
+      <p class="creation-label">Chatbots</p>
+    </div>
+    <div class="creation-item">
+      <div class="creation-icon" role="img" aria-label="Ícone representando Conteúdo e Escrita">
+        <img src="assets/icons/content-and-writing.webp" alt="Ícone de Conteúdo e Escrita" loading="lazy">
+      </div>
+      <p class="creation-label">Conteúdo e Escrita</p>
+    </div>
+    <div class="creation-item">
+      <div class="creation-icon" role="img" aria-label="Ícone representando Criação de Memes">
+        <img src="assets/icons/meme-ia.webp" alt="Ícone de Meme" loading="lazy">
+      </div>
+      <p class="creation-label">Criação de Memes</p>
+    </div>
+    <div class="creation-item">
+      <div class="creation-icon" role="img" aria-label="Ícone representando Design de Interiores">
+        <img src="assets/icons/interior-design.webp" alt="Ícone de Design de Interiores" loading="lazy">
+      </div>
+      <p class="creation-label">Design de Interiores</p>
+    </div>
+    <div class="creation-item">
+      <div class="creation-icon" role="img" aria-label="Ícone representando Design de Moda">
+        <img src="assets/icons/fashion-design.webp" alt="Ícone de Design de Moda" loading="lazy">
+      </div>
+      <p class="creation-label">Design de Moda</p>
+    </div>
+    <div class="creation-item">
+      <div class="creation-icon" role="img" aria-label="Ícone representando Edição de Imagens">
+        <img src="assets/icons/image-editingof.webp" alt="Ícone de Edição de Imagem" loading="lazy">
+      </div>
+      <p class="creation-label">Edição de Imagens</p>
+    </div>
+    <div class="creation-item">
+      <div class="creation-icon" role="img" aria-label="Ícone representando Efeitos Sonoros">
+        <img src="assets/icons/sound-effect3.webp" alt="Ícone de Efeito Sonoro" loading="lazy">
+      </div>
+      <p class="creation-label">Efeitos Sonoros</p>
+    </div>
+    <div class="creation-item">
+      <div class="creation-icon" role="img" aria-label="Ícone representando Fotografias Realistas">
+        <img src="assets/icons/realistic-photograph.webp" alt="Ícone de Fotografia" loading="lazy">
+      </div>
+      <p class="creation-label">Fotografias Realistas</p>
+    </div>
+    <div class="creation-item">
+      <div class="creation-icon" role="img" aria-label="Ícone representando Geração de Códigos">
+        <img src="assets/icons/code-generation.webp" alt="Ícone de Geração de Código" loading="lazy">
+      </div>
+      <p class="creation-label">Geração de Códigos</p>
+    </div>
+    <div class="creation-item">
+      <div class="creation-icon" role="img" aria-label="Ícone representando Ilustrações">
+        <img src="assets/icons/illustration.webp" alt="Ícone de Ilustração" loading="lazy">
+      </div>
+      <p class="creation-label">Ilustrações</p>
+    </div>
+    <div class="creation-item">
+      <div class="creation-icon" role="img" aria-label="Ícone representando Infográficos">
+        <img src="assets/icons/infographic-ia.webp" alt="Ícone de Infográfico" loading="lazy">
+      </div>
+      <p class="creation-label">Infográficos</p>
+    </div>
+    <div class="creation-item">
+      <div class="creation-icon" role="img" aria-label="Ícone representando Jogos e Protótipos">
+        <img src="assets/icons/game-prototype2.webp" alt="Ícone de Jogo" loading="lazy">
+      </div>
+      <p class="creation-label">Jogos e Protótipos</p>
+    </div>
+    <div class="creation-item">
+      <div class="creation-icon" role="img" aria-label="Ícone representando Logotipos">
+        <img src="assets/icons/logotipo.webp" alt="Ícone de Logotipo" loading="lazy">
+      </div>
+      <p class="creation-label">Logotipos</p>
+    </div>
+    <div class="creation-item">
+      <div class="creation-icon" role="img" aria-label="Ícone representando Modelos 3D">
+        <img src="assets/icons/3d-model.webp" alt="Ícone de Modelo 3D" loading="lazy">
+      </div>
+      <p class="creation-label">Modelos 3D</p>
+    </div>
+    <div class="creation-item">
+      <div class="creation-icon" role="img" aria-label="Ícone representando Música">
+        <img src="assets/icons/music.webp" alt="Ícone de Música" loading="lazy">
+      </div>
+      <p class="creation-label">Músicas</p>
+    </div>
+    <div class="creation-item">
+      <div class="creation-icon" role="img" aria-label="Ícone representando Pinturas Digitais">
+        <img src="assets/icons/digital-painting.webp" alt="Ícone de Pintura Digital" loading="lazy">
+      </div>
+      <p class="creation-label">Pinturas Digitais</p>
+    </div>
+    <div class="creation-item">
+      <div class="creation-icon" role="img" aria-label="Ícone representando Poesia">
+        <img src="assets/icons/poetry.webp" alt="Ícone de Poesia" loading="lazy">
+      </div>
+      <p class="creation-label">Poesias</p>
+    </div>
+    <div class="creation-item">
+      <div class="creation-icon" role="img" aria-label="Ícone representando Pôsteres">
+        <img src="assets/icons/posterof.webp" alt="Ícone de Pôsteres" loading="lazy">
+      </div>
+      <p class="creation-label">Pôsteres</p>
+    </div>
+    <div class="creation-item">
+      <div class="creation-icon" role="img" aria-label="Ícone representando Redação de E-mails">
+        <img src="assets/icons/emails5.webp" alt="Ícone de E-mail" loading="lazy">
+      </div>
+      <p class="creation-label">Redação de E-mails</p>
+    </div>
+    <div class="creation-item">
+      <div class="creation-icon" role="img" aria-label="Ícone representando Sites">
+        <img src="assets/icons/site-ai.webp" alt="Ícone de Mapa" loading="lazy">
+      </div>
+      <p class="creation-label">Sites</p>
+    </div>
+    <div class="creation-item">
+      <div class="creation-icon" role="img" aria-label="Ícone representando Textos e Roteiros">
+        <img src="assets/icons/text-script.webp" alt="Ícone de Texto" loading="lazy">
+      </div>
+      <p class="creation-label">Textos e Roteiros</p>
+    </div>
+    <div class="creation-item">
+      <div class="creation-icon" role="img" aria-label="Ícone representando Tradução de Textos">
+        <img src="assets/icons/translate-ia3.webp" alt="Ícone de Tradução" loading="lazy">
+      </div>
+      <p class="creation-label">Tradução de Textos</p>
+    </div>
+    <div class="creation-item">
+      <div class="creation-icon" role="img" aria-label="Ícone representando Vídeos Gerados por IA">
+        <img src="assets/icons/AI-video-generate.webp" alt="Ícone de Vídeo" loading="lazy">
+      </div>
+      <p class="creation-label">Vídeos Gerados por IA</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-content">
+      <div class="footer-section brand">
+          <h3>Technology AI</h3>
+          <p>Explorando o futuro da Inteligência Artificial</p>
+      </div>
+      
+      <div class="footer-section navigation">
+          <h4>Navegação</h4>
+          <ul>
+              <li><a href="#">Início</a></li>
+              <li><a href="#">Notícias</a></li>
+              <li><a href="#">Tendências em IA</a></li>
+              <li><a href="#">Artigos</a></li>
+          </ul>
+      </div>
+      
+      <div class="footer-section resources">
+          <h4>Recursos</h4>
+          <ul>
+              <li><a href="#">Newsletter</a></li>
+              <li><a href="#">Política de Privacidade</a></li>
+              <li><a href="#">Contato</a></li>
+              <li><a href="#">Sobre Nós</a></li>
+          </ul>
+      </div>
+      
+      <div class="footer-section social">
+          <h4>Conecte-se</h4>
+          <div class="social-icons">
+              <a href="#" class="social-icon instagram">
+                  <svg viewBox="0 0 24 24">
+                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.148 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.148-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98C0 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 24 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.98-6.98C24 15.668 24 15.259 24 12c0-3.259-.014-3.667-.072-4.947-.2-4.354-2.617-6.78-6.98-6.98C15.668 0 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/>
+                  </svg>
+              </a>
+              <a href="#" class="social-icon twitter">
+                  <svg viewBox="0 0 24 24">
+                      <path d="M24 4.557a9.83 9.83 0 01-2.828.775 4.932 4.932 0 002.165-2.724 9.864 9.864 0 01-3.127 1.195 4.916 4.916 0 00-3.594-1.555c-3.179 0-5.515 2.966-4.797 6.045A13.978 13.978 0 011.671 3.149a4.93 4.93 0 001.523 6.574 4.903 4.903 0 01-2.229-.616c-.054 2.281 1.581 4.415 3.949 4.89a4.935 4.935 0 01-2.224.084 4.928 4.928 0 004.6 3.419A9.9 9.9 0 010 19.54a13.94 13.94 0 007.548 2.212c9.142 0 14.307-7.721 13.995-14.646A10.025 10.025 0 0024 4.557z"/>
+                  </svg>
+              </a>
+              <a href="#" class="social-icon linkedin">
+                  <svg viewBox="0 0 24 24">
+                      <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-6h2v6zm-1-6.891c-.607 0-1.1-.496-1.1-1.109 0-.612.492-1.109 1.1-1.109s1.1.497 1.1 1.109c0 .613-.492 1.109-1.1 1.109zm8 6.891h-1.998v-2.861c0-1.881-2.002-1.722-2.002 0v2.861h-2v-6h2v1.111c.941-1.729 4-1.885 4 1.679v3.21z"/>
+                  </svg>
+              </a>
+              <a href="#" class="social-icon facebook">
+                  <svg viewBox="0 0 24 24">
+                      <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm3 8h-1.35c-.538 0-.65.221-.65.778v1.222h2l-.209 2h-1.791v7h-3v-7h-2v-2h2v-2.308c0-1.769.931-2.692 3.029-2.692h1.971v3z"/>
+                  </svg>
+              </a>
+          </div>
+      </div>
+  </div>
+  
+  <div class="footer-bottom">
+      <p class="copyright">© 2025 Technology AI | Todos os direitos reservados</p>
+      <p class="tagline">Explorando o futuro da Inteligência Artificial com responsabilidade</p>
+  </div>
+</footer>
+  
+  <script src="script.js" defer=""></script>
+  <script src="script-carousel-ia.js" defer=""></script>
+
+</body></html>
