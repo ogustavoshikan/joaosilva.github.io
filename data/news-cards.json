@@ -1,0 +1,74 @@
+{
+  "news": [
+    {
+      "type": "featured",
+      "title": "OpenAI Lança Modelo GPT-4.5 com Inteligência Emocional Avançada",
+      "excerpt": "A OpenAI apresentou o GPT-4.5, uma evolução do GPT-4, com melhorias em reconhecimento de padrões e inteligência emocional.",
+      "date": "Mar 05, 2025",
+      "author": "Por Gustavo G.",
+      "image": "assets/chatgpt-4.5.webp",
+      "link": "https://exemplo.com/gpt-4.5",
+      "alt": "OpenAI lança modelo GPT-4.5 com inteligência emocional avançada"
+    },
+    {
+      "type": "side",
+      "title": "Claude Sonnet 3.7: A Nova Fronteira da IA que Supera OpenAI e Grok 3",
+      "excerpt": "A Anthropic lançou o Claude 3.7 Sonnet, um modelo híbrido que supera modelos da OpenAI e DeepSeek em tarefas de codificação do mundo real, apesar de desafios em tarefas lógicas.",
+      "date": "Mar 04, 2025",
+      "author": "Por Gustavo G.",
+      "image": "assets/claude-sonnet-3.7.webp",
+      "link": "https://exemplo.com/claude-sonnet-3.7",
+      "alt": "Anthropic lança novo modelo Claude Sonnet 3.7"
+    },
+    {
+      "type": "side",
+      "title": "Elon Musk Lança Grok 3: A ''IA Mais Inteligente da Terra''",
+      "excerpt": "O Grok 3 da xAI, de Elon Musk, supera GPT-4o e DeepSeek em matemática e codificação, disponível para assinantes premium no X.",
+      "date": "Mar 01, 2025",
+      "author": "Por Gustavo G.",
+      "image": "assets/elon-musk-grok3-xAI.webp",
+      "link": "https://exemplo.com/grok-3",
+      "alt": "Elon Musk lança Grok 3 pela xAI"
+    },
+    {
+      "type": "bottom",
+      "title": "Tencent Lança Hunyuan Turbo S, Nova Plataforma Que Promete Competir com DeepSeek",
+      "excerpt": "A Tencent lançou o Hunyuan Turbo S, uma nova plataforma de IA projetada para competir com a DeepSeek.",
+      "date": "Mar 03, 2025",
+      "author": "Por Gustavo G.",
+      "image": "assets/tencent-ds.webp",
+      "link": "https://exemplo.com/tencent-hunyuan",
+      "alt": "Tencent lança Hunyuan Turbo S para competir com DeepSeek"
+    },
+    {
+      "type": "bottom",
+      "title": "Meta Investe Bilhões em Supercomputação: A Nova Era da Inteligência Artificial",
+      "excerpt": "A Meta investe US$ 18 bilhões em 600.000 GPUs Nvidia H100 para criar uma inteligência geral acessível, integrando IA e metaverso.",
+      "date": "Mar 02, 2025",
+      "author": "Por Gustavo G.",
+      "image": "assets/meta-nvidia.webp",
+      "link": "https://exemplo.com/meta-supercomputacao",
+      "alt": "Meta investe em supercomputação com GPUs Nvidia"
+    },
+    {
+      "type": "bottom",
+      "title": "Anthropic Triplica Avaliação para US$ 61,5 Bilhões em Rodada de Financiamento de IA",
+      "excerpt": "A Anthropic arrecadou US$ 3,5 bilhões, triplicando sua avaliação para US$ 61,5 bilhões, liderada pela Lightspeed Venture Partners.",
+      "date": "Feb 28, 2025",
+      "author": "Por Gustavo G.",
+      "image": "assets/61.5Bilion.webp",
+      "link": "https://exemplo.com/anthropic-avaliacao",
+      "alt": "Anthropic triplica avaliação para US$ 61,5 bilhões"
+    },
+    {
+      "type": "bottom",
+      "title": "Nvidia Anuncia Nova GPU para Treinamento de IA em Escala Global",
+      "excerpt": "A Nvidia revelou uma nova GPU projetada para acelerar o treinamento de modelos de IA em larga escala, com eficiência energética recorde.",
+      "date": "Feb 27, 2025",
+      "author": "Por Gustavo G.",
+      "image": "assets/nvidia-gpu.webp",
+      "link": "https://exemplo.com/nvidia-gpu",
+      "alt": "Nvidia anuncia nova GPU para treinamento de IA"
+    }
+  ]
+}

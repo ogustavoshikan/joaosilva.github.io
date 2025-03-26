@@ -1,0 +1,58 @@
+{
+  "trends": [
+    {
+      "title": "Espanha Fortalece Supervisão de IA com Nova Agência",
+      "excerpt": "A Agência Espanhola de Supervisão da Inteligência Artificial (AESIA), situada em A Coruña, planeja contratar até 80 funcionários até o final de 2025.",
+      "date": "2025-03-12",
+      "author": "Por: Gustavo G.",
+      "image": "assets/images-trends/espanha-new.webp",
+      "link": "https://exemplo.com/espanha-ia-agencia",
+      "alt": "Imagem da sede da nova Agência de Supervisão de IA da Espanha em A Coruña"
+    },
+    {
+      "title": "Rússia Lidera Aliança de IA com Países Emergentes",
+      "excerpt": "Rússia desafia EUA e China com nova aliança com países do BRICS e outros, desenvolvendo sua própria Inteligência Artificial.",
+      "date": "2025-03-12",
+      "author": "Por: Gustavo G.",
+      "image": "assets/images-trends/russia-news.webp",
+      "link": "https://exemplo.com/russia-ia-alianca",
+      "alt": "Imagem ilustrativa mostrando cooperação entre Rússia e países emergentes em tecnologia de IA"
+    },
+    {
+      "title": "Nossa missão é garantir que a AGI beneficie toda a humanidade",
+      "excerpt": "Sam Altman, o atual CEO da OpenAI, fala sobre a missão da empresa de desenvolver inteligência artificial geral que seja segura e benéfica para todos.",
+      "date": "2025-03-12",
+      "author": "Por: Gustavo G.",
+      "image": "assets/images-trends/openai-logo.webp",
+      "link": "https://exemplo.com/openai-missao",
+      "alt": "Logo da OpenAI em fundo escuro"
+    },
+    {
+      "title": "Ética na IA: Desafios e Soluções",
+      "excerpt": "Especialistas discutem os desafios éticos na implementação de inteligência artificial e propõem soluções para um uso mais responsável.",
+      "date": "2025-03-14",
+      "author": "Por: João Silva",
+      "image": "assets/etica-na-ia.webp",
+      "link": "https://exemplo.com/etica-ia",
+      "alt": "Imagem ilustrativa sobre ética na inteligência artificial"
+    },
+    {
+      "title": "IA Generativa: O Futuro da Criação de Conteúdo",
+      "excerpt": "Ferramentas de IA generativa estão transformando a criação de conteúdo, permitindo que artistas e criadores inovem de formas nunca vistas.",
+      "date": "2025-03-13",
+      "author": "Por: Ana Clara",
+      "image": "assets/iagenerativa.jpg",
+      "link": "https://exemplo.com/ia-generativa",
+      "alt": "Imagem ilustrativa sobre o futuro da IA generativa na criação de conteúdo"
+    },
+    {
+      "title": "Modelos de IA: O Que São e Como Funcionam",
+      "excerpt": "Entenda o que são modelos de inteligência artificial e como eles estão sendo usados em diversas indústrias para resolver problemas complexos.",
+      "date": "2025-03-17",
+      "author": "Por: Laura Mendes",
+      "image": "assets/modelos-ia.webp",
+      "link": "https://exemplo.com/modelos-ia",
+      "alt": "Imagem ilustrativa sobre modelos de inteligência artificial"
+    }
+  ]
+}

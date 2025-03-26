@@ -1,0 +1,28 @@
+{
+  "mediumCards": [
+    {
+      "src": "assets/cover-1.webp",
+      "link": "https://www.youtube.com/watch?v=At7TSu20VFk",
+      "type": "video",
+      "title": "Inteligência Artificial: O Que É, História e Definição",
+      "description": "Introdução à Inteligência Artificial | Mundo Conectado",
+      "alt": "Capa 1 - Inteligência Artificial: O Que É, História e Definição"
+    },
+    {
+      "src": "assets/cover-2.webp",
+      "link": "https://youtu.be/W95YlM5-iPk?si=ZAw7LzIRdRjLyPlI",
+      "type": "video",
+      "title": "Documentário - Discovery Brasil | Inteligência Artificial - IBM",
+      "description": "Como A Inteligência Artificial Está Trocando A Maneira Como Vemos O Mundo",
+      "alt": "Capa 2 - Documentário - Discovery Brasil | Inteligência Artificial - IBM"
+    },
+    {
+      "src": "assets/cover-3.webp",
+      "link": "https://cloud.google.com/learn/what-is-artificial-intelligence?hl=pt-BR",
+      "type": "article",
+      "title": "O que é Inteligência Artificial?",
+      "description": "Um Guia Introdutório Da Google Cloud Sobre IA.",
+      "alt": "Capa 3 - O que é Inteligência Artificial?"
+    }
+  ]
+}
