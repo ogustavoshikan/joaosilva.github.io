@@ -1,0 +1,22 @@
+{
+  "archivedNews": [
+    {
+      "date": "Fev 02, 2025",
+      "title": "Primeira Conferência de IA do Ano",
+      "excerpt": "A primeira conferência de inteligência artificial de 2025 reuniu especialistas globais...",
+      "link": "https://example.com",
+      "image": "assets/images/conferencia-ia.jpg",
+      "alt": "Conferência de IA 2025",
+      "author": "Por Gustavo G."
+    },
+    {
+    	"date": "Fev 01, 2025",
+      "title": "Primeira Conferência de IA do Ano",
+      "excerpt": "A primeira conferência de inteligência artificial de 2025 reuniu especialistas globais...",
+      "link": "https://example.com",
+      "image": "assets/images/conferencia-ia.jpg",
+      "alt": "Conferência de IA 2025",
+      "author": "Por Gustavo G."
+    }
+  ]
+}
