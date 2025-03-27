@@ -38,6 +38,11 @@ html {
   scrollbar-width: thin;
 }
 
+html {
+  scroll-behavior: smooth !important;
+  overflow-x: hidden; /* Garante que não haja rolagem horizontal */
+}
+
 /* ===== RESET CSS ===== */
 * {
   margin: 0;
@@ -1541,6 +1546,7 @@ main {
   text-align: center;
   margin-bottom: 2.5rem;
   position: relative;
+  margin-top: 1rem;
 }
 
 .trends-cards-container {
