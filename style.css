@@ -903,7 +903,7 @@ main {
   padding: 1.5rem; /* Aumentado o padding para dar mais espaço ao texto */
   text-align: left;
   transition: opacity 0.8s ease-in-out;
-  min-height: 40%; /* Garante que o overlay cubra pelo menos 40% da altura do card */
+  min-height: 31%; /* Garante que o overlay cubra pelo menos 40% da altura do card */
 }
 
 .medium-title-link {
@@ -966,7 +966,7 @@ main {
   top: 50%;
   left: 0;
   right: 0;
-  padding: 1rem;
+  padding: 0.2rem;
   background-color: transparent;
   gap: 1rem;
   transform: translateY(-50%);
@@ -974,21 +974,21 @@ main {
 }
 
 .medium-nav-button {
-  background-color: rgba(0, 0, 0, 0.5);
-  color: #00BCD4;
+  background-color: rgb(0 0 0 / 73%);
+  color: #ffffff;
   border: none;
-  font-size: 1.5rem;
+  font-size: 2rem;
   cursor: pointer;
   padding: 0.5rem 1rem;
   border-radius: 50%;
   transition: color 0.3s ease, background-color 0.3s ease;
-  box-shadow: 0 0 5px rgba(0, 183, 235, 0.3);
+  box-shadow: 0 0 5px rgb(0 183 235 / 0%);
 }
 
 .medium-nav-button:hover {
-  background-color: #00BCD4;
-  color: #000000;
-  box-shadow: 0 0 10px #ffffff;
+  background-color: rgb(0 0 0 / 73%);
+  color: #F44336;
+  box-shadow: 0 0 10px #f4433600;
 }
 
 .medium-nav-button:focus-visible {
@@ -1353,11 +1353,11 @@ main {
 
   .medium-card-overlay {
     padding: 1rem; /* Ajustado o padding no mobile para ser um pouco menor */
-    min-height: 50%; /* Garante que o overlay cubra pelo menos 50% da altura do card no mobile */
+    min-height: 36%; /* Garante que o overlay cubra pelo menos 50% da altura do card no mobile */
   }
 
   .medium-card-title {
-    font-size: 1.3rem; /* Reduzido o tamanho da fonte no mobile para evitar sobreposição */
+    font-size: 1.2rem; /* Reduzido o tamanho da fonte no mobile para evitar sobreposição */
   }
 
   .medium-card-description {
