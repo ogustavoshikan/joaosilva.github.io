@@ -2645,11 +2645,12 @@ main {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
   font-size: 0.9rem; /* Tamanho pequeno */
+  font-style: italic;
   color: #ffffff; /* Cor branca para contraste com o fundo escuro */
   text-align: left; /* Alinha à esquerda */
   margin: 0 0 0.5rem 1rem; /* Margem para alinhar com o carrossel e dar espaço abaixo */
   position: absolute; /* Posiciona absolutamente em relação ao .swiper */
-  bottom: 25px; /* Ajusta a posição acima dos indicadores */
+  bottom: -7px; /* Ajusta a posição acima dos indicadores */
   left: 0; /* Alinha à esquerda */
 }
 
