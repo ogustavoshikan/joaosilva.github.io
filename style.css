@@ -877,7 +877,6 @@ main {
   width: 100%;
   height: 100%;
   transition: transform 0.8s ease-in-out;
-  touch-action: pan-x; /* Permite o deslize horizontal no mobile */
 }
 
 .medium-card-image {
@@ -1486,21 +1485,22 @@ main {
   }
 }
 
-/* Estilização do texto "Navegue deslizando" */
+/* Estilo para o texto "Navegue deslizando" */
 .swipe-instruction {
-  display: none; /* Oculto por padrão (desktop) */
+  display: none; /* Escondido por padrão (desktop) */
   font-family: 'Roboto', sans-serif;
   font-size: 0.9rem;
-  font-weight: 400;
+  font-weight: 500;
   color: #d6d6d6;
-  margin: 0 0 10px 10px; /* Margem para posicionar à esquerda */
+  margin: 0;
+  padding: 0.5rem 1rem;
   text-align: left;
 }
 
 /* Mostrar o texto apenas no mobile */
 @media (max-width: 768px) {
   .swipe-instruction {
-    display: block; /* Visível no mobile */
+    display: block;
   }
 }
 
