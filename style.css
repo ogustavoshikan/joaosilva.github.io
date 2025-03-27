@@ -2638,6 +2638,37 @@ main {
   }
 }
 
+/* Estilo para o texto "Navegue deslizando" */
+.art-section .swipe-instruction {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 0.9rem; /* Tamanho pequeno */
+  color: #ffffff; /* Cor branca para contraste com o fundo escuro */
+  text-align: left; /* Alinha à esquerda */
+  margin: 0 0 0.5rem 1rem; /* Margem para alinhar com o carrossel e dar espaço abaixo */
+  position: absolute; /* Posiciona absolutamente em relação ao .swiper */
+  bottom: 25px; /* Ajusta a posição acima dos indicadores */
+  left: 0; /* Alinha à esquerda */
+}
+
+/* Ajuste responsivo para telas menores */
+@media (max-width: 768px) {
+  .art-section .swipe-instruction {
+    font-size: 0.8rem; /* Reduz o tamanho da fonte em telas menores */
+    margin-left: 0.5rem; /* Reduz a margem para telas menores */
+    bottom: 20px; /* Ajusta a posição */
+  }
+}
+
+@media (max-width: 480px) {
+  .art-section .swipe-instruction {
+    font-family: 'Rajdhani', serif;
+    font-style: italic;
+    font-size: 0.7rem; /* Ainda menor para telas pequenas */
+    bottom: 15px; /* Ajusta a posição */
+  }
+}
+
 /* ESTILO PARA A SUBSEÇÃO "O QUE POSSO CRIAR COM INTELIGÊNCIA ARTIFICIAL? " */
 .art-section .creations-section {
   margin-top: 2rem; /* Espaço acima da subseção */
