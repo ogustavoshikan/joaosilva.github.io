@@ -1485,25 +1485,6 @@ main {
   }
 }
 
-/* Estilo para o texto "Navegue deslizando" */
-.swipe-instruction {
-  display: none; /* Escondido por padrão (desktop) */
-  font-family: 'Roboto', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: #d6d6d6;
-  margin: 0;
-  padding: 0.5rem 1rem;
-  text-align: left;
-}
-
-/* Mostrar o texto apenas no mobile */
-@media (max-width: 768px) {
-  .swipe-instruction {
-    display: block;
-  }
-}
-
 /* ===== SEÇÃO TENDÊNCIAS EM IA ===== */
 .trends-section {
   background-color: #000000;

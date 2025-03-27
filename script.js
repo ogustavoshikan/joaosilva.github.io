@@ -174,43 +174,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   loadMediumCards();
-  
-  // === Funcionalidade de Swipe para o Carrossel ===
-let touchStartX = 0;
-let touchEndX = 0;
-const swipeThreshold = 50; // Distância mínima (em pixels) para considerar um swipe
-
-mediumCardSlider.addEventListener('touchstart', (e) => {
-  touchStartX = e.touches[0].clientX;
-  pauseAutoSlide(); // Pausa o auto-slide durante o toque
-});
-
-mediumCardSlider.addEventListener('touchmove', (e) => {
-  touchEndX = e.touches[0].clientX;
-});
-
-mediumCardSlider.addEventListener('touchend', () => {
-  const swipeDistance = touchEndX - touchStartX;
-
-  // Se o swipe for maior que o threshold, detecta a direção
-  if (Math.abs(swipeDistance) > swipeThreshold) {
-    if (swipeDistance > 0) {
-      // Swipe para a direita (anterior)
-      currentIndex = (currentIndex - 1 + covers.length) % covers.length;
-      updateMediumCard("left");
-    } else {
-      // Swipe para a esquerda (próximo)
-      currentIndex = (currentIndex + 1) % covers.length;
-      updateMediumCard("right");
-    }
-    resetAutoSlide(); // Reinicia o auto-slide após o swipe
-  }
-
-  // Reseta as variáveis de toque
-  touchStartX = 0;
-  touchEndX = 0;
-  resumeAutoSlide(); // Retoma o auto-slide após o toque
-});
 
   // === 4. Carregar os Cards da Seção "Tendência em IA" Dinamicamente ===
   function loadTrendsCards() {
