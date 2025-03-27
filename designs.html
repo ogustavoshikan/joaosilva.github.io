@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria de Designs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+    <link rel="stylesheet" href="designs.css">
+
+    <!-- Ícone do site -->
+  <link rel="icon" href="assets/favicon.png" type="image/x-icon">
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header class="designs-header">
+        <h1>Galeria de Designs</h1>
+        <nav class="filter-nav">
+            <button class="filter-btn active" data-category="all">Todos</button>
+            <button class="filter-btn" data-category="Photography">Fotografia</button>
+            <button class="filter-btn" data-category="Anime">Anime</button>
+            <button class="filter-btn" data-category="Sci-Fi">Sci-Fi</button>
+        </nav>
+    </header>
+
+    <!-- Galeria de Imagens -->
+    <main class="designs-gallery">
+        <div class="gallery-container">
+            <!-- As imagens serão adicionadas dinamicamente via JavaScript -->
+        </div>
+        <button class="load-more-btn">Carregar Mais</button>
+    </main>
+
+    <!-- Botão Voltar ao Topo -->
+    <div class="home-back-to-top-container">
+        <button id="home-back-to-top" aria-label="Voltar ao topo">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <span class="home-back-to-top-text">Topo</span>
+    </div>
+
+    <!-- Adicionar jQuery antes do Lightbox2 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    <script src="designs.js"></script>
+</body>
+</html>
