@@ -2455,6 +2455,7 @@ main {
   color: #ffffff;
   text-transform: uppercase;
   margin-left: 0; /* Remove o margin-left, já que está centralizado */
+  margin-top: 1rem;
 }
 
 .art-section .title-part {
