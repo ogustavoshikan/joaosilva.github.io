@@ -877,6 +877,7 @@ main {
   width: 100%;
   height: 100%;
   transition: transform 0.8s ease-in-out;
+  touch-action: pan-x; /* Permite o deslize horizontal no mobile */
 }
 
 .medium-card-image {
@@ -1482,6 +1483,24 @@ main {
 
   .stats-label {
     font-size: 0.5rem;
+  }
+}
+
+/* Estilização do texto "Navegue deslizando" */
+.swipe-instruction {
+  display: none; /* Oculto por padrão (desktop) */
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #d6d6d6;
+  margin: 0 0 10px 10px; /* Margem para posicionar à esquerda */
+  text-align: left;
+}
+
+/* Mostrar o texto apenas no mobile */
+@media (max-width: 768px) {
+  .swipe-instruction {
+    display: block; /* Visível no mobile */
   }
 }
 
