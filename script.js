@@ -27,154 +27,196 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // === 3. Navegação do Card Médio na Seção "Comece por Aqui e Tópicos" ===
-  let covers = [];
-  let currentIndex = 0;
-  const mediumCardSlider = document.querySelector(".medium-card-slider");
-  const mediumTitleLink = document.querySelector(".medium-title-link");
-  const mediumDescription = document.querySelector(".medium-card-description");
-  const mediumCardOverlay = document.querySelector(".medium-card-overlay");
-  const prevButton = document.querySelector(".medium-nav-button.prev");
-  const nextButton = document.querySelector(".medium-nav-button.next");
-  const sliderIndicators = document.querySelector(".slider-indicators");
-  let autoSlideInterval;
+let covers = [];
+let currentIndex = 0;
+const mediumCardSlider = document.querySelector(".medium-card-slider");
+const mediumTitleLink = document.querySelector(".medium-title-link");
+const mediumDescription = document.querySelector(".medium-card-description");
+const mediumCardOverlay = document.querySelector(".medium-card-overlay");
+const prevButton = document.querySelector(".medium-nav-button.prev");
+const nextButton = document.querySelector(".medium-nav-button.next");
+const sliderIndicators = document.querySelector(".slider-indicators");
+let autoSlideInterval = null; // Garantir que autoSlideInterval seja inicializado como null
 
-  console.log("mediumCardSlider:", mediumCardSlider);
-  console.log("mediumTitleLink:", mediumTitleLink);
-  console.log("mediumDescription:", mediumDescription);
-  console.log("mediumCardOverlay:", mediumCardOverlay);
-  console.log("prevButton:", prevButton);
-  console.log("nextButton:", nextButton);
-  console.log("sliderIndicators:", sliderIndicators);
+console.log("mediumCardSlider:", mediumCardSlider);
+console.log("mediumTitleLink:", mediumTitleLink);
+console.log("mediumDescription:", mediumDescription);
+console.log("mediumCardOverlay:", mediumCardOverlay);
+console.log("prevButton:", prevButton);
+console.log("nextButton:", nextButton);
+console.log("sliderIndicators:", sliderIndicators);
 
-  if (!prevButton || !nextButton || !mediumCardSlider || !mediumTitleLink || !mediumDescription || !mediumCardOverlay || !sliderIndicators) {
-    console.error("Erro: Alguns elementos do card médio não foram encontrados!");
-    return;
-  }
+if (!prevButton || !nextButton || !mediumCardSlider || !mediumTitleLink || !mediumDescription || !mediumCardOverlay || !sliderIndicators) {
+  console.error("Erro: Alguns elementos do card médio não foram encontrados!");
+  return;
+}
 
-  function loadMediumCards() {
-    fetch('data/medium-cards.json')
-      .then(response => response.json())
-      .then(data => {
-        covers = data.mediumCards;
-        mediumCardSlider.innerHTML = '';
-        covers.forEach((cover, index) => {
-          const img = document.createElement("img");
-          img.src = cover.src;
-          img.classList.add("medium-card-image");
-          img.setAttribute("data-link", cover.link);
-          img.setAttribute("data-type", cover.type);
-          img.setAttribute("alt", cover.alt);
-          img.setAttribute("loading", "lazy");
-          mediumCardSlider.appendChild(img);
-        });
-        createIndicators();
-        startAutoSlide();
-        updateMediumCard("initial");
-      })
-      .catch(error => {
-        console.error('Erro ao carregar os cards médios:', error);
+function loadMediumCards() {
+  fetch('data/medium-cards.json')
+    .then(response => response.json())
+    .then(data => {
+      covers = data.mediumCards;
+      mediumCardSlider.innerHTML = '';
+      covers.forEach((cover, index) => {
+        const img = document.createElement("img");
+        img.src = cover.src;
+        img.classList.add("medium-card-image");
+        img.setAttribute("data-link", cover.link);
+        img.setAttribute("data-type", cover.type);
+        img.setAttribute("alt", cover.alt);
+        img.setAttribute("loading", "lazy");
+        mediumCardSlider.appendChild(img);
       });
-  }
-
-  function createIndicators() {
-    sliderIndicators.innerHTML = '';
-    covers.forEach((_, index) => {
-      const indicator = document.createElement("div");
-      indicator.classList.add("slider-indicator");
-      if (index === 0) indicator.classList.add("active");
-      indicator.addEventListener("click", () => {
-        currentIndex = index;
-        updateMediumCard("jump");
-        updateIndicators();
-        resetAutoSlide();
-      });
-      sliderIndicators.appendChild(indicator);
+      createIndicators();
+      startAutoSlide(); // Iniciar o auto-slide apenas uma vez aqui
+      updateMediumCard("initial");
+    })
+    .catch(error => {
+      console.error('Erro ao carregar os cards médios:', error);
     });
-  }
+}
 
-  function updateIndicators() {
-    const indicators = document.querySelectorAll(".slider-indicator");
-    indicators.forEach((indicator, index) => {
-      indicator.classList.toggle("active", index === currentIndex);
-    });
-  }
-
-  function updateMediumCard(direction) {
-    console.log("Atualizando card médio para o índice:", currentIndex, "Direção:", direction);
-    mediumCardOverlay.style.opacity = 0;
-    const offset = -currentIndex * 100;
-    mediumCardSlider.style.transform = `translateX(${offset}%)`;
-    setTimeout(() => {
-      mediumTitleLink.href = covers[currentIndex].link;
-      const newTitle = covers[currentIndex].title;
-      mediumTitleLink.querySelector(".medium-card-title").textContent = newTitle;
-      mediumTitleLink.setAttribute("title", newTitle);
-      mediumTitleLink.setAttribute("aria-label", `Acesse ${newTitle}`);
-      mediumDescription.textContent = covers[currentIndex].description;
-      mediumCardOverlay.style.opacity = 1;
-      console.log("Card médio atualizado! Novo src:", mediumCardSlider.children[currentIndex].src);
+function createIndicators() {
+  sliderIndicators.innerHTML = '';
+  covers.forEach((_, index) => {
+    const indicator = document.createElement("div");
+    indicator.classList.add("slider-indicator");
+    if (index === 0) indicator.classList.add("active");
+    indicator.addEventListener("click", () => {
+      currentIndex = index;
+      updateMediumCard("jump");
       updateIndicators();
-    }, 400);
-  }
-
-  function startAutoSlide() {
-    autoSlideInterval = setInterval(() => {
-      currentIndex = (currentIndex + 1) % covers.length;
-      updateMediumCard("auto");
-    }, 7000);
-  }
-
-  function resetAutoSlide() {
-    clearInterval(autoSlideInterval);
-    startAutoSlide();
-  }
-
-  function pauseAutoSlide() {
-    console.log("Slider pausado (mouse sobre)");
-    clearInterval(autoSlideInterval);
-  }
-
-  function resumeAutoSlide() {
-    console.log("Slider retomado (mouse saiu)");
-    startAutoSlide();
-  }
-
-  prevButton.addEventListener("click", function () {
-    console.log("Botão 'Anterior' clicado");
-    currentIndex = (currentIndex - 1 + covers.length) % covers.length;
-    updateMediumCard("left");
-    resetAutoSlide();
+      resetAutoSlide();
+    });
+    sliderIndicators.appendChild(indicator);
   });
+}
 
-  nextButton.addEventListener("click", function () {
-    console.log("Botão 'Próximo' clicado");
+function updateIndicators() {
+  const indicators = document.querySelectorAll(".slider-indicator");
+  indicators.forEach((indicator, index) => {
+    indicator.classList.toggle("active", index === currentIndex);
+  });
+}
+
+function updateMediumCard(direction) {
+  console.log("Atualizando card médio para o índice:", currentIndex, "Direção:", direction);
+  mediumCardOverlay.style.opacity = 0;
+  const offset = -currentIndex * 100;
+  mediumCardSlider.style.transform = `translateX(${offset}%)`;
+  setTimeout(() => {
+    mediumTitleLink.href = covers[currentIndex].link;
+    const newTitle = covers[currentIndex].title;
+    mediumTitleLink.querySelector(".medium-card-title").textContent = newTitle;
+    mediumTitleLink.setAttribute("title", newTitle);
+    mediumTitleLink.setAttribute("aria-label", `Acesse ${newTitle}`);
+    mediumDescription.textContent = covers[currentIndex].description;
+    mediumCardOverlay.style.opacity = 1;
+    console.log("Card médio atualizado! Novo src:", mediumCardSlider.children[currentIndex].src);
+    updateIndicators();
+  }, 400);
+}
+
+function startAutoSlide() {
+  // Garantir que qualquer intervalo anterior seja limpo antes de iniciar um novo
+  if (autoSlideInterval) {
+    clearInterval(autoSlideInterval);
+  }
+  autoSlideInterval = setInterval(() => {
     currentIndex = (currentIndex + 1) % covers.length;
-    updateMediumCard("right");
-    resetAutoSlide();
-  });
+    updateMediumCard("auto");
+  }, 7000); // 7 segundos
+  console.log("Auto-slide iniciado com intervalo de 7 segundos");
+}
 
-  mediumCardSlider.addEventListener("click", function (event) {
-    if (event.target.classList.contains("medium-card-image")) {
-      const link = event.target.getAttribute("data-link");
-      const type = event.target.getAttribute("data-type");
-      console.log("Imagem clicada - Link:", link, "Tipo:", type);
-      if (type === "video" || type === "article") {
-        window.open(link, "_blank");
-      }
-    }
-  });
+function resetAutoSlide() {
+  console.log("Reiniciando auto-slide");
+  startAutoSlide(); // Já limpa o intervalo anterior dentro de startAutoSlide
+}
 
-  const mediumCardContainer = document.querySelector(".medium-card-container") || mediumCardSlider.parentElement;
-  console.log("mediumCardContainer:", mediumCardContainer);
-  if (mediumCardContainer) {
-    mediumCardContainer.addEventListener("mouseenter", pauseAutoSlide);
-    mediumCardContainer.addEventListener("mouseleave", resumeAutoSlide);
-  } else {
-    console.warn("Elemento .medium-card-container não encontrado, usando mediumCardSlider como fallback.");
+function pauseAutoSlide() {
+  console.log("Slider pausado (mouse sobre)");
+  if (autoSlideInterval) {
+    clearInterval(autoSlideInterval);
+    autoSlideInterval = null; // Garantir que o intervalo seja marcado como limpo
   }
+}
 
-  loadMediumCards();
+function resumeAutoSlide() {
+  console.log("Slider retomado (mouse saiu)");
+  if (!autoSlideInterval) { // Só inicia se não houver um intervalo ativo
+    startAutoSlide();
+  }
+}
 
+prevButton.addEventListener("click", function () {
+  console.log("Botão 'Anterior' clicado");
+  currentIndex = (currentIndex - 1 + covers.length) % covers.length;
+  updateMediumCard("left");
+  resetAutoSlide();
+});
+
+nextButton.addEventListener("click", function () {
+  console.log("Botão 'Próximo' clicado");
+  currentIndex = (currentIndex + 1) % covers.length;
+  updateMediumCard("right");
+  resetAutoSlide();
+});
+
+mediumCardSlider.addEventListener("click", function (event) {
+  if (event.target.classList.contains("medium-card-image")) {
+    const link = event.target.getAttribute("data-link");
+    const type = event.target.getAttribute("data-type");
+    console.log("Imagem clicada - Link:", link, "Tipo:", type);
+    if (type === "video" || type === "article") {
+      window.open(link, "_blank");
+    }
+  }
+});
+
+const mediumCardContainer = document.querySelector(".medium-card-container") || mediumCardSlider.parentElement;
+console.log("mediumCardContainer:", mediumCardContainer);
+if (mediumCardContainer) {
+  mediumCardContainer.addEventListener("mouseenter", pauseAutoSlide);
+  mediumCardContainer.addEventListener("mouseleave", resumeAutoSlide);
+} else {
+  console.warn("Elemento .medium-card-container não encontrado, usando mediumCardSlider como fallback.");
+}
+
+// Adicionar suporte a swipe (deslizar) no carrossel
+let touchStartX = 0;
+let touchEndX = 0;
+
+mediumCardSlider.addEventListener("touchstart", function (event) {
+  touchStartX = event.touches[0].clientX;
+  pauseAutoSlide(); // Pausar o auto-slide ao iniciar o toque
+});
+
+mediumCardSlider.addEventListener("touchmove", function (event) {
+  touchEndX = event.touches[0].clientX;
+});
+
+mediumCardSlider.addEventListener("touchend", function () {
+  const swipeDistance = touchEndX - touchStartX;
+  const minSwipeDistance = 50; // Distância mínima para considerar um swipe
+
+  if (Math.abs(swipeDistance) > minSwipeDistance) {
+    if (swipeDistance > 0) {
+      // Deslizar para a direita (anterior)
+      currentIndex = (currentIndex - 1 + covers.length) % covers.length;
+      updateMediumCard("swipe-left");
+    } else {
+      // Deslizar para a esquerda (próximo)
+      currentIndex = (currentIndex + 1) % covers.length;
+      updateMediumCard("swipe-right");
+    }
+    resetAutoSlide(); // Reiniciar o auto-slide após o swipe
+  } else {
+    resumeAutoSlide(); // Retomar o auto-slide se não houver swipe
+  }
+});
+
+loadMediumCards();
   // === 4. Carregar os Cards da Seção "Tendência em IA" Dinamicamente ===
   function loadTrendsCards() {
     fetch('data/cards.json')

@@ -1485,6 +1485,38 @@ main {
   }
 }
 
+/* Estilo para o texto "Navegue deslizando" no carrossel médio */
+.medium-card-container .swipe-instruction {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 0.9rem; /* Tamanho pequeno */
+  color: #ffffff; /* Cor branca para contraste com o fundo escuro */
+  text-align: left; /* Alinha à esquerda */
+  margin: 0 0 0 1rem; /* Margem para alinhar com o carrossel */
+  position: absolute; /* Posiciona absolutamente em relação ao .medium-card-container */
+  bottom: 10px; /* Alinha verticalmente com os indicadores */
+  left: 0; /* Alinha à esquerda */
+  z-index: 10; /* Garante que fique acima de outros elementos */
+}
+
+/* Ajuste responsivo para telas menores */
+@media (max-width: 768px) {
+  .medium-card-container .swipe-instruction {
+    font-size: 0.8rem; /* Reduz o tamanho da fonte em telas menores */
+    margin-left: 0.5rem; /* Reduz a margem para telas menores */
+    bottom: 8px; /* Ajusta a posição */
+  }
+}
+
+@media (max-width: 480px) {
+  .medium-card-container .swipe-instruction {
+    font-family: 'Rajdhani', serif;
+    font-size: 0.7rem; /* Ainda menor para telas pequenas */
+    font-style: italic;
+    bottom: 6px; /* Ajusta a posição */
+  }
+}
+
 /* ===== SEÇÃO TENDÊNCIAS EM IA ===== */
 .trends-section {
   background-color: #000000;
