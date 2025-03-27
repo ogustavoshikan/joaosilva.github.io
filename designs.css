@@ -30,8 +30,8 @@ body {
 }
 
 .filter-btn {
-    background-color: #333;
-    color: #fff;
+    background-color: #131212;
+    color: #ffffff;
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 20px;
@@ -53,13 +53,13 @@ body {
 }
 
 .gallery-container {
-    column-count: 4; /* Layout masonry com 4 colunas */
+    column-count: 5; /* Layout masonry com 4 colunas */
     column-gap: 1rem;
 }
 
 .gallery-item {
     break-inside: avoid; /* Evita que os itens sejam quebrados entre colunas */
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .gallery-item img {
