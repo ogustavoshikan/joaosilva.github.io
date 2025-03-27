@@ -84,6 +84,63 @@ a:hover {
   text-decoration: none;
 }
 
+/* ESTILO PARA O BOTÃO VOLTAR AO TOPO (PÁGINA INICIAL) */
+.home-back-to-top-container {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1000; /* Garante que o botão fique acima de outros elementos */
+}
+
+#home-back-to-top {
+  background-color: #ffffff;
+  border: 1px solid #232221;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0; /* Inicialmente invisível */
+  visibility: hidden; /* Inicialmente escondido */
+  transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.3s ease;
+}
+
+#home-back-to-top i {
+  color: #000000;
+  font-size: 1.2rem;
+}
+
+#home-back-to-top:hover {
+  background-color: #F44336; /* Mesma cor usada em outros elementos interativos */
+}
+
+#home-back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Estilo para o texto "Topo" (Página Inicial) */
+.home-back-to-top-container .home-back-to-top-text {
+  color: #ffffff; /* Cor branca para combinar com o tema */
+  font-family: 'Inter', sans-serif; /* Ajustado para a fonte usada na página principal */
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  opacity: 0; /* Inicialmente invisível, sincronizado com o botão */
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.home-back-to-top-container .home-back-to-top-text.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
 /* ===== HEADER ===== */
 .site-header {
   background-color: #000000;
