@@ -1487,32 +1487,31 @@ main {
 
 /* Estilo para o texto "Navegue deslizando" no carrossel médio */
 .medium-card-container .swipe-instruction {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 300;
-  font-size: 0.9rem; /* Tamanho pequeno */
-  color: #ffffff; /* Cor branca para contraste com o fundo escuro */
-  text-align: left; /* Alinha à esquerda */
-  margin: 0 0 0 1rem; /* Margem para alinhar com o carrossel */
-  position: absolute; /* Posiciona absolutamente em relação ao .medium-card-container */
-  bottom: 10px; /* Alinha verticalmente com os indicadores */
-  left: 0; /* Alinha à esquerda */
-  z-index: 10; /* Garante que fique acima de outros elementos */
+  display: none; /* Ocultar por padrão (desktop) */
 }
 
-/* Ajuste responsivo para telas menores */
+/* Exibir apenas no mobile (telas menores que 768px) */
 @media (max-width: 768px) {
   .medium-card-container .swipe-instruction {
-    font-size: 0.8rem; /* Reduz o tamanho da fonte em telas menores */
-    margin-left: 0.5rem; /* Reduz a margem para telas menores */
-    bottom: 8px; /* Ajusta a posição */
+    display: block; /* Exibir no mobile */
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 0.8rem; /* Tamanho pequeno */
+    color: #ffffff; /* Cor branca para contraste com o fundo escuro */
+    text-align: left; /* Alinha à esquerda */
+    margin: 0 0 0 0.5rem; /* Margem para alinhar com o carrossel */
+    position: absolute; /* Posiciona absolutamente em relação ao .medium-card-container */
+    bottom: 8px; /* Alinha verticalmente com os indicadores */
+    left: 0; /* Alinha à esquerda */
+    z-index: 10; /* Garante que fique acima de outros elementos */
   }
 }
 
 @media (max-width: 480px) {
   .medium-card-container .swipe-instruction {
     font-family: 'Rajdhani', serif;
-    font-size: 0.7rem; /* Ainda menor para telas pequenas */
     font-style: italic;
+    font-size: 0.7rem; /* Ainda menor para telas pequenas */
     bottom: 6px; /* Ajusta a posição */
   }
 }
