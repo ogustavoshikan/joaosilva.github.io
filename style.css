@@ -2258,6 +2258,11 @@ main {
   font-size: 1.2rem
 }
 
+.news2-section .breadcrumb .current-page:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
 .news2-section .breadcrumb i {
   color: #00b7eb;
   font-size: 0.8rem;
