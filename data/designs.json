@@ -22,7 +22,7 @@
     },
     {
       "id": 3,
-      "src": "assets/maisteste1.jpg",
+      "src": "assets/9x16_Image_is_a_mirror_selfie_featuri.png",
       "alt": "Arte de ficção científica",
       "category": "Sci-Fi",
       "resolution": "1080x1920",
@@ -42,7 +42,7 @@
     },
     {
       "id": 5,
-      "src": "assets/teste5-4-3.webp",
+      "src": "assets/9x16_Black_Woman___Cool_Tones___Sleek (2).png",
       "alt": "Arte de ficção científica",
       "category": "Sci-Fi",
       "resolution": "1080x1920",
@@ -52,7 +52,7 @@
     },
     {
       "id": 6,
-      "src": "assets/testehero101.webp",
+      "src": "assets/9x16_Theme__A_stoic_warrior_standing_ (1).png",
       "alt": "Arte de ficção científica",
       "category": "Sci-Fi",
       "resolution": "1080x1920",
@@ -62,7 +62,7 @@
     },
     {
       "id": 7,
-      "src": "assets/9x16_An_extremely_muscular_minion__we.png",
+      "src": "assets/images-designs/9x16_A_poised_woman_sits_amid_large__ (1).png",
       "alt": "Arte de ficção científica",
       "category": "Sci-Fi",
       "resolution": "1080x1920",
@@ -72,7 +72,7 @@
     },
     {
       "id": 8,
-      "src": "assets/tech-ai-hero.webp",
+      "src": "assets",
       "alt": "Arte de ficção científica",
       "category": "Sci-Fi",
       "resolution": "1080x1920",
@@ -82,7 +82,7 @@
     },
     {
       "id": 9,
-      "src": "assets/9x16_Image_is_a_mirror_selfie_featuri.png",
+      "src": "assets/images-designs/9x16_Image_is_a_mirror_selfie_featuri (4).png",
       "alt": "Arte de ficção científica",
       "category": "Photography",
       "resolution": "1080x1920",
@@ -92,7 +92,7 @@
     },
     {
       "id": 10,
-      "src": "assets/9x16_An_extremely_muscular_minion__we.png",
+      "src": "assets/images-designs/9x16_Norwegian_orthodox_Islamic_nice_.png",
       "alt": "Arte de ficção científica",
       "category": "Sci-Fi",
       "resolution": "1080x1920",
@@ -102,7 +102,7 @@
     },
     {
       "id": 11,
-      "src": "assets/maisteste5.jpg",
+      "src": "assets/images-designs/9x16_An_charming_and_threatening_youn.png",
       "alt": "Arte de ficção científica",
       "category": "Sci-Fi",
       "resolution": "1080x1920",
@@ -122,7 +122,7 @@
     },
     {
       "id": 13,
-      "src": "assets/9x16_Overhead_view_watercolor___A_fut (1).png",
+      "src": "assets/images-designs/9x16_A_woman_with_long_dark_hair_wear.png",
       "alt": "Arte de ficção científica",
       "category": "Sci-Fi",
       "resolution": "1080x1920",
@@ -132,7 +132,7 @@
     },
     {
       "id": 14,
-      "src": "https://via.placeholder.com/300x400",
+      "src": "assets/images-designs/9x16_A_hyper_realistic__full_body_por.png",
       "alt": "Arte de ficção científica",
       "category": "Sci-Fi",
       "resolution": "1080x1920",
@@ -152,13 +152,53 @@
     },
     {
       "id": 16,
-      "src": "assets/9x16_Black_Woman___Cool_Tones___Sleek (2).png",
+      "src": "assets/images-designs/9x16_Overhead_view_watercolor___A_fut.png",
       "alt": "Arte de ficção científica",
       "category": "Photography",
       "resolution": "1080x1920",
       "createdAt": "2025-03-22",
       "model": "Flux Schnell",
       "author": "Artista 3"
-    }    	
-  ]
+    },
+    {
+      "id": 17,
+      "src": "assets/9x16_beautiful_anime_artwork__a_cute_.png",
+      "alt": "Arte de ficção científica",
+      "category": "Photography",
+      "resolution": "1080x1920",
+      "createdAt": "2025-03-22",
+      "model": "Flux Schnell",
+      "author": "Artista 3"
+    },
+    {
+      "id": 18,
+      "src": "assets/images-designs/2x3_A_girl_in_a_white_dress_is_stand (1).png",
+      "alt": "Arte de ficção científica",
+      "category": "Photography",
+      "resolution": "1080x1920",
+      "createdAt": "2025-03-22",
+      "model": "Flux Schnell",
+      "author": "Artista 3"
+    },
+    {
+      "id": 19,
+      "src": "assets/images-designs/9x16_Pixar__Animation__Retro__Portrai (2).png",
+      "alt": "Arte de ficção científica",
+      "category": "Photography",
+      "resolution": "1080x1920",
+      "createdAt": "2025-03-22",
+      "model": "Flux Schnell",
+      "author": "Artista 3"
+    },
+    {
+      "id": 20,
+      "src": "assets/9x16_beautiful_anime_artwork__a_cute_.png",
+      "alt": "Arte de ficção científica",
+      "category": "Photography",
+      "resolution": "1080x1920",
+      "createdAt": "2025-03-22",
+      "model": "Flux Schnell",
+      "author": "Artista 3"
+    }
+    ]
 }
