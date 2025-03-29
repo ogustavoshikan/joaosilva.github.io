@@ -28,15 +28,15 @@ body {
     justify-content: space-between;
     padding: 1rem;
     max-width: 1356px;
-    margin: -7px auto;
+    height: 59.19px;
 }
 
 .logo-container {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    margin-left: 0;
-    margin-top: 2px;
+    margin-left: 1.75rem;
+    margin-top: 0px;
 }
 
 .logo {
@@ -86,12 +86,40 @@ body {
     position: relative;
 }
 
+.dropdown-icon {
+    width: 35px;
+    height: 35px;
+    transition: all 0.3s ease;
+}
+
+.dropdown-menu.show ~ .dropdown-toggle .line-top,
+.dropdown-toggle .line-top {
+    transform-origin: center;
+}
+
+.dropdown-menu.show ~ .dropdown-toggle .line-bottom,
+.dropdown-toggle .line-bottom {
+    transform-origin: center;
+}
+
+.dropdown-menu.show ~ .dropdown-toggle .line-top {
+    transform: translateY(6px) rotate(45deg);
+}
+
+.dropdown-menu.show ~ .dropdown-toggle .line-middle {
+    opacity: 0;
+}
+
+.dropdown-menu.show ~ .dropdown-toggle .line-bottom {
+    transform: translateY(-6px) rotate(-45deg);
+}
+
 .dropdown-toggle {
-    background-color: #F44336;
+    background-color: #333333;
     border: none;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -105,7 +133,11 @@ body {
 }
 
 .dropdown-toggle:hover {
-    background-color: #d32f2f;
+    background-color: #f4433685;
+}
+
+.dropdown-toggle:hover i {
+    color: #ffffff; /* Mantém o ícone branco no hover */
 }
 
 .dropdown-menu {
