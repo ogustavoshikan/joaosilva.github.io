@@ -145,11 +145,12 @@ body {
     position: absolute;
     top: 50px;
     right: 0;
-    background-color: #232221;
+    background-color: #000000; /* Fundo preto */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     min-width: 200px;
     z-index: 1000;
+    text-align: center; /* Centraliza todos os elementos filhos */
 }
 
 .dropdown-menu a {
@@ -167,8 +168,72 @@ body {
 }
 
 .dropdown-menu a.active {
-    background-color: #F44336;
+    background-color: #66666626;
     font-weight: 700;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+/* Estilo do retângulo "Desbloquear Recursos" */
+.unlock-features {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centraliza o ícone e o texto dentro do retângulo */
+    gap: 0.5rem;
+    padding: 0.5rem 2rem; /* Reduz o padding para diminuir a altura */
+    background-color: #121317; /* Fundo do retângulo */
+    border-radius: 5px;
+    margin: 0.5rem 0.5rem 0 0.5rem; /* Mantém a margem, mas ajusta para não colar no topo */
+    color: #ffffff; /* Texto branco */
+    font-size: 0.9rem;
+    font-family: 'Inter', sans-serif;
+    width: calc(100% - 1rem); /* Garante que ocupe 100% da largura, menos as margens */
+}
+
+.unlock-features i {
+    color: #ffffff; /* Ícone branco */
+    font-size: 1rem;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: #ffffff; /* Texto branco */
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-family: 'Inter', sans-serif;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Garante que o link ocupe a largura total para centralização */
+    text-align: center; /* Centraliza o texto dos links */
+}
+
+.dropdown-menu a:hover {
+    background-color: #66666626; /* Cinza escuro no hover */
+}
+
+.dropdown-menu a.active {
+    color: #f4433600
+    background-color: #66666626; /* Cinza claro para o item ativo */
+    font-weight: 700;
+}
+
+/* Estilo do botão Contato */
+.dropdown-menu a.contact-btn {
+    display: inline-block; /* Permite definir uma largura menor */
+    background-color: #ffffff; /* Fundo branco */
+    color: #000000; /* Texto preto */
+    border-radius: 5px;
+    margin: 0.5rem auto; /* Centraliza o botão */
+    padding: 0.5rem 1rem; /* Reduz o padding para um retângulo menor */
+    max-width: 120px; /* Define uma largura máxima para o botão */
+    text-align: center;
+}
+
+.dropdown-menu a.contact-btn:hover {
+    background-color: #e0e0e0; /* Cinza claro no hover do botão Contato */
+    color: #000000;
 }
 
 .dropdown-menu.show {
