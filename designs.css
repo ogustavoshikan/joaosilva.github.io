@@ -29,7 +29,6 @@ body {
     padding: 1rem;
     max-width: 1356px;
     margin: -7px auto;
-    margin-left: 1.76rem;
 }
 
 .logo-container {
@@ -328,7 +327,7 @@ body {
 
 @media (max-width: 480px) {
     .gallery-container {
-        column-count: 1;
+        column-count: 2;
     }
 }
 
