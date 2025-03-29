@@ -1,29 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const galleryContainer = document.querySelector(".gallery-container");
+    let galleryContainer = document.querySelector(".gallery-container"); // Alterado de const para let
     const filterButtons = document.querySelectorAll(".filter-btn");
     const dropdownToggle = document.querySelector(".dropdown-toggle");
     const dropdownMenu = document.querySelector(".dropdown-menu");
     let allDesigns = [];
     let displayedDesigns = 0;
-    const designsPerLoad = 8;
+    const designsPerLoad = 12;
     let isLoading = false;
     let currentCategory = 'all';
 
-    // Função para embaralhar designs de forma controlada
-    function shuffleDesignsOnce(designs) {
-        // Cria uma cópia do array para evitar modificar o original
-        const shuffledDesigns = [...designs];
-        
-        // Usa um método de embaralhamento simples e previsível
-        for (let i = shuffledDesigns.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [shuffledDesigns[i], shuffledDesigns[j]] = [shuffledDesigns[j], shuffledDesigns[i]];
-        }
-        
-        return shuffledDesigns;
-    }
-
-    // Carregar os designs do JSON
     function loadDesigns() {
         console.log('Iniciando o carregamento do designs.json...');
         galleryContainer.innerHTML = '<p class="loading">Carregando...</p>';
@@ -35,16 +20,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 return response.json();
             })
             .then(data => {
-                // Remove designs com src inválidos
                 allDesigns = data.designs.filter(design => 
                     design.src && 
                     design.src !== 'assets' && 
                     design.src.trim() !== ''
                 );
-                
-                // Embaralha uma única vez na inicialização
-                allDesigns = shuffleDesignsOnce(allDesigns);
-                
                 displayInitialDesigns();
             })
             .catch(error => {
@@ -53,14 +33,30 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 
-    // Exibir os designs iniciais
     function displayInitialDesigns() {
+        const oldContainer = galleryContainer;
+        const newContainer = document.createElement('div');
+        newContainer.className = 'gallery-container';
+        newContainer.style.opacity = '0';
+        newContainer.style.transition = 'opacity 0.3s ease';
+        
+        oldContainer.parentNode.insertBefore(newContainer, oldContainer.nextSibling);
+        
+        // Atualiza a referência global
+        galleryContainer = newContainer;
+        
         displayedDesigns = 0;
-        galleryContainer.innerHTML = '';
         displayMoreDesigns();
+        
+        setTimeout(() => {
+            newContainer.style.opacity = '1';
+            setTimeout(() => {
+                oldContainer.remove();
+                recalculateLayout();
+            }, 300);
+        }, 50);
     }
 
-    // Exibir mais designs
     function displayMoreDesigns() {
         const filteredDesigns = getFilteredDesigns();
         const start = displayedDesigns;
@@ -68,39 +64,59 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (start >= filteredDesigns.length) {
             isLoading = false;
-            return; // Não há mais designs para carregar
+            return;
         }
+
+        const fragment = document.createDocumentFragment();
 
         for (let i = start; i < end; i++) {
             const design = filteredDesigns[i];
-            const galleryItem = document.createElement('div');
-            galleryItem.classList.add('gallery-item');
             
-            // Verifica se o src da imagem é válido
             if (!design.src || design.src === 'assets' || design.src.trim() === '') {
-                continue; // Pula designs com src inválido
+                continue;
             }
             
-            galleryItem.innerHTML = `
-                <a href="${design.src}" data-lightbox="gallery" data-title="
-                    <div class='design-info'>
-                        <p><strong>Resolução:</strong> ${design.resolution}</p>
-                        <p><strong>Data de Criação:</strong> ${new Date(design.createdAt).toLocaleDateString('pt-BR')}</p>
-                        <p><strong>Modelo:</strong> ${design.model}</p>
-                        <p><strong>Autor:</strong> ${design.author}</p>
-                    </div>
-                ">
-                    <img src="${design.src}" alt="${design.alt}" loading="lazy">
-                </a>
-            `;
-            galleryContainer.appendChild(galleryItem);
+            const galleryItem = document.createElement('div');
+            galleryItem.classList.add('gallery-item');
+            galleryItem.dataset.designId = design.id || i;
+            
+            const img = new Image();
+            img.src = design.src;
+            img.alt = design.alt || 'Design de IA';
+            img.loading = "lazy";
+            
+            img.onload = function() {
+                if (i % 4 === 0) {
+                    recalculateLayout();
+                }
+            };
+            
+            const link = document.createElement('a');
+            link.href = design.src;
+            link.setAttribute('data-lightbox', 'gallery');
+            link.setAttribute('data-title', `
+                <div class='design-info'>
+                    <p><strong>Resolução:</strong> ${design.resolution || 'N/A'}</p>
+                    <p><strong>Data de Criação:</strong> ${design.createdAt ? new Date(design.createdAt).toLocaleDateString('pt-BR') : 'N/A'}</p>
+                    <p><strong>Modelo:</strong> ${design.model || 'N/A'}</p>
+                    <p><strong>Autor:</strong> ${design.author || 'N/A'}</p>
+                </div>
+            `);
+            
+            link.appendChild(img);
+            galleryItem.appendChild(link);
+            fragment.appendChild(galleryItem);
         }
 
+        galleryContainer.appendChild(fragment);
         displayedDesigns = end;
         isLoading = false;
     }
 
-    // Obter designs filtrados com base na categoria ativa
+    function recalculateLayout() {
+        // Adicione lógica de layout aqui se necessário
+    }
+
     function getFilteredDesigns() {
         if (currentCategory === 'all') {
             return allDesigns;
@@ -108,39 +124,64 @@ document.addEventListener("DOMContentLoaded", function () {
         return allDesigns.filter(design => design.category === currentCategory);
     }
 
-    // Filtrar designs ao clicar nos botões de filtro
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
+            if (currentCategory === button.getAttribute('data-category')) {
+                return;
+            }
+            
             filterButtons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
             
-            // Update current category
             currentCategory = button.getAttribute('data-category');
             
-            // Reset and display initial designs for the selected category
-            displayInitialDesigns();
+            const preloadImages = () => {
+                const filteredDesigns = getFilteredDesigns();
+                const preloadCount = Math.min(6, filteredDesigns.length);
+                
+                for (let i = 0; i < preloadCount; i++) {
+                    const img = new Image();
+                    img.src = filteredDesigns[i].src;
+                }
+            };
+            
+            preloadImages();
+            galleryContainer.classList.add('filter-transition');
+            
+            setTimeout(() => {
+                displayInitialDesigns();
+            }, 50);
         });
     });
 
-    // Detectar o scroll e carregar mais designs
-    window.addEventListener('scroll', () => {
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
+    window.addEventListener('scroll', debounce(() => {
         if (isLoading) return;
 
         const scrollPosition = window.scrollY + window.innerHeight;
         const pageHeight = document.documentElement.scrollHeight;
 
-        // Carregar mais quando o usuário estiver a 200px do final da página
         if (scrollPosition >= pageHeight - 200) {
             isLoading = true;
             displayMoreDesigns();
         }
-    });
+    }, 100));
 
-    // Botão Voltar ao Topo
     const homeBackToTopButton = document.getElementById('home-back-to-top');
     const homeBackToTopText = document.querySelector('.home-back-to-top-text');
     if (homeBackToTopButton && homeBackToTopText) {
-        window.addEventListener('scroll', () => {
+        window.addEventListener('scroll', debounce(() => {
             if (window.scrollY > 600) {
                 homeBackToTopButton.classList.add('visible');
                 homeBackToTopText.classList.add('visible');
@@ -148,7 +189,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 homeBackToTopButton.classList.remove('visible');
                 homeBackToTopText.classList.remove('visible');
             }
-        });
+        }, 100));
 
         homeBackToTopButton.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -157,25 +198,21 @@ document.addEventListener("DOMContentLoaded", function () {
         console.error('Botão #home-back-to-top ou texto .home-back-to-top-text não encontrado!');
     }
 
-    // Configurar o Lightbox
     lightbox.option({
         'resizeDuration': 200,
-        'wrapAward': true,
+        'wrapAround': true,
         'alwaysShowNavOnTouchDevices': true
     });
 
-    // Abrir/Fechar o Dropdown
     dropdownToggle.addEventListener('click', () => {
         dropdownMenu.classList.toggle('show');
     });
 
-    // Fechar o dropdown ao clicar fora
     document.addEventListener('click', (event) => {
         if (!dropdownToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
             dropdownMenu.classList.remove('show');
         }
     });
 
-    // Carregar os designs ao iniciar
     loadDesigns();
 });
