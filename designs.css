@@ -92,28 +92,6 @@ body {
     transition: all 0.3s ease;
 }
 
-.dropdown-menu.show ~ .dropdown-toggle .line-top,
-.dropdown-toggle .line-top {
-    transform-origin: center;
-}
-
-.dropdown-menu.show ~ .dropdown-toggle .line-bottom,
-.dropdown-toggle .line-bottom {
-    transform-origin: center;
-}
-
-.dropdown-menu.show ~ .dropdown-toggle .line-top {
-    transform: translateY(6px) rotate(45deg);
-}
-
-.dropdown-menu.show ~ .dropdown-toggle .line-middle {
-    opacity: 0;
-}
-
-.dropdown-menu.show ~ .dropdown-toggle .line-bottom {
-    transform: translateY(-6px) rotate(-45deg);
-}
-
 .dropdown-toggle {
     background-color: #333333;
     border: none;
@@ -127,17 +105,13 @@ body {
     transition: background-color 0.3s ease;
 }
 
-.dropdown-toggle i {
-    color: #ffffff;
-    font-size: 1.2rem;
-}
-
 .dropdown-toggle:hover {
     background-color: #f4433685;
 }
 
-.dropdown-toggle:hover i {
-    color: #ffffff; /* Mantém o ícone branco no hover */
+/* Adicione esta nova classe para quando o dropdown está ativo */
+.dropdown-toggle.active {
+    background-color: #f4433685;
 }
 
 .dropdown-menu {
@@ -151,25 +125,6 @@ body {
     min-width: 200px;
     z-index: 1000;
     text-align: center; /* Centraliza todos os elementos filhos */
-}
-
-.dropdown-menu a {
-    display: block;
-    padding: 0.75rem 1rem;
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-family: 'Inter', sans-serif;
-    transition: background-color 0.3s ease;
-}
-
-.dropdown-menu a:hover {
-    background-color: #F44336;
-}
-
-.dropdown-menu a.active {
-    background-color: #66666626;
-    font-weight: 700;
 }
 
 .dropdown-menu.show {
@@ -214,7 +169,6 @@ body {
 }
 
 .dropdown-menu a.active {
-    color: #f4433600
     background-color: #66666626; /* Cinza claro para o item ativo */
     font-weight: 700;
 }
@@ -234,10 +188,6 @@ body {
 .dropdown-menu a.contact-btn:hover {
     background-color: #e0e0e0; /* Cinza claro no hover do botão Contato */
     color: #000000;
-}
-
-.dropdown-menu.show {
-    display: block;
 }
 
 /* Seção de Filtros */

@@ -206,11 +206,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     dropdownToggle.addEventListener('click', () => {
         dropdownMenu.classList.toggle('show');
+        dropdownToggle.classList.toggle('active'); // Adicione esta linha
     });
 
     document.addEventListener('click', (event) => {
         if (!dropdownToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
             dropdownMenu.classList.remove('show');
+            dropdownToggle.classList.remove('active'); // Adicione esta linha
         }
     });
 
