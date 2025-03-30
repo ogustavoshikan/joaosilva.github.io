@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // --- Variáveis e Seletores do Modal ---
     const modalOverlay = $('#custom-modal');
     const modalMainImage = $('#modal-main-image'); // Imagem principal (esquerda)
+    const modalViewContainer = $('.modal-view-container');
     // Seletores para o painel de detalhes (direita)
     const modalDetailTitle = $('#modal-detail-title');
     const modalDetailDescription = $('#modal-detail-description');
@@ -219,6 +220,70 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // === 12. Lógica do Modal Customizado (ATUALIZADA) ===
+    
+    // === ADICIONADO: Lógica para SWIPE no Modal ===
+    const imageViewerElement = document.querySelector('.modal-image-viewer'); // Elemento onde o swipe será detectado
+    let touchstartX = 0;
+    let touchstartY = 0;
+    let touchendX = 0;
+    let touchendY = 0;
+    const minSwipeDistance = 50; // Distância mínima em pixels para considerar um swipe
+
+    if (imageViewerElement) { // Garante que o elemento existe
+        imageViewerElement.addEventListener('touchstart', function(event) {
+            // Apenas registra o toque se o modal estiver ativo
+            if (!modalOverlay.hasClass('active')) return;
+            touchstartX = event.changedTouches[0].screenX;
+            touchstartY = event.changedTouches[0].screenY;
+        }, { passive: true }); // passive: true para melhor performance de scroll
+
+        imageViewerElement.addEventListener('touchend', function(event) {
+            // Apenas processa se o modal estiver ativo e houve um toque inicial
+            if (!modalOverlay.hasClass('active') || touchstartX === 0) return;
+
+            touchendX = event.changedTouches[0].screenX;
+            touchendY = event.changedTouches[0].screenY;
+            handleSwipeGesture();
+             // Reseta após processar
+             touchstartX = 0;
+             touchstartY = 0;
+        }, { passive: true });
+
+    } else {
+        console.error("Elemento .modal-image-viewer não encontrado para adicionar listeners de swipe.");
+    }
+
+    function handleSwipeGesture() {
+        const deltaX = touchendX - touchstartX;
+        const deltaY = touchendY - touchstartY;
+
+        // Verifica se foi um swipe significativo (não apenas um toque)
+        if (Math.abs(deltaX) < minSwipeDistance && Math.abs(deltaY) < minSwipeDistance) {
+            console.log("Movimento muito curto, não considerado swipe.");
+            return;
+        }
+
+        // Prioriza Swipe Horizontal para Navegação
+        if (Math.abs(deltaX) > Math.abs(deltaY)) {
+            // Swipe Horizontal detectado
+            if (deltaX < -minSwipeDistance) { // Swipe para a Esquerda (-> Próximo)
+                console.log('Swipe Left detectado - Próximo');
+                nextModalBtn.trigger('click'); // Simula clique no botão "Próximo"
+            } else if (deltaX > minSwipeDistance) { // Swipe para a Direita (<- Anterior)
+                 console.log('Swipe Right detectado - Anterior');
+                prevModalBtn.trigger('click'); // Simula clique no botão "Anterior"
+            }
+        }
+        // Verifica Swipe Vertical para Fechar (APENAS se não for horizontal dominante)
+        else if (deltaY > minSwipeDistance) {
+             // Swipe para Baixo detectado
+             console.log('Swipe Down detectado - Fechar');
+             closeModal(); // Chama a função de fechar
+        }
+         // Poderíamos adicionar lógica para Swipe Up aqui se necessário no futuro
+         // else if (deltaY < -minSwipeDistance) { console.log('Swipe Up'); }
+    }
+    // === FIM: Lógica para SWIPE no Modal ===
 
     function updateModalContent(index) {
         if (index < 0 || index >= currentFilteredDesigns.length) {
@@ -302,6 +367,38 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     closeModalBtn.on('click', closeModal);
     modalOverlay.on('click', function(e) { if (e.target === this) closeModal(); });
+        // === ATUALIZADO: Listener no CONTAINER PRINCIPAL e VISUALIZADOR DE IMAGEM ===
+    // Fecha se clicar na área "vazia" do container OU na área "vazia" do image-viewer
+    modalViewContainer.on('click', function(e) {
+        console.log("Click detected inside modalViewContainer. Target:", e.target); // Log para depuração
+        const imageViewerElement = document.querySelector('.modal-image-viewer'); // Pega o elemento DOM
+
+        // Verifica se o clique foi:
+        // 1. Diretamente no .modal-view-container (this)
+        // OU
+        // 2. Diretamente no .modal-image-viewer (imageViewerElement)
+        if (e.target === this || e.target === imageViewerElement) {
+
+            // AGORA, verificamos se NÃO foi em um filho que NÃO deve fechar o modal
+            if ($(e.target).closest('.modal-nav-btn').length > 0) {
+                console.log("Clicked on or inside nav button, not closing.");
+                return; // Sai se o clique foi no botão de navegação ou dentro dele
+            }
+            if (e.target.id === 'modal-main-image') {
+                console.log("Clicked on the image itself, not closing.");
+                return; // Sai se o clique foi na imagem principal
+            }
+            // Adicione aqui outras exceções se necessário (ex: se tiver links na imagem)
+
+            // Se passou pelas verificações acima, fecha o modal
+            console.log("Closing modal via View Container or Image Viewer background click.");
+            closeModal();
+
+        } else {
+             console.log("Click target is something else inside view container (e.g., details panel), not closing via this listener.");
+        }
+    });
+    // === FIM ATUALIZADO ===
     $(document).on('keydown', function(e) { if (e.key === "Escape" && modalOverlay.hasClass('active')) closeModal(); });
 
     // === 13. Inicialização Geral ===
