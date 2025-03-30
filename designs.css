@@ -580,14 +580,30 @@ html {
 .prompt-content {
     display: flex;
     align-items: flex-start;
-    background-color: #27272a;
+    background-color: #0c0c0c;
     padding: 10px;
     border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.2s ease;
+    max-height: 85px;
+    overflow: overlay;
 }
 .prompt-content:hover {
-    background-color: #3f3f46;
+    background-color: #121213;
+}
+
+/* === Ajustes Finais V4.1 === */
+
+/* Ajuste no Ícone Font Awesome (se necessário) */
+.detail-section-header .fa-solid { /* Estilo para o ícone Font Awesome */
+    width: 14px; /* Mantém largura similar ao SVG */
+    height: 14px; /* Mantém altura similar ao SVG */
+    font-size: 14px; /* Tamanho da fonte do ícone */
+    margin-right: 6px;
+    color: #a1a1aa;
+    text-align: center; /* Centraliza o 'T' se necessário */
+    flex-shrink: 0;
+    /* vertical-align: middle; */ /* Descomente se o alinhamento vertical parecer off */
 }
 
 .prompt-thumbnail {
@@ -606,6 +622,9 @@ html {
     line-height: 1.5;
     margin: 0;
     word-break: break-word;
+    max-height: 100%;
+    overflow-y: auto;
+    padding-right: 5px;
 }
 
 .click-to-copy {
