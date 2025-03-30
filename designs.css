@@ -165,12 +165,15 @@ body {
 }
 
 .dropdown-menu a:hover {
-    background-color: #66666626; /* Cinza escuro no hover */
+    background-color: #66666600; /* Cinza escuro no hover */
+    font-weight: 700;
+    color:#F44336
 }
 
 .dropdown-menu a.active {
-    background-color: #66666626; /* Cinza claro para o item ativo */
+    background-color: #66666600; /* Cinza claro para o item ativo */
     font-weight: 700;
+    color: #F44336;
 }
 
 /* Estilo do botão Contato */
