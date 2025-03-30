@@ -1843,7 +1843,7 @@ main {
 /* Estilo para a seção hero */
 .hero-section {
   background: url('assets/maisteste9.jpg') no-repeat center center / cover;
-  padding: 8rem 0;
+  padding: 6rem 0;
   position: relative;
 }
 
@@ -1862,7 +1862,7 @@ main {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0rem;
 }
 
 .news2-section .tech-news-container {
@@ -1872,7 +1872,7 @@ main {
 }
 
 .news2-section .tech-news-sidebar {
-  background-color: #1a1a1a;
+  background-color: #0b0a0a;
   padding: 1rem;
   border-radius: 10px;
   color: #ffffff;
@@ -2117,7 +2117,7 @@ main {
 }
 
 .news2-section .pagination button:hover:not(:disabled) {
-  background-color: #00b7eb;
+  background-color: #F44336;
 }
 
 .news2-section .pagination .page-number {
@@ -2214,9 +2214,9 @@ main {
 
 /* Estilo para o input de pesquisa */
 .news2-section .news-search input {
-  background-color: #1a1a1a;
+  background-color: #000000;
   color: #ffffff;
-  border: 1px solid #232221;
+  border: 1px solid #ffffff24;
   padding: 0.5rem;
   border-radius: 5px;
   font-family: 'Roboto Condensed', sans-serif;
@@ -2238,7 +2238,7 @@ main {
 
 /* Botões de busca e limpar */
 .news2-section .news-search button {
-  background-color: #1a1a1a;
+  background-color: #000000;
   border: 1px solid #232221;
   padding: 0.5rem;
   border-radius: 5px;
@@ -2260,7 +2260,7 @@ main {
 }
 
 .news2-section .news-search #news-clear-button {
-  background-color: #1a1a1a;
+  background-color: #000000;
   border: 1px solid #232221;
   padding: 0.5rem;
   border-radius: 5px;
@@ -2300,9 +2300,9 @@ main {
 
 /* Select do filtro */
 .news2-section .news-filter select {
-  background-color: #1a1a1a;
+  background-color: #000000;
   color: #ffffff;
-  border: 1px solid #232221;
+  border: 1px solid #ffffff24;
   padding: 0.5rem;
   border-radius: 5px;
   font-family: 'Roboto Condensed', sans-serif;
@@ -2314,7 +2314,7 @@ main {
 
 .news2-section .news-filter select:hover,
 .news2-section .news-filter select:focus {
-  background-color: #232221;
+  background-color: #000000;
   outline: none;
 }
 
