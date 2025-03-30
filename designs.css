@@ -436,3 +436,327 @@ html {
     padding: 10px;
     border-radius: 5px;
 }
+
+/* ============================================ */
+/* === ESTILOS MODAL - LAYOUT DIVIDIDO V4 === */
+/* ============================================ */
+
+/* 1. Overlay (Fundo) */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(10, 10, 10, 0.7);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3vh 3vw;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 2. Container Principal (Imagem + Detalhes Lado a Lado) */
+.modal-view-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    max-width: 1700px;
+    max-height: 94vh;
+    overflow: hidden;
+    /* Fundo transparente */
+}
+
+/* 3. Coluna da Esquerda (Visualizador da Imagem) */
+.modal-image-viewer {
+    flex: 3;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    overflow: hidden;
+     /* Fundo transparente */
+}
+
+#modal-main-image {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* 4. Coluna da Direita (Painel de Detalhes) */
+.modal-details-panel {
+    flex: 1;
+    background-color: #000000; /* Fundo do painel */
+    color: #e4e4e7;
+    padding: 25px; /* Padding geral */
+    display: flex;
+    flex-direction: column; /* Empilha verticalmente */
+    position: relative;
+    overflow: hidden; /* Importante para conter .modal-original-details */
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Título Principal */
+#modal-detail-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 10px 0;
+    padding-bottom: 0;
+    border-bottom: none;
+    flex-shrink: 0; /* Não encolhe */
+}
+
+/* Descrição */
+.modal-description {
+    font-size: 0.95rem;
+    color: #a1a1aa;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    flex-shrink: 0; /* Não encolhe */
+}
+
+/* Área de Rolagem (Tool, Prompt) */
+.details-scroll-area {
+    flex-grow: 1; /* Ocupa espaço restante */
+    overflow-y: auto; /* Scroll vertical */
+    margin-right: -10px; /* Compensa barra de rolagem */
+    padding-right: 10px; /* Espaço para barra */
+    padding-bottom: 10px; /* Espaço no final */
+}
+
+/* Estilo Comum para Seções (Tool, Prompt) */
+.detail-section {
+    margin-bottom: 20px;
+}
+
+.detail-section-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    color: #d4d4d8;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.detail-section-header .lucide-icon {
+    margin-right: 6px;
+    stroke-width: 2;
+    color: #a1a1aa;
+    width: 14px; /* Tamanho explícito */
+    height: 14px; /* Tamanho explícito */
+    flex-shrink: 0; /* Não deixa o ícone encolher */
+}
+
+/* Estilo Específico: Tool */
+.tool-tag {
+    display: inline-block;
+    background-color: #3f3f46;
+    color: #e4e4e7;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* Estilo Específico: Prompt */
+.prompt-content {
+    display: flex;
+    align-items: flex-start;
+    background-color: #27272a;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.prompt-content:hover {
+    background-color: #3f3f46;
+}
+
+.prompt-thumbnail {
+    width: 65px;
+    height: 65px;
+    border-radius: 4px;
+    margin-right: 10px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.prompt-text {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.88rem;
+    color: #c7c7cc;
+    line-height: 1.5;
+    margin: 0;
+    word-break: break-word;
+}
+
+.click-to-copy {
+    margin-left: auto;
+    font-size: 0.75rem;
+    color: #71717a;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+/* Container dos Detalhes Originais (FIXO NO FUNDO) */
+.modal-original-details {
+    margin-top: auto; /* Empurra para o fundo */
+    padding-top: 15px;
+    border-top: 1px solid #3f3f46;
+    flex-shrink: 0; /* Não deixa encolher */
+    background-color: #000000; /* Garante mesmo fundo do painel */
+    /* Compensação de padding do pai e padding próprio */
+    margin-left: -25px;
+    margin-right: -25px;
+    margin-bottom: -25px;
+    padding: 15px 25px 20px 25px;
+}
+
+.modal-original-details p {
+    margin-bottom: 6px;
+    font-size: 0.8rem;
+    color: #a1a1aa;
+    line-height: 1.4;
+}
+.modal-original-details p:last-child {
+    margin-bottom: 0;
+}
+
+.modal-original-details strong {
+    color: #d4d4d8;
+    font-weight: 500;
+}
+
+
+/* 5. Botões (Fechar e Navegação) */
+.modal-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: rgba(40, 40, 40, 0.6);
+    color: #d4d4d8;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 1.5rem;
+    line-height: 32px;
+    text-align: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    padding: 0;
+}
+.modal-close-btn:hover {
+    background-color: rgba(60, 60, 60, 0.9);
+    color: #ffffff;
+}
+
+.modal-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    background-color: rgba(20, 20, 20, 0.55);
+    color: #e4e4e7;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.4rem;
+    line-height: 38px;
+    text-align: center;
+    padding: 0;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.modal-nav-btn:hover {
+    background-color: rgba(40, 40, 40, 0.75);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.modal-nav-btn.prev { left: 25px; }
+.modal-nav-btn.next { right: 25px; }
+
+.modal-nav-btn:disabled {
+    opacity: 0.3;
+    cursor: default;
+    background-color: rgba(20, 20, 20, 0.3);
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+/* 6. Responsividade */
+@media (max-width: 1024px) {
+    .modal-overlay { padding: 0; }
+    .modal-view-container {
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .modal-image-viewer {
+        flex: 1 1 60%;
+        padding: 10px;
+    }
+    .modal-details-panel {
+        flex: 1 1 40%;
+        padding: 15px; /* Reduz padding no mobile */
+        border-top: 2px solid #0c0c0d;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    #modal-detail-title { font-size: 1.4rem; margin-bottom: 8px; }
+    .modal-description { font-size: 0.9rem; margin-bottom: 15px; }
+
+    .modal-original-details {
+        /* Ajusta compensação de padding para mobile */
+        padding: 10px 15px 15px 15px;
+        margin-left: -15px;
+        margin-right: -15px;
+        margin-bottom: -15px;
+    }
+     .modal-original-details p { font-size: 0.75rem; }
+
+    /* Ajustes nos botões */
+    .modal-nav-btn { width: 36px; height: 36px; line-height: 34px; font-size: 1.2rem; }
+    .modal-nav-btn.prev { left: 15px; }
+    .modal-nav-btn.next { right: 15px; }
+    .modal-close-btn { top: 10px; right: 10px; width: 28px; height: 28px; line-height: 28px; font-size: 1.3rem;}
+}
+
+@media (max-width: 600px) {
+     .modal-image-viewer { flex-basis: 55%; }
+     .modal-details-panel { flex-basis: 45%; padding: 12px; } /* Padding ainda menor */
+      /* Ajusta compensação de padding */
+      .modal-original-details {
+        padding: 10px 12px 12px 12px;
+        margin-left: -12px;
+        margin-right: -12px;
+        margin-bottom: -12px;
+    }
+}
+
+/* ============================================ */
+/* === FIM ESTILOS MODAL - LAYOUT DIVIDIDO V4 === */
+/* ============================================ */
