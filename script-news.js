@@ -178,27 +178,25 @@ document.addEventListener("DOMContentLoaded", function () {
     loadNews(currentPage); // Re-renderiza as notícias
   }
 
-  // Botão Voltar ao Topo
-  const backToTopButton = document.getElementById('back-to-top');
-  const backToTopText = document.querySelector('.back-to-top-text');
-  if (backToTopButton && backToTopText) {
-    // Mostrar/esconder o botão e o texto com base no scroll
+  // === Botão Voltar ao Topo - Página de Notícias ===
+  const newsBackToTopButton = document.getElementById('news-back-to-top');
+
+  if (newsBackToTopButton) {
+    // Mostrar/esconder o botão com base no scroll
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 600) { // Mostra o botão e o texto após rolar 600px
-        backToTopButton.classList.add('visible');
-        backToTopText.classList.add('visible');
+      if (window.scrollY > 600) { // Mostra o botão após rolar 600px
+        newsBackToTopButton.classList.add('visible');
       } else {
-        backToTopButton.classList.remove('visible');
-        backToTopText.classList.remove('visible');
+        newsBackToTopButton.classList.remove('visible');
       }
     });
 
     // Rolar para o topo ao clicar no botão
-    backToTopButton.addEventListener('click', () => {
+    newsBackToTopButton.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   } else {
-    console.error('Botão #back-to-top ou texto .back-to-top-text não encontrado!');
+    console.error('Botão #news-back-to-top não encontrado!');
   }
 
   // Carrega os dados ao iniciar a página

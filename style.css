@@ -1849,7 +1849,7 @@ main {
 
 /* Estilo para a seção de notícias */
 .news2-section {
-  background-color: #090808;
+  background-color: #000000;
   padding: 2rem 0;
 }
 
@@ -1912,7 +1912,7 @@ main {
   display: flex;
   flex-direction: row;
   border: 1px solid #232221;
-  background-color: #090808;
+  background-color: #000000;
   border-radius: 10px;
   overflow: hidden;
   min-height: 139px;
@@ -2195,21 +2195,110 @@ main {
   font-size: 1.5rem;
   padding: 1rem;
 }
+
+/* Estilo para o cabeçalho (pesquisa e filtro) */
+.news2-section .news-header {
+  display: flex;
+  justify-content: space-between; /* Alinha a pesquisa à esquerda e o filtro à direita */
+  align-items: center; /* Garante alinhamento vertical */
+  margin-bottom: 1rem;
+}
+
+/* Estilo para a barra de pesquisa */
+.news2-section .news-search {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 40px; /* Define uma altura fixa para garantir consistência */
+}
+
+/* Estilo para o input de pesquisa */
+.news2-section .news-search input {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  border: 1px solid #232221;
+  padding: 0.5rem;
+  border-radius: 5px;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 1rem;
+  width: 200px; /* Ajuste conforme necessário */
+  height: 100%; /* Faz o input ocupar a altura total do contêiner pai */
+  box-sizing: border-box; /* Garante que padding não aumente a altura */
+}
+
+/* Placeholder do input */
+.news2-section .news-search input::placeholder {
+  color: #a9a3a3;
+}
+
+.news2-section .news-search input:focus {
+  outline: none;
+  background-color: #232221;
+}
+
+/* Botões de busca e limpar */
+.news2-section .news-search button {
+  background-color: #1a1a1a;
+  border: 1px solid #232221;
+  padding: 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%; /* Garante que o botão tenha a mesma altura do input */
+  box-sizing: border-box;
+}
+
+.news2-section .news-search button i {
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.news2-section .news-search button:hover {
+  background-color: #00b7eb;
+}
+
+.news2-section .news-search #news-clear-button {
+  background-color: #1a1a1a;
+  border: 1px solid #232221;
+  padding: 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%; /* Garante que o botão tenha a mesma altura do input */
+  box-sizing: border-box;
+}
+
+.news2-section .news-search #news-clear-button i {
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.news2-section .news-search #news-clear-button:hover {
+  background-color: #F44336; /* Cor de hover consistente com outros elementos */
+}
+
 /* Estilo para o Filtro */
 .news2-section .news-filter {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-bottom: 1rem;
-  justify-content: flex-end; /* Alinha à direita */
+  height: 40px; /* Define a mesma altura que o .news-search */
 }
 
+/* Label do filtro */
 .news2-section .news-filter label {
   font-family: 'Roboto Condensed', sans-serif;
   font-size: 1rem;
   color: #ffffff;
+  display: flex;
+  align-items: center; /* Alinha o texto verticalmente ao select */
 }
 
+/* Select do filtro */
 .news2-section .news-filter select {
   background-color: #1a1a1a;
   color: #ffffff;
@@ -2219,20 +2308,14 @@ main {
   font-family: 'Roboto Condensed', sans-serif;
   font-size: 1rem;
   cursor: pointer;
+  height: 100%; /* Faz o select ocupar a altura total do contêiner pai */
+  box-sizing: border-box; /* Garante que padding não aumente a altura */
 }
 
 .news2-section .news-filter select:hover,
 .news2-section .news-filter select:focus {
   background-color: #232221;
   outline: none;
-}
-
-/* Estilo para o cabeçalho (breadcrumb e filtro) */
-.news2-section .news-header {
-  display: flex;
-  justify-content: space-between; /* Alinha o breadcrumb à esquerda e o filtro à direita */
-  align-items: center;
-  margin-bottom: 1rem;
 }
 
 /* Estilo para o breadcrumb (agora fora do tech-news-grid) */
@@ -2255,7 +2338,7 @@ main {
   font-style: normal;
   color: #ffffff;
   font-weight: 500;
-  font-size: 1.2rem
+  font-size: 1.2rem;
 }
 
 .news2-section .breadcrumb .current-page:hover {
@@ -2268,81 +2351,6 @@ main {
   font-size: 0.8rem;
 }
 
-/* Estilo para o cabeçalho (pesquisa e filtro) */
-.news2-section .news-header {
-  display: flex;
-  justify-content: space-between; /* Alinha a pesquisa à esquerda e o filtro à direita */
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-/* Estilo para a barra de pesquisa */
-.news2-section .news-search {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.news2-section .news-search input {
-  background-color: #1a1a1a;
-  color: #ffffff;
-  border: 1px solid #232221;
-  padding: 0.5rem;
-  border-radius: 5px;
-  font-family: 'Roboto Condensed', sans-serif;
-  font-size: 1rem;
-  width: 200px; /* Ajuste conforme necessário */
-}
-
-.news2-section .news-search input::placeholder {
-  color: #a9a3a3;
-}
-
-.news2-section .news-search input:focus {
-  outline: none;
-  background-color: #232221;
-}
-
-.news2-section .news-search button {
-  background-color: #1a1a1a;
-  border: 1px solid #232221;
-  padding: 0.5rem;
-  border-radius: 5px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.news2-section .news-search button i {
-  color: #ffffff;
-  font-size: 1rem;
-}
-
-.news2-section .news-search button:hover {
-  background-color: #00b7eb;
-}
-
-.news2-section .news-search #news-clear-button {
-  background-color: #1a1a1a;
-  border: 1px solid #232221;
-  padding: 0.5rem;
-  border-radius: 5px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.news2-section .news-search #news-clear-button i {
-  color: #ffffff;
-  font-size: 1rem;
-}
-
-.news2-section .news-search #news-clear-button:hover {
-  background-color: #F44336; /* Cor de hover consistente com outros elementos */
-}
-
 /* Ajuste responsivo */
 @media (max-width: 768px) {
   .news2-section .news-header {
@@ -2353,6 +2361,7 @@ main {
 
   .news2-section .news-search {
     width: 100%;
+    height: auto; /* Permite que a altura se ajuste ao conteúdo em telas menores */
   }
 
   .news2-section .news-search input {
@@ -2362,64 +2371,96 @@ main {
   .news2-section .news-filter {
     width: 100%;
     justify-content: flex-start;
+    height: auto; /* Permite que a altura se ajuste ao conteúdo em telas menores */
   }
 }
 
-/* Container para o botão e o texto */
-.back-to-top-container {
+/* Estilo para o botão Voltar ao Topo - Página de Notícias */
+.news-back-to-top-container {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 2rem;
+  right: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px; /* Espaço entre o botão e o texto */
-  z-index: 1000; /* Garante que fique acima de outros elementos */
+  z-index: 1000;
 }
 
-/* Estilo para o botão Voltar ao Topo */
-#back-to-top {
+#news-back-to-top {
   background-color: #ffffff;
   border: 1px solid #232221;
   border-radius: 50%;
-  width: 50px;
-  height: 50px; /* Volta ao tamanho original */
+  width: 45px;
+  height: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  opacity: 0; /* Inicialmente invisível */
-  visibility: hidden; /* Inicialmente escondido */
+  opacity: 0;
+  visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.3s ease;
 }
 
-#back-to-top i {
-  color: #000000;
-  font-size: 1.2rem;
+#news-back-to-top .back-to-top-icon {
+  color: #000000ba;
+  width: 25px;
+  height: 25px;
 }
 
-#back-to-top:hover {
-  background-color: #F44336; /* Mesma cor usada em outros elementos interativos */
+#news-back-to-top:hover {
+  background-color: #F44336;
 }
 
-#back-to-top.visible {
+#news-back-to-top:hover .back-to-top-icon {
+  color: #ffffff;
+}
+
+#news-back-to-top.visible {
   opacity: 1;
   visibility: visible;
 }
 
-/* Estilo para o texto "Topo" */
-.back-to-top-container .back-to-top-text {
-  color: #ffffff; /* Cor branca para combinar com o tema */
-  font-family: 'Roboto Condensed', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  opacity: 0; /* Inicialmente invisível, sincronizado com o botão */
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+/* Mantendo os estilos existentes da Página Inicial */
+.home-back-to-top-container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1000;
 }
 
-.back-to-top-container .back-to-top-text.visible {
+#home-back-to-top {
+  background-color: #ffffff;
+  border: 1px solid #232221;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.3s ease;
+}
+
+#home-back-to-top .back-to-top-icon {
+  color: #000000ba;
+  width: 25px;
+  height: 25px;
+}
+
+#home-back-to-top:hover {
+  background-color: #F44336;
+}
+
+#home-back-to-top:hover .back-to-top-icon {
+  color: #ffffff;
+}
+
+#home-back-to-top.visible {
   opacity: 1;
   visibility: visible;
 }

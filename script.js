@@ -447,25 +447,23 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // === 7. Botão Voltar ao Topo (Página Inicial) ===
-  const homeBackToTopButton = document.getElementById('home-back-to-top');
-  const homeBackToTopText = document.querySelector('.home-back-to-top-text');
-  if (homeBackToTopButton && homeBackToTopText) {
-    // Mostrar/esconder o botão e o texto com base no scroll
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 1500) { // Mostra o botão e o texto após rolar 1500px
-        homeBackToTopButton.classList.add('visible');
-        homeBackToTopText.classList.add('visible');
-      } else {
-        homeBackToTopButton.classList.remove('visible');
-        homeBackToTopText.classList.remove('visible');
-      }
-    });
+const homeBackToTopButton = document.getElementById('home-back-to-top');
 
-    // Rolar para o topo ao clicar no botão
-    homeBackToTopButton.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  } else {
-    console.error('Botão #home-back-to-top ou texto .home-back-to-top-text não encontrado!');
-  }
+if (homeBackToTopButton) {
+  // Mostrar/esconder o botão com base no scroll
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 1500) { // Mostra o botão após rolar 1500px
+      homeBackToTopButton.classList.add('visible');
+    } else {
+      homeBackToTopButton.classList.remove('visible');
+    }
+  });
+
+  // Rolar para o topo ao clicar no botão
+  homeBackToTopButton.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+} else {
+  console.error('Botão #home-back-to-top não encontrado!');
+}
 });

@@ -282,8 +282,8 @@ body {
 /* Botão Voltar ao Topo */
 .home-back-to-top-container {
     position: fixed;
-    bottom: 2rem;
-    right: 2rem;
+    bottom: 1.04rem;
+    right: 1.7rem;
     display: flex;
     flex-direction: column;
     align-items: center;

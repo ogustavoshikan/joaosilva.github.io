@@ -1,3 +1,4 @@
+// === 1. Inicialização do Documento e Declaração de Variáveis Globais ===
 document.addEventListener("DOMContentLoaded", function () {
     let galleryContainer = document.querySelector(".gallery-container"); // Alterado de const para let
     const filterButtons = document.querySelectorAll(".filter-btn");
@@ -9,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let isLoading = false;
     let currentCategory = 'all';
 
+// === 2. Carregamento de Dados do Arquivo designs.json ===
     function loadDesigns() {
         console.log('Iniciando o carregamento do designs.json...');
         galleryContainer.innerHTML = '<p class="loading">Carregando...</p>';
@@ -33,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 
+// === 3. Exibição Inicial dos Designs com Transição ===
     function displayInitialDesigns() {
         const oldContainer = galleryContainer;
         const newContainer = document.createElement('div');
@@ -57,6 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 50);
     }
 
+// === 4. Carregamento Incremental dos Designs ===
     function displayMoreDesigns() {
         const filteredDesigns = getFilteredDesigns();
         const start = displayedDesigns;
@@ -113,10 +117,12 @@ document.addEventListener("DOMContentLoaded", function () {
         isLoading = false;
     }
 
+// === 5. Recálculo de Layout (Placeholder) ===
     function recalculateLayout() {
         // Adicione lógica de layout aqui se necessário
     }
 
+// === 6. Filtragem de Designs por Categoria ===
     function getFilteredDesigns() {
         if (currentCategory === 'all') {
             return allDesigns;
@@ -124,6 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return allDesigns.filter(design => design.category === currentCategory);
     }
 
+// === 7. Controle dos Botões de Filtro ===
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
             if (currentCategory === button.getAttribute('data-category')) {
@@ -154,6 +161,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+// === 8. Função de Debounce para Otimização de Eventos ===
     function debounce(func, wait) {
         let timeout;
         return function executedFunction(...args) {
@@ -166,6 +174,7 @@ document.addEventListener("DOMContentLoaded", function () {
         };
     }
 
+// === 9. Carregamento Infinito ao Rolar a Página ===
     window.addEventListener('scroll', debounce(() => {
         if (isLoading) return;
 
@@ -178,43 +187,46 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }, 100));
 
+// === 10. Controle do Botão "Voltar ao Topo" ===
     const homeBackToTopButton = document.getElementById('home-back-to-top');
-    const homeBackToTopText = document.querySelector('.home-back-to-top-text');
-    if (homeBackToTopButton && homeBackToTopText) {
+
+    if (homeBackToTopButton) {
         window.addEventListener('scroll', debounce(() => {
             if (window.scrollY > 600) {
                 homeBackToTopButton.classList.add('visible');
-                homeBackToTopText.classList.add('visible');
             } else {
                 homeBackToTopButton.classList.remove('visible');
-                homeBackToTopText.classList.remove('visible');
             }
         }, 100));
-
+        
         homeBackToTopButton.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     } else {
-        console.error('Botão #home-back-to-top ou texto .home-back-to-top-text não encontrado!');
+        console.error('Botão #home-back-to-top não encontrado!');
     }
 
+// === 11. Configuração do Lightbox ===
     lightbox.option({
         'resizeDuration': 200,
         'wrapAround': true,
         'alwaysShowNavOnTouchDevices': true
     });
 
+// === 12. Toggle do Menu Dropdown ===
     dropdownToggle.addEventListener('click', () => {
         dropdownMenu.classList.toggle('show');
-        dropdownToggle.classList.toggle('active'); // Adicione esta linha
+        dropdownToggle.classList.toggle('active');
     });
 
+// === 13. Fechamento do Menu Dropdown ao Clicar Fora ===
     document.addEventListener('click', (event) => {
         if (!dropdownToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
             dropdownMenu.classList.remove('show');
-            dropdownToggle.classList.remove('active'); // Adicione esta linha
+            dropdownToggle.classList.remove('active');
         }
     });
 
+// === 14. Inicialização do Carregamento dos Designs ===
     loadDesigns();
 });
