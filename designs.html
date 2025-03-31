@@ -18,6 +18,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@400;700&family=Anta&family=Rajdhani:wght@400;700&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome para ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -115,17 +118,24 @@
                      </div>
                      <span id="modal-detail-tool" class="tool-tag"></span>
                  </div>
-                 <div class="detail-section">
-                     <div class="detail-section-header">
-                        <i class="fa-solid fa-t"></i>
-                         <span>Prompt</span>
-                         <span class="click-to-copy">(Click to copy)</span>
-                     </div>
-                     <div class="prompt-content">
-                          <img id="modal-prompt-thumbnail" src="" alt="Prompt thumbnail" class="prompt-thumbnail">
-                          <p id="modal-detail-prompt" class="prompt-text"></p>
-                     </div>
-                 </div>
+                         <!-- Seção Prompt (Thumbnail + Botão Desbloquear) -->
+        <div class="detail-section">
+            <div class="detail-section-header">
+                 <i class="fa-solid fa-t"></i> <!-- Ícone T mantido -->
+                <span>Prompt</span>
+                <!-- Span "(Click to copy)" REMOVIDO -->
+            </div>
+            <div class="prompt-content"> <!-- Container mantido -->
+                 <img id="modal-prompt-thumbnail" src="" alt="Prompt thumbnail" class="prompt-thumbnail"> <!-- Miniatura mantida -->
+
+                 <!-- O <p> do prompt foi SUBSTITUÍDO por este link/botão -->
+                 <a href="#" class="unlock-features prompt-unlock-button" target="_blank" rel="noopener noreferrer" id="hotmart-link-placeholder">
+                    <i class="fas fa-unlock"></i> <!-- Ícone de cadeado -->
+                    <span>Desbloquear Recursos</span> <!-- Texto do botão -->
+                 </a>
+                 <!-- Fim da substituição -->
+            </div>
+        </div>
              </div>
 
              <div class="modal-original-details">

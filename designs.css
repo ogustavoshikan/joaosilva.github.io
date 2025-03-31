@@ -148,7 +148,8 @@ html {
     margin: 0.5rem 0.5rem 0 0.5rem; /* Mantém a margem, mas ajusta para não colar no topo */
     color: #ffffff; /* Texto branco */
     font-size: 0.9rem;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Roboto';
+    font-weight: 700;
     width: calc(100% - 1rem); /* Garante que ocupe 100% da largura, menos as margens */
 }
 
@@ -437,192 +438,64 @@ html {
     border-radius: 5px;
 }
 
-/* ============================================ */
-/* === ESTILOS MODAL - LAYOUT DIVIDIDO V4 === */
-/* ============================================ */
+/* ================================================= */
+/* === ESTILOS MODAL - V4.3 (Reorganizado & Corrigido) === */
+/* ================================================= */
 
-/* 1. Overlay (Fundo) */
-.modal-overlay {
-    position: fixed;
-    inset: 0;
-    background-color: rgba(10, 10, 10, 0.7);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1vh 1.4vw;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
+/* --- Scrollbar Styling (Aplicado a .details-scroll-area) --- */
 
-.modal-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-/* 2. Container Principal (Imagem + Detalhes Lado a Lado) */
-.modal-view-container {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    max-width: 1700px;
-    max-height: 97vh;
-    overflow: hidden;
-    /* Fundo transparente */
-}
-
-/* 3. Coluna da Esquerda (Visualizador da Imagem) */
-.modal-image-viewer {
-    flex: 3;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    padding: 0px;
-    overflow: hidden;
-     /* Fundo transparente */
-}
-
-#modal-main-image {
-    display: block;
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    user-select: none;
-    -webkit-user-drag: none;
-}
-
-/* 4. Coluna da Direita (Painel de Detalhes) */
-.modal-details-panel {
-    flex: 1;
-    background-color: #101010; /* Fundo do painel */
-    color: #e4e4e7;
-    padding: 25px; /* Padding geral */
-    display: flex;
-    flex-direction: column; /* Empilha verticalmente */
-    position: relative;
-    overflow: hidden; /* Importante para conter .modal-original-details */
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    max-width: 350px;
-}
-
-/* Título Principal */
-#modal-detail-title {
-    font-size: 1.6rem;
-    font-weight: 600;
-    color: #ffffff;
-    margin: 0 0 10px 0;
-    padding-bottom: 0;
-    border-bottom: none;
-    flex-shrink: 0; /* Não encolhe */
-}
-
-/* Descrição */
-.modal-description {
-    font-size: 0.95rem;
-    color: #a1a1aa;
-    line-height: 1.6;
-    margin-bottom: 25px;
-    flex-shrink: 0; /* Não encolhe */
-}
-
-/* Área de Rolagem (Tool, Prompt) */
+/* Esconde o polegar por padrão no Firefox */
 .details-scroll-area {
-    flex-grow: 1; /* Ocupa espaço restante */
-    overflow-y: auto; /* Scroll vertical */
-    margin-right: -10px; /* Compensa barra de rolagem */
-    padding-right: 10px; /* Espaço para barra */
-    padding-bottom: 10px; /* Espaço no final */
+    scrollbar-width: thin; /* Ou auto */
+    scrollbar-color: transparent transparent; /* polegar track - ambos invisíveis */
+    transition: scrollbar-color 0.3s ease-out; /* Transição suave */
+}
+/* Mostra o polegar no hover no Firefox */
+.details-scroll-area:hover {
+    scrollbar-color: rgba(110, 110, 110, 0.7) transparent; /* AJUSTE A COR! */
+}
+/* Mostra o polegar quando ativo via JS no Firefox */
+.details-scroll-area.is-scrolling {
+    scrollbar-color: rgba(110, 110, 110, 0.7) transparent; /* AJUSTE A COR! */
+    transition: scrollbar-color 0.1s ease-in;
 }
 
-/* =================================================== */
-/* === ADICIONADO: Estilo da Barra de Rolagem V2 === */
-/* =================================================== */
-
-/* --- Estilo para WebKit/Blink (Chrome, Edge, Safari, etc.) --- */
-
-/* Define a largura da barra */
-.details-scroll-area::-webkit-scrollbar,
-.prompt-text::-webkit-scrollbar {
-  width: 8px; /* Largura da área total da barra */
+/* Largura da barra (WebKit) */
+.details-scroll-area::-webkit-scrollbar {
+  width: 8px;
+}
+/* Esconde o trilho por padrão (WebKit) */
+.details-scroll-area::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 4px;
+}
+/* Esconde o polegar por padrão (WebKit) */
+.details-scroll-area::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  background-clip: padding-box;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  transition: background-color 0.2s ease-out;
+}
+/* Mostra o polegar no hover (WebKit) */
+.details-scroll-area:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(110, 110, 110, 0.7); /* AJUSTE A COR! */
+}
+/* Mostra o polegar quando ativo via JS (WebKit) */
+.details-scroll-area.is-scrolling::-webkit-scrollbar-thumb {
+  background-color: rgba(110, 110, 110, 0.7); /* AJUSTE A COR! */
+  transition: background-color 0.1s ease-in;
+}
+/* Estilo opcional ao arrastar (WebKit) */
+.details-scroll-area::-webkit-scrollbar-thumb:active {
+  background-color: rgba(150, 150, 150, 0.8); /* AJUSTE A COR! */
 }
 
-/* Estilo do Trilho (a área de fundo da barra) */
-.details-scroll-area::-webkit-scrollbar-track,
-.prompt-text::-webkit-scrollbar-track {
-  background: transparent; /* Fundo do trilho invisível */
-  border-radius: 4px; /* Arredondamento do trilho (opcional) */
-}
-
-/* Estilo do Polegar (a parte que se move) */
-.details-scroll-area::-webkit-scrollbar-thumb,
-.prompt-text::-webkit-scrollbar-thumb {
-  background-color: transparent; /* Polegar INVISÍVEL por padrão */
-  background-clip: padding-box; /* Importante para o border */
-  border: 2px solid transparent; /* Borda invisível para dar espaço */
-  border-radius: 4px; /* Metade da largura (8px) para ser um 'pill' */
-  transition: background-color 0.2s ease-out; /* Suaviza o aparecimento */
-}
-
-/* Mostra o Polegar no HOVER do elemento PAI */
-.details-scroll-area:hover::-webkit-scrollbar-thumb,
-.prompt-text:hover::-webkit-scrollbar-thumb {
-  background-color: rgba(110, 110, 110, 0.7); /* Cor VISÍVEL - CINZA SEMI-TRANSPARENTE (Ajuste!) */
-}
-
-/* Opcional: Mudar cor quando está sendo arrastado */
-.details-scroll-area::-webkit-scrollbar-thumb:active,
-.prompt-text::-webkit-scrollbar-thumb:active {
-  background-color: rgba(150, 150, 150, 0.8); /* Cor mais clara/opaca (Ajuste!) */
-}
+/* --- Fim Scrollbar Styling --- */
 
 
-/* --- Estilo para Firefox --- */
+/* --- Component Styling (Ordem Alfabética) --- */
 
-.details-scroll-area,
-.prompt-text {
-  scrollbar-width: thin; /* Barra fina */
-  scrollbar-color: transparent transparent; /* Polegar e Trilho INVISÍVEIS por padrão */
-}
-
-/* Mostra o Polegar no HOVER do elemento PAI */
-.details-scroll-area:hover,
-.prompt-text:hover {
-   /* Cor do Polegar (visível) | Cor do Trilho (permanece invisível) */
-  scrollbar-color: rgba(110, 110, 110, 0.7) transparent; /* AJUSTE A COR! */
-}
-
-/* Em designs.css, após os estilos :hover da barra de rolagem */
-
-/* === ADICIONADO: Estilo da barra quando ativa via JS (touch/scroll) === */
-
-/* --- WebKit/Blink --- */
-.details-scroll-area.is-scrolling::-webkit-scrollbar-thumb,
-.prompt-text.is-scrolling::-webkit-scrollbar-thumb {
-  background-color: rgba(110, 110, 110, 0.7); /* Mesma cor do hover (Ajuste!) */
-  transition: background-color 0.1s ease-in; /* Transição rápida ao ativar */
-}
-
-/* --- Firefox --- */
-.details-scroll-area.is-scrolling,
-.prompt-text.is-scrolling {
-   /* Mesma cor do hover | Cor do Trilho (permanece invisível) */
-  scrollbar-color: rgba(110, 110, 110, 0.7) transparent; /* AJUSTE A COR! */
-  transition: scrollbar-color 0.1s ease-in;
-}
-/* === FIM ADICIONADO === */
-
-/* =================================================== */
-/* === FIM: Estilo da Barra de Rolagem V2 === */
-/* =================================================== */
-
-/* Estilo Comum para Seções (Tool, Prompt) */
 .detail-section {
     margin-bottom: 20px;
 }
@@ -637,119 +510,47 @@ html {
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
-
+/* Ícone Font Awesome no Header */
+.detail-section-header .fa-solid {
+    width: 14px;
+    height: 14px;
+    font-size: 14px;
+    margin-right: 6px;
+    color: #a1a1aa;
+    text-align: center;
+    flex-shrink: 0;
+}
+/* Ícone Lucide no Header (Manter se usar em outros lugares, senão remover) */
 .detail-section-header .lucide-icon {
     margin-right: 6px;
     stroke-width: 2;
     color: #a1a1aa;
-    width: 14px; /* Tamanho explícito */
-    height: 14px; /* Tamanho explícito */
-    flex-shrink: 0; /* Não deixa o ícone encolher */
-}
-
-/* Estilo Específico: Tool */
-.tool-tag {
-    display: inline-block;
-    background-color: #3f3f46;
-    color: #e4e4e7;
-    padding: 3px 8px;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    font-weight: 400;
-}
-
-/* Estilo Específico: Prompt */
-.prompt-content {
-    display: flex;
-    align-items: flex-start;
-    background-color: #101010;
-    padding: 10px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    max-height: 80px;
-    overflow: overlay;
-}
-.prompt-content:hover {
-    background-color: #121213;
-}
-
-/* === Ajustes Finais V4.1 === */
-
-/* Ajuste no Ícone Font Awesome (se necessário) */
-.detail-section-header .fa-solid { /* Estilo para o ícone Font Awesome */
-    width: 14px; /* Mantém largura similar ao SVG */
-    height: 14px; /* Mantém altura similar ao SVG */
-    font-size: 14px; /* Tamanho da fonte do ícone */
-    margin-right: 6px;
-    color: #a1a1aa;
-    text-align: center; /* Centraliza o 'T' se necessário */
-    flex-shrink: 0;
-    /* vertical-align: middle; */ /* Descomente se o alinhamento vertical parecer off */
-}
-
-.prompt-thumbnail {
-    width: 65px;
-    height: 65px;
-    border-radius: 4px;
-    margin-right: 10px;
-    object-fit: cover;
+    width: 14px;
+    height: 14px;
     flex-shrink: 0;
 }
 
-.prompt-text {
-    font-family: math;
-    font-weight: 300;
-    font-size: 0.88rem;
-    color: #c7c7cc;
-    line-height: 1.5;
-    margin: 0;
-    word-break: break-all;
+/* Área de rolagem principal do painel */
+.details-scroll-area {
+    flex-grow: 1;
+    overflow-y: auto; /* Garante que a rolagem funcione */
+    padding-bottom: 10px;
+    /* Removido margin/padding-right desnecessários com 'auto' */
+}
+
+/* Imagem principal (Esquerda) */
+#modal-main-image {
+    display: block;
+    max-width: 100%;
     max-height: 100%;
-    overflow-y: auto;
-    padding-right: 5px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
-.click-to-copy {
-    margin-left: auto;
-    font-size: 0.65rem;
-    color: #71717a;
-    font-weight: 400;
-    text-transform: none;
-    letter-spacing: normal;
-}
-
-/* Container dos Detalhes Originais (FIXO NO FUNDO) */
-.modal-original-details {
-    margin-top: auto; /* Empurra para o fundo */
-    padding-top: 15px;
-    border-top: 1px solid #3f3f46;
-    flex-shrink: 0; /* Não deixa encolher */
-    background-color: #101010; /* Garante mesmo fundo do painel */
-    /* Compensação de padding do pai e padding próprio */
-    margin-left: -25px;
-    margin-right: -25px;
-    margin-bottom: -25px;
-    padding: 15px 25px 20px 25px;
-}
-
-.modal-original-details p {
-    margin-bottom: 6px;
-    font-size: 0.8rem;
-    color: #a1a1aa;
-    line-height: 1.4;
-}
-.modal-original-details p:last-child {
-    margin-bottom: 0;
-}
-
-.modal-original-details strong {
-    color: #d4d4d8;
-    font-weight: 500;
-}
-
-
-/* 5. Botões (Fechar e Navegação) */
+/* Botão de Fechar (X) */
 .modal-close-btn {
     position: absolute;
     top: 15px;
@@ -766,13 +567,60 @@ html {
     cursor: pointer;
     z-index: 10;
     transition: background-color 0.2s ease, color 0.2s ease;
-    padding: 0;
+    padding: 0; /* Padding removido para manter tamanho visual exato */
 }
 .modal-close-btn:hover {
     background-color: rgba(60, 60, 60, 0.9);
     color: #ffffff;
 }
 
+/* Descrição (Abaixo do Título) */
+.modal-description {
+    font-size: 0.95rem;
+    color: #a1a1aa;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    flex-shrink: 0;
+}
+
+/* Painel de Detalhes (Coluna Direita) */
+.modal-details-panel {
+    flex: 1;
+    background-color: #101010;
+    color: #e4e4e7;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 350px;
+}
+/* Título Principal (Dentro do Painel) */
+.modal-details-panel h2#modal-detail-title { /* ID adicionado para especificidade */
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 10px 0;
+    padding-bottom: 0;
+    border-bottom: none;
+    flex-shrink: 0;
+}
+
+/* Visualizador de Imagem (Coluna Esquerda) */
+.modal-image-viewer {
+    flex: 3;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Mantido, mas pode ser center se preferir */
+    padding: 0px;
+    overflow: hidden;
+     /* Fundo transparente */
+}
+
+/* Botões de Navegação (< >) */
 .modal-nav-btn {
     position: absolute;
     top: 50%;
@@ -795,18 +643,150 @@ html {
     background-color: rgba(40, 40, 40, 0.75);
     border-color: rgba(255, 255, 255, 0.3);
 }
-
-.modal-nav-btn.prev { left: 25px; }
-.modal-nav-btn.next { right: 25px; }
-
 .modal-nav-btn:disabled {
     opacity: 0.3;
     cursor: default;
     background-color: rgba(20, 20, 20, 0.3);
     border-color: rgba(255, 255, 255, 0.05);
 }
+.modal-nav-btn.next { right: 25px; }
+.modal-nav-btn.prev { left: 25px; }
 
-/* 6. Responsividade */
+/* Detalhes Originais (Fixo no Fundo do Painel) */
+.modal-original-details {
+    margin-top: auto;
+    padding-top: 15px;
+    border-top: 1px solid #3f3f46;
+    flex-shrink: 0;
+    background-color: #101010;
+    /* Compensação de padding */
+    margin-left: -25px;
+    margin-right: -25px;
+    margin-bottom: -25px;
+    padding: 15px 25px 20px 25px;
+}
+.modal-original-details p {
+    margin-bottom: 6px;
+    font-size: 0.8rem;
+    color: #a1a1aa;
+    line-height: 1.4;
+}
+.modal-original-details p:last-child {
+    margin-bottom: 0;
+}
+.modal-original-details strong {
+    color: #d4d4d8;
+    font-weight: 500;
+}
+
+/* Overlay (Fundo Escuro/Desfocado) */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgb(10 10 10 / 99%);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1vh 1.4vw;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Container Principal (Wrapper Imagem + Detalhes) */
+.modal-view-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    max-width: 1700px;
+    max-height: 97vh;
+    overflow: hidden;
+    /* Fundo transparente */
+}
+
+/* Container do Botão/Thumb na Seção Prompt */
+.prompt-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+    max-height: none;
+    overflow: visible;
+    cursor: default;
+}
+/* Botão Desbloquear DENTRO do Prompt */
+.prompt-content .unlock-features.prompt-unlock-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0rem;
+    padding: 0.6rem 3rem;
+    background-color: #080707;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-family: 'Roboto';
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+    flex-grow: 1;
+    margin: 0;
+    width: auto;
+    border: none;
+    transition: background-color 0.2s ease;
+    height: 55px;
+}
+.prompt-content .unlock-features.prompt-unlock-button:hover {
+    background-color: #3939393b;
+    transform: none;
+}
+.prompt-content .unlock-features.prompt-unlock-button:active {
+    background-color: #0e0f11;
+    transform: none;
+}
+.prompt-content .unlock-features.prompt-unlock-button i {
+    color: #ffffff;
+    font-size: 0.9rem;
+    line-height: 1;
+}
+
+/* Miniatura do Prompt */
+.prompt-thumbnail {
+    width: 70px;
+    height: 75px;
+    border-radius: 4px;
+    /* margin-right: 10px; */ /* Removido, usando gap no pai */
+    object-fit: cover;
+    flex-shrink: 0;
+    object-position: center; /* Mantém foco no topo */
+}
+
+/* Tag da Ferramenta (Tool) */
+.tool-tag {
+    display: inline-block;
+    background-color: #3f3f46;
+    color: #e4e4e7;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 400;
+}
+
+
+/* --- Fim Component Styling --- */
+
+
+/* --- Responsividade --- */
+/* (Mantida no final, regras internas não foram reordenadas) */
 @media (max-width: 1024px) {
     .modal-overlay { padding: 0; }
     .modal-view-container {
@@ -824,7 +804,7 @@ html {
     }
     .modal-details-panel {
         flex: 1 1 40%;
-        padding: 15px; /* Reduz padding no mobile */
+        padding: 15px;
         border-top: 2px solid #0c0c0d;
         border-radius: 0;
         box-shadow: none;
@@ -835,7 +815,6 @@ html {
     .modal-description { font-size: 0.9rem; margin-bottom: 15px; }
 
     .modal-original-details {
-        /* Ajusta compensação de padding para mobile */
         padding: 10px 15px 15px 15px;
         margin-left: -15px;
         margin-right: -15px;
@@ -843,7 +822,6 @@ html {
     }
      .modal-original-details p { font-size: 0.75rem; }
 
-    /* Ajustes nos botões */
     .modal-nav-btn { width: 36px; height: 36px; line-height: 34px; font-size: 1.2rem; }
     .modal-nav-btn.prev { left: 15px; }
     .modal-nav-btn.next { right: 15px; }
@@ -852,8 +830,7 @@ html {
 
 @media (max-width: 600px) {
      .modal-image-viewer { flex-basis: 55%; }
-     .modal-details-panel { flex-basis: 47%; padding: 12px; } /* Padding ainda menor */
-      /* Ajusta compensação de padding */
+     .modal-details-panel { flex-basis: 47%; padding: 12px; }
       .modal-original-details {
         padding: 10px 12px 12px 12px;
         margin-left: -12px;
@@ -861,7 +838,6 @@ html {
         margin-bottom: -12px;
     }
 }
-
-/* ============================================ */
-/* === FIM ESTILOS MODAL - LAYOUT DIVIDIDO V4 === */
-/* ============================================ */
+/* ================================================= */
+/* === FIM ESTILOS MODAL - V4.3 === */
+/* ================================================= */
