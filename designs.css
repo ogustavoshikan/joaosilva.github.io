@@ -199,22 +199,23 @@ html {
     padding: 0.75rem 1rem;
     color: #ffffff; /* Texto branco */
     text-decoration: none;
-    font-size: 0.9rem;
-    font-family: 'Inter', sans-serif;
-    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    font-family: Anta, sans-serif;
+    font-weight: 400;
+    font-style: normal;
     width: 100%; /* Garante que o link ocupe a largura total para centralização */
     text-align: center; /* Centraliza o texto dos links */
 }
 
 .dropdown-menu a:hover {
-    background-color: #66666600; /* Cinza escuro no hover */
-    font-weight: 700;
+    background-color: #000000; /* Cinza escuro no hover */
+    font-weight: 400;
     color:#F44336
 }
 
 .dropdown-menu a.active {
-    background-color: #66666600; /* Cinza claro para o item ativo */
-    font-weight: 700;
+    background-color: #000000; /* Cinza claro para o item ativo */
+    font-weight: 400;
     color: #F44336;
 }
 
@@ -228,10 +229,15 @@ html {
     padding: 0.5rem 1rem; /* Reduz o padding para um retângulo menor */
     max-width: 120px; /* Define uma largura máxima para o botão */
     text-align: center;
+    font-family: 'Anta', sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
 }
 
 .dropdown-menu a.contact-btn:hover {
-    background-color: #e0e0e0; /* Cinza claro no hover do botão Contato */
+    background-color: #b3b0b0; /* Cinza claro no hover do botão Contato */
     color: #000000;
 }
 

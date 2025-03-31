@@ -238,7 +238,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const toolName = designData.model ? designData.model.split(' ')[0] : 'N/A'; // Pega só o primeiro nome (ex: Flux)
         modalDetailTool.text(toolName); // Atualiza a TAG 'Tool'
         modalDetailTool.closest('.detail-section').toggle(!!designData.model); // Esconde a seção 'Tool' se não houver modelo
-        
+
         // ADICIONAR ESTA LINHA DE VOLTA para a miniatura
         modalPromptThumbnail.attr('src', designData.src || '');
         modalPromptThumbnail.toggle(!!designData.src); // Opcional: esconde se não houver src
@@ -332,7 +332,44 @@ document.addEventListener("DOMContentLoaded", function () {
     closeModalBtn.on('click', closeModal);
     modalOverlay.on('click', function(e) { if (e.target === this) { console.log("Click no Overlay"); closeModal(); } });
     modalViewContainer.on('click', function(e) { const imageViewerElement = document.querySelector('.modal-image-viewer'); if (e.target === this || e.target === imageViewerElement) { if ($(e.target).closest('.modal-nav-btn').length > 0) { return; } if (e.target.id === 'modal-main-image') { return; } console.log("Closing via View Container/Viewer bg click."); closeModal(); } });
-    $(document).on('keydown', function(e) { if (e.key === "Escape" && modalOverlay.hasClass('active')) closeModal(); });
+    
+    // Listener EXISTENTE para fechar com ESC
+    $(document).on('keydown', function(e) {
+        if (e.key === "Escape" && modalOverlay.hasClass('active')) {
+             closeModal();
+        }
+    });
+
+    // --- NOVO: Listener para Navegação por Teclado (Setas) ---
+    $(document).on('keydown', function(e) {
+        // Só executa se o modal estiver ativo
+        if (!modalOverlay.hasClass('active')) {
+            return;
+        }
+
+        // Verifica qual seta foi pressionada
+        switch (e.key) {
+            case "ArrowLeft":
+            case "ArrowUp": // Mapeando Cima para Anterior também
+                // Previne o comportamento padrão do navegador (ex: rolar a página)
+                e.preventDefault();
+                // Dispara o clique no botão "Anterior" se houver mais de uma imagem
+                if (currentFilteredDesigns.length > 1) {
+                    prevModalBtn.trigger('click');
+                }
+                break;
+            case "ArrowRight":
+            case "ArrowDown": // Mapeando Baixo para Próximo também
+                // Previne o comportamento padrão do navegador
+                e.preventDefault();
+                // Dispara o clique no botão "Próximo" se houver mais de uma imagem
+                 if (currentFilteredDesigns.length > 1) {
+                    nextModalBtn.trigger('click');
+                 }
+                break;
+            // Nenhuma ação para outras teclas
+        }
+    });
 
 
     // --- Lógica para Visibilidade da Barra de Rolagem ---
