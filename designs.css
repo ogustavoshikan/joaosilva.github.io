@@ -541,6 +541,67 @@ html {
     padding-bottom: 10px; /* Espaço no final */
 }
 
+/* =================================================== */
+/* === ADICIONADO: Estilo da Barra de Rolagem V2 === */
+/* =================================================== */
+
+/* --- Estilo para WebKit/Blink (Chrome, Edge, Safari, etc.) --- */
+
+/* Define a largura da barra */
+.details-scroll-area::-webkit-scrollbar,
+.prompt-text::-webkit-scrollbar {
+  width: 8px; /* Largura da área total da barra */
+}
+
+/* Estilo do Trilho (a área de fundo da barra) */
+.details-scroll-area::-webkit-scrollbar-track,
+.prompt-text::-webkit-scrollbar-track {
+  background: transparent; /* Fundo do trilho invisível */
+  border-radius: 4px; /* Arredondamento do trilho (opcional) */
+}
+
+/* Estilo do Polegar (a parte que se move) */
+.details-scroll-area::-webkit-scrollbar-thumb,
+.prompt-text::-webkit-scrollbar-thumb {
+  background-color: transparent; /* Polegar INVISÍVEL por padrão */
+  background-clip: padding-box; /* Importante para o border */
+  border: 2px solid transparent; /* Borda invisível para dar espaço */
+  border-radius: 4px; /* Metade da largura (8px) para ser um 'pill' */
+  transition: background-color 0.2s ease-out; /* Suaviza o aparecimento */
+}
+
+/* Mostra o Polegar no HOVER do elemento PAI */
+.details-scroll-area:hover::-webkit-scrollbar-thumb,
+.prompt-text:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(110, 110, 110, 0.7); /* Cor VISÍVEL - CINZA SEMI-TRANSPARENTE (Ajuste!) */
+}
+
+/* Opcional: Mudar cor quando está sendo arrastado */
+.details-scroll-area::-webkit-scrollbar-thumb:active,
+.prompt-text::-webkit-scrollbar-thumb:active {
+  background-color: rgba(150, 150, 150, 0.8); /* Cor mais clara/opaca (Ajuste!) */
+}
+
+
+/* --- Estilo para Firefox --- */
+
+.details-scroll-area,
+.prompt-text {
+  scrollbar-width: thin; /* Barra fina */
+  scrollbar-color: transparent transparent; /* Polegar e Trilho INVISÍVEIS por padrão */
+}
+
+/* Mostra o Polegar no HOVER do elemento PAI */
+.details-scroll-area:hover,
+.prompt-text:hover {
+   /* Cor do Polegar (visível) | Cor do Trilho (permanece invisível) */
+  scrollbar-color: rgba(110, 110, 110, 0.7) transparent; /* AJUSTE A COR! */
+}
+
+/* =================================================== */
+/* === FIM: Estilo da Barra de Rolagem V2 === */
+/* =================================================== */
+
 /* Estilo Comum para Seções (Tool, Prompt) */
 .detail-section {
     margin-bottom: 20px;
@@ -739,6 +800,7 @@ html {
     .modal-image-viewer {
         flex: 1 1 60%;
         padding: 10px;
+        width: 100%;
     }
     .modal-details-panel {
         flex: 1 1 40%;
@@ -746,6 +808,8 @@ html {
         border-top: 2px solid #0c0c0d;
         border-radius: 0;
         box-shadow: none;
+        width: 100%;
+        max-width: none;
     }
     #modal-detail-title { font-size: 1.4rem; margin-bottom: 8px; }
     .modal-description { font-size: 0.9rem; margin-bottom: 15px; }
