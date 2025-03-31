@@ -598,6 +598,26 @@ html {
   scrollbar-color: rgba(110, 110, 110, 0.7) transparent; /* AJUSTE A COR! */
 }
 
+/* Em designs.css, após os estilos :hover da barra de rolagem */
+
+/* === ADICIONADO: Estilo da barra quando ativa via JS (touch/scroll) === */
+
+/* --- WebKit/Blink --- */
+.details-scroll-area.is-scrolling::-webkit-scrollbar-thumb,
+.prompt-text.is-scrolling::-webkit-scrollbar-thumb {
+  background-color: rgba(110, 110, 110, 0.7); /* Mesma cor do hover (Ajuste!) */
+  transition: background-color 0.1s ease-in; /* Transição rápida ao ativar */
+}
+
+/* --- Firefox --- */
+.details-scroll-area.is-scrolling,
+.prompt-text.is-scrolling {
+   /* Mesma cor do hover | Cor do Trilho (permanece invisível) */
+  scrollbar-color: rgba(110, 110, 110, 0.7) transparent; /* AJUSTE A COR! */
+  transition: scrollbar-color 0.1s ease-in;
+}
+/* === FIM ADICIONADO === */
+
 /* =================================================== */
 /* === FIM: Estilo da Barra de Rolagem V2 === */
 /* =================================================== */
