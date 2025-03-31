@@ -356,7 +356,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Define um novo timer para esconder a barra após um tempo sem scroll/touch
         scrollTimer = setTimeout(() => {
             element.classList.remove('is-scrolling');
-        }, 100); // Esconde após 1 segundos de inatividade
+        }, 1000); // Esconde após 1 segundos de inatividade
     }
 
     // Adiciona listeners aos elementos roláveis
