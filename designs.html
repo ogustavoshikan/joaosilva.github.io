@@ -45,18 +45,19 @@
                 <button class="dropdown-toggle" aria-label="Abrir menu">
                     <img src="assets/icons/teste2dropdown.png" alt="Ícone do menu" class="dropdown-icon">
                 </button>
-                <div class="dropdown-menu">
-                    <div class="unlock-features">
+                <div class="dropdown-menu"> <!-- Abre o menu aqui -->
+                    <a href="/sua-pagina-de-recursos" class="unlock-features">
                         <i class="fas fa-unlock"></i>
                         <span>Desbloquear Recursos</span>
-                    </div>
+                    </a>
+                    <!-- Todos os links abaixo devem estar DENTRO do .dropdown-menu -->
                     <a href="index.html">Página Inicial</a>
                     <a href="news.html">Notícias</a>
                     <a href="designs.html" class="active">Designs</a>
                     <a href="about.html">Sobre</a>
                     <a href="https://wa.me/61999999999" class="contact-btn">Contato</a>
-                </div>
-            </div>
+                </div> <!-- Fecha o menu aqui, APÓS todos os itens -->
+            </div> <!-- Fecha o .dropdown aqui -->
         </div>
     </header>
 

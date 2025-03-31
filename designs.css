@@ -166,79 +166,102 @@ html {
     min-width: 200px;
     z-index: 1000;
     text-align: center; /* Centraliza todos os elementos filhos */
+    box-sizing: border-box; /* Adicionado para melhor controle de padding/width */
 }
 
 .dropdown-menu.show {
     display: block;
 }
 
-/* Estilo do retângulo "Desbloquear Recursos" */
-.unlock-features {
-    display: flex;
+/* --- CORREÇÃO APLICADA AQUI --- */
+/* Estilo específico para o LINK "Desbloquear Recursos" */
+.dropdown-menu a.unlock-features { /* Seletor mais específico: 'a' com a classe */
+    display: flex; /* Mantém o flex para alinhar ícone e texto */
     align-items: center;
-    justify-content: center; /* Centraliza o ícone e o texto dentro do retângulo */
+    justify-content: center; /* Centraliza o conteúdo */
     gap: 0.5rem;
-    padding: 0.5rem 2rem; /* Reduz o padding para diminuir a altura */
+    padding: 0.5rem 2rem; /* Ajustado padding horizontal para ficar menos largo que os outros itens */
     background-color: #121317; /* Fundo do retângulo */
     border-radius: 5px;
-    margin: 0.5rem 0.5rem 0 0.5rem; /* Mantém a margem, mas ajusta para não colar no topo */
-    color: #ffffff; /* Texto branco */
+    margin: 0.5rem; /* Margem em todos os lados dentro do dropdown */
+    color: #ffffff !important; /* Força a cor branca, sobrescrevendo outros 'a' */
     font-size: 0.9rem;
-    font-family: 'Roboto';
+    font-family: 'Roboto', sans-serif; /* Adicionado sans-serif como fallback */
     font-weight: 700;
-    width: calc(100% - 1rem); /* Garante que ocupe 100% da largura, menos as margens */
+    text-decoration: none !important; /* Garante que não haja sublinhado */
+    cursor: pointer;
+    box-sizing: border-box; /* Garante que padding está incluído na largura */
+    width: calc(100% - 1rem); /* Calcula largura considerando a margem de 0.5rem em cada lado */
+    text-align: center; /* Garante centralização do texto se flex falhar */
+    transition: background-color 0.3s ease; /* Adiciona transição para hover */
 }
 
-.unlock-features i {
-    color: #ffffff; /* Ícone branco */
+/* Estilo HOVER específico para o LINK "Desbloquear Recursos" */
+.dropdown-menu a.unlock-features:hover {
+    background-color: #2a2c33; /* Cor de hover um pouco mais clara que o fundo */
+    color: #ffffff !important; /* Mantém a cor do texto no hover */
+}
+
+/* Estilo para o ÍCONE dentro do link "Desbloquear Recursos" */
+.dropdown-menu a.unlock-features i {
+    color: #ffffff; /* Cor do ícone (já era, mas confirma) */
     font-size: 1rem;
+    /* Não precisa de margem se usar gap no container */
 }
+/* --- FIM DA CORREÇÃO --- */
 
-.dropdown-menu a {
+/* Estilos gerais para os OUTROS links no dropdown */
+.dropdown-menu a:not(.unlock-features):not(.contact-btn) { /* Aplica a links que NÃO são unlock ou contact */
     display: block;
     padding: 0.75rem 1rem;
     color: #ffffff; /* Texto branco */
     text-decoration: none;
     font-size: 1rem;
-    font-family: Anta, sans-serif;
+    font-family: 'Anta', sans-serif;
     font-weight: 400;
     font-style: normal;
-    width: 100%; /* Garante que o link ocupe a largura total para centralização */
+    width: 100%; /* Ocupa a largura total */
     text-align: center; /* Centraliza o texto dos links */
+    box-sizing: border-box;
 }
 
-.dropdown-menu a:hover {
-    background-color: #000000; /* Cinza escuro no hover */
-    font-weight: 400;
-    color:#F44336
-}
-
-.dropdown-menu a.active {
-    background-color: #000000; /* Cinza claro para o item ativo */
+/* Hover para os OUTROS links */
+.dropdown-menu a:not(.unlock-features):not(.contact-btn):hover {
+    background-color: #1c1c1c; /* Fundo cinza escuro no hover (ajustado para diferenciar do unlock) */
     font-weight: 400;
     color: #F44336;
 }
 
-/* Estilo do botão Contato */
+/* Active para os OUTROS links */
+.dropdown-menu a:not(.unlock-features):not(.contact-btn).active {
+    /* background-color: #2e2e2e; (Removido background para não confundir) */
+    font-weight: 400;
+    color: #F44336; /* Mantém apenas a cor para indicar ativo */
+}
+
+
+/* Estilo do botão Contato (permanece como estava, mas ajustado seletor no hover/active geral) */
 .dropdown-menu a.contact-btn {
     display: inline-block; /* Permite definir uma largura menor */
     background-color: #ffffff; /* Fundo branco */
     color: #000000; /* Texto preto */
     border-radius: 5px;
-    margin: 0.5rem auto; /* Centraliza o botão */
-    padding: 0.5rem 1rem; /* Reduz o padding para um retângulo menor */
-    max-width: 120px; /* Define uma largura máxima para o botão */
+    margin: 0.5rem auto 1rem auto; /* Aumenta margem inferior e centraliza */
+    padding: 0.5rem 1rem; /* Padding */
+    max-width: 120px; /* Largura máxima */
+    width: auto; /* Largura automática baseada no conteúdo e padding */
     text-align: center;
     font-family: 'Anta', sans-serif;
     font-weight: 600;
     font-style: normal;
     text-decoration: none;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Adicionada transição de cor */
+    box-sizing: border-box;
 }
 
 .dropdown-menu a.contact-btn:hover {
-    background-color: #b3b0b0; /* Cinza claro no hover do botão Contato */
-    color: #000000;
+    background-color: #b3b0b0; /* Cinza claro no hover */
+    color: #000000; /* Mantém texto preto */
 }
 
 /* Seção de Filtros */
