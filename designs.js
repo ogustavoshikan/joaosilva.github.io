@@ -18,24 +18,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // --- Variáveis e Seletores do Modal ---
     const modalOverlay = $('#custom-modal');
-    const modalMainImage = $('#modal-main-image'); // Imagem principal (esquerda)
+    const modalMainImage = $('#modal-main-image');
     const modalViewContainer = $('.modal-view-container');
-    // Seletores para o painel de detalhes (direita)
+    // Seletores Painel Detalhes (Topo e Meio)
     const modalDetailTitle = $('#modal-detail-title');
     const modalDetailDescription = $('#modal-detail-description');
-    const modalDetailTool = $('#modal-detail-tool');
+    const modalDetailTool = $('#modal-detail-tool'); // Para a tag 'Tool'
     const modalPromptThumbnail = $('#modal-prompt-thumbnail');
-    const modalDetailPrompt = $('#modal-detail-prompt');
-    // Seletores para detalhes originais (no fundo do painel direito)
-    const modalResolution = $('#modal-resolution');
-    const modalCreationDate = $('#modal-creation-date');
-    const modalModel = $('#modal-model'); // Usado para modelo completo no fundo
-    const modalAuthor = $('#modal-author');
+    // Seletores para Detalhes Inferiores (NOVOS)
+    const modalCreatedValue = $('#modal-created-value');     // << NOVO
+    const modalDimensionsValue = $('#modal-dimensions-value'); // << NOVO
+    const modalToolValue = $('#modal-tool-value');         // << NOVO (Para linha Ferramenta)
+    const modalAuthorValue = $('#modal-author-value');       // << NOVO
     // Botões
     const closeModalBtn = $('.modal-close-btn');
     const prevModalBtn = $('.modal-nav-btn.prev');
     const nextModalBtn = $('.modal-nav-btn.next');
-    // Estado do Modal
+    // Elementos DOM para Scroll/Touch
+    const detailsScrollAreaEl = document.querySelector('.details-scroll-area');
+    let scrollTimer = null;
+    // Estado
     let currentModalIndex = -1;
 
 
@@ -67,7 +69,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // === 3. Exibição Inicial / Reset da Galeria (após filtro) ===
     function displayInitialDesigns() {
         console.log("displayInitialDesigns chamado.");
-        // ... (verificação do galleryContainer como antes) ...
         if (!galleryContainer || typeof galleryContainer.parentNode === 'undefined' || galleryContainer.parentNode === null) {
              console.warn("Tentando displayInitialDesigns em container inválido...");
              galleryContainer = document.querySelector(".gallery-container");
@@ -84,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log(`Atualizado currentFilteredDesigns com ${currentFilteredDesigns.length} itens para '${currentCategory}'.`);
 
         if (oldContainer.parentNode) { oldContainer.parentNode.insertBefore(newContainer, oldContainer.nextSibling); }
-        else { /* ... (fallback para adicionar ao main) ... */
+        else {
             const mainElement = document.querySelector('main.designs-gallery');
             if (mainElement) mainElement.appendChild(newContainer); else { console.error("Local para newContainer não encontrado."); return; }
         }
@@ -106,7 +107,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // === 4. Adição Incremental de Designs (Scroll ou Inicial) ===
     function displayMoreDesigns() {
-        // ... (verificação do galleryContainer e isLoading como antes) ...
         if (!galleryContainer || !document.body.contains(galleryContainer)) { console.warn("displayMoreDesigns: galleryContainer inválido..."); return; }
         if (isLoading) return;
 
@@ -124,13 +124,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const galleryItem = document.createElement('div');
             galleryItem.classList.add('gallery-item');
-            // Guarda o índice na lista filtrada ATUAL
             galleryItem.dataset.index = i;
-            // Guarda outros dados se precisar diretamente (opcional, pois já temos no array)
-            // galleryItem.dataset.src = design.src;
 
             const img = new Image();
-            img.src = design.src; // Ou thumbnail
+            img.src = design.src;
             img.alt = design.alt || 'Design de IA';
             img.loading = "lazy";
             galleryItem.appendChild(img);
@@ -155,7 +152,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // === 7. Lógica dos Botões de Filtro ===
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
-            // ... (lógica de filtro como antes, chamando displayInitialDesigns) ...
              const category = button.getAttribute('data-category');
              if (isLoading || currentCategory === category) return;
              console.log(`Filtrando por: ${category}`);
@@ -171,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // === 8. Função Utilitária Debounce ===
-    function debounce(func, wait) { /* ... (como antes) ... */
+    function debounce(func, wait) {
         let timeout;
         return function executedFunction(...args) {
             const later = () => { clearTimeout(timeout); func(...args); };
@@ -181,7 +177,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // === 9. Lógica de Scroll Infinito ===
-    const debouncedScrollCheck = debounce(() => { /* ... (como antes, chamando displayMoreDesigns) ... */
+    const debouncedScrollCheck = debounce(() => {
         if (isLoading || modalOverlay.hasClass('active')) return;
         if (!galleryContainer || !document.body.contains(galleryContainer)) return;
         const scrollPosition = window.scrollY + window.innerHeight;
@@ -195,7 +191,7 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener('scroll', debouncedScrollCheck);
 
     // === 10. Lógica do Botão "Voltar ao Topo" ===
-    if (homeBackToTopButton) { /* ... (como antes) ... */
+    if (homeBackToTopButton) {
         window.addEventListener('scroll', debounce(() => {
              homeBackToTopButton.classList.toggle('visible', window.scrollY > 600);
          }, 100));
@@ -205,7 +201,7 @@ document.addEventListener("DOMContentLoaded", function () {
      } else { console.warn('Botão #home-back-to-top não encontrado!'); }
 
     // === 11. Lógica do Dropdown ===
-    if (dropdownToggle && dropdownMenu) { /* ... (como antes) ... */
+    if (dropdownToggle && dropdownMenu) {
         dropdownToggle.addEventListener('click', () => {
              dropdownMenu.classList.toggle('show');
              dropdownToggle.classList.toggle('active');
@@ -219,14 +215,9 @@ document.addEventListener("DOMContentLoaded", function () {
      } else { console.warn("Dropdown toggle ou menu não encontrado."); }
 
 
-    // === 12. Lógica do Modal Customizado (ATUALIZADA com Scroll Reset e Visibilidade da Barra) ===
+    // === 12. Lógica do Modal Customizado (CORRIGIDA V4.4) ===
 
-    // --- Seletores ADICIONAIS para elementos DOM (para scroll e touch) ---
-    const detailsScrollAreaEl = document.querySelector('.details-scroll-area');
-    const promptTextEl = document.querySelector('.prompt-text');
-    let scrollTimer = null; // Timer para esconder a barra após scroll parar
-
-    // --- Função Principal para Atualizar Conteúdo do Modal (com Scroll Reset)---
+    // --- Função Principal para Atualizar Conteúdo do Modal ---
     function updateModalContent(index) {
         if (index < 0 || index >= currentFilteredDesigns.length) {
             console.error("Índice inválido para updateModalContent:", index);
@@ -239,55 +230,60 @@ document.addEventListener("DOMContentLoaded", function () {
         // 1. Atualiza Imagem Principal
         modalMainImage.attr('src', designData.src || '');
 
-        // 2. Atualiza Painel de Detalhes (Direita)
+        // 2. Atualiza Painel de Detalhes (Topo e Meio)
         modalDetailTitle.text(designData.category || 'Detalhes da Imagem');
         modalDetailDescription.text(designData.description || '');
-        // Usando .closest() para achar o pai <p> e esconder se vazio
-        modalDetailDescription.closest('p').toggle(!!designData.description);
+        modalDetailDescription.closest('p').toggle(!!designData.description); // Esconde o <p> se a descrição for vazia
 
-        const toolName = designData.model ? designData.model.split(' ')[0] : 'N/A';
-        modalDetailTool.text(toolName);
-        modalDetailTool.closest('.detail-section').toggle(!!designData.model);
-
-        modalDetailPrompt.text(designData.prompt || 'Prompt não disponível.');
+        const toolName = designData.model ? designData.model.split(' ')[0] : 'N/A'; // Pega só o primeiro nome (ex: Flux)
+        modalDetailTool.text(toolName); // Atualiza a TAG 'Tool'
+        modalDetailTool.closest('.detail-section').toggle(!!designData.model); // Esconde a seção 'Tool' se não houver modelo
+        
+        // ADICIONAR ESTA LINHA DE VOLTA para a miniatura
         modalPromptThumbnail.attr('src', designData.src || '');
-        modalPromptThumbnail.toggle(!!designData.src);
-        modalDetailPrompt.closest('.detail-section').toggle(!!designData.prompt);
+        modalPromptThumbnail.toggle(!!designData.src); // Opcional: esconde se não houver src
 
-        // 3. Atualiza Detalhes Originais (no fundo)
-        modalResolution.text(designData.resolution || 'N/A');
-        modalCreationDate.text(designData.createdAt ? new Date(designData.createdAt).toLocaleDateString('pt-BR') : 'N/A');
-        modalModel.text(designData.model || 'N/A');
-        modalAuthor.text(designData.author || 'N/A');
+        // O link/botão "Desbloquear" já está no HTML, não precisa de atualização aqui
+
+        // 3. Atualiza Detalhes Inferiores (Usando NOVOS IDs)
+        // Formatando Data e Hora
+        let creationDateTime = 'N/A';
+        if (designData.createdAt) {
+            try {
+                const date = new Date(designData.createdAt + "T00:00:00"); // Adiciona T00:00:00 para consistência
+                const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+                // Coloque aqui a hora/minuto real se tiver no JSON, senão use fixo
+                const hour = 21; // Exemplo
+                const minute = 37; // Exemplo
+                 creationDateTime = `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()} às ${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
+            } catch (e) {
+                console.error("Erro ao formatar data:", e);
+                creationDateTime = designData.createdAt; // Fallback
+            }
+        }
+        modalCreatedValue.text(creationDateTime);          // << Usa o NOVO ID
+        modalDimensionsValue.text(designData.resolution || 'N/A'); // << Usa o NOVO ID
+        modalToolValue.text(designData.model || 'N/A');     // << Usa o NOVO ID (modelo completo aqui)
+        modalAuthorValue.text(designData.author || 'N/A');    // << Usa o NOVO ID
 
         // 4. Atualiza Botões de Navegação
         const hasMoreThanOne = currentFilteredDesigns.length > 1;
         prevModalBtn.prop('disabled', !hasMoreThanOne);
         nextModalBtn.prop('disabled', !hasMoreThanOne);
 
-        // === ADICIONADO: Resetar Scroll das Áreas ===
-        // Usamos setTimeout 0 para garantir que o reset ocorra APÓS
-        // o navegador recalcular o layout com o novo conteúdo.
+        // 5. Reset do Scroll da área de detalhes principal
         setTimeout(() => {
             if (detailsScrollAreaEl) detailsScrollAreaEl.scrollTop = 0;
-            if (promptTextEl) promptTextEl.scrollTop = 0;
-            // Remove a classe de scrolling caso tenha ficado de uma navegação anterior
             if (detailsScrollAreaEl) detailsScrollAreaEl.classList.remove('is-scrolling');
-            if (promptTextEl) promptTextEl.classList.remove('is-scrolling');
-             console.log("Scroll positions reset.");
+            console.log("Scroll position for details area reset.");
         }, 0);
-        // === FIM ADICIONADO ===
     }
 
     // --- Funções openModal, closeModal, setupModalClickListener ---
-    // (Mantidas como estavam na sua última versão funcional)
      function openModal(index) {
-         if (index < 0 || index >= currentFilteredDesigns.length) {
-              console.error(`Índice inválido ${index} para abrir modal.`); return;
-         }
+         if (index < 0 || index >= currentFilteredDesigns.length) { console.error(`Índice inválido ${index}.`); return; }
          console.log(`Abrindo modal no índice: ${index}`);
-         // updateModalContent já reseta o scroll
-         updateModalContent(index);
+         updateModalContent(index); // Chama a função ATUALIZADA
          modalOverlay.addClass('active');
          $('body').css('overflow', 'hidden');
      }
@@ -296,7 +292,6 @@ document.addEventListener("DOMContentLoaded", function () {
          modalOverlay.removeClass('active');
          $('body').css('overflow', '');
          currentModalIndex = -1;
-         // Limpa o timer se o modal for fechado enquanto a barra está visível
          clearTimeout(scrollTimer);
          console.log("Modal fechado.");
      }
@@ -312,23 +307,20 @@ document.addEventListener("DOMContentLoaded", function () {
          console.log("Listener de clique modal configurado:", $container[0]);
      }
 
-
      // --- Listeners para Navegação (Botões e Swipe) ---
-     // (Mantidos como estavam na sua última versão funcional)
      prevModalBtn.on('click', function() {
          if (currentFilteredDesigns.length <= 1) return;
          const newIndex = (currentModalIndex - 1 + currentFilteredDesigns.length) % currentFilteredDesigns.length;
-         updateModalContent(newIndex);
+         updateModalContent(newIndex); // Chama a função ATUALIZADA
      });
      nextModalBtn.on('click', function() {
          if (currentFilteredDesigns.length <= 1) return;
          const newIndex = (currentModalIndex + 1) % currentFilteredDesigns.length;
-         updateModalContent(newIndex);
+         updateModalContent(newIndex); // Chama a função ATUALIZADA
      });
-     // Código de Swipe (como estava antes)
+     // Código de Swipe
      const imageViewerElement = document.querySelector('.modal-image-viewer');
-     let touchstartX = 0; /* ... (resto do código de swipe como antes) ... */
-     let touchstartY = 0; let touchendX = 0; let touchendY = 0; const minSwipeDistance = 50;
+     let touchstartX = 0; let touchstartY = 0; let touchendX = 0; let touchendY = 0; const minSwipeDistance = 50;
       if (imageViewerElement) {
           imageViewerElement.addEventListener('touchstart', function(event) { if (!modalOverlay.hasClass('active')) return; touchstartX = event.changedTouches[0].screenX; touchstartY = event.changedTouches[0].screenY; }, { passive: true });
           imageViewerElement.addEventListener('touchend', function(event) { if (!modalOverlay.hasClass('active') || touchstartX === 0) return; touchendX = event.changedTouches[0].screenX; touchendY = event.changedTouches[0].screenY; handleSwipeGesture(); touchstartX = 0; touchstartY = 0; }, { passive: true });
@@ -336,51 +328,34 @@ document.addEventListener("DOMContentLoaded", function () {
       function handleSwipeGesture() { const deltaX = touchendX - touchstartX; const deltaY = touchendY - touchstartY; if (Math.abs(deltaX) < minSwipeDistance && Math.abs(deltaY) < minSwipeDistance) { return; } if (Math.abs(deltaX) > Math.abs(deltaY)) { if (deltaX < -minSwipeDistance) { nextModalBtn.trigger('click'); } else if (deltaX > minSwipeDistance) { prevModalBtn.trigger('click'); } } else if (deltaY > minSwipeDistance) { closeModal(); } }
 
 
-    // --- Listeners para Fechar o Modal (Botão, Fundo, Tecla Esc) ---
-    // (Mantidos como estavam na sua última versão funcional, incluindo o listener no modalViewContainer)
+    // --- Listeners para Fechar o Modal ---
     closeModalBtn.on('click', closeModal);
     modalOverlay.on('click', function(e) { if (e.target === this) { console.log("Click no Overlay"); closeModal(); } });
     modalViewContainer.on('click', function(e) { const imageViewerElement = document.querySelector('.modal-image-viewer'); if (e.target === this || e.target === imageViewerElement) { if ($(e.target).closest('.modal-nav-btn').length > 0) { return; } if (e.target.id === 'modal-main-image') { return; } console.log("Closing via View Container/Viewer bg click."); closeModal(); } });
     $(document).on('keydown', function(e) { if (e.key === "Escape" && modalOverlay.hasClass('active')) closeModal(); });
 
 
-    // === ADICIONADO: Lógica para Visibilidade da Barra de Rolagem ===
+    // --- Lógica para Visibilidade da Barra de Rolagem ---
     function handleScrollInteraction(element) {
         if (!element) return;
-        // Mostra a barra (adiciona classe)
         element.classList.add('is-scrolling');
-
-        // Limpa qualquer timer anterior para esconder a barra
         clearTimeout(scrollTimer);
-
-        // Define um novo timer para esconder a barra após um tempo sem scroll/touch
         scrollTimer = setTimeout(() => {
             element.classList.remove('is-scrolling');
-        }, 1000); // Esconde após 1 segundos de inatividade
+        }, 1000); // Tempo para esconder
     }
 
-    // Adiciona listeners aos elementos roláveis
+    // Adiciona listeners apenas à área de scroll principal
     if (detailsScrollAreaEl) {
         detailsScrollAreaEl.addEventListener('scroll', () => handleScrollInteraction(detailsScrollAreaEl), { passive: true });
         detailsScrollAreaEl.addEventListener('touchstart', () => handleScrollInteraction(detailsScrollAreaEl), { passive: true });
-        detailsScrollAreaEl.addEventListener('touchend', () => {
-             // Reinicia o timer no touchend para garantir que esconda se parar de tocar
-             handleScrollInteraction(detailsScrollAreaEl);
-        });
+        detailsScrollAreaEl.addEventListener('touchend', () => { handleScrollInteraction(detailsScrollAreaEl); });
     } else {
         console.warn(".details-scroll-area não encontrado para listeners de scrollbar.");
     }
+    // REMOVIDO: Bloco de listeners para promptTextEl
 
-    if (promptTextEl) {
-        promptTextEl.addEventListener('scroll', () => handleScrollInteraction(promptTextEl), { passive: true });
-        promptTextEl.addEventListener('touchstart', () => handleScrollInteraction(promptTextEl), { passive: true });
-         promptTextEl.addEventListener('touchend', () => {
-             handleScrollInteraction(promptTextEl);
-        });
-    } else {
-        console.warn(".prompt-text não encontrado para listeners de scrollbar.");
-    }
-    // === FIM: Lógica para Visibilidade da Barra de Rolagem ===
+
     // === 13. Inicialização Geral ===
     loadDesigns();
     setupModalClickListener($galleryContainerJQ);

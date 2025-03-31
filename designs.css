@@ -493,62 +493,7 @@ html {
 
 /* --- Fim Scrollbar Styling --- */
 
-
-/* --- Component Styling (Ordem Alfabética) --- */
-
-.detail-section {
-    margin-bottom: 20px;
-}
-
-.detail-section-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 8px;
-    color: #d4d4d8;
-    font-size: 0.85rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-/* Ícone Font Awesome no Header */
-.detail-section-header .fa-solid {
-    width: 14px;
-    height: 14px;
-    font-size: 14px;
-    margin-right: 6px;
-    color: #a1a1aa;
-    text-align: center;
-    flex-shrink: 0;
-}
-/* Ícone Lucide no Header (Manter se usar em outros lugares, senão remover) */
-.detail-section-header .lucide-icon {
-    margin-right: 6px;
-    stroke-width: 2;
-    color: #a1a1aa;
-    width: 14px;
-    height: 14px;
-    flex-shrink: 0;
-}
-
-/* Área de rolagem principal do painel */
-.details-scroll-area {
-    flex-grow: 1;
-    overflow-y: auto; /* Garante que a rolagem funcione */
-    padding-bottom: 10px;
-    /* Removido margin/padding-right desnecessários com 'auto' */
-}
-
-/* Imagem principal (Esquerda) */
-#modal-main-image {
-    display: block;
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    user-select: none;
-    -webkit-user-drag: none;
-}
+/* --- Component Styling (Ordem Alfabética Aproximada) --- */
 
 /* Botão de Fechar (X) */
 .modal-close-btn {
@@ -567,7 +512,7 @@ html {
     cursor: pointer;
     z-index: 10;
     transition: background-color 0.2s ease, color 0.2s ease;
-    padding: 0; /* Padding removido para manter tamanho visual exato */
+    padding: 0;
 }
 .modal-close-btn:hover {
     background-color: rgba(60, 60, 60, 0.9);
@@ -583,6 +528,107 @@ html {
     flex-shrink: 0;
 }
 
+/* Seção Genérica (Tool, Prompt) */
+.detail-section {
+    margin-bottom: 20px;
+}
+
+/* Cabeçalho da Seção Genérica */
+.detail-section-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px; /* Espaço ajustado */
+    color: #d4d4d8;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+/* Ícone Font Awesome no Header */
+.detail-section-header .fa-solid {
+    width: 14px;
+    height: 14px;
+    font-size: 14px;
+    margin-right: 6px;
+    color: #a1a1aa;
+    text-align: center;
+    flex-shrink: 0;
+}
+/* Ícone Lucide no Header (Manter se usar) */
+.detail-section-header .lucide-icon {
+    margin-right: 6px;
+    stroke-width: 2;
+    color: #a1a1aa;
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+}
+
+/* Área de rolagem principal do painel */
+.details-scroll-area {
+    /* flex-grow: 1; */ /* << REMOVER ESTA LINHA */
+    flex-shrink: 0;     /* << ADICIONAR/GARANTIR ESTA LINHA */
+    overflow-y: auto;
+    padding-bottom: 10px;
+    /* margin/padding-right removidos */
+}
+
+/* Grupo de Ícone e Label nos detalhes inferiores */
+.detail-label-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: serif;
+    color: #a1a1aa;
+    font-size: 0.88rem;
+}
+.detail-label-group i {
+    font-size: 0.95rem;
+    width: 18px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+/* Linha Individual nos detalhes inferiores */
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Padding Vertical controla espaço entre texto e linha */
+    /* Padding Horizontal será herdado do pai .modal-details-panel */
+    padding: 13px 0px; /* Padding APENAS vertical */
+    border-bottom: 1px solid #2a2a2e; /* Linha divisória */
+    /* REMOVIDO: margin: 0 15px; */
+}
+
+/* Remove a borda da última linha */
+.detail-row:last-child {
+    border-bottom: none;
+    /* Ajuste o padding inferior da última linha se necessário */
+    /* padding-bottom: 10px; */
+}
+
+/* Valor à Direita nos detalhes inferiores */
+.detail-value {
+    color: #e4e4e7;
+    font-family: serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    text-align: right;
+}
+
+/* Imagem principal (Esquerda) */
+#modal-main-image {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
 /* Painel de Detalhes (Coluna Direita) */
 .modal-details-panel {
     flex: 1;
@@ -592,13 +638,13 @@ html {
     display: flex;
     flex-direction: column;
     position: relative;
-    overflow: hidden;
-    border-radius: 8px;
+    overflow: hidden; /* Precisa esconder o overflow para o .modal-original-details funcionar */
+    border-radius: 25px; /* Sua borda arredondada */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     max-width: 350px;
 }
 /* Título Principal (Dentro do Painel) */
-.modal-details-panel h2#modal-detail-title { /* ID adicionado para especificidade */
+.modal-details-panel h2#modal-detail-title {
     font-size: 1.6rem;
     font-weight: 600;
     color: #ffffff;
@@ -614,7 +660,7 @@ html {
     position: relative;
     display: flex;
     justify-content: center;
-    align-items: flex-end; /* Mantido, mas pode ser center se preferir */
+    align-items: flex-end;
     padding: 0px;
     overflow: hidden;
      /* Fundo transparente */
@@ -652,45 +698,32 @@ html {
 .modal-nav-btn.next { right: 25px; }
 .modal-nav-btn.prev { left: 25px; }
 
-/* Detalhes Originais (Fixo no Fundo do Painel) */
+/* Detalhes Originais Reformatados (Fixo no Fundo do Painel) */
 .modal-original-details {
-    margin-top: auto;
-    padding-top: 15px;
-    border-top: 1px solid #3f3f46;
+    /* margin-top: auto; */ /* << REMOVER ESTA LINHA */
+    margin-top: 10px;     /* << ADICIONAR: Define espaço acima (AJUSTE VALOR) */
+    padding-top: 0;
+    border-top: 1px solid #2a2a2e; /* Borda SUPERIOR */
     flex-shrink: 0;
     background-color: #101010;
-    /* Compensação de padding */
-    margin-left: -25px;
-    margin-right: -25px;
-    margin-bottom: -25px;
-    padding: 15px 25px 20px 25px;
-}
-.modal-original-details p {
-    margin-bottom: 6px;
-    font-size: 0.8rem;
-    color: #a1a1aa;
-    line-height: 1.4;
-}
-.modal-original-details p:last-child {
+    margin-left: 0;
+    margin-right: 0;
     margin-bottom: 0;
-}
-.modal-original-details strong {
-    color: #d4d4d8;
-    font-weight: 500;
+    padding: 7px 0 10px 0px; /* Padding vertical */
 }
 
 /* Overlay (Fundo Escuro/Desfocado) */
 .modal-overlay {
     position: fixed;
     inset: 0;
-    background-color: rgb(10 10 10 / 99%);
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(5px);
+    background-color: rgb(10 10 10 / 99%); /* Sua cor */
+    backdrop-filter: blur(3px); /* Seu blur */
+    -webkit-backdrop-filter: blur(5px); /* Manter consistência? */
     z-index: 1000;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1vh 1.4vw;
+    padding: 1vh 1.4vw; /* Seu padding */
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -706,7 +739,7 @@ html {
     width: 100%;
     height: 100%;
     max-width: 1700px;
-    max-height: 97vh;
+    max-height: 97vh; /* Sua altura */
     overflow: hidden;
     /* Fundo transparente */
 }
@@ -728,14 +761,14 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0rem;
-    padding: 0.6rem 3rem;
-    background-color: #080707;
-    border-radius: 10px;
+    gap: 0.5rem; /* Seu gap */
+    padding: 0.6rem 3rem; /* Seu padding */
+    background-color: #080707; /* Sua cor */
+    border-radius: 10px; /* Sua borda */
     color: #ffffff;
-    font-size: 0.9rem;
-    font-family: 'Roboto';
-    font-weight: 700;
+    font-size: 0.9rem; /* Sua fonte */
+    font-family: 'Roboto'; /* Sua fonte */
+    font-weight: 700; /* Seu peso */
     text-decoration: none;
     text-align: center;
     flex-grow: 1;
@@ -743,14 +776,14 @@ html {
     width: auto;
     border: none;
     transition: background-color 0.2s ease;
-    height: 55px;
+    height: 55px; /* Sua altura */
 }
 .prompt-content .unlock-features.prompt-unlock-button:hover {
-    background-color: #3939393b;
+    background-color: #3939393b; /* Sua cor hover */
     transform: none;
 }
 .prompt-content .unlock-features.prompt-unlock-button:active {
-    background-color: #0e0f11;
+    background-color: #0e0f11; /* Sua cor active */
     transform: none;
 }
 .prompt-content .unlock-features.prompt-unlock-button i {
@@ -761,13 +794,12 @@ html {
 
 /* Miniatura do Prompt */
 .prompt-thumbnail {
-    width: 70px;
-    height: 75px;
+    width: 70px; /* Seu tamanho */
+    height: 75px; /* Seu tamanho */
     border-radius: 4px;
-    /* margin-right: 10px; */ /* Removido, usando gap no pai */
     object-fit: cover;
     flex-shrink: 0;
-    object-position: center; /* Mantém foco no topo */
+    object-position: center; /* Seu alinhamento */
 }
 
 /* Tag da Ferramenta (Tool) */
@@ -781,12 +813,11 @@ html {
     font-weight: 400;
 }
 
-
 /* --- Fim Component Styling --- */
 
 
 /* --- Responsividade --- */
-/* (Mantida no final, regras internas não foram reordenadas) */
+/* (Mantida no final) */
 @media (max-width: 1024px) {
     .modal-overlay { padding: 0; }
     .modal-view-container {
@@ -801,6 +832,7 @@ html {
         flex: 1 1 60%;
         padding: 10px;
         width: 100%;
+        min-height: 0;
     }
     .modal-details-panel {
         flex: 1 1 40%;
@@ -810,18 +842,26 @@ html {
         box-shadow: none;
         width: 100%;
         max-width: none;
+        min-height: 0;
+        display: flex; /* Garantir que flex esteja definido aqui também */
+        flex-direction: column; /* Garantir que a direção esteja aqui também */
     }
     #modal-detail-title { font-size: 1.4rem; margin-bottom: 8px; }
     .modal-description { font-size: 0.9rem; margin-bottom: 15px; }
 
-    .modal-original-details {
-        padding: 10px 15px 15px 15px;
-        margin-left: -15px;
-        margin-right: -15px;
-        margin-bottom: -15px;
+    /* Ajustes nos detalhes inferiores no mobile */
+     .modal-original-details {
+        padding: 10px 0 5px 0; /* Ajusta padding vertical */
     }
-     .modal-original-details p { font-size: 0.75rem; }
+    .detail-row {
+        padding: 8px 0;   /* Ajusta padding vertical */
+        margin: 0;        /* Garante sem margem lateral */
+     }
+     .detail-label-group { font-size: 0.8rem; gap: 8px;}
+     .detail-label-group i { font-size: 0.9rem; width: 16px;}
+     .detail-value { font-size: 0.8rem; }
 
+    /* Ajustes nos botões no mobile */
     .modal-nav-btn { width: 36px; height: 36px; line-height: 34px; font-size: 1.2rem; }
     .modal-nav-btn.prev { left: 15px; }
     .modal-nav-btn.next { right: 15px; }
@@ -831,12 +871,16 @@ html {
 @media (max-width: 600px) {
      .modal-image-viewer { flex-basis: 55%; }
      .modal-details-panel { flex-basis: 47%; padding: 12px; }
+     /* Ajustes nos detalhes inferiores no mobile pequeno */
       .modal-original-details {
-        padding: 10px 12px 12px 12px;
-        margin-left: -12px;
-        margin-right: -12px;
-        margin-bottom: -12px;
+        padding: 8px 0 5px 0;
     }
+
+    .detail-row {
+        padding: 7px 0;
+        margin: 0;
+     }
+    /* Ajustes de fonte podem ser necessários aqui se ficarem muito pequenos */
 }
 /* ================================================= */
 /* === FIM ESTILOS MODAL - V4.3 === */

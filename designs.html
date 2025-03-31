@@ -111,13 +111,6 @@
              <p id="modal-detail-description" class="modal-description"></p>
 
              <div class="details-scroll-area">
-                 <div class="detail-section">
-                     <div class="detail-section-header">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon"><path d="m9.06 11.9 8.07-8.06a2.85 2.85 0 1 1 4.03 4.03l-8.06 8.08"></path><path d="M7.07 14.94c-1.66 0-3 1.35-3 3.02 0 1.33-2.5 1.52-2 2.02 1.08 1.1 2.49 2.02 4 2.02 2.2 0 4-1.8 4-4.04a3.01 3.01 0 0 0-3-3.02z"></path></svg>
-                         <span>Tool</span>
-                     </div>
-                     <span id="modal-detail-tool" class="tool-tag"></span>
-                 </div>
                          <!-- Seção Prompt (Thumbnail + Botão Desbloquear) -->
         <div class="detail-section">
             <div class="detail-section-header">
@@ -139,10 +132,37 @@
              </div>
 
              <div class="modal-original-details">
-                 <p><strong>Resolução:</strong> <span id="modal-resolution"></span></p>
-                 <p><strong>Data de Criação:</strong> <span id="modal-creation-date"></span></p>
-                 <p><strong>Modelo:</strong> <span id="modal-model"></span></p>
-                 <p><strong>Autor:</strong> <span id="modal-author"></span></p>
+                     <!-- SUBSTITUA o conteúdo antigo de .modal-original-details por isto: -->
+    <div class="detail-row">
+        <div class="detail-label-group">
+            <i class="fa-regular fa-calendar-days"></i> <!-- Ícone Calendário -->
+            <span>Criado</span>
+        </div>
+        <span class="detail-value" id="modal-created-value"></span> <!-- Novo ID para valor -->
+    </div>
+    <div class="detail-row">
+        <div class="detail-label-group">
+            <i class="fa-solid fa-ruler-combined"></i> <!-- Ícone Régua -->
+            <span>Dimensões</span>
+        </div>
+        <span class="detail-value" id="modal-dimensions-value"></span> <!-- Novo ID para valor -->
+    </div>
+    <div class="detail-row">
+        <div class="detail-label-group">
+            <i class="fa-solid fa-paintbrush"></i> <!-- Ícone Pincel -->
+            <span>Ferramenta</span>
+        </div>
+        <span class="detail-value" id="modal-tool-value"></span> <!-- Novo ID para valor -->
+    </div>
+    <!-- Opcional: Adicionar linha para Autor se desejar -->
+    <div class="detail-row">
+       <div class="detail-label-group">
+           <i class="fa-regular fa-user"></i> <!-- Ícone Usuário -->
+           <span>Autor</span>
+       </div>
+       <span class="detail-value" id="modal-author-value"></span> <!-- Novo ID para valor -->
+   </div>
+    <!-- Fim do novo conteúdo -->
              </div>
              <!-- Fim do conteúdo interno correto -->
         </div> <!-- Fim .modal-details-panel -->
