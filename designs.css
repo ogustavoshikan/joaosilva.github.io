@@ -86,6 +86,42 @@ html {
     line-height: 1;
 }
 
+@media (max-width: 768px) {
+
+    .header-container {
+        /* Define o padding ESQUERDO especificamente para mobile */
+        /* Este valor deve criar o recuo desejado no mobile */
+        padding-left: 1rem; /* <<<< AJUSTE ESTE VALOR para o recuo mobile desejado */
+        /* Mantém ou ajusta o padding direito */
+        padding-right: 1rem;
+        /* Você pode ajustar a altura ou outros estilos aqui se necessário */
+        /* height: 50px; */
+    }
+
+    .logo-container {
+        /* REMOVE a margem esquerda especificamente no mobile */
+        margin-left: 0; /* <<<< ZERA A MARGEM NO MOBILE */
+    }
+
+    /* Opcional: Ajustar tamanho da fonte do logo no mobile */
+    .logo-text,
+    .creations-text {
+        /* font-size: 18px; */
+    }
+
+     /* Opcional: Ajustar tamanho/espaçamento do ícone do logo no mobile */
+    .favicon-icon {
+        /* width: 20px; */
+        /* height: 20px; */
+    }
+
+    /* Opcional: Ajustar o gap no logo-container */
+     .logo-container {
+        /* gap: 0.3rem; */
+     }
+
+}
+
 /* Dropdown */
 .dropdown {
     position: relative;
