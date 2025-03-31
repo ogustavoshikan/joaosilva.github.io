@@ -554,6 +554,41 @@ html {
     text-align: center;
     flex-shrink: 0;
 }
+
+/* Estilos para o container principal (garante alinhamento vertical) */
+.detail-section-header {
+    display: flex; /* Usa flexbox para alinhar itens na linha */
+    align-items: center; /* Alinha verticalmente o container do ícone e o texto */
+    gap: 8px; /* Espaço entre o container do ícone e o texto 'Prompt' (alternativa ao margin-right) */
+}
+
+/* Estilos para o retângulo cinza (o container do ícone) */
+.icon-container {
+    display: inline-flex; /* Faz o span se comportar como um bloco flex inline */
+    align-items: center; /* Centraliza o SVG verticalmente dentro do span */
+    justify-content: center; /* Centraliza o SVG horizontalmente dentro do span */
+    padding: 4px; /* Espaçamento interno entre o ícone e a borda do retângulo */
+    background-color: #262626; /* Cor de fundo cinza claro (ajuste conforme necessário, ex: #e0e0e0, #ddd) */
+    border-radius: 4px; /* Cantos levemente arredondados (ajuste ou remova se quiser cantos retos) */
+    /* Remova margin-right daqui se estiver usando 'gap' no pai */
+    /* margin-right: 8px; */ /* Espaço à direita do retângulo (se não usar 'gap' no pai) */
+    line-height: 1; /* Ajuda a evitar altura extra inesperada */
+}
+
+/* Estilos para o ícone SVG dentro do retângulo */
+.icon-container svg {
+    width: 11px;  /* Tamanho desejado para o ícone */
+    height: 11px; /* Tamanho desejado para o ícone */
+    display: block; /* Garante que o SVG não tenha espaço extra abaixo */
+    stroke: #A3A3A3; /* Cor do ícone (ex: cinza escuro - ajuste se necessário) */
+    /* stroke-width: 2; */ /* A espessura já está no SVG, mas pode sobrescrever aqui se precisar */
+}
+
+/* Estilos opcionais para o texto ao lado */
+.detail-section-header > span:last-child {
+  /* Estilos específicos para o texto "Prompt", se necessário */
+}
+
 /* Ícone Lucide no Header (Manter se usar) */
 .detail-section-header .lucide-icon {
     margin-right: 6px;
@@ -577,7 +612,7 @@ html {
 .detail-label-group {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
     font-family: serif;
     color: #a1a1aa;
     font-size: 0.88rem;

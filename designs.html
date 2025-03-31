@@ -114,9 +114,14 @@
                          <!-- Seção Prompt (Thumbnail + Botão Desbloquear) -->
         <div class="detail-section">
             <div class="detail-section-header">
-                 <i class="fa-solid fa-t"></i> <!-- Ícone T mantido -->
+                <span class="icon-container"> <!-- Novo span para o retângulo -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-type">
+                        <polyline points="4 7 4 4 20 4 20 7"/>
+                        <line x1="9" x2="15" y1="20" y2="20"/>
+                        <line x1="12" x2="12" y1="4" y2="20"/>
+                    </svg>
+                </span>
                 <span>Prompt</span>
-                <!-- Span "(Click to copy)" REMOVIDO -->
             </div>
             <div class="prompt-content"> <!-- Container mantido -->
                  <img id="modal-prompt-thumbnail" src="" alt="Prompt thumbnail" class="prompt-thumbnail"> <!-- Miniatura mantida -->
@@ -135,30 +140,38 @@
                      <!-- SUBSTITUA o conteúdo antigo de .modal-original-details por isto: -->
     <div class="detail-row">
         <div class="detail-label-group">
-            <i class="fa-regular fa-calendar-days"></i> <!-- Ícone Calendário -->
+            <span class="icon-container">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-days"> <path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/> </svg>
+            </span>
             <span>Criado</span>
         </div>
         <span class="detail-value" id="modal-created-value"></span> <!-- Novo ID para valor -->
     </div>
     <div class="detail-row">
         <div class="detail-label-group">
-            <i class="fa-solid fa-ruler-combined"></i> <!-- Ícone Régua -->
+            <span class="icon-container">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-proportions"> <rect width="20" height="16" x="2" y="4" rx="2"/><path d="M12 9v11"/><path d="M2 9h13a2 2 0 0 1 2 2v9"/> </svg>
+            </span>
             <span>Dimensões</span>
         </div>
         <span class="detail-value" id="modal-dimensions-value"></span> <!-- Novo ID para valor -->
     </div>
     <div class="detail-row">
         <div class="detail-label-group">
-            <i class="fa-solid fa-paintbrush"></i> <!-- Ícone Pincel -->
+            <span class="icon-container">
+                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-paintbrush"> <path d="m14.622 17.897-10.68-2.913"/><path d="M18.376 2.622a1 1 0 1 1 3.002 3.002L17.36 9.643a.5.5 0 0 0 0 .707l.944.944a2.41 2.41 0 0 1 0 3.408l-.944.944a.5.5 0 0 1-.707 0L8.354 7.348a.5.5 0 0 1 0-.707l.944-.944a2.41 2.41 0 0 1 3.408 0l.944.944a.5.5 0 0 0 .707 0z"/><path d="M9 8c-1.804 2.71-3.97 3.46-6.583 3.948a.507.507 0 0 0-.302.819l7.32 8.883a1 1 0 0 0 1.185.204C12.735 20.405 16 16.792 16 15"/> </svg>
+            </span>
             <span>Ferramenta</span>
         </div>
         <span class="detail-value" id="modal-tool-value"></span> <!-- Novo ID para valor -->
     </div>
     <!-- Opcional: Adicionar linha para Autor se desejar -->
     <div class="detail-row">
-       <div class="detail-label-group">
-           <i class="fa-regular fa-user"></i> <!-- Ícone Usuário -->
-           <span>Autor</span>
+        <div class="detail-label-group">
+            <span class="icon-container">
+                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user"> <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/> </svg>
+            </span>
+            <span>Autor</span>
        </div>
        <span class="detail-value" id="modal-author-value"></span> <!-- Novo ID para valor -->
    </div>
