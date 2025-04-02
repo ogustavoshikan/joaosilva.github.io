@@ -678,7 +678,7 @@ main {
   flex-direction: column;
   flex: 1;
   padding: 1rem;
-  background: #000000;
+  background: #0c0c0c;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
@@ -890,7 +890,7 @@ main {
   align-items: center;
   gap: 0.3rem;
   text-decoration: none;
-  color: #2196F3;
+  color: #F44336;
   transition: color 0.3s ease;
   font-size: 11px;
 }
@@ -901,7 +901,7 @@ main {
 
 .topics-section-link .material-symbols-outlined {
   font-size: 22px;
-  color: #00BCD4;
+  color: #F44336;
   transition: color 0.3s ease;
   margin-bottom: 1px;
 }
@@ -1048,16 +1048,16 @@ main {
   background-color: rgb(0 0 0 / 73%);
   color: #ffffff;
   border: none;
-  font-size: 2rem;
+  font-size: 1.5rem;
   cursor: pointer;
-  padding: 0.5rem 1rem;
+  padding: 0.6rem 0.0rem;
   border-radius: 50%;
   transition: color 0.3s ease, background-color 0.3s ease;
   box-shadow: 0 0 5px rgb(0 183 235 / 0%);
 }
 
 .medium-nav-button:hover {
-  background-color: rgb(0 0 0 / 73%);
+  background-color: rgb(0 0 0 / 85%);
   color: #F44336;
   box-shadow: 0 0 10px #f4433600;
 }
@@ -1090,7 +1090,7 @@ main {
 }
 
 .slider-indicator.active {
-  background-color: #00BCD4;
+  background-color: #F44336;
 }
 
 /* Estilização dos Cards Menores */
@@ -1295,7 +1295,7 @@ main {
   width: 100%;
   max-width: 100%;
   padding: 1rem;
-  box-shadow: 0 0 5px rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 3px rgba(255, 255, 255, 0.05);
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -1838,7 +1838,7 @@ main {
   }
 
   .card-content {
-    background: #000000;
+    background: #0c0c0c;
   }
 }
 
