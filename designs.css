@@ -227,7 +227,7 @@ html {
 
 /* Hover para os OUTROS links */
 .dropdown-menu a:not(.unlock-features):not(.contact-btn):hover {
-    background-color: #1c1c1c; /* Fundo cinza escuro no hover (ajustado para diferenciar do unlock) */
+    background-color: transparent; /* Fundo cinza escuro no hover (ajustado para diferenciar do unlock) */
     font-weight: 400;
     color: #F44336;
 }
