@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #000000;
+    background-color: #000000f7;
     color: #ffffff;
 }
 
@@ -264,9 +264,9 @@ html {
     color: #000000; /* Mantém texto preto */
 }
 
-/* Seção de Filtros */
+/* === SEÇÃO DE FILTROS === */
 .filter-section {
-    padding: 4rem 2rem 1rem;
+    padding: 5rem 2rem 0rem;
     text-align: center;
 }
 
@@ -278,51 +278,54 @@ html {
 }
 
 .filter-btn {
-    background-color: #333;
+    background-color: transparent;
     color: #fff;
     border: none;
     padding: 0.5rem 1rem;
-    border-radius: 20px;
+    border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     font-family: 'Anta', sans-serif;
     font-size: 1rem;
+    white-space: nowrap; /* Adicionado para garantir que o botão não quebre linha internamente */
+    flex-shrink: 0; /* Adicionado para evitar que botões encolham */
 }
 
 .filter-btn:hover {
-    background-color: #F44336;
+    background-color: #303030;
 }
 
 .filter-btn.active {
-    background-color: #F44336;
+    background-color: #303030;
 }
 
-/* Estilos da Galeria Masonry */
+/* === Estilos da Galeria Masonry === */
 .designs-gallery {
     padding: 2rem;
     position: relative;
-    min-height: 300px; /* Altura mínima para evitar colapso durante transições */
+    min-height: 300px;
 }
 
 .gallery-container {
-    column-count: 5; /* Número de colunas em telas grandes */
-    column-gap: 1rem;
+    column-count: 6;
+    column-gap: 0.5rem;
     width: 100%;
     transition: opacity 0.3s ease;
 }
 
-/* Estilo para a transição durante a filtragem */
 .gallery-container.filter-transition {
     opacity: 0.6;
 }
 
-/* Loading indicator */
 .loading {
     text-align: center;
     padding: 2rem;
     font-size: 1.2rem;
     font-weight: 500;
     color: #fff;
+    /* Adicionado para ocupar colunas em layout masonry/grid */
+    grid-column: 1 / -1;
+    column-span: all;
 }
 
 .error {
@@ -331,6 +334,9 @@ html {
     font-size: 1.2rem;
     font-weight: 500;
     color: #ff6b6b;
+     /* Adicionado para ocupar colunas em layout masonry/grid */
+    grid-column: 1 / -1;
+    column-span: all;
 }
 
 .load-more-btn {
@@ -350,7 +356,7 @@ html {
     background-color: #d32f2f;
 }
 
-/* Botão Voltar ao Topo */
+/* === Botão Voltar ao Topo === */
 .home-back-to-top-container {
     position: fixed;
     bottom: 1.04rem;
@@ -411,7 +417,7 @@ html {
     visibility: visible;
 }
 
-/* Estilo do Lightbox */
+/* === Estilo do Lightbox === */
 #lightboxOverlay {
     background-color: rgba(0, 0, 0, 0.9);
 }
@@ -438,39 +444,67 @@ html {
     text-align: center;
 }
 
-/* Responsividade para diferentes tamanhos de tela */
+/* === Responsividade === */
 @media (max-width: 1200px) {
     .gallery-container {
-        column-count: 3;
+        column-count: 3; /* Mantido como estava */
     }
 }
 
 @media (max-width: 768px) {
     .gallery-container {
-        column-count: 2;
+        column-count: 2; /* Mantido como estava */
     }
+
+    /* --- AJUSTE PARA FILTRO HORIZONTAL --- */
+    .filter-section {
+        /* Remove padding lateral para permitir scroll de ponta a ponta na nav */
+        padding: 5rem 0 0rem; /* Mantém padding superior original */
+        /* Adicionado overflow hidden para conter o scroll visualmente se necessário */
+        overflow: hidden;
+    }
+
+    .filter-nav {
+        flex-wrap: nowrap; /* Impede a quebra de linha */
+        justify-content: flex-start; /* Alinha itens ao início */
+        overflow-x: auto; /* Habilita scroll horizontal */
+        -webkit-overflow-scrolling: touch; /* Scroll suave iOS */
+        /* Adiciona padding interno para respiro nas laterais DENTRO da área de scroll */
+        padding-left: 1rem;
+        padding-right: 1rem;
+        /* Esconde a barra de scroll */
+        scrollbar-width: none; /* Firefox */
+    }
+    .filter-nav::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Edge, etc. */
+    }
+    /* --- FIM DO AJUSTE --- */
 }
 
 @media (max-width: 480px) {
     .gallery-container {
-        column-count: 2;
+        column-count: 2; /* Mantido como estava */
     }
+    /* Nenhum outro ajuste específico para filter-nav necessário aqui, herda de 768px */
 }
 
+/* === Estilos dos Itens da Galeria (Mantidos) === */
 .gallery-item {
-    break-inside: avoid; /* Impede que a imagem seja dividida entre colunas */
-    margin-bottom: 1rem;
+    break-inside: avoid;
+    margin-bottom: 0.5rem;
     overflow: hidden;
     position: relative;
-    border-radius: 10px;
-    transition: transform 0.3s ease;
+    border-radius: 5px;
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+    opacity: 0;
+    transform: translateY(20px);
 }
 
 .gallery-item img {
     width: 100%;
-    height: auto; /* Isso mantém a proporção original da imagem */
+    height: auto;
     display: block;
-    border-radius: 10px;
+    border-radius: 5px;
     transition: transform 0.3s ease;
 }
 
@@ -478,15 +512,12 @@ html {
     transform: scale(1.03);
 }
 
-/* Carregamento e erros */
-.loading, .error {
-    text-align: center;
-    padding: 2rem;
-    font-size: 1.2rem;
-    grid-column: 1 / -1;
+.gallery-item.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-/* Melhorias na visualização do Lightbox */
+/* === Outros estilos (Mantidos) === */
 .lb-data .lb-details {
     width: 100%;
     text-align: center;
@@ -586,6 +617,8 @@ html {
 
 /* Descrição (Abaixo do Título) */
 .modal-description {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
     font-size: 0.95rem;
     color: #a1a1aa;
     line-height: 1.6;
