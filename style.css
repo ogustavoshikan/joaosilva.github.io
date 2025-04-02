@@ -190,6 +190,15 @@ a:hover {
   font-style: normal;
 }
 
+.page-home-active{
+  color: #F44336;
+  font-family: "Anta", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1rem;
+  position: relative;
+}
+
 /* Estilizando o botão Contato */
 .nav-button {
   background-color: #ffffff;
@@ -1841,6 +1850,22 @@ main {
 
 /* ESTILO PARA A PÁGINA DE TODAS AS NOTÍCIAS */
 /* Estilo para a seção hero */
+.news-logo-container {
+  display: flex; /* Alinha os itens filhos (logo e span) em linha */
+  align-items: center; /* Alinha verticalmente ao centro (opcional, mas comum) */
+  gap: 8px; /* Adiciona um espaço entre o logo e o texto (ajuste o valor) */
+}
+
+/* Pode ser necessário ajustar o estilo do .creations-text também */
+.news-creations-text {
+  font-size: 22px;
+  color: #F44336;
+  font-family: "Anta", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1;
+}
+
 .hero-section {
   background: url('assets/maisteste9.jpg') no-repeat center center / cover;
   padding: 6rem 0;
@@ -2475,6 +2500,15 @@ main {
   padding: 1rem;
   background-color: transparent;
   border-radius: 5px;
+}
+
+.news2-active{
+  color: #F44336;
+  font-family: "Anta", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1rem;
+  position: relative;
 }
 
 /* ESTILO PARA A SEÇÃO TRANSFORME IDEIAS EM OBRAS DE ARTE COM IA */
