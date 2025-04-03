@@ -2382,7 +2382,7 @@ main {
 }
 
 .news2-section .breadcrumb i {
-  color: #00b7eb;
+  color: #f44336;
   font-size: 0.8rem;
 }
 
@@ -3081,3 +3081,293 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+/* ============================================== */
+/* ========== ESTILOS PARA O MODO LIGHT ========== */
+/* ============================================== */
+
+/* Aplica as regras quando a classe .light-mode está presente */
+.light-mode {
+  /* Cores base para o light mode */
+  --light-bg-primary: #f8f9fa; /* Fundo principal ligeiramente cinza */
+  --light-bg-secondary: #ffffff; /* Fundo de cards/sidebar branco */
+  --light-border-color: #dee2e6; /* Cor da borda sutil */
+  --light-text-primary: #212529; /* Cor do texto principal (escuro) */
+  --light-text-secondary: #6c757d; /* Cor do texto secundário (cinza) */
+  --light-text-link: #0d6efd; /* Cor padrão de link (azul) - opcional, pode usar text-primary */
+  --light-accent-color: #F44336; /* Cor de destaque (vermelho) - mantida */
+  --light-hover-bg: #e9ecef; /* Fundo de hover para botões/itens */
+}
+
+/* --- Seção Principal de Notícias --- */
+.light-mode .news2-section {
+  background-color: var(--light-bg-primary);
+}
+
+/* --- Breadcrumb --- */
+.light-mode .news2-section .breadcrumb,
+.light-mode .news2-section .breadcrumb span {
+  color: var(--light-text-secondary);
+}
+
+.light-mode .news2-section .breadcrumb .current-page {
+  color: var(--light-text-primary);
+}
+
+.light-mode .news2-section .breadcrumb .current-page:hover {
+  color: #000000; /* Usa accent no hover */
+  text-decoration: underline;
+}
+
+.light-mode .news2-section .breadcrumb i {
+  color: var(--light-accent-color); /* Mantém o ícone de seta com a cor de destaque */
+}
+
+/* --- Cabeçalho da Listagem (Pesquisa e Filtro) --- */
+.light-mode .news2-section .news-search input {
+  background-color: var(--light-bg-secondary);
+  color: var(--light-text-primary);
+  border: 1px solid var(--light-border-color);
+}
+
+.light-mode .news2-section .news-search input::placeholder {
+  color: var(--light-text-secondary);
+}
+
+.light-mode .news2-section .news-search input:focus {
+  background-color: var(--light-bg-secondary);
+  border-color: #86b7fe; /* Cor de foco similar ao Bootstrap */
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25); /* Sombra de foco */
+}
+
+.light-mode .news2-section .news-search button {
+  background-color: var(--light-hover-bg);
+  border: 1px solid var(--light-border-color);
+}
+
+.light-mode .news2-section .news-search button i {
+  color: var(--light-text-primary);
+}
+
+/* Hover dos botões de busca/limpar */
+.light-mode .news2-section .news-search button:hover,
+.light-mode .news2-section .news-search #news-clear-button:hover {
+  background-color: var(--light-accent-color);
+  border-color: var(--light-accent-color);
+}
+.light-mode .news2-section .news-search button:hover i,
+.light-mode .news2-section .news-search #news-clear-button:hover i {
+  color: var(--light-bg-secondary); /* Ícone branco no fundo vermelho */
+}
+
+
+.light-mode .news2-section .news-filter label {
+  color: var(--light-text-primary);
+}
+
+.light-mode .news2-section .news-filter select {
+  background-color: var(--light-bg-secondary);
+  color: var(--light-text-primary);
+  border: 1px solid var(--light-border-color);
+}
+
+.light-mode .news2-section .news-filter select:hover,
+.light-mode .news2-section .news-filter select:focus {
+  background-color: var(--light-bg-secondary);
+  border-color: #86b7fe; /* Cor de foco */
+}
+
+/* --- Grid de Notícias e Cards --- */
+.light-mode .news2-section .tech-news-card {
+  border: 1px solid var(--light-border-color);
+  background-color: var(--light-bg-secondary);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Sombra muito sutil nos cards */
+}
+
+.light-mode .news2-section .tech-news-card:hover {
+   /* Pode adicionar um leve scale ou shadow maior no hover, se desejar */
+   /* transform: translateY(-3px); */
+   /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); */
+}
+
+.light-mode .news2-section .tech-news-card .tech-news-image {
+  border: 1px solid var(--light-border-color); /* Mantém borda na imagem, ajustada para light */
+}
+
+/* Efeito hover na imagem pode ser mantido ou ajustado */
+/* .light-mode .news2-section .tech-news-card .tech-news-image img:hover { filter: brightness(0.95); } */
+
+.light-mode .news2-section .tech-news-card .tech-news-title {
+  color: var(--light-text-primary);
+}
+
+.light-mode .news2-section .tech-news-card .tech-news-title a:hover {
+  color: #000000; /* Usa accent no hover do título */
+  text-decoration: underline;
+}
+
+.light-mode .news2-section .tech-news-card .tech-news-excerpt {
+  color: var(--light-text-secondary);
+}
+
+.light-mode .news2-section .tech-news-card .tech-news-author,
+.light-mode .news2-section .tech-news-card .tech-news-author span,
+.light-mode .news2-section .tech-news-card .tech-news-date {
+  color: var(--light-text-secondary); /* Autor e data com cor secundária */
+}
+
+.light-mode .news2-section .tech-news-card .tech-news-author a {
+  color: var(--light-text-primary); /* Link do autor com cor primária */
+  text-decoration: none;
+}
+
+.light-mode .news2-section .tech-news-card .tech-news-author a:hover {
+  color: #000000; /* Accent no hover do link do autor */
+  text-decoration: underline;
+}
+
+/* Ícones de Compartilhamento */
+.light-mode .news2-section .tech-news-card .social-icon {
+  background-color: var(--light-hover-bg); /* Fundo cinza claro para ícones */
+}
+
+.light-mode .news2-section .tech-news-card .social-icon:hover {
+  background-color: #cbcaca; /* Fundo vermelho bem claro no hover */
+}
+
+/* Cor dos ícones - Mantendo cores das marcas, exceto X/Twitter */
+.light-mode .news2-section .tech-news-card .social-icon.x i {
+  color: #000000; /* Ícone X preto */
+}
+/* As cores de WhatsApp, Facebook, LinkedIn são mantidas do CSS original */
+
+
+/* --- Sidebar --- */
+.light-mode .news2-section .tech-news-sidebar {
+  background-color: var(--light-bg-secondary);
+  color: var(--light-text-primary);
+  border: 1px solid var(--light-border-color);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Sombra sutil */
+}
+
+.light-mode .news2-section .tech-news-sidebar h3 {
+  color: var(--light-text-primary);
+}
+
+.light-mode .news2-section .tech-news-sidebar .popular-news a {
+  color: var(--light-text-secondary); /* Links populares com cor secundária */
+}
+
+.light-mode .news2-section .tech-news-sidebar .popular-news a:hover {
+  color: var(--light-accent-color); /* Accent no hover */
+  text-decoration: underline;
+}
+
+/* --- Paginação --- */
+.light-mode .news2-section .pagination button {
+  background-color: var(--light-hover-bg);
+  color: var(--light-text-primary);
+  border: 1px solid var(--light-border-color);
+}
+
+.light-mode .news2-section .pagination button:disabled {
+  background-color: var(--light-hover-bg);
+  color: var(--light-text-secondary); /* Texto mais claro para desabilitado */
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+.light-mode .news2-section .pagination button:hover:not(:disabled) {
+  background-color: #cecdcd;
+  color: #000000;
+  border-color: #a8a8a8;
+}
+
+.light-mode .news2-section .pagination .page-number {
+  color: var(--light-text-primary);
+  font-size: 15px;
+}
+
+/* --- Mensagem "Sem Resultados" --- */
+.light-mode .news2-section .no-results {
+  color: var(--light-text-secondary); /* Cor secundária para a mensagem */
+  background-color: transparent; /* Sem fundo extra */
+}
+
+/* --- Indicador de Carregamento --- */
+.light-mode .loading {
+  color: var(--light-text-primary);
+}
+
+/* --- Botão Voltar ao Topo --- */
+/* O botão já tem fundo branco, mas ajustamos a borda e o ícone */
+.light-mode #news-back-to-top {
+  background-color: var(--light-bg-secondary); /* Fundo branco */
+  border: 1px solid var(--light-border-color); /* Borda clara */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15); /* Sombra para destacar */
+}
+
+.light-mode #news-back-to-top .back-to-top-icon {
+  color: var(--light-text-primary); /* Ícone escuro */
+}
+
+.light-mode #news-back-to-top:hover {
+  background-color: #cecdcd; /* Fundo vermelho no hover */
+  border-color: #b0aeae;
+}
+
+.light-mode #news-back-to-top:hover .back-to-top-icon {
+  color: #000000; /* Ícone branco no hover */
+}
+
+.light-mode .news2-active{
+  color: #f44336;
+  font-family: "Anta", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1rem;
+  position: relative;
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  padding: 0px; /* Ajuste o padding conforme necessário */
+  cursor: pointer;
+  display: inline-flex; /* Para alinhar o SVG corretamente */
+  align-items: center;
+  justify-content: center;
+  color: var(--icon-color); /* Usa a variável de cor do ícone */
+  border-radius: 50%; /* Torna o fundo (se houver) redondo */
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.theme-toggle:hover {
+  background-color: transparent; /* Leve fundo cinza no hover */
+}
+
+.theme-icon {
+  width: 24px;  /* Tamanho do ícone */
+  height: 24px; /* Tamanho do ícone */
+  color: #ffffff;
+}
+
+/* 4. Controle de Visibilidade dos Ícones */
+/* Por padrão (dark mode), mostra a lua e esconde o sol */
+body:not(.light-mode) .icon-sun {
+  display: none;
+}
+body:not(.light-mode) .icon-moon {
+  display: inline-block; /* Ou block, dependendo do seu layout */
+  color: white;
+}
+
+/* Quando em light mode, mostra o sol e esconde a lua */
+body.light-mode .icon-moon {
+  display: none;
+}
+body.light-mode .icon-sun {
+  display: inline-block; /* Ou block */
+}
+/* --- Fim dos Estilos Light Mode --- */
