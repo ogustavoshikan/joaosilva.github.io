@@ -205,41 +205,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   loadMediumCards();
 
-  // === 3. Carregar os Cards da Seção "Tendência em IA" Dinamicamente ===
-  function loadTrendsCards() {
-    fetch('data/cards.json')
-      .then(response => response.json())
-      .then(data => {
-        const container = document.querySelector('.trends-cards-container');
-        container.innerHTML = '';
-        data.trends.forEach(card => {
-          const article = document.createElement('article');
-          article.classList.add('trends-card');
-          article.innerHTML = `
-            <div class="card-image">
-              <a href="${card.link}" target="_blank" rel="noopener noreferrer">
-                <img src="${card.image}" alt="${card.alt}" loading="lazy">
-              </a>
-            </div>
-            <div class="card-content">
-              <time datetime="${card.date}" class="card-date">${new Date(card.date).toLocaleDateString('pt-BR')}</time>
-              <h2 class="card-title">
-                <a href="${card.link}" aria-label="Leia mais sobre ${card.title}">${card.title}</a>
-              </h2>
-              <p class="card-excerpt">${card.excerpt}</p>
-              <span class="card-author">${card.author}</span>
-            </div>
-          `;
-          container.appendChild(article);
-        });
-      })
-      .catch(error => {
-        console.error('Erro ao carregar os cards:', error);
-      });
-  }
-
-  loadTrendsCards();
-
   // === 4. Carregar os Cards Menores da Seção "Comece por Aqui e Tópicos" ===
   function loadTopicsCards() {
     fetch('data/topics-cards.json')

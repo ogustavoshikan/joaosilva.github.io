@@ -861,7 +861,7 @@ main {
   padding: 1rem 0;
   background-color: #090909;
   width: 100%;
-  max-width: 1356px;
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -983,7 +983,7 @@ main {
   cursor: pointer;
   display: block;
   transition: filter 0.2s ease;
-  border-radius: 10px;
+  border-radius: 0px;
 }
 
 .medium-card-image:hover {
@@ -1210,7 +1210,7 @@ main {
 
 .small-card-title-link {
   text-decoration: none;
-  color: #d6d6d6;
+  color: #ffffff;
   display: block;
 }
 
@@ -1617,7 +1617,7 @@ main {
   background-color: #000000;
   padding: 2rem 1rem;
   width: 100%;
-  max-width: 1356px;
+  max-width: 100%;
   margin: 0 auto;
   box-sizing: border-box;
 }
@@ -1745,12 +1745,26 @@ main {
   text-overflow: ellipsis;
 }
 
-.card-author {
+.card-author-info {
   font-size: 0.75rem;
   font-family: 'Anta', sans-serif;
-  color: #e1e1e1;
+  color: #888;
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+
+.card-author-info a.author-link {
+  font-size: 0.75rem;
+  font-family: 'Anta', sans-serif;
+  color: #ffffff;
   margin-bottom: 0.5rem;
   display: block;
+}
+
+.card-author-info a.author-link:hover {
+  text-decoration: underline
 }
 
 /* Estilo para o fallback de carregamento */
@@ -2646,7 +2660,6 @@ main {
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
   color: #f44336; /* Cor da seta, combinando com o texto */
-  transition: color 0.3s ease;
 }
 
 .art-section .more-link:hover .material-symbols-outlined {
@@ -3410,7 +3423,7 @@ body.light-mode .icon-sun {
 /* --- Fundo Geral da Seção --- */
 .light-mode .topics-section {
   /* Usa o fundo principal claro, se diferente de branco puro */
-  background-color: var(--light-bg-primary, #f8f9fa);
+  background-color: #ffffff;
 }
 
 /* --- Cabeçalhos "Comece por aqui" e "Tópicos em Destaque" --- */
@@ -3515,19 +3528,20 @@ body.light-mode .icon-sun {
   background-color: var(--light-bg-secondary, #ffffff); /* Fundo branco/claro */
   /* Adiciona uma borda inferior para separar os cards, já que o gap é 0 */
   border-bottom: 1px solid var(--light-border-color, #f1f1f1);
+  border-top: 0px solid var(--light-border-color, #f1f1f1);
 }
 /* Remove a borda do último card para evitar duplicação com a próxima seção */
 .light-mode .small-topic-row:last-child .small-topic-card:last-child {
-    border-bottom: none;
+    border-bottom: 1px solid var(--light-border-color, #f1f1f1);
 }
 
 
 .light-mode .small-card-title-link {
-  color: var(--light-text-primary, #212529); /* Link usa cor primária */
+  color: azure; /* Link usa cor primária */
 }
 
 .light-mode .small-card-title {
-  color: var(--light-text-primary, #212529); /* Título usa cor primária */
+  color: #000000; /* Título usa cor primária */
 }
 
 .light-mode .small-card-title-link:hover .small-card-title {
@@ -3584,3 +3598,226 @@ body.light-mode .icon-sun {
 .light-mode .loading-fallback {
   color: var(--light-text-secondary, #6c757d); /* Cor secundária */
 }
+
+/* ============================================== */
+/* ==== MODO LIGHT - SEÇÃO TENDÊNCIAS (HOME) ==== */
+/* ============================================== */
+
+/* --- Fundo da Seção --- */
+.light-mode .trends-section {
+  background-color: #f8f9faf7; /* Fundo principal claro */
+}
+
+.light-mode .section-title {
+  color: #000000
+}
+/* --- Cards de Tendências --- */
+.light-mode .trends-card {
+  background-color: var(--light-bg-secondary, #ffffff); /* Fundo do card claro */
+  border: 1px solid #d1d1d1; /* Borda clara */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Sombra sutil */
+}
+
+/* Foco visível no card */
+.light-mode .trends-card:focus-visible {
+  /* Usar cor de destaque ou primária para o outline */
+  outline: 2px solid var(--light-accent-color, #F44336);
+  outline-offset: 2px;
+}
+
+/* --- Conteúdo do Card --- */
+.light-mode .card-content {
+  /* Pode usar o mesmo fundo do card ou o primário da página */
+  background: var(--light-bg-secondary, #ffffff);
+}
+
+/* --- Data --- */
+.light-mode .card-date {
+  color: var(--light-text-secondary, #6c757d); /* Cor secundária */
+}
+
+/* --- Título do Card --- */
+.light-mode .card-title {
+  color: var(--light-text-primary, #212529); /* Cor primária */
+}
+
+/* Link do Título */
+.light-mode .card-title a {
+  color: #000000; /* Cor primária */
+}
+
+/* Hover do Link do Título (underline já definido, a cor é herdada) */
+.light-mode .card-title a:hover {
+   /* text-decoration: underline; */ /* Já definido no original */
+   /* A cor é herdada de .light-mode .card-title a */
+}
+
+/* Foco visível no Link do Título */
+.light-mode .card-title a:focus-visible {
+  /* Usar cor de destaque ou primária para o outline */
+  outline: 2px solid var(--light-accent-color, #F44336);
+  outline-offset: 2px;
+}
+
+/* --- Excerto / Resumo --- */
+.light-mode .card-excerpt {
+  color: var(--light-text-secondary, #6c757d); /* Cor secundária */
+}
+
+/* --- Autor --- */
+.light-mode .card-author-info {
+  color: #888; /* Cor secundária */
+  /* Ou se preferir mais destaque: color: var(--light-text-primary, #212529); */
+}
+
+.light-mode .card-author-info a.author-link {
+    font-size: 0.75rem;
+    font-family: 'Anta', sans-serif;
+    color: #000000;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.light-mode #home-back-to-top {
+  background-color: var(--light-bg-secondary); /* Fundo branco */
+  border: 1px solid var(--light-border-color); /* Borda clara */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15); /* Sombra para destacar */
+}
+
+.light-mode #home-back-to-top .back-to-top-icon {
+  color: var(--light-text-primary); /* Ícone escuro */
+}
+
+.light-mode #home-back-to-top:hover {
+  background-color: #cecdcd; /* Fundo vermelho no hover */
+  border-color: #b0aeae;
+}
+
+/* --- Fallback de Carregamento (se aplicável nesta seção) --- */
+/* Assumindo que .loading-fallback global já foi tratado. Se não, adicione: */
+/* .light-mode .loading-fallback {
+     color: var(--light-text-secondary, #6c757d);
+   } */
+
+/* A media query @media (prefers-color-scheme: dark) é ignorada no light-mode */
+
+/* ============================================== */
+/* ====== MODO LIGHT - SEÇÃO ARTE (HOME) ====== */
+/* ============================================== */
+
+/* --- Fundo da Seção --- */
+.light-mode .art-section {
+  background-color: #ffffff; /* Fundo principal claro */
+  /* Se quiser uma borda sutil para separar da seção anterior/posterior */
+}
+
+/* --- Título da Seção (H2) --- */
+.light-mode .art-section h2 {
+  color: #000000; /* Cor de texto primária */
+}
+
+/* --- Parágrafo Introdutório --- */
+/* A cor base já é a de destaque (#f44336), então só ajustamos o link e seu hover/focus */
+.light-mode .art-section .section-intro {
+   color: var(--light-accent-color, #f44336); /* Mantém cor de destaque */
+}
+.light-mode .art-section .section-intro-link {
+   color: var(--light-accent-color, #f44336); /* Mantém cor de destaque */
+}
+.light-mode .art-section .section-intro-link:hover {
+  color: var(--light-text-primary, #212529); /* Cor primária no hover */
+}
+.light-mode .art-section .section-intro-link:focus-visible {
+  outline: 2px solid var(--light-accent-color, #F44336); /* Outline vermelho */
+  outline-offset: 2px;
+}
+
+/* --- Link "Mais" --- */
+/* A cor base já é a de destaque (#f44336), então só ajustamos o hover/focus */
+.light-mode .art-section .more-link {
+  color: var(--light-accent-color, #f44336); /* Mantém cor de destaque */
+}
+.light-mode .art-section .more-link:hover {
+  color: var(--light-text-primary, #212529); /* Cor primária no hover */
+}
+.light-mode .art-section .more-link:focus-visible {
+  outline: 2px solid var(--light-accent-color, #F44336); /* Outline vermelho */
+  outline-offset: 2px;
+}
+
+/* Ícone da seta dentro do link "Mais" */
+/* A classe .material-symbols-outlined é global, mas aqui garantimos a cor dentro deste link */
+.light-mode .art-section .more-link .material-symbols-outlined {
+   color: var(--light-accent-color, #f44336); /* Mantém cor de destaque */
+}
+.light-mode .art-section .more-link:hover .material-symbols-outlined {
+  color: var(--light-text-primary, #212529); /* Cor primária no hover */
+}
+
+
+/* --- Botões de Navegação do Carrossel (Swiper) --- */
+.light-mode .art-section .swiper-button-prev,
+.light-mode .art-section .swiper-button-next {
+  color: var(--light-text-primary, #212529); /* Cor escura para os ícones das setas */
+  /* O fundo já é transparente, mantemos assim */
+  /* background-color: #23222100; */
+}
+
+.light-mode .art-section .swiper-button-prev:hover,
+.light-mode .art-section .swiper-button-next:hover {
+  /* background-color: #00b8eb00;  -- Mantém fundo transparente */
+  color: var(--light-accent-color, #f44336); /* Cor de destaque no hover */
+}
+
+.light-mode .art-section .swiper-button-prev:focus-visible,
+.light-mode .art-section .swiper-button-next:focus-visible {
+  outline: 2px solid var(--light-accent-color, #F44336); /* Outline vermelho */
+  outline-offset: 2px;
+}
+
+/* --- Paginação do Carrossel (Swiper) --- */
+.light-mode .art-section .swiper-pagination-bullet {
+  background: var(--light-border-color, #adb5bd); /* Cor clara/cinza para inativos */
+  opacity: 1; /* Opacidade pode ser ajustada */
+}
+
+.light-mode .art-section .swiper-pagination-bullet-active {
+  background: var(--light-accent-color, #f44336); /* Mantém cor de destaque para ativo */
+  opacity: 1;
+}
+
+.light-mode .art-section .swiper-pagination-bullet:focus-visible {
+  outline: 2px solid var(--light-accent-color, #F44336); /* Outline vermelho */
+  outline-offset: 2px;
+}
+
+/* --- Texto "Navegue deslizando" --- */
+.light-mode .art-section .swipe-instruction {
+    color: #202020; /* Cor de texto secundária */
+}
+
+/* ============================================== */
+/* == MODO LIGHT - SUBSEÇÃO CRIAÇÕES (ART SECTION) == */
+/* ============================================== */
+
+/* --- Título da Subseção (H3) --- */
+.light-mode .art-section .creations-section h3 {
+  color: #000000; /* Cor de texto primária */
+}
+
+/* --- Container do Ícone --- */
+.light-mode .art-section .creation-icon {
+  /* Fundo claro sutil, ou pode ser o secundário branco */
+  background-color: var(--light-hover-bg, #e9ecef);
+  /* Adiciona uma borda clara para definir melhor o quadrado */
+  border: 1px solid var(--light-border-color, #dee2e6);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04); /* Sombra bem leve */
+}
+
+/* --- Label/Texto abaixo do Ícone --- */
+.light-mode .art-section .creation-label {
+  color: #4e4f4f; /* Cor de texto secundária */
+}
+
+/* O efeito de hover .creation-item:hover { transform: translateY(-5px); } pode ser mantido,
+   pois não depende diretamente das cores. */

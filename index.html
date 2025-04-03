@@ -206,30 +206,12 @@
 <section class="trends-section" aria-labelledby="trends-heading">
   <div class="container">
     <h2 id="trends-heading" class="section-title">Tendência em IA</h2>
-    <div class="trends-cards-container" role="region" aria-label="Tendências em Inteligência Artificial">
-      <!-- Exemplo de card gerado dinamicamente -->
-      <div class="trends-card">
-        <div class="trends-card-container">
-          <a href="#" class="trends-card-image-link">
-            <img src="caminho-da-imagem.jpg" alt="Descrição da imagem" class="trends-card-image">
-          </a>
-          <div class="trends-card-overlay">
-            <span class="card-date">11/03/2025</span>
-            <a href="#" class="trends-title-link" title="Título do card">
-              <h3 class="card-title">Título do Card</h3>
-            </a>
-            <p class="card-excerpt">Descrição do card...</p>
-            <span class="card-author">Por: Autor</span>
-          </div>
-        </div>
-      </div>
-      <!-- Outros cards gerados dinamicamente -->
-      <p class="loading-fallback">Carregando tendências em IA...</p>
+    <div class="trends-cards-container" aria-live="polite">
+      <p class="loading-fallback">Carregando tendências em IA...</p> 
     </div>
   </div>
 </section>
 
-<!-- NOVA SEÇÃO: TRANSFORME IDEIAS EM OBRAS DE ARTE COM IA -->
 <!-- NOVA SEÇÃO: TRANSFORME IDEIAS EM OBRAS DE ARTE COM IA -->
 <section id="art" class="art-section" aria-labelledby="art-heading">
   <div class="art-container">
@@ -511,5 +493,6 @@
   <script src="script.js" defer=""></script>
   <script src="script-carousel-ia.js" defer=""></script>
   <script src="global.js" defer=""></script>
+  <script src="scripts/trends.js" defer=""></script>
 
 </body></html>
