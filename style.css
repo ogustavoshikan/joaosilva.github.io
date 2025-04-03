@@ -598,12 +598,22 @@ main {
   border-bottom-right-radius: 10px;
 }
 
+.news-card.featured .news-image-top img:hover {
+  filter: brightness(0.85);
+  transition: filter 0.1s ease;
+}
+
 .news-card.side .news-image-top img {
   height: 234px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+}
+
+.news-card.side .news-image-top img:hover {
+  filter: brightness(0.85);
+  transition: filter 0.1s ease;
 }
 
 /* Estilos para as imagens dos cards inferiores */
@@ -617,8 +627,13 @@ main {
   border-top-right-radius: 10px;
 }
 
+.news-image img:hover {
+  filter: brightness(0.8);
+  transition: filter 0.1s ease;
+}
+
 .news-image-base img:hover {
-  filter: brightness(0.85);
+  filter: brightness(0.9);
 }
 
 /* Estilo base para títulos */
@@ -641,7 +656,7 @@ main {
   text-align: left;
   text-transform: none;
   box-sizing: border-box;
-  transition: color 0.3s ease, text-decoration 0.3s ease;
+  transition: color 0.2s ease, text-decoration 0.3s ease;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
@@ -1179,11 +1194,11 @@ main {
   margin-left: 0px;
   flex-shrink: 0;
   cursor: pointer;
-  transition: filter 0.2s ease;
+  transition: filter 0.1s ease;
 }
 
 .small-card-image:hover {
-  filter: brightness(0.8);
+  filter: brightness(0.85);
 }
 
 .small-card-content {
@@ -1670,7 +1685,8 @@ main {
 }
 
 .card-image img:hover {
-  filter: brightness(0.8);
+  filter: brightness(0.85);
+  transition: filter 0.1s ease;
 }
 
 .card-content {
@@ -3386,3 +3402,185 @@ body.light-mode .icon-sun {
   display: inline-block; /* Ou block */
 }
 /* --- Fim dos Estilos Light Mode --- */
+
+/* ============================================== */
+/* ====== MODO LIGHT - SEÇÃO TÓPICOS (HOME) ====== */
+/* ============================================== */
+
+/* --- Fundo Geral da Seção --- */
+.light-mode .topics-section {
+  /* Usa o fundo principal claro, se diferente de branco puro */
+  background-color: var(--light-bg-primary, #f8f9fa);
+}
+
+/* --- Cabeçalhos "Comece por aqui" e "Tópicos em Destaque" --- */
+.light-mode .topics-section-left,
+.light-mode .topics-section-right {
+  background-color: var(--light-bg-secondary, #ffffff); /* Fundo branco/claro */
+  border-top: 2px solid var(--light-border-color, #dee2e6); /* Borda clara */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* Sombra sutil */
+}
+
+.light-mode .topics-section-left i.fas.fa-play,
+.light-mode .topics-section-right i.fas.fa-newspaper {
+  color: var(--light-text-secondary, #6c757d); /* Cor secundária para ícones */
+}
+
+.light-mode .topics-section-title {
+  color: var(--light-text-primary, #212529); /* Cor de texto principal */
+}
+
+/* Link "Ver todos" - Mantém cor de destaque */
+.light-mode .topics-section-link {
+  color: var(--light-accent-color, #F44336);
+}
+.light-mode .topics-section-link .material-symbols-outlined {
+   color: var(--light-accent-color, #F44336);
+}
+
+.light-mode .topics-section-link:hover {
+  color: var(--light-text-primary, #212529); /* Cor primária no hover */
+}
+
+.light-mode .topics-section-link:hover .material-symbols-outlined {
+  color: var(--light-text-primary, #212529); /* Cor primária no hover */
+}
+
+
+/* --- Card Médio (Carrossel) --- */
+.light-mode .medium-topic-card {
+  background-color: var(--light-bg-secondary, #ffffff); /* Fundo branco */
+  border: 1px solid var(--light-border-color, #dee2e6); /* Borda sutil */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08); /* Sombra um pouco mais visível */
+}
+
+.light-mode .medium-card-overlay {
+  /* Gradiente de branco semi-transparente para transparente */
+  /* Ajuste a opacidade (0.95, 0.7) conforme necessário para legibilidade */
+  background: transparent;
+}
+
+.light-mode .medium-title-link {
+  color: var(--light-text-primary, #212529); /* Cor de texto principal */
+}
+
+.light-mode .medium-title-link:hover .medium-card-title {
+  color: #ffffff; /* Mantém cor primária com sublinhado */
+  text-decoration: underline;
+}
+
+.light-mode .medium-card-title {
+   color: #ffffff; /* Cor do título */
+}
+
+.light-mode .medium-card-description {
+  color: var(--light-text-secondary, #6c757d); /* Cor de texto secundária */
+}
+
+/* Botões de Navegação do Carrossel */
+.light-mode .medium-nav-button {
+  /* Fundo branco semi-transparente para contraste com imagens */
+  background-color: rgba(255, 255, 255, 0.8);
+  color: var(--light-text-primary, #212529); /* Ícone escuro */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra sutil no botão */
+}
+
+.light-mode .medium-nav-button:hover {
+  background-color: var(--light-bg-secondary, #ffffff); /* Fundo branco sólido */
+  color: var(--light-accent-color, #F44336); /* Ícone vermelho no hover */
+}
+
+/* Indicadores do Carrossel */
+.light-mode .slider-indicator {
+  background-color: var(--light-border-color, #dee2e6); /* Cor clara para inativo */
+}
+
+.light-mode .slider-indicator.active {
+  background-color: var(--light-accent-color, #F44336); /* Mantém cor de destaque para ativo */
+}
+
+/* Instrução "Navegue deslizando" no mobile */
+.light-mode .medium-card-container .swipe-instruction {
+    /* Cor escura para contraste com o overlay claro */
+    color: var(--light-text-secondary, #6c757d);
+}
+
+
+/* --- Cards Pequenos --- */
+.light-mode .small-topic-card,
+.light-mode .ethics-card,
+.light-mode .business-card,
+.light-mode .small-topic-card.stats-card-4, /* Seletores específicos mantidos */
+.light-mode .small-topic-card.stats-card-8 {
+  background-color: var(--light-bg-secondary, #ffffff); /* Fundo branco/claro */
+  /* Adiciona uma borda inferior para separar os cards, já que o gap é 0 */
+  border-bottom: 1px solid var(--light-border-color, #f1f1f1);
+}
+/* Remove a borda do último card para evitar duplicação com a próxima seção */
+.light-mode .small-topic-row:last-child .small-topic-card:last-child {
+    border-bottom: none;
+}
+
+
+.light-mode .small-card-title-link {
+  color: var(--light-text-primary, #212529); /* Link usa cor primária */
+}
+
+.light-mode .small-card-title {
+  color: var(--light-text-primary, #212529); /* Título usa cor primária */
+}
+
+.light-mode .small-card-title-link:hover .small-card-title {
+  color: var(--light-text-primary, #212529); /* Mantém cor primária com sublinhado */
+  text-decoration: underline;
+}
+
+.light-mode .small-card-description {
+  color: var(--light-text-secondary, #6c757d); /* Descrição usa cor secundária */
+}
+
+
+/* --- Cards de Estatísticas e Newsletter --- */
+.light-mode .icon-newsletter i,
+.light-mode .icon-comments i {
+  color: var(--light-text-secondary, #6c757d); /* Ícones com cor secundária */
+}
+
+.light-mode .topics-count,
+.light-mode .comments-count {
+  color: var(--light-text-primary, #212529); /* Números com cor primária */
+}
+
+.light-mode .stats-label {
+  color: var(--light-text-secondary, #6c757d); /* Label com cor secundária */
+}
+
+.light-mode .icon-newsletter-sign i {
+  color: var(--light-text-secondary, #6c757d); /* Ícone grande com cor secundária */
+}
+
+.light-mode .newsletter-link:hover .icon-newsletter-sign i {
+  color: var(--light-text-primary, #212529); /* Ícone grande com cor primária no hover */
+}
+
+/* --- Sidebar Card (se usado em desktop) --- */
+.light-mode .sidebar-card {
+  background-color: var(--light-bg-secondary, #ffffff);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.light-mode .topics-sidebar-button {
+    /* Mantém cores originais ou ajusta conforme preferência */
+    color: #007bff; /* Azul mais padrão para light mode */
+    border: 1px solid #007bff;
+}
+.light-mode .topics-sidebar-button:hover {
+    background-color: #007bff;
+    color: #ffffff; /* Texto branco no hover */
+}
+
+
+/* --- Fallback de Carregamento --- */
+.light-mode .loading-fallback {
+  color: var(--light-text-secondary, #6c757d); /* Cor secundária */
+}
