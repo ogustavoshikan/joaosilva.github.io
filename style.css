@@ -2291,13 +2291,13 @@ main {
 }
 
 .news2-section .news-search button:hover {
-  background-color: #00b7eb;
+  background-color: #2196F3;
 }
 
 .news2-section .news-search #news-clear-button {
   background-color: #000000;
   border: 1px solid #232221;
-  padding: 0.5rem;
+  padding: 0.625rem;
   border-radius: 5px;
   cursor: pointer;
   display: flex;
@@ -3146,21 +3146,36 @@ body {
   border: 1px solid var(--light-border-color);
 }
 
+.light-mode .news2-section .news-search #news-clear-button {
+  background-color: var(--light-hover-bg);
+  border: 1px solid var(--light-border-color);
+}
+
 .light-mode .news2-section .news-search button i {
   color: var(--light-text-primary);
 }
 
 /* Hover dos botões de busca/limpar */
-.light-mode .news2-section .news-search button:hover,
-.light-mode .news2-section .news-search #news-clear-button:hover {
-  background-color: var(--light-accent-color);
-  border-color: var(--light-accent-color);
-}
-.light-mode .news2-section .news-search button:hover i,
-.light-mode .news2-section .news-search #news-clear-button:hover i {
-  color: var(--light-bg-secondary); /* Ícone branco no fundo vermelho */
+.light-mode .news2-section .news-search button:hover {
+  background-color: #2196F3;
+  border: 1px solid #a9a9a9;
 }
 
+.light-mode .news2-section .news-search #news-clear-button:hover {
+  background-color: #F44336;
+  color: #000000
+  border: 1px solid #a9a9a9;
+}
+
+.light-mode .news2-section .news-search button:hover i,
+.light-mode .news2-section .news-search #news-clear-button:hover i {
+  color: #000000; /* Ícone branco no fundo vermelho */
+}
+
+.light-mode .news-search #news-clear-button i {
+  color: #000000;
+  font-size: 1rem;
+}
 
 .light-mode .news2-section .news-filter label {
   color: var(--light-text-primary);
