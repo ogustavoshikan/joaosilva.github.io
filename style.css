@@ -2297,7 +2297,7 @@ main {
 .news2-section .news-search #news-clear-button {
   background-color: #000000;
   border: 1px solid #232221;
-  padding: 0.625rem;
+  padding: 0.5rem 0.625rem;
   border-radius: 5px;
   cursor: pointer;
   display: flex;
