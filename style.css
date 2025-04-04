@@ -1913,6 +1913,7 @@ main {
 .news2-section {
   background-color: #000000;
   padding: 2rem 0;
+  border-bottom: 1px solid var(--border-dark-gray);
 }
 
 .news2-section .container {
@@ -2537,6 +2538,7 @@ main {
 .art-section {
   background-color: #090909;
   padding: 2rem 0;
+  border-bottom: 1px solid var(--border-dark-gray);
 }
 
 .art-section .art-container {
@@ -3000,7 +3002,7 @@ body {
 
 .site-footer {
     background-color: var(--bg-dark);
-    padding: 3rem 1.5rem;
+    padding: 3rem 1.5rem 0rem;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -3064,9 +3066,9 @@ body {
 }
 
 .footer-bottom {
-    margin-top: 2rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--border-dark-gray);
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #151515;
     text-align: center;
 }
 
