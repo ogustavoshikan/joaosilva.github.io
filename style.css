@@ -815,7 +815,7 @@ main {
   .news-card.bottom {
     flex: 0 0 100%;
     max-width: 100%;
-    min-height: 0;
+    min-height: 250px;
   }
 
   .news-card.featured .news-image-top img,
@@ -1792,7 +1792,7 @@ main {
 
 @media (max-width: 768px) {
   .trends-section {
-    padding: 1rem 1.5rem 1rem 1.5rem;
+    padding: 1rem 1.7rem 1rem 1.7rem;
   }
 
   .trends-cards-container {
@@ -1845,7 +1845,7 @@ main {
   }
 
   .card-image {
-    height: 200px; /* Aumentado de 120px para 180px */
+    height: 205px; /* Aumentado de 200px para 205px */
   }
 
   .card-content {
