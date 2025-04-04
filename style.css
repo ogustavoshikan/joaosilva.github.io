@@ -235,7 +235,7 @@ a:hover {
 /* ===== NAVEGAÇÃO ===== */
 nav ul.nav-links {
   list-style: none;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 nav li {
