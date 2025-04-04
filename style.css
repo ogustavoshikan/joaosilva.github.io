@@ -266,10 +266,6 @@ nav a::after {
   background-color: var(--secondary-color);
 }
 
-nav a:hover::after {
-  /* Removido width: 100% */
-}
-
 .nav-button {
   background-color: #ffffff;
   color: #000000;
@@ -344,8 +340,14 @@ main {
 
 @media (max-width: 480px) {
   .logo-text {
-    font-size: 22px;
+    font-size: 20px;
   }
+}
+
+  @media (max-width: 320px) {
+    .logo-text {
+        font-size: 18px;
+    }
   
   .favicon-icon {
     width: 22px;
@@ -2238,6 +2240,7 @@ main {
 
   .nav-links.active {
     display: flex;
+    gap: 1rem;
   }
 
   .nav-links li {
@@ -3192,7 +3195,7 @@ body {
 
 .light-mode .news2-section .news-search #news-clear-button:hover {
   background-color: #F44336;
-  color: #000000
+  color: #000000;
   border: 1px solid #a9a9a9;
 }
 
@@ -3227,12 +3230,6 @@ body {
   border: 1px solid var(--light-border-color);
   background-color: var(--light-bg-secondary);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Sombra muito sutil nos cards */
-}
-
-.light-mode .news2-section .tech-news-card:hover {
-   /* Pode adicionar um leve scale ou shadow maior no hover, se desejar */
-   /* transform: translateY(-3px); */
-   /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); */
 }
 
 .light-mode .news2-section .tech-news-card .tech-news-image {
@@ -3644,12 +3641,6 @@ body.light-mode .icon-sun {
 /* Link do Título */
 .light-mode .card-title a {
   color: #000000; /* Cor primária */
-}
-
-/* Hover do Link do Título (underline já definido, a cor é herdada) */
-.light-mode .card-title a:hover {
-   /* text-decoration: underline; */ /* Já definido no original */
-   /* A cor é herdada de .light-mode .card-title a */
 }
 
 /* Foco visível no Link do Título */
