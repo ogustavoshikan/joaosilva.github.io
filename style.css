@@ -434,13 +434,6 @@ main {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Classes específicas para botões */
-.btn-primary,
-.btn-secondary,
-.btn-tertiary {
-  /* Estilos comuns já estão no .btn, mas você pode adicionar diferenças aqui */
-}
-
 /* Responsividade */
 @media (max-width: 768px) {
   .hero {
@@ -1806,7 +1799,7 @@ main {
   }
 
   .card-image {
-    height: 200px; /* Aumentado de 150px para 200px */
+    height: 210px; /* Aumentado de 200px para 210px */
   }
 
   .card-content {
@@ -1845,7 +1838,7 @@ main {
   }
 
   .card-image {
-    height: 210px; /* Aumentado de 205px para 210px */
+    height: 215px; /* Aumentado de 210px para 215px */
   }
 
   .card-content {
@@ -2001,22 +1994,6 @@ main {
 .news-page main {
   margin-top: 0px; /* Ajuste conforme a altura da sua header */
 }
-
-.news2-section .tech-news-card:hover {
-  /* Removido: transform: translateY(-5px); */
-}
-
-/* Removida a definição da animação fadeIn */
-/* @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-} */
 
 .news2-section .tech-news-card .tech-news-image {
   flex: 0 0 40%;
@@ -2661,6 +2638,7 @@ main {
   word-wrap: normal;
   direction: ltr;
   -webkit-font-feature-settings: 'liga';
+  font-feature-settings: "liga";
   -webkit-font-smoothing: antialiased;
   color: #f44336; /* Cor da seta, combinando com o texto */
 }
