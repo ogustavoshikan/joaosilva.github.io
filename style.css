@@ -484,7 +484,7 @@ main {
   font-weight: 700;
   color: var(--text-color);
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
   position: relative;
 }
 
@@ -1626,13 +1626,13 @@ main {
 }
 
 /* Estilo global para .section-title (unificado com seções anteriores) */
-.section-title {
+.trends-section-title {
   font-size: 2.5rem;
   font-family: "Rajdhani", serif;
   font-weight: 700;
   color: #ffffff;
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
   position: relative;
   margin-top: 1rem;
 }
@@ -1913,7 +1913,7 @@ main {
 .news2-section {
   background-color: #000000;
   padding: 2rem 0;
-  border-bottom: 1px solid var(--border-dark-gray);
+  border-bottom: 1px solid #151515;
 }
 
 .news2-section .container {
@@ -2538,7 +2538,7 @@ main {
 .art-section {
   background-color: #090909;
   padding: 2rem 0;
-  border-bottom: 1px solid var(--border-dark-gray);
+  border-bottom: 1px solid #151515;
 }
 
 .art-section .art-container {
@@ -2995,14 +2995,17 @@ main {
 
 body {
     margin: 0;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Roboto';
     background-color: var(--bg-dark);
-    color: var(--text-light);
+    color: #ffffff;
 }
 
 .site-footer {
     background-color: var(--bg-dark);
-    padding: 3rem 1.5rem 0rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    color: #ffffff;
+    padding: 3rem 1.5rem 1.05rem;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -3586,9 +3589,10 @@ body.light-mode .icon-sun {
   background-color: #f8f9faf7; /* Fundo principal claro */
 }
 
-.light-mode .section-title {
-  color: #000000
+.light-mode .trends-section-title {
+  color: #000000;
 }
+
 /* --- Cards de Tendências --- */
 .light-mode .trends-card {
   background-color: var(--light-bg-secondary, #ffffff); /* Fundo do card claro */
