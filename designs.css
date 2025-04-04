@@ -381,7 +381,7 @@ body.dark-theme .icon-sun { display: block; }
 /* === Botão Voltar ao Topo === */
 .home-back-to-top-container {
     position: fixed;
-    bottom: 1.04rem;
+    bottom: 2rem;
     right: 2rem;
     display: flex;
     flex-direction: column;
@@ -405,7 +405,7 @@ body.dark-theme .icon-sun { display: block; }
 }
 
 #home-back-to-top .back-to-top-icon {
-    color: #000000ba;
+    color: #000000;
     width: 25px;
     height: 25px;
 }
@@ -1236,24 +1236,17 @@ body.dark-theme .icon-sun { display: block; }
   /* === Botão Voltar ao Topo === */
   /* Fundo já é branco, ajustamos ícone e hover */
   .light-mode #home-back-to-top {
-     background-color: var(--light-bg-secondary, #ffffff);
+     background-color: #ffffff;
      border: 1px solid var(--light-border-color, #dee2e6);
-     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  }
-  .light-mode #home-back-to-top .back-to-top-icon {
-      color: var(--light-text-primary, #212529); /* Ícone escuro */
+     box-shadow: 0 2px 5px rgba(0,0,0,0.15);
   }
   .light-mode #home-back-to-top:hover {
-      background-color: var(--light-accent-color, #F44336); /* Fundo vermelho */
-      border-color: var(--light-accent-color, #F44336);
+      background-color: #cecdcd; /* Fundo vermelho no hover */
+      border-color: #b0aeae;
   }
   .light-mode #home-back-to-top:hover .back-to-top-icon {
-      color: var(--light-bg-secondary, #ffffff); /* Ícone branco */
-  }
-  .light-mode .home-back-to-top-container .home-back-to-top-text {
-      color: var(--light-text-secondary, #6c757d); /* Texto cinza */
-  }
-  
+      color: #000000; /* Ícone preto no hover */
+  }  
   
   /* === Estilo do Lightbox (Lightbox2) === */
   .light-mode #lightboxOverlay {
