@@ -87,43 +87,57 @@ html {
     line-height: 1;
 }
 
+/* --- NOVA REGRA ADICIONADA AQUI --- */
+.header-actions {
+    display: flex; /* Alinha os itens filhos (botão tema e dropdown) horizontalmente */
+    align-items: center; /* Alinha verticalmente os itens ao centro */
+    gap: 0.8rem; /* Adiciona um espaço entre o botão de tema e o dropdown (ajuste se necessário) */
+}
+/* --- FIM DA NOVA REGRA --- */
+
+/* Botão para alternar tema (mantido para clareza, sem alterações funcionais aqui) */
+#theme-toggle-button {
+    /* Estilos existentes do botão de tema */
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: var(--text-color, #ffffff); /* Adapta a cor ao tema */
+    display: flex; /* Garante que os ícones dentro se alinhem corretamente */
+    align-items: center;
+    justify-content: center;
+    width: 30px; /* Ajuste conforme necessário */
+    height: 30px; /* Ajuste conforme necessário */
+}
+
+.theme-toggle .theme-icon {
+    width: 25px; /* Tamanho dos ícones */
+    height: 25px;
+    margin-top: 4px;
+}
+
+/* Esconde o ícone não ativo (lógica já deve existir no seu JS/CSS) */
+/* Exemplo: */
+body.light-theme .icon-moon { display: block; }
+body.light-theme .icon-sun { display: none; }
+body.dark-theme .icon-moon { display: none; }
+body.dark-theme .icon-sun { display: block; }
+/* Se a lógica for diferente, mantenha a sua */
+
+
 @media (max-width: 768px) {
 
     .header-container {
-        /* Define o padding ESQUERDO especificamente para mobile */
-        /* Este valor deve criar o recuo desejado no mobile */
-        padding-left: 1rem; /* <<<< AJUSTE ESTE VALOR para o recuo mobile desejado */
-        /* Mantém ou ajusta o padding direito */
+        padding-left: 1rem;
         padding-right: 1rem;
-        /* Você pode ajustar a altura ou outros estilos aqui se necessário */
-        /* height: 50px; */
     }
 
     .logo-container {
-        /* REMOVE a margem esquerda especificamente no mobile */
-        margin-left: 0; /* <<<< ZERA A MARGEM NO MOBILE */
+        margin-left: 0;
     }
-
-    /* Opcional: Ajustar tamanho da fonte do logo no mobile */
-    .logo-text,
-    .creations-text {
-        /* font-size: 18px; */
-    }
-
-     /* Opcional: Ajustar tamanho/espaçamento do ícone do logo no mobile */
-    .favicon-icon {
-        /* width: 20px; */
-        /* height: 20px; */
-    }
-
-    /* Opcional: Ajustar o gap no logo-container */
-     .logo-container {
-        /* gap: 0.3rem; */
-     }
-
 }
 
-/* Dropdown */
+/* Dropdown (mantém os estilos existentes) */
 .dropdown {
     position: relative;
 }
@@ -138,20 +152,20 @@ html {
     background-color: #333333;
     border: none;
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
+    width: 30px; /* Mantido igual ao botão de tema para alinhamento visual */
+    height: 30px; /* Mantido igual ao botão de tema para alinhamento visual */
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    padding: 0; /* Garante que não haja padding extra afetando o tamanho */
 }
 
 .dropdown-toggle:hover {
     background-color: #f4433685;
 }
 
-/* Adicione esta nova classe para quando o dropdown está ativo */
 .dropdown-toggle.active {
     background-color: #f4433685;
 }
@@ -159,111 +173,117 @@ html {
 .dropdown-menu {
     display: none;
     position: absolute;
-    top: 50px;
+    top: 50px; /* Ajuste a distância do topo se necessário após o flex */
     right: 0;
-    background-color: #000000; /* Fundo preto */
+    background-color: #000000;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     min-width: 200px;
     z-index: 1000;
-    text-align: center; /* Centraliza todos os elementos filhos */
-    box-sizing: border-box; /* Adicionado para melhor controle de padding/width */
+    text-align: center;
+    box-sizing: border-box;
 }
 
 .dropdown-menu.show {
     display: block;
 }
 
-/* --- CORREÇÃO APLICADA AQUI --- */
-/* Estilo específico para o LINK "Desbloquear Recursos" */
-.dropdown-menu a.unlock-features { /* Seletor mais específico: 'a' com a classe */
-    display: flex; /* Mantém o flex para alinhar ícone e texto */
+.dropdown-menu a.unlock-features {
+    display: flex;
     align-items: center;
-    justify-content: center; /* Centraliza o conteúdo */
+    justify-content: center;
     gap: 0.5rem;
-    padding: 0.5rem 2rem; /* Ajustado padding horizontal para ficar menos largo que os outros itens */
-    background-color: #121317; /* Fundo do retângulo */
+    padding: 0.5rem 2rem;
+    background-color: #121317;
     border-radius: 5px;
-    margin: 0.5rem; /* Margem em todos os lados dentro do dropdown */
-    color: #ffffff !important; /* Força a cor branca, sobrescrevendo outros 'a' */
+    margin: 0.5rem;
+    color: #ffffff !important;
     font-size: 0.9rem;
-    font-family: 'Roboto', sans-serif; /* Adicionado sans-serif como fallback */
+    font-family: 'Roboto', sans-serif;
     font-weight: 700;
-    text-decoration: none !important; /* Garante que não haja sublinhado */
+    text-decoration: none !important;
     cursor: pointer;
-    box-sizing: border-box; /* Garante que padding está incluído na largura */
-    width: calc(100% - 1rem); /* Calcula largura considerando a margem de 0.5rem em cada lado */
-    text-align: center; /* Garante centralização do texto se flex falhar */
-    transition: background-color 0.3s ease; /* Adiciona transição para hover */
+    box-sizing: border-box;
+    width: calc(100% - 1rem);
+    text-align: center;
+    transition: background-color 0.3s ease;
 }
 
-/* Estilo HOVER específico para o LINK "Desbloquear Recursos" */
 .dropdown-menu a.unlock-features:hover {
-    background-color: #2a2c33; /* Cor de hover um pouco mais clara que o fundo */
-    color: #ffffff !important; /* Mantém a cor do texto no hover */
+    background-color: #2a2c33;
+    color: #ffffff !important;
 }
 
-/* Estilo para o ÍCONE dentro do link "Desbloquear Recursos" */
 .dropdown-menu a.unlock-features i {
-    color: #ffffff; /* Cor do ícone (já era, mas confirma) */
+    color: #ffffff;
     font-size: 1rem;
-    /* Não precisa de margem se usar gap no container */
 }
-/* --- FIM DA CORREÇÃO --- */
 
-/* Estilos gerais para os OUTROS links no dropdown */
-.dropdown-menu a:not(.unlock-features):not(.contact-btn) { /* Aplica a links que NÃO são unlock ou contact */
+.dropdown-menu a:not(.unlock-features):not(.contact-btn) {
     display: block;
     padding: 0.75rem 1rem;
-    color: #ffffff; /* Texto branco */
+    color: #ffffff;
     text-decoration: none;
     font-size: 1rem;
     font-family: 'Anta', sans-serif;
     font-weight: 400;
     font-style: normal;
-    width: 100%; /* Ocupa a largura total */
-    text-align: center; /* Centraliza o texto dos links */
+    width: 100%;
+    text-align: center;
     box-sizing: border-box;
 }
 
-/* Hover para os OUTROS links */
 .dropdown-menu a:not(.unlock-features):not(.contact-btn):hover {
-    background-color: transparent; /* Fundo cinza escuro no hover (ajustado para diferenciar do unlock) */
+    background-color: transparent;
     font-weight: 400;
     color: #F44336;
 }
 
-/* Active para os OUTROS links */
 .dropdown-menu a:not(.unlock-features):not(.contact-btn).active {
-    /* background-color: #2e2e2e; (Removido background para não confundir) */
     font-weight: 400;
-    color: #F44336; /* Mantém apenas a cor para indicar ativo */
+    color: #F44336;
 }
 
-
-/* Estilo do botão Contato (permanece como estava, mas ajustado seletor no hover/active geral) */
 .dropdown-menu a.contact-btn {
-    display: inline-block; /* Permite definir uma largura menor */
-    background-color: #ffffff; /* Fundo branco */
-    color: #000000; /* Texto preto */
+    display: inline-block;
+    background-color: #ffffff;
+    color: #000000;
     border-radius: 5px;
-    margin: 0.5rem auto 1rem auto; /* Aumenta margem inferior e centraliza */
-    padding: 0.5rem 1rem; /* Padding */
-    max-width: 120px; /* Largura máxima */
-    width: auto; /* Largura automática baseada no conteúdo e padding */
+    margin: 0.5rem auto 1rem auto;
+    padding: 0.5rem 1rem;
+    max-width: 120px;
+    width: auto;
     text-align: center;
     font-family: 'Anta', sans-serif;
     font-weight: 600;
     font-style: normal;
     text-decoration: none;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Adicionada transição de cor */
+    transition: background-color 0.3s ease, color 0.3s ease;
     box-sizing: border-box;
 }
 
 .dropdown-menu a.contact-btn:hover {
-    background-color: #b3b0b0; /* Cinza claro no hover */
-    color: #000000; /* Mantém texto preto */
+    background-color: #b3b0b0;
+    color: #000000;
 }
+
+/* Estilos dos ícones de tema (adicionei apenas para garantir que estão visíveis) */
+.theme-toggle {
+    /* Seus estilos existentes */
+    color: #ffffff; /* Cor inicial, pode ser sobrescrita por variáveis */
+}
+
+.theme-icon {
+     /* Seus estilos existentes */
+     width: 24px; /* Exemplo */
+     height: 24px; /* Exemplo */
+     stroke: currentColor; /* Usa a cor do elemento pai */
+}
+/* Certifique-se que sua lógica JS/CSS para mostrar/esconder os ícones sun/moon está funcionando */
+/* Por exemplo: */
+.icon-sun { display: none; } /* Esconde o sol por padrão */
+/* [data-theme="dark"] .icon-moon { display: none; } */ /* Esconde a lua no tema escuro */
+/* [data-theme="dark"] .icon-sun { display: block; } */ /* Mostra o sol no tema escuro */
 
 /* === SEÇÃO DE FILTROS === */
 .filter-section {
@@ -305,6 +325,7 @@ html {
     padding: 2rem;
     position: relative;
     min-height: 300px;
+    border-bottom: 1px solid #151515;
 }
 
 .gallery-container {
@@ -1018,3 +1039,479 @@ html {
 /* ================================================= */
 /* === FIM ESTILOS MODAL - V4.3 === */
 /* ================================================= */
+
+/* ============================================== */
+/* ====== MODO LIGHT - PÁGINA GALERIA / ETC ====== */
+/* ============================================== */
+
+.light-mode .designs-gallery {
+    padding: 2rem;
+    position: relative;
+    min-height: 300px;
+    background: #ffffff;
+}
+
+.light-mode .filter-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    background: #ffffff;
+}
+
+.light-mode .filter-section {
+    padding: 5rem 0rem 0rem;
+    text-align: center;
+    background: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .light-mode .filter-nav {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        scrollbar-width: none;
+    }
+}
+
+.theme-toggle {
+    background: none;
+    border: none;
+    padding: 0px; /* Ajuste o padding conforme necessário */
+    cursor: pointer;
+    display: inline-flex; /* Para alinhar o SVG corretamente */
+    align-items: center;
+    justify-content: center;
+    color: var(--icon-color); /* Usa a variável de cor do ícone */
+    border-radius: 50%; /* Torna o fundo (se houver) redondo */
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  
+  .theme-toggle:hover {
+    background-color: transparent; /* Leve fundo cinza no hover */
+  }
+  
+  .theme-icon {
+    width: 24px;  /* Tamanho do ícone */
+    height: 24px; /* Tamanho do ícone */
+    color: #ffffff;
+  }
+  
+  /* 4. Controle de Visibilidade dos Ícones */
+  /* Por padrão (dark mode), mostra a lua e esconde o sol */
+  body:not(.light-mode) .icon-sun {
+    display: none;
+  }
+  body:not(.light-mode) .icon-moon {
+    display: inline-block; /* Ou block, dependendo do seu layout */
+    color: white;
+  }
+  
+  /* Quando em light mode, mostra o sol e esconde a lua */
+  body.light-mode .icon-moon {
+    display: none;
+  }
+  body.light-mode .icon-sun {
+    display: inline-block; /* Ou block */
+    color: #ffffff;
+  }
+
+/* --- Body e HTML --- */
+.light-mode body {
+    background-color: var(--light-bg-primary, #f8f9fa); /* Fundo principal claro */
+    color: var(--light-text-primary, #212529); /* Texto principal escuro */
+  }
+  
+  .light-mode html {
+    /* Scrollbar: polegar cinza claro, trilha background primário */
+    scrollbar-color: var(--light-border-color, #dee2e6) var(--light-bg-primary, #f8f9fa);
+  }
+  /* Para Webkit (Chrome, Safari) */
+  .light-mode ::-webkit-scrollbar-thumb {
+      background-color: var(--light-border-color, #dee2e6);
+  }
+  .light-mode ::-webkit-scrollbar-track {
+      background: var(--light-bg-primary, #f8f9fa);
+  }
+  .light-mode ::-webkit-scrollbar-thumb:hover {
+       background-color: var(--light-text-secondary, #adb5bd); /* Um pouco mais escuro no hover */
+  }
+
+  /* --- Dropdown (Header) --- */
+  .light-mode .dropdown-toggle {
+      background-color: #4a4a4b; /* Fundo cinza claro */
+      /* Ícone dentro do toggle (precisa ver o HTML, assumindo um <i> ou <img>) */
+      /* color: var(--light-text-primary); */
+  }
+  .light-mode .dropdown-toggle:hover,
+  .light-mode .dropdown-toggle.active {
+      background-color: var(--light-accent-color, #f44336); /* Fundo vermelho */
+      /* Ícone no hover */
+      /* color: var(--light-bg-secondary); */ /* Branco */
+  }
+  
+  .light-mode .dropdown-menu {
+      background-color: var(--light-bg-secondary, #ffffff); /* Fundo do menu */
+      border: 1px solid var(--light-border-color, #dee2e6);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Sombra mais visível */
+  }
+  
+  /* Link "Desbloquear Recursos" no Dropdown */
+  .light-mode .dropdown-menu a.unlock-features {
+      background-color: var(--light-hover-bg, #e9ecef); /* Fundo cinza */
+      color: var(--light-text-primary, #212529) !important; /* Texto escuro */
+  }
+  .light-mode .dropdown-menu a.unlock-features:hover {
+      background-color: #d8dcdf; /* Cinza um pouco mais escuro */
+      color: var(--light-text-primary, #212529) !important;
+  }
+  .light-mode .dropdown-menu a.unlock-features i {
+      color: var(--light-text-primary, #212529); /* Ícone escuro */
+  }
+  
+  /* Outros Links no Dropdown */
+  .light-mode .dropdown-menu a:not(.unlock-features):not(.contact-btn) {
+      color: var(--light-text-primary, #212529); /* Texto escuro */
+  }
+  .light-mode .dropdown-menu a:not(.unlock-features):not(.contact-btn):hover {
+      background-color: transparent; /* Fundo hover cinza claro */
+      color: var(--light-accent-color, #F44336); /* Cor de destaque */
+  }
+  .light-mode .dropdown-menu a:not(.unlock-features):not(.contact-btn).active {
+      /* background-color: transparent; */ /* Sem fundo extra no ativo */
+      color: var(--light-accent-color, #F44336); /* Cor de destaque */
+  }
+  
+  /* Botão Contato no Dropdown */
+  .light-mode .dropdown-menu a.contact-btn {
+      background-color: #000000; /* Fundo escuro */
+      color: #ffffff; /* Texto claro */
+  }
+  .light-mode .dropdown-menu a.contact-btn:hover {
+      background-color: #495057; /* Cinza mais escuro no hover */
+      color: var(--light-bg-secondary, #ffffff);
+  }
+  
+  
+  /* === SEÇÃO DE FILTROS === */
+  .light-mode .filter-btn {
+      background-color: #ffffff;
+      color: #000000; /* Texto cinza */
+      /* border: 1px solid var(--light-border-color, #dee2e6); */ /* Borda opcional */
+  }
+  .light-mode .filter-btn:hover {
+      background-color: #e4e4e4; /* Fundo hover cinza */
+      color: #000000;
+  }
+  .light-mode .filter-btn.active {
+      background-color: #e4e4e4; /* Fundo escuro */
+      color: #000000; /* Texto claro */
+      /* border-color: var(--light-text-primary, #212529); */
+  }
+  
+  
+  /* === Galeria e Controles === */
+  .light-mode .loading {
+      color: var(--light-text-secondary, #6c757d); /* Texto cinza */
+  }
+  .light-mode .error {
+      color: #dc3545; /* Vermelho mais padrão para erros */
+  }
+  
+  .light-mode .load-more-btn {
+      background-color: var(--light-accent-color, #F44336); /* Mantém cor de destaque */
+      color: #ffffff; /* Texto branco */
+  }
+  .light-mode .load-more-btn:hover {
+      background-color: #d32f2f; /* Vermelho mais escuro */
+  }
+  .light-mode .load-more-btn:focus-visible {
+     outline: 2px solid var(--light-accent-color);
+     outline-offset: 2px;
+  }
+  
+  /* === Botão Voltar ao Topo === */
+  /* Fundo já é branco, ajustamos ícone e hover */
+  .light-mode #home-back-to-top {
+     background-color: var(--light-bg-secondary, #ffffff);
+     border: 1px solid var(--light-border-color, #dee2e6);
+     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  .light-mode #home-back-to-top .back-to-top-icon {
+      color: var(--light-text-primary, #212529); /* Ícone escuro */
+  }
+  .light-mode #home-back-to-top:hover {
+      background-color: var(--light-accent-color, #F44336); /* Fundo vermelho */
+      border-color: var(--light-accent-color, #F44336);
+  }
+  .light-mode #home-back-to-top:hover .back-to-top-icon {
+      color: var(--light-bg-secondary, #ffffff); /* Ícone branco */
+  }
+  .light-mode .home-back-to-top-container .home-back-to-top-text {
+      color: var(--light-text-secondary, #6c757d); /* Texto cinza */
+  }
+  
+  
+  /* === Estilo do Lightbox (Lightbox2) === */
+  .light-mode #lightboxOverlay {
+      /* Fundo claro semi-transparente */
+      background-color: rgba(248, 249, 250, 0.9); /* Usando --light-bg-primary com alpha */
+  }
+  /* Imagem não precisa de ajuste */
+  .light-mode #lightbox .lb-caption {
+      color: var(--light-text-primary, #212529); /* Texto escuro */
+  }
+  /* Estilos para os botões (close, prev, next) do lightbox2 podem precisar ser sobrescritos se não herdarem */
+  .light-mode #lightbox .lb-close { /* Exemplo */
+      /* filter: invert(1); */ /* Inverter pode funcionar se for uma imagem */
+  }
+  .light-mode #lightbox .lb-prev, .light-mode #lightbox .lb-next { /* Exemplo */
+       /* filter: invert(1); */
+  }
+  
+  
+  /* === Estilos do SEU MODAL === */
+  
+  /* --- Scrollbar do Modal --- */
+  .light-mode .details-scroll-area {
+      scrollbar-color: transparent transparent; /* Inicialmente transparente */
+  }
+  .light-mode .details-scroll-area:hover,
+  .light-mode .details-scroll-area.is-scrolling {
+      scrollbar-color: var(--light-border-color, #dee2e6) transparent; /* Polegar cinza claro */
+  }
+  .light-mode .details-scroll-area::-webkit-scrollbar-thumb {
+      background-color: transparent; /* Inicialmente transparente */
+  }
+  .light-mode .details-scroll-area:hover::-webkit-scrollbar-thumb,
+  .light-mode .details-scroll-area.is-scrolling::-webkit-scrollbar-thumb {
+      background-color: var(--light-border-color, #dee2e6); /* Polegar cinza claro */
+  }
+  .light-mode .details-scroll-area::-webkit-scrollbar-thumb:active {
+      background-color: var(--light-text-secondary, #adb5bd); /* Mais escuro ao arrastar */
+  }
+  
+  /* --- Componentes do Modal --- */
+  .light-mode .modal-close-btn {
+      background-color: rgba(230, 230, 230, 0.8); /* Fundo claro semi-transparente */
+      color: var(--light-text-primary, #555); /* Ícone escuro */
+  }
+  .light-mode .modal-close-btn:hover {
+      background-color: rgba(210, 210, 210, 1); /* Mais opaco */
+      color: #000;
+  }
+  
+  .light-mode .modal-description {
+      color: var(--light-text-secondary, #6c757d); /* Texto secundário */
+  }
+  
+  .light-mode .detail-section-header {
+      color: var(--light-text-secondary, #6c757d); /* Texto do header (Tool, Prompt) */
+  }
+  .light-mode .detail-section-header .fa-solid,
+  .light-mode .detail-section-header .lucide-icon {
+      color: var(--light-text-secondary, #6c757d); /* Ícones do header */
+  }
+  
+  .light-mode .icon-container {
+      background-color: var(--light-hover-bg, #e9ecef); /* Fundo do container do ícone SVG */
+  }
+  .light-mode .icon-container svg {
+      stroke: var(--light-text-secondary, #6c757d); /* Cor do ícone SVG */
+  }
+  
+  .light-mode .detail-label-group {
+      color: var(--light-text-secondary, #6c757d); /* Labels inferiores (Views, Downloads) */
+  }
+  .light-mode .detail-label-group i {
+     /* Cor herdada, ok */
+  }
+  
+  .light-mode .detail-row {
+      border-bottom: 1px solid var(--light-border-color, #dee2e6); /* Linha divisória clara */
+  }
+  .light-mode .detail-row:last-child {
+      border-bottom: none;
+  }
+  
+  .light-mode .detail-value {
+      color: var(--light-text-primary, #212529); /* Valor à direita (números/texto) */
+  }
+  
+  /* Painel de Detalhes (Direita) */
+  .light-mode .modal-details-panel {
+      background-color: var(--light-bg-secondary, #ffffff); /* Fundo branco */
+      color: var(--light-text-primary, #212529); /* Cor de texto padrão */
+      box-shadow: -3px 0 10px rgba(0, 0, 0, 0.08); /* Sombra à esquerda */
+  }
+  .light-mode .modal-details-panel h2#modal-detail-title {
+      color: var(--light-text-primary, #212529); /* Título */
+  }
+  
+  /* Botões de Navegação do Modal (< >) */
+  .light-mode .modal-nav-btn {
+      background-color: rgba(255, 255, 255, 0.6); /* Fundo branco semi-transparente */
+      color: var(--light-text-primary, #212529); /* Ícone escuro */
+      border: 1px solid rgba(0, 0, 0, 0.1); /* Borda sutil escura */
+  }
+  .light-mode .modal-nav-btn:hover {
+      background-color: rgba(255, 255, 255, 0.8);
+      border-color: rgba(0, 0, 0, 0.2);
+  }
+  .light-mode .modal-nav-btn:disabled {
+      opacity: 0.4;
+      background-color: rgba(255, 255, 255, 0.3);
+      border-color: rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Detalhes Originais (Fixo no Fundo) */
+  .light-mode .modal-original-details {
+      border-top: 1px solid var(--light-border-color, #dee2e6); /* Borda superior clara */
+      background-color: var(--light-bg-secondary, #ffffff); /* Fundo branco */
+  }
+  
+  /* Overlay do Modal */
+  .light-mode .modal-overlay {
+      /* Fundo claro semi-transparente */
+      background-color: rgba(248, 249, 250, 0.95); /* --light-bg-primary com alpha */
+      backdrop-filter: blur(2px); /* Blur pode ser mantido ou ajustado */
+      -webkit-backdrop-filter: blur(2px);
+  }
+  
+  /* Botão Desbloquear DENTRO do Prompt */
+  .light-mode .prompt-content .unlock-features.prompt-unlock-button {
+      background-color: var(--light-text-primary, #212529); /* Fundo escuro */
+      color: var(--light-bg-secondary, #ffffff); /* Texto claro */
+  }
+  .light-mode .prompt-content .unlock-features.prompt-unlock-button:hover {
+      background-color: #495057; /* Cinza escuro no hover */
+  }
+  .light-mode .prompt-content .unlock-features.prompt-unlock-button:active {
+      background-color: #000000; /* Preto no active */
+  }
+  .light-mode .prompt-content .unlock-features.prompt-unlock-button i {
+      color: var(--light-bg-secondary, #ffffff); /* Ícone claro */
+  }
+  
+  /* Tag da Ferramenta (Tool) */
+  .light-mode .tool-tag {
+      background-color: var(--light-hover-bg, #e9ecef); /* Fundo cinza claro */
+      color: var(--light-text-secondary, #6c757d); /* Texto cinza */
+  }
+
+  /*ESTILO DA FOOTER*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+    --bg-dark: #000000;
+    --text-light: #ffffff;
+    --text-gray: #9ca3af;
+    --text-dark-gray: #6b7280;
+    --border-dark-gray: #1f2937;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+}
+
+.site-footer {
+    background-color: var(--bg-dark);
+    padding: 3rem 1.5rem 0rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+.footer-section h3,
+.footer-section h4 {
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.footer-section.brand p {
+    color: var(--text-gray);
+    font-size: 0.875rem;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section ul li a {
+    color: var(--text-gray);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: var(--text-light);
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icon {
+    color: var(--text-gray);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.social-icon svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: currentColor;
+}
+
+.social-icon:hover {
+    color: var(--text-light);
+}
+
+.footer-bottom {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #151515;
+    text-align: center;
+}
+
+.footer-bottom .copyright {
+    color: var(--text-gray);
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.footer-bottom .tagline {
+    color: var(--text-dark-gray);
+    font-size: 0.75rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+}
