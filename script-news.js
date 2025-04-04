@@ -1,54 +1,70 @@
 document.addEventListener("DOMContentLoaded", function () {
   let currentPage = 1;
   const newsPerPage = 8;
-  let allNews = []; // Variável global para armazenar todas as notícias
-  let allNewsFiltered = allNews; // Variável para armazenar as notícias filtradas
+  let allNews = []; // Armazena todas as notícias combinadas
+  let allNewsFiltered = []; // Armazena notícias após filtragem/ordenação
   const loadingElement = document.getElementById('loading');
   const menuToggle = document.querySelector('.menu-toggle');
   const navLinks = document.querySelector('.nav-links');
 
-  // Verificação de elementos antes de prosseguir
   if (!menuToggle || !navLinks) {
     console.error('Elementos .menu-toggle ou .nav-links não encontrados!');
     return;
   }
 
-  // Função para carregar os dados uma única vez
+  // Função para carregar dados dos dois arquivos JSON
   function loadData() {
-    loadingElement.style.display = 'block';
+    if (loadingElement) loadingElement.style.display = 'block';
     return Promise.all([
-      fetch('data/news-cards.json').then(response => response.json()),
-      fetch('data/archived-news.json').then(response => response.json())
+      fetch('data/news-cards.json').then(response => response.ok ? response.json() : Promise.reject('Falha ao carregar news-cards.json')),
+      fetch('data/archived-news.json').then(response => response.ok ? response.json() : Promise.reject('Falha ao carregar archived-news.json'))
     ])
       .then(([recentData, archivedData]) => {
-        const recentNews = recentData.news;
-        const archivedNews = archivedData.archivedNews;
-        allNews = [...recentNews, ...archivedNews].sort((a, b) => new Date(b.date) - new Date(a.date));
-        allNewsFiltered = [...allNews]; // Inicializa allNewsFiltered com todas as notícias
-        setTimeout(() => {
-          loadingElement.style.display = 'none';
-        }, 500);
-        loadNews(currentPage);
+        // *** IMPORTANTE: Assumindo que archived-news.json TAMBÉM usa a NOVA estrutura ***
+        const recentNews = recentData.news || [];
+        const archivedNews = archivedData.archivedNews || [];
+
+        allNews = [...recentNews, ...archivedNews]
+          // Ordena usando isoDate para maior precisão, com fallback para date
+          .sort((a, b) => {
+             const dateA = a.isoDate || a.date;
+             const dateB = b.isoDate || b.date;
+             // Tenta converter para data; retorna 0 se inválido para não quebrar a ordenação
+             const timeA = dateA ? new Date(dateA).getTime() : 0;
+             const timeB = dateB ? new Date(dateB).getTime() : 0;
+             // Ordena do mais recente para o mais antigo (descendente)
+             return (timeB || 0) - (timeA || 0);
+          });
+
+        allNewsFiltered = [...allNews]; // Inicializa com todas as notícias ordenadas
+        if (loadingElement) {
+            setTimeout(() => { loadingElement.style.display = 'none'; }, 300); // Pequeno delay
+        }
+        loadNews(currentPage); // Carrega a primeira página
       })
       .catch(error => {
-        console.error('Erro ao carregar os dados:', error);
-        loadingElement.style.display = 'none';
+        console.error('Erro ao carregar ou processar os dados:', error);
+        if (loadingElement) loadingElement.style.display = 'none';
+         const container = document.querySelector('.tech-news-container');
+         if(container) container.innerHTML = '<p class="error-fallback" role="alert">Erro ao carregar notícias.</p>';
       });
   }
 
-  // Função para carregar as notícias com base na página
+  // Função para exibir notícias na página atual
   function loadNews(page) {
-    loadingElement.style.display = 'block';
+    if (loadingElement) loadingElement.style.display = 'block';
     const container = document.querySelector('.tech-news-container');
-    container.innerHTML = '';
+    if (!container) {
+      console.error('Container .tech-news-container não encontrado!');
+      if (loadingElement) loadingElement.style.display = 'none';
+      return;
+    }
+    container.innerHTML = ''; // Limpa o container
 
-    // Verifica se há notícias filtradas
     if (allNewsFiltered.length === 0) {
       container.innerHTML = '<p class="no-results">Nenhuma notícia encontrada.</p>';
-      document.querySelector('.page-number').textContent = `Página ${page}`;
-      document.querySelector('.prev-page').disabled = true; // Desabilita o botão "Anterior"
-      document.querySelector('.next-page').disabled = true; // Desabilita o botão "Próxima"
-      loadingElement.style.display = 'none';
+      updatePaginationControls(page, 0); // Atualiza controles de paginação para estado vazio
+      if (loadingElement) loadingElement.style.display = 'none';
       return;
     }
 
@@ -59,177 +75,213 @@ document.addEventListener("DOMContentLoaded", function () {
     paginatedNews.forEach(news => {
       const article = document.createElement('article');
       article.classList.add('tech-news-card');
+
+      // --- CORREÇÃO AQUI: Usa os novos campos do JSON ---
+      const authorName = news.authorName || 'Autor desconhecido';
+      const authorLink = news.authorLink || '#';
+      const imageWidth = news.imageWidth ? `width="${news.imageWidth}"` : 'width="200"'; // Usa JSON ou fallback
+      const imageHeight = news.imageHeight ? `height="${news.imageHeight}"` : 'height="100"'; // Usa JSON ou fallback
+      const newsDate = news.date || ''; // Usa a data formatada do JSON
+      const imageAlt = news.alt || `Imagem para ${news.title || 'notícia'}`;
+      const newsLink = news.link || '#';
+
+      // Monta o HTML do autor no formato desejado (similar ao original, mas com classes)
+      const authorHtml = `
+        <p class="tech-news-author">
+          <span class="author-prefix">Por: </span>
+          <a href="${authorLink}" class="author-link" title="Ver posts de ${authorName}" ${authorLink !== '#' ? 'target="_blank" rel="noopener noreferrer"' : ''}>${authorName}</a>
+          <span class="tech-news-date"> - ${newsDate}</span>
+        </p>
+      `;
+      // --- FIM DA CORREÇÃO ---
+
       article.innerHTML = `
         <div class="tech-news-image">
-          <a href="${news.link || '#'}" target="_blank" rel="noopener noreferrer">
-            <img src="${news.image || 'assets/placeholder.jpg'}" alt="${news.alt || 'Imagem da notícia'}" loading="lazy" width="200" height="100">
+          <a href="${newsLink}" target="_blank" rel="noopener noreferrer">
+            <img src="${news.image || 'assets/placeholder.jpg'}" alt="${imageAlt}" loading="lazy" ${imageWidth} ${imageHeight}>
           </a>
         </div>
         <div class="tech-news-content">
           <h3 class="tech-news-title">
-            <a href="${news.link || '#'}" target="_blank" rel="noopener noreferrer" aria-label="Leia sobre ${news.title}" title="${news.title}">
-              ${news.title}
+            <a href="${newsLink}" target="_blank" rel="noopener noreferrer" aria-label="Leia sobre ${news.title || 'Notícia sem título'}" title="${news.title || ''}">
+              ${news.title || 'Notícia sem título'}
             </a>
           </h3>
-          <p class="tech-news-excerpt">${news.excerpt}</p>
-          <p class="tech-news-author">
-            <span>Por </span><a href="#" target="_blank" rel="noopener noreferrer">${news.author.replace('Por ', '') || 'Autor desconhecido'}</a>
-            <span class="tech-news-date"> - ${news.date || ''}</span>
-          </p>
+          <p class="tech-news-excerpt">${news.excerpt || ''}</p>
+          ${authorHtml} {/* Insere o HTML do autor corrigido */}
           <div class="share-container">
-            <div class="social-icon x"><i class="fab fa-x-twitter"></i></div>
-            <div class="social-icon whatsapp"><i class="fab fa-whatsapp"></i></div>
-            <div class="social-icon facebook"><i class="fab fa-facebook-f"></i></div>
-            <div class="social-icon linkedin"><i class="fab fa-linkedin-in"></i></div>
+            <div class="social-icon x" aria-label="Compartilhar no X"><i class="fab fa-x-twitter"></i></div>
+            <div class="social-icon whatsapp" aria-label="Compartilhar no WhatsApp"><i class="fab fa-whatsapp"></i></div>
+            <div class="social-icon facebook" aria-label="Compartilhar no Facebook"><i class="fab fa-facebook-f"></i></div>
+            <div class="social-icon linkedin" aria-label="Compartilhar no LinkedIn"><i class="fab fa-linkedin-in"></i></div>
           </div>
         </div>
       `;
       container.appendChild(article);
+
+      // Adiciona listeners de compartilhamento APÓS adicionar ao DOM
+      const shareContainer = article.querySelector('.share-container');
+      if(shareContainer) {
+          const currentTitle = news.title || '';
+          const currentUrl = newsLink;
+          shareContainer.querySelector('.social-icon.x')?.addEventListener('click', () => window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(currentTitle)}&url=${encodeURIComponent(currentUrl)}`, '_blank'));
+          shareContainer.querySelector('.social-icon.whatsapp')?.addEventListener('click', () => window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(currentTitle + ' ' + currentUrl)}`, '_blank'));
+          shareContainer.querySelector('.social-icon.facebook')?.addEventListener('click', () => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`, '_blank'));
+          shareContainer.querySelector('.social-icon.linkedin')?.addEventListener('click', () => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`, '_blank'));
+      }
     });
 
-    document.querySelector('.page-number').textContent = `Página ${page}`;
-    document.querySelector('.prev-page').disabled = page === 1;
-    document.querySelector('.next-page').disabled = end >= allNewsFiltered.length;
+    updatePaginationControls(page, allNewsFiltered.length); // Atualiza controles
 
-    document.querySelectorAll('.tech-news-card').forEach(card => {
-      const title = card.querySelector('.tech-news-title a').textContent;
-      const url = card.querySelector('.tech-news-image a').href;
-      card.querySelector('.social-icon.x').addEventListener('click', () => window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`, '_blank'));
-      card.querySelector('.social-icon.whatsapp').addEventListener('click', () => window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(title + ' ' + url)}`, '_blank'));
-      card.querySelector('.social-icon.facebook').addEventListener('click', () => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank'));
-      card.querySelector('.social-icon.linkedin').addEventListener('click', () => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank'));
-    });
-
-    setTimeout(() => {
-      loadingElement.style.display = 'none';
-    }, 300);
-
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  // Função para ordenar e re-renderizar as notícias
-  function sortNews(order) {
-    let sortedNews = [...allNewsFiltered];
-    if (order === 'recent') {
-      sortedNews.sort((a, b) => new Date(b.date) - new Date(a.date)); // Mais recentes primeiro
-    } else if (order === 'oldest') {
-      sortedNews.sort((a, b) => new Date(a.date) - new Date(b.date)); // Mais antigas primeiro
+    if (loadingElement) {
+        setTimeout(() => { loadingElement.style.display = 'none'; }, 300);
     }
-    allNewsFiltered = sortedNews; // Atualiza a variável global filtrada
-    currentPage = 1; // Reseta para a primeira página
-    loadNews(currentPage); // Re-renderiza as notícias
+    // Rola suavemente para o topo após carregar novas notícias
+    //window.scrollTo({ top: 0, behavior: 'smooth' }); // Descomente se desejar este comportamento
   }
 
-  // Listener para o filtro
+  // Função auxiliar para atualizar controles de paginação
+  function updatePaginationControls(currentPage, totalItems) {
+     const pageNumberDisplay = document.querySelector('.page-number');
+     const prevButton = document.querySelector('.prev-page');
+     const nextButton = document.querySelector('.next-page');
+     const totalPages = Math.ceil(totalItems / newsPerPage);
+
+     if (pageNumberDisplay) {
+         pageNumberDisplay.textContent = totalItems > 0 ? `Página ${currentPage} de ${totalPages}` : 'Página 1 de 1';
+     }
+     if (prevButton) {
+         prevButton.disabled = currentPage === 1;
+     }
+     if (nextButton) {
+        // Desabilita se não houver itens ou se for a última página
+         nextButton.disabled = totalItems === 0 || currentPage >= totalPages;
+     }
+  }
+
+
+  // Função para ordenar e re-renderizar
+  function sortNews(order) {
+    let sortedNews = [...allNewsFiltered]; // Ordena a partir dos já filtrados
+    if (order === 'recent') {
+      sortedNews.sort((a, b) => {
+          const dateA = a.isoDate || a.date;
+          const dateB = b.isoDate || b.date;
+          const timeA = dateA ? new Date(dateA).getTime() : 0;
+          const timeB = dateB ? new Date(dateB).getTime() : 0;
+          return (timeB || 0) - (timeA || 0); // Mais recentes primeiro
+      });
+    } else if (order === 'oldest') {
+      sortedNews.sort((a, b) => {
+          const dateA = a.isoDate || a.date;
+          const dateB = b.isoDate || b.date;
+          const timeA = dateA ? new Date(dateA).getTime() : 0;
+          const timeB = dateB ? new Date(dateB).getTime() : 0;
+          return (timeA || 0) - (timeB || 0); // Mais antigas primeiro
+      });
+    }
+    allNewsFiltered = sortedNews; // Atualiza a lista filtrada/ordenada
+    currentPage = 1;
+    loadNews(currentPage);
+  }
+
+  // Listener para o filtro de ordenação
   const sortSelect = document.getElementById('news-sort');
   if (sortSelect) {
     sortSelect.addEventListener('change', () => {
       sortNews(sortSelect.value);
     });
   } else {
-    console.error('Elemento #news-sort não encontrado!');
+    console.warn('Elemento #news-sort não encontrado!');
   }
 
-  // Listener para a barra de pesquisa
+  // Listeners para a barra de pesquisa
   const searchInput = document.getElementById('news-search-input');
   const searchButton = document.getElementById('news-search-button');
   const clearButton = document.getElementById('news-clear-button');
   if (searchInput && searchButton && clearButton) {
-    // Pesquisa ao clicar no botão
-    searchButton.addEventListener('click', () => {
-      const searchText = searchInput.value.trim();
-      filterNews(searchText);
-    });
-
-    // Pesquisa ao pressionar Enter
-    searchInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        const searchText = searchInput.value.trim();
-        filterNews(searchText);
-      }
-    });
-
-    // Mostrar/esconder o botão "Limpar" com base no texto no input
-    searchInput.addEventListener('input', () => {
-      clearButton.style.display = searchInput.value ? 'flex' : 'none';
-    });
-
-    // Limpar a pesquisa ao clicar no botão "Limpar"
+    searchButton.addEventListener('click', () => filterNews(searchInput.value));
+    searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') filterNews(searchInput.value); });
+    searchInput.addEventListener('input', () => { clearButton.style.display = searchInput.value ? 'flex' : 'none'; });
     clearButton.addEventListener('click', () => {
       searchInput.value = '';
       clearButton.style.display = 'none';
-      filterNews(''); // Restaura a lista completa de notícias
+      filterNews('');
     });
   } else {
-    console.error('Elementos de pesquisa ou botão de limpar não encontrados!');
+    console.warn('Elementos de pesquisa ou botão de limpar não encontrados!');
   }
 
-  // Função para filtrar notícias com base no texto de pesquisa
+  // Função para filtrar notícias
   function filterNews(searchText) {
-    const filteredNews = allNews.filter(news => {
-      const searchLower = searchText.toLowerCase();
-      return (
-        news.title.toLowerCase().includes(searchLower) ||
-        news.excerpt.toLowerCase().includes(searchLower)
-      );
-    });
-    allNewsFiltered = filteredNews; // Armazena as notícias filtradas
-    currentPage = 1; // Reseta para a primeira página
-    loadNews(currentPage); // Re-renderiza as notícias
+    const searchLower = searchText.trim().toLowerCase();
+    if (!searchLower) {
+        allNewsFiltered = [...allNews]; // Restaura todas se a busca estiver vazia
+    } else {
+        allNewsFiltered = allNews.filter(news =>
+            (news.title?.toLowerCase() || '').includes(searchLower) ||
+            (news.excerpt?.toLowerCase() || '').includes(searchLower) ||
+            (news.authorName?.toLowerCase() || '').includes(searchLower) // Adiciona busca por autor
+        );
+    }
+    currentPage = 1;
+    loadNews(currentPage);
   }
 
-  // === Botão Voltar ao Topo - Página de Notícias ===
+  // Botão Voltar ao Topo
   const newsBackToTopButton = document.getElementById('news-back-to-top');
-
   if (newsBackToTopButton) {
-    // Mostrar/esconder o botão com base no scroll
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 600) { // Mostra o botão após rolar 600px
-        newsBackToTopButton.classList.add('visible');
-      } else {
-        newsBackToTopButton.classList.remove('visible');
-      }
+      newsBackToTopButton.classList.toggle('visible', window.scrollY > 600);
     });
-
-    // Rolar para o topo ao clicar no botão
     newsBackToTopButton.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   } else {
-    console.error('Botão #news-back-to-top não encontrado!');
+    console.warn('Botão #news-back-to-top não encontrado!');
   }
 
-  // Carrega os dados ao iniciar a página
+  // Paginação
+  const prevPageButton = document.querySelector('.prev-page');
+  const nextPageButton = document.querySelector('.next-page');
+
+  if (prevPageButton) {
+      prevPageButton.addEventListener('click', () => {
+          if (currentPage > 1) {
+              currentPage--;
+              loadNews(currentPage);
+          }
+      });
+  }
+   if (nextPageButton) {
+      nextPageButton.addEventListener('click', () => {
+          // Calcula o total de páginas ANTES de incrementar
+          const totalPages = Math.ceil(allNewsFiltered.length / newsPerPage);
+          if (currentPage < totalPages) {
+              currentPage++;
+              loadNews(currentPage);
+          }
+      });
+  }
+
+  // Menu Hamburger
+  if(menuToggle && navLinks) {
+      menuToggle.addEventListener('click', (e) => {
+          e.stopPropagation(); // Evita que o clique feche o menu imediatamente
+          navLinks.classList.toggle('active');
+      });
+      document.addEventListener('click', (e) => {
+          if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+              navLinks.classList.remove('active');
+          }
+      });
+      navLinks.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+              navLinks.classList.remove('active');
+          });
+      });
+  }
+
+  // Carrega os dados iniciais
   loadData();
-
-  document.querySelector('.prev-page').addEventListener('click', () => {
-    if (currentPage > 1) {
-      currentPage--;
-      loadNews(currentPage);
-    }
-  });
-
-  document.querySelector('.next-page').addEventListener('click', () => {
-    currentPage++;
-    loadNews(currentPage);
-  });
-
-  // Script para o menu hamburger
-  menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-  });
-
-  // Fechar o menu ao clicar fora
-  document.addEventListener('click', (e) => {
-    if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
-      navLinks.classList.remove('active');
-    }
-  });
-
-  // Fechar o menu ao clicar em um link
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('active');
-    });
-  });
 });

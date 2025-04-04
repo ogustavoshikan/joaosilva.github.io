@@ -4,71 +4,99 @@
       "type": "featured",
       "title": "OpenAI Lança Modelo GPT-4.5 com Inteligência Emocional Avançada",
       "excerpt": "A OpenAI apresentou o GPT-4.5, uma evolução do GPT-4, com melhorias em reconhecimento de padrões e inteligência emocional.",
-      "date": "Mar 05, 2025",
-      "author": "Por Gustavo G.",
+      "date": "05/03/2025",
+      "isoDate": "2025-03-05",
+      "authorName": "Gustavo G.",
+      "authorLink": "https://instagram.com/ogustavogoncalvess",
       "image": "assets/chatgpt-4.5.webp",
+      "imageWidth": "800",
+      "imageHeight": "450",
       "link": "https://exemplo.com/gpt-4.5",
-      "alt": "OpenAI lança modelo GPT-4.5 com inteligência emocional avançada"
+      "alt": "Logotipo OpenAI sobre fundo abstrato de tecnologia"
     },
     {
       "type": "side",
       "title": "Claude Sonnet 3.7: A Nova Fronteira da IA que Supera OpenAI e Grok 3",
       "excerpt": "A Anthropic lançou o Claude 3.7 Sonnet, um modelo híbrido que supera modelos da OpenAI e DeepSeek em tarefas de codificação do mundo real, apesar de desafios em tarefas lógicas.",
-      "date": "Mar 04, 2025",
-      "author": "Por Gustavo G.",
+      "date": "04/03/2025",
+      "isoDate": "2025-03-04",
+      "authorName": "Gustavo G.",
+      "authorLink": "https://instagram.com/ogustavogoncalvess",
       "image": "assets/claude-sonnet-3.7.webp",
+      "imageWidth": "800",
+      "imageHeight": "450",
       "link": "https://exemplo.com/claude-sonnet-3.7",
-      "alt": "Anthropic lança novo modelo Claude Sonnet 3.7"
+      "alt": "Logotipo da Anthropic com fundo representando inteligência artificial"
     },
     {
       "type": "side",
       "title": "Elon Musk Lança Grok 3: A ''IA Mais Inteligente da Terra''",
       "excerpt": "O Grok 3 da xAI, de Elon Musk, supera GPT-4o e DeepSeek em matemática e codificação, disponível para assinantes premium no X.",
-      "date": "Mar 01, 2025",
-      "author": "Por Gustavo G.",
+      "date": "01/03/2025",
+      "isoDate": "2025-03-01",
+      "authorName": "Gustavo G.",
+      "authorLink": "https://instagram.com/ogustavogoncalvess",
       "image": "assets/elon-musk-grok3-xAI.webp",
+      "imageWidth": "800",
+      "imageHeight": "450",
       "link": "https://exemplo.com/grok-3",
-      "alt": "Elon Musk lança Grok 3 pela xAI"
+      "alt": "Elon Musk apresentando o logo da xAI Grok"
     },
     {
       "type": "bottom",
       "title": "Tencent Lança Hunyuan Turbo S, Nova Plataforma Que Promete Competir com DeepSeek",
       "excerpt": "A Tencent lançou o Hunyuan Turbo S, uma nova plataforma de IA projetada para competir com a DeepSeek.",
-      "date": "Mar 03, 2025",
-      "author": "Por Gustavo G.",
+      "date": "03/03/2025",
+      "isoDate": "2025-03-03",
+      "authorName": "Gustavo G.",
+      "authorLink": "https://instagram.com/ogustavogoncalvess",
       "image": "assets/tencent-ds.webp",
+      "imageWidth": "400",
+      "imageHeight": "300",
       "link": "https://exemplo.com/tencent-hunyuan",
-      "alt": "Tencent lança Hunyuan Turbo S para competir com DeepSeek"
+      "alt": "Logotipos da Tencent e DeepSeek lado a lado"
     },
     {
       "type": "bottom",
       "title": "Meta Investe Bilhões em Supercomputação: A Nova Era da Inteligência Artificial",
       "excerpt": "A Meta investe US$ 18 bilhões em 600.000 GPUs Nvidia H100 para criar uma inteligência geral acessível, integrando IA e metaverso.",
-      "date": "Mar 02, 2025",
-      "author": "Por Gustavo G.",
+      "date": "02/03/2025",
+      "isoDate": "2025-03-02",
+      "authorName": "Gustavo G.",
+      "authorLink": "https://instagram.com/ogustavogoncalvess",
       "image": "assets/meta-nvidia.webp",
+      "imageWidth": "400",
+      "imageHeight": "300",
       "link": "https://exemplo.com/meta-supercomputacao",
-      "alt": "Meta investe em supercomputação com GPUs Nvidia"
+      "alt": "Logotipos da Meta AI e Nvidia conectados por linhas de energia"
     },
     {
       "type": "bottom",
       "title": "Anthropic Triplica Avaliação para US$ 61,5 Bilhões em Rodada de Financiamento de IA",
       "excerpt": "A Anthropic arrecadou US$ 3,5 bilhões, triplicando sua avaliação para US$ 61,5 bilhões, liderada pela Lightspeed Venture Partners.",
-      "date": "Feb 28, 2025",
-      "author": "Por Gustavo G.",
+      "date": "28/02/2025",
+      "isoDate": "2025-02-28",
+      "authorName": "Gustavo G.",
+      "authorLink": "https://instagram.com/ogustavogoncalvess",
       "image": "assets/61.5Bilion.webp",
+      "imageWidth": "400",
+      "imageHeight": "300",
       "link": "https://exemplo.com/anthropic-avaliacao",
-      "alt": "Anthropic triplica avaliação para US$ 61,5 bilhões"
+      "alt": "Gráfico ascendente com símbolo de dólar e logo da Anthropic"
     },
     {
       "type": "bottom",
       "title": "Nvidia Anuncia Nova GPU para Treinamento de IA em Escala Global",
       "excerpt": "A Nvidia revelou uma nova GPU projetada para acelerar o treinamento de modelos de IA em larga escala, com eficiência energética recorde.",
-      "date": "Feb 27, 2025",
-      "author": "Por Gustavo G.",
+      "date": "27/02/2025",
+      "isoDate": "2025-02-27",
+      "authorName": "Gustavo G.",
+      "authorLink": "https://instagram.com/ogustavogoncalvess",
       "image": "assets/nvidia-gpu.webp",
+      "imageWidth": "400",
+      "imageHeight": "300",
       "link": "https://exemplo.com/nvidia-gpu",
-      "alt": "Nvidia anuncia nova GPU para treinamento de IA"
+      "alt": "Imagem de uma nova placa GPU da Nvidia em destaque"
     }
   ]
 }

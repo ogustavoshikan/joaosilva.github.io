@@ -484,7 +484,7 @@ main {
   font-weight: 700;
   color: var(--text-color);
   text-align: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   position: relative;
 }
 
@@ -638,15 +638,18 @@ main {
   text-decoration: none;
 }
 
-/* Novo estilo para o título sobreposto */
-.news-overlay-title {
+/* Novo estilo para o título sobreposto - ADICIONADO .home-news-overlay-title */
+.news-overlay-title,
+.home-news-overlay-title {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
   padding: 0.5rem 1rem;
   background: linear-gradient(0deg, #090808, #090808 10%, rgba(9, 8, 8, 0));
-  font-size: 1.5rem;
+  font-size: 1.5rem; /* Tamanho base - será sobrescrito abaixo */
+  font-family: 'Roboto Condensed', sans-serif; /* Adicionado para garantir herança */
+  color: #ffffff; /* Adicionado para garantir herança */
   font-weight: 700;
   text-align: left;
   text-transform: none;
@@ -656,12 +659,15 @@ main {
   border-bottom-right-radius: 10px;
 }
 
-.news-card.featured .news-overlay-title {
-  font-size: 2rem;
+/* ADICIONADO .news-card.featured .home-news-overlay-title */
+.news-card.featured .news-overlay-title,
+.news-card.featured .home-news-overlay-title {
+  font-size: 2rem; /* Tamanho específico para o card featured */
 }
 
+/* Estilo específico para side cards (permanece inalterado) */
 .news-card.side .news-overlay-title {
-  font-size: 1.2rem;
+  font-size: 1.2rem; /* Tamanho específico para os cards laterais */
 }
 
 /* Estilo para o link do título */
@@ -671,18 +677,24 @@ main {
   color: inherit;
 }
 
-.title-link:hover .news-overlay-title {
+/* ADICIONADO .title-link:hover .home-news-overlay-title */
+.title-link:hover .news-overlay-title,
+.title-link:hover .home-news-overlay-title {
   color: #ffffff;
   text-decoration: underline;
   cursor: pointer;
 }
 
-.title-link:focus-visible .news-overlay-title {
+/* ADICIONADO .title-link:focus-visible .home-news-overlay-title */
+.title-link:focus-visible .news-overlay-title,
+.title-link:focus-visible .home-news-overlay-title {
   outline: 2px solid #ffffff;
   outline-offset: 2px;
 }
 
-.title-link:focus:not(:focus-visible) .news-overlay-title {
+/* ADICIONADO .title-link:focus:not(:focus-visible) .home-news-overlay-title */
+.title-link:focus:not(:focus-visible) .news-overlay-title,
+.title-link:focus:not(:focus-visible) .home-news-overlay-title {
   outline: none;
 }
 
@@ -743,12 +755,25 @@ main {
 }
 
 /* Estilo para o autor nos cards inferiores */
-.news-card.bottom .news-author {
+.news-card.bottom .news-author-info {
   font-size: 0.75rem;
   font-family: 'Anta', sans-serif;
-  color: #e1e1e1;
+  color: #888888;
   margin-top: auto;
   margin-bottom: 0;
+}
+
+
+.news-author-info .author-link {
+  font-size: 0.75rem;
+  font-family: 'Anta', sans-serif;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  }
+
+.news-author-info .author-link:hover {
+  text-decoration: underline;
+  color: #ffffff;
 }
 
 /* Estilos para os links de título nos cards inferiores */
@@ -761,11 +786,6 @@ main {
 .news-title a:hover {
   color: #ffffff;
   text-decoration: underline;
-}
-
-.news-title a:focus-visible {
-  outline: 2px solid #00b7eb;
-  outline-offset: 2px;
 }
 
 .news-title a:focus:not(:focus-visible) {
@@ -816,12 +836,15 @@ main {
     height: 300px; /* Equalizado para todos os cards superiores no mobile */
   }
 
-  .news-card.featured .news-overlay-title {
+  /* ADICIONADO .news-card.featured .home-news-overlay-title */
+  .news-card.featured .news-overlay-title,
+  .news-card.featured .home-news-overlay-title {
     font-size: 1.5rem;
     padding: 1rem;
     background: linear-gradient(0deg, #090808 50%, rgba(9, 8, 8, 0));
   }
 
+  /* Estilo específico para side cards (permanece inalterado) */
   .news-card.side .news-overlay-title {
     font-size: 1.25rem;
   }
@@ -841,11 +864,14 @@ main {
     height: 210px;
   }
 
-  .news-card.featured .news-overlay-title {
+  /* ADICIONADO .news-card.featured .home-news-overlay-title */
+  .news-card.featured .news-overlay-title,
+  .news-card.featured .home-news-overlay-title {
     font-size: 1.3rem;
     padding: 0.75rem;
   }
 
+  /* Estilo específico para side cards (permanece inalterado) */
   .news-card.side .news-overlay-title {
     font-size: 1.1rem;
   }
@@ -1632,7 +1658,7 @@ main {
   font-weight: 700;
   color: #ffffff;
   text-align: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   position: relative;
   margin-top: 1rem;
 }
@@ -3100,6 +3126,115 @@ body {
 }
 
 /* ============================================== */
+/* == MODO LIGHT - SEÇÃO NOTÍCIAS (HOME - SEM VAR) == */
+/* ============================================== */
+
+/* --- Fundo da Seção --- */
+.light-mode .news-section {
+  background-color: #f8f9faf7; /* Fundo principal claro */
+}
+
+/* --- Título da Seção --- */
+/* .section-title é global, mas vamos garantir a cor aqui também */
+.light-mode .section-title {
+  color: #000000; /* Cor primária escura */
+}
+
+/* --- Cards (Base) --- */
+.light-mode .news-card {
+  border: 1px solid #dee2e6; /* Borda clara */
+  background-color: #ffffff; /* Fundo branco */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Sombra sutil */
+}
+
+/* --- Imagens (Hover) --- */
+/* O efeito de brilho pode ser mantido ou ajustado se necessário */
+.light-mode .news-card.featured .news-image-top img:hover,
+.light-mode .news-card.side .news-image-top img:hover {
+  filter: brightness(0.85); /* Leve escurecimento no hover */
+  transition: filter 0.1s ease;
+}
+.light-mode .news-card.bottom .news-image img:hover {
+  filter: brightness(0.9); /* Um pouco mais escuro para cards menores */
+}
+
+/* --- Título Sobreposto (Cards Superiores) --- */
+.light-mode .news-overlay-title {
+  /* Gradiente de branco semi-transparente para transparente */
+  background: linear-gradient(0deg, rgb(0 0 0 / 95%) 15%, rgb(0 0 0 / 70%) 50%, transparent 100%);
+  color: #ffffff; /* Texto escuro */
+}
+/* Ajuste do gradiente no mobile (exemplo) */
+@media (max-width: 768px) {
+    .light-mode .news-card.featured .news-overlay-title {
+         background: linear-gradient(0deg, rgba(255, 255, 255, 1) 30%, rgba(255, 255, 255, 0.8) 60%, transparent 100%);
+    }
+}
+
+
+/* Hover e Foco do Título Sobreposto */
+.light-mode .title-link:hover .news-overlay-title {
+  color: #ffffff; /* Preto sólido no hover */
+  text-decoration: underline;
+}
+.light-mode .title-link:focus-visible .news-overlay-title {
+  outline: 2px solid #F44336; /* Outline vermelho (cor de destaque) */
+  outline-offset: 2px;
+}
+
+
+/* --- Conteúdo dos Cards Inferiores --- */
+.light-mode .news-card.bottom .news-content {
+  background: #ffffff; /* Fundo branco */
+}
+
+/* Data (Inferior) */
+.light-mode .news-card.bottom .news-date {
+  color: #6c757d; /* Texto secundário (cinza) */
+}
+
+/* Título (Inferior) */
+.light-mode .news-card.bottom .news-title {
+  color: #212529; /* Texto primário (escuro) */
+}
+
+/* Link do Título (Inferior) */
+.light-mode .news-card.bottom .news-title a {
+  color: #000000; /* Texto primário (escuro) */
+}
+.light-mode .news-card.bottom .news-title a:hover {
+  color: #000000; /* Preto sólido no hover */
+  text-decoration: underline;
+}
+.light-mode .news-card.bottom .news-title a:focus-visible {
+  outline: 2px solid #F44336; /* Outline vermelho */
+  outline-offset: 2px;
+}
+
+/* Resumo (Inferior) */
+.light-mode .news-card.bottom .news-excerpt {
+  color: #6c757d; /* Texto secundário (cinza) */
+}
+
+/* Autor (Inferior) */
+.light-mode .news-author-info .author-link {
+  font-size: 0.75rem;
+  font-family: 'Anta', sans-serif;
+  color: #000000;
+  margin-bottom: 0.5rem;
+  }
+
+.light-mode .news-author-info .author-link:hover {
+  text-decoration: underline;
+  color: #000000;
+}
+
+/* --- Fallback de Carregamento --- */
+.light-mode .loading-fallback {
+  color: #6c757d; /* Texto secundário (cinza) */
+}
+
+/* ============================================== */
 /* ========== ESTILOS PARA O MODO LIGHT ========== */
 /* ============================================== */
 
@@ -3422,7 +3557,7 @@ body.light-mode .icon-sun {
 }
 
 .light-mode .topics-section-title {
-  color: var(--light-text-primary, #212529); /* Cor de texto principal */
+  color: #000000; /* Cor de texto principal */
 }
 
 /* Link "Ver todos" - Mantém cor de destaque */

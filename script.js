@@ -302,93 +302,140 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // === 5. Carregar os Cards da Seção "Notícias em Destaque" Dinamicamente ===
   function loadNewsCards() {
-    fetch('data/news-cards.json')
-      .then(response => response.json())
-      .then(data => {
-        const topContainer = document.querySelector('.top-cards-container');
-        const featuredCard = topContainer.querySelector('.news-card.featured');
-        const sideCardsContainer = topContainer.querySelector('.side-cards');
-        const bottomContainer = document.querySelector('.bottom-cards-container');
+  fetch('data/news-cards.json')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      const topContainer = document.querySelector('.top-cards-container');
+      const featuredCardPlaceholder = topContainer?.querySelector('.news-card.featured'); // Optional chaining
+      const sideCardsContainer = topContainer?.querySelector('.side-cards');
+      const bottomContainer = document.querySelector('.bottom-cards-container');
 
-        // Limpar os fallbacks
-        topContainer.querySelectorAll('.loading-fallback').forEach(el => el.remove());
-        sideCardsContainer.querySelectorAll('.loading-fallback').forEach(el => el.remove());
-        bottomContainer.querySelectorAll('.loading-fallback').forEach(el => el.remove());
+      if (!topContainer || !sideCardsContainer || !bottomContainer) {
+        console.error("Erro: Um ou mais containers de notícias essenciais não foram encontrados no DOM.");
+        return;
+      }
 
-        data.news.forEach((card, index) => {
-          const article = document.createElement('article');
-          article.classList.add('news-card', card.type);
+      sideCardsContainer.innerHTML = '';
+      bottomContainer.innerHTML = '';
 
-          if (card.type === 'featured') {
-            article.innerHTML = `
-              <div class="news-image-top">
-                <a href="${card.link}" target="_blank" rel="noopener noreferrer" aria-label="Leia sobre ${card.title}">
-                  <img src="${card.image}" alt="${card.alt}" loading="lazy">
+      let featuredCardExists = false;
+
+      data.news.forEach((card) => {
+
+        const authorName = card.authorName || '';
+        const authorLink = card.authorLink || '#';
+        const authorHtml = authorName
+          ? `<div class="news-author-info">
+               <span class="author-prefix">Por: </span>
+               <a href="${authorLink}" class="author-link" ${authorLink !== '#' ? 'target="_blank" rel="noopener noreferrer"' : ''}>${authorName}</a>
+             </div>`
+          : '';
+
+        const formattedDate = card.date || ''; // Use a data formatada do JSON diretamente
+        const dateTimeAttr = card.isoDate || ''; // Usa isoDate do JSON para datetime
+        const imageWidth = card.imageWidth ? `width="${card.imageWidth}"` : '';
+        const imageHeight = card.imageHeight ? `height="${card.imageHeight}"` : '';
+        const imageAlt = card.alt || `Imagem para ${card.title}`; // Fallback para alt text
+
+        const article = document.createElement('article');
+        article.classList.add('news-card', card.type);
+
+        if (card.type === 'featured') {
+          featuredCardExists = true; // Marca que encontramos um card de destaque
+          article.innerHTML = `
+            <div class="news-image-top">
+              <a href="${card.link}" target="_blank" rel="noopener noreferrer" aria-label="Leia sobre ${card.title}">
+                <img src="${card.image}" alt="${imageAlt}" loading="lazy" ${imageWidth} ${imageHeight}>
+              </a>
+              <a href="${card.link}" target="_blank" rel="noopener noreferrer" class="title-link" aria-label="Leia sobre ${card.title}" title="Leia o artigo completo: ${card.title}">
+                <span class="home-news-overlay-title">${card.title}</span>
+              </a>
+            </div>
+            <div class="news-content">
+              <time datetime="${dateTimeAttr}" class="news-date">${formattedDate}</time>
+              <h3 class="home-news-title">
+                <a href="${card.link}" target="_blank" rel="noopener noreferrer" aria-label="Leia sobre ${card.title}" title="Leia o artigo completo: ${card.title}">
+                  ${card.title}
                 </a>
-                <a href="${card.link}" target="_blank" rel="noopener noreferrer" class="title-link" aria-label="Leia sobre ${card.title}" title="${card.title}">
-                  <span class="news-overlay-title">${card.title}</span>
+              </h3>
+              <p class="news-excerpt">${card.excerpt}</p>
+              ${authorHtml}
+            </div>
+          `;
+           if (featuredCardPlaceholder) {
+             featuredCardPlaceholder.replaceWith(article);
+           } else {
+             console.warn("Placeholder do card de destaque não encontrado para substituição. Adicionando ao container superior.");
+             topContainer.insertBefore(article, sideCardsContainer); // Adiciona antes dos cards laterais se o placeholder sumiu
+           }
+
+        } else if (card.type === 'side') {
+          article.innerHTML = `
+            <div class="news-image-top">
+              <a href="${card.link}" target="_blank" rel="noopener noreferrer" aria-label="Leia sobre ${card.title}">
+                <img src="${card.image}" alt="${imageAlt}" loading="lazy" ${imageWidth} ${imageHeight}>
+              </a>
+              <a href="${card.link}" target="_blank" rel="noopener noreferrer" class="title-link" aria-label="Leia sobre ${card.title}" title="Leia o artigo completo: ${card.title}">
+                <span class="news-overlay-title">${card.title}</span>
+              </a>
+            </div>
+            <div class="news-content">
+              <time datetime="${dateTimeAttr}" class="news-date">${formattedDate}</time>
+              <h3 class="news-title">
+                <a href="${card.link}" target="_blank" rel="noopener noreferrer" aria-label="Leia sobre ${card.title}" title="Leia o artigo completo: ${card.title}">
+                  ${card.title}
                 </a>
-              </div>
-              <div class="news-content">
-                <time datetime="${card.date}" class="news-date">${new Date(card.date).toLocaleDateString('pt-BR')}</time>
-                <h3 class="news-title">
-                  <a href="${card.link}" target="_blank" rel="noopener noreferrer" aria-label="Leia sobre ${card.title}" title="${card.title}">
-                    ${card.title}
-                  </a>
-                </h3>
-                <p class="news-excerpt">${card.excerpt}</p>
-                <p class="news-author">${card.author}</p>
-              </div>
-            `;
-            featuredCard.replaceWith(article);
-          } else if (card.type === 'side') {
-            article.innerHTML = `
-              <div class="news-image-top">
-                <a href="${card.link}" target="_blank" rel="noopener noreferrer" aria-label="Leia sobre ${card.title}">
-                  <img src="${card.image}" alt="${card.alt}" loading="lazy">
+              </h3>
+              <p class="news-excerpt">${card.excerpt}</p>
+              ${authorHtml}
+            </div>
+          `;
+          sideCardsContainer.appendChild(article);
+
+        } else if (card.type === 'bottom') {
+          article.innerHTML = `
+            <div class="news-image">
+              <a href="${card.link}" target="_blank" rel="noopener noreferrer" aria-label="Leia sobre ${card.title}">
+                <img src="${card.image}" alt="${imageAlt}" loading="lazy" ${imageWidth} ${imageHeight}>
+              </a>
+            </div>
+            <div class="news-content">
+              <time datetime="${dateTimeAttr}" class="news-date">${formattedDate}</time>
+              <h3 class="news-title">
+                <a href="${card.link}" target="_blank" rel="noopener noreferrer" aria-label="Leia sobre ${card.title}" title="Leia o artigo completo: ${card.title}">
+                  ${card.title}
                 </a>
-                <a href="${card.link}" target="_blank" rel="noopener noreferrer" class="title-link" aria-label="Leia sobre ${card.title}" title="${card.title}">
-                  <span class="news-overlay-title">${card.title}</span>
-                </a>
-              </div>
-              <div class="news-content">
-                <time datetime="${card.date}" class="news-date">${new Date(card.date).toLocaleDateString('pt-BR')}</time>
-                <h3 class="news-title">
-                  <a href="${card.link}" target="_blank" rel="noopener noreferrer" aria-label="Leia sobre ${card.title}" title="${card.title}">
-                    ${card.title}
-                  </a>
-                </h3>
-                <p class="news-excerpt">${card.excerpt}</p>
-                <p class="news-author">${card.author}</p>
-              </div>
-            `;
-            sideCardsContainer.appendChild(article);
-          } else if (card.type === 'bottom') {
-            article.innerHTML = `
-              <div class="news-image">
-                <a href="${card.link}" target="_blank" rel="noopener noreferrer">
-                  <img src="${card.image}" alt="${card.alt}" loading="lazy">
-                </a>
-              </div>
-              <div class="news-content">
-                <time datetime="${card.date}" class="news-date">${new Date(card.date).toLocaleDateString('pt-BR')}</time>
-                <h3 class="news-title">
-                  <a href="${card.link}" target="_blank" rel="noopener noreferrer" aria-label="Leia sobre ${card.title}" title="${card.title}">
-                    ${card.title}
-                  </a>
-                </h3>
-                <p class="news-excerpt">${card.excerpt}</p>
-                <p class="news-author">${card.author}</p>
-              </div>
-            `;
-            bottomContainer.appendChild(article);
-          }
-        });
-      })
-      .catch(error => {
-        console.error('Erro ao carregar os cards de notícias:', error);
+              </h3>
+              <p class="news-excerpt">${card.excerpt}</p>
+              ${authorHtml}
+            </div>
+          `;
+          bottomContainer.appendChild(article);
+        }
       });
-  }
+
+      if (!featuredCardExists && featuredCardPlaceholder) {
+          console.warn("Nenhum card do tipo 'featured' encontrado nos dados. Removendo placeholder.");
+          featuredCardPlaceholder.remove();
+      }
+
+    })
+    .catch(error => {
+      console.error('Erro ao carregar ou processar os cards de notícias:', error);
+      const containerWithError = document.querySelector('.news-section .container');
+      if (containerWithError) {
+          // Tenta limpar o container e exibir a mensagem de erro
+          containerWithError.innerHTML = '<p class="error-fallback" role="alert">Não foi possível carregar as notícias. Tente novamente mais tarde.</p>';
+      }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', loadNewsCards);
 
   loadNewsCards();
 
