@@ -895,7 +895,7 @@ main {
 
 .topics-section-left i.fas.fa-play,
 .topics-section-right i.fas.fa-newspaper {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: #d6d6d6;
   margin-right: 0.5rem;
 }
@@ -1255,7 +1255,7 @@ main {
   justify-content: space-between;
   width: 100%;
   height: 100%;
-  padding: 0 0.5rem;
+  padding: 0 0.12rem;
 }
 
 .stats-topics,
@@ -1845,7 +1845,7 @@ main {
   }
 
   .card-image {
-    height: 205px; /* Aumentado de 200px para 205px */
+    height: 210px; /* Aumentado de 205px para 210px */
   }
 
   .card-content {
@@ -2884,7 +2884,7 @@ main {
   .art-section .swipe-instruction {
     font-family: 'Rajdhani', serif;
     font-style: italic;
-    font-size: 0.7rem; /* Ainda menor para telas pequenas */
+    font-size: 0.75rem; /* Ainda menor para telas pequenas */
     bottom: 15px; /* Ajusta a posição */
   }
 }
@@ -3434,6 +3434,7 @@ body.light-mode .icon-sun {
 .light-mode .topics-section-left i.fas.fa-play,
 .light-mode .topics-section-right i.fas.fa-newspaper {
   color: var(--light-text-secondary, #6c757d); /* Cor secundária para ícones */
+  padding: 8px;
 }
 
 .light-mode .topics-section-title {
@@ -3484,7 +3485,7 @@ body.light-mode .icon-sun {
 }
 
 .light-mode .medium-card-description {
-  color: var(--light-text-secondary, #6c757d); /* Cor de texto secundária */
+  color: #a8a8a8; /* Cor de texto secundária */
 }
 
 /* Botões de Navegação do Carrossel */
@@ -3512,9 +3513,8 @@ body.light-mode .icon-sun {
 /* Instrução "Navegue deslizando" no mobile */
 .light-mode .medium-card-container .swipe-instruction {
     /* Cor escura para contraste com o overlay claro */
-    color: var(--light-text-secondary, #6c757d);
+    color: #a8a8a8;
 }
-
 
 /* --- Cards Pequenos --- */
 .light-mode .small-topic-card,
