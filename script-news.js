@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
             </a>
           </h3>
           <p class="tech-news-excerpt">${news.excerpt || ''}</p>
-          ${authorHtml} {/* Insere o HTML do autor corrigido */}
+          ${authorHtml}
           <div class="share-container">
             <div class="social-icon x" aria-label="Compartilhar no X"><i class="fab fa-x-twitter"></i></div>
             <div class="social-icon whatsapp" aria-label="Compartilhar no WhatsApp"><i class="fab fa-whatsapp"></i></div>
@@ -133,11 +133,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     updatePaginationControls(page, allNewsFiltered.length); // Atualiza controles
 
+    // Rola suavemente para o topo após carregar novas notícias <<<--- CORREÇÃO APLICADA AQUI
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     if (loadingElement) {
         setTimeout(() => { loadingElement.style.display = 'none'; }, 300);
     }
-    // Rola suavemente para o topo após carregar novas notícias
-    //window.scrollTo({ top: 0, behavior: 'smooth' }); // Descomente se desejar este comportamento
   }
 
   // Função auxiliar para atualizar controles de paginação
@@ -249,7 +250,7 @@ document.addEventListener("DOMContentLoaded", function () {
       prevPageButton.addEventListener('click', () => {
           if (currentPage > 1) {
               currentPage--;
-              loadNews(currentPage);
+              loadNews(currentPage); // Chamada já existente
           }
       });
   }
@@ -259,7 +260,7 @@ document.addEventListener("DOMContentLoaded", function () {
           const totalPages = Math.ceil(allNewsFiltered.length / newsPerPage);
           if (currentPage < totalPages) {
               currentPage++;
-              loadNews(currentPage);
+              loadNews(currentPage); // Chamada já existente
           }
       });
   }
