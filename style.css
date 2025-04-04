@@ -845,7 +845,7 @@ main {
   }
 
   .news-card.bottom .news-image img {
-    height: 180px;
+    height: 200px;
   }
 
   .news-card.featured .news-overlay-title {
@@ -1792,7 +1792,7 @@ main {
 
 @media (max-width: 768px) {
   .trends-section {
-    padding: 1rem 0.5rem;
+    padding: 1rem 1.5rem 1rem 1.5rem;
   }
 
   .trends-cards-container {
@@ -1845,7 +1845,7 @@ main {
   }
 
   .card-image {
-    height: 180px; /* Aumentado de 120px para 180px */
+    height: 200px; /* Aumentado de 120px para 180px */
   }
 
   .card-content {
@@ -3749,7 +3749,7 @@ body.light-mode .icon-sun {
 /* --- Botões de Navegação do Carrossel (Swiper) --- */
 .light-mode .art-section .swiper-button-prev,
 .light-mode .art-section .swiper-button-next {
-  color: var(--light-text-primary, #212529); /* Cor escura para os ícones das setas */
+  color: #000000; /* Cor escura para os ícones das setas */
   /* O fundo já é transparente, mantemos assim */
   /* background-color: #23222100; */
 }
@@ -3784,7 +3784,7 @@ body.light-mode .icon-sun {
 
 /* --- Texto "Navegue deslizando" --- */
 .light-mode .art-section .swipe-instruction {
-    color: #202020; /* Cor de texto secundária */
+    color: #000000; /* Cor de texto secundária */
 }
 
 /* ============================================== */
