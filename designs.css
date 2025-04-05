@@ -423,22 +423,6 @@ body.dark-theme .icon-sun { display: block; }
     visibility: visible;
 }
 
-.home-back-to-top-container .home-back-to-top-text {
-    color: #ffffff;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.home-back-to-top-container .home-back-to-top-text.visible {
-    opacity: 1;
-    visibility: visible;
-}
-
 /* === Estilo do Lightbox === */
 #lightboxOverlay {
     background-color: rgba(0, 0, 0, 0.9);

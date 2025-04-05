@@ -124,23 +124,6 @@ a:hover {
   visibility: visible;
 }
 
-/* Estilo para o texto "Topo" (Página Inicial) */
-.home-back-to-top-container .home-back-to-top-text {
-  color: #ffffff; /* Cor branca para combinar com o tema */
-  font-family: 'Inter', sans-serif; /* Ajustado para a fonte usada na página principal */
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  opacity: 0; /* Inicialmente invisível, sincronizado com o botão */
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.home-back-to-top-container .home-back-to-top-text.visible {
-  opacity: 1;
-  visibility: visible;
-}
-
 /* ===== HEADER ===== */
 .site-header {
   background-color: #000000;
@@ -3262,7 +3245,7 @@ body {
 /* --- Breadcrumb --- */
 .light-mode .news2-section .breadcrumb,
 .light-mode .news2-section .breadcrumb span {
-  color: var(--light-text-secondary);
+  color: #484444;
 }
 
 .light-mode .news2-section .breadcrumb .current-page {

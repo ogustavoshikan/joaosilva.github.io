@@ -11,7 +11,7 @@
       "image": "assets/chatgpt-4.5.webp",
       "imageWidth": "800",
       "imageHeight": "450",
-      "link": "https://exemplo.com/gpt-4.5",
+      "link": "noticia.html?artigo=openai-gpt-4.5",
       "alt": "Logotipo OpenAI sobre fundo abstrato de tecnologia"
     },
     {
@@ -25,7 +25,7 @@
       "image": "assets/claude-sonnet-3.7.webp",
       "imageWidth": "800",
       "imageHeight": "450",
-      "link": "https://exemplo.com/claude-sonnet-3.7",
+      "link": "noticia.html?artigo=claude-sonnet-3.7",
       "alt": "Logotipo da Anthropic com fundo representando inteligência artificial"
     },
     {
@@ -39,7 +39,7 @@
       "image": "assets/elon-musk-grok3-xAI.webp",
       "imageWidth": "800",
       "imageHeight": "450",
-      "link": "https://exemplo.com/grok-3",
+      "link": "noticia.html?artigo=elon-musk-grok-3",
       "alt": "Elon Musk apresentando o logo da xAI Grok"
     },
     {
