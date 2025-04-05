@@ -758,7 +758,7 @@ main {
 .news-card.bottom .news-author-info {
   font-size: 0.75rem;
   font-family: 'Anta', sans-serif;
-  color: #888888;
+  color: #484444;
   margin-top: auto;
   margin-bottom: 0;
 }
@@ -3193,7 +3193,7 @@ body {
 
 /* Data (Inferior) */
 .light-mode .news-card.bottom .news-date {
-  color: #6c757d; /* Texto secundário (cinza) */
+  color: #484444; /* Texto secundário (cinza) */
 }
 
 /* Título (Inferior) */
@@ -3216,7 +3216,7 @@ body {
 
 /* Resumo (Inferior) */
 .light-mode .news-card.bottom .news-excerpt {
-  color: #6c757d; /* Texto secundário (cinza) */
+  color: #484444; /* Texto secundário (cinza) */
 }
 
 /* Autor (Inferior) */
@@ -3363,7 +3363,7 @@ body {
 /* .light-mode .news2-section .tech-news-card .tech-news-image img:hover { filter: brightness(0.95); } */
 
 .light-mode .news2-section .tech-news-card .tech-news-title {
-  color: var(--light-text-primary);
+  color: #000000;
 }
 
 .light-mode .news2-section .tech-news-card .tech-news-title a:hover {
@@ -3372,17 +3372,17 @@ body {
 }
 
 .light-mode .news2-section .tech-news-card .tech-news-excerpt {
-  color: var(--light-text-secondary);
+  color: #484444;
 }
 
 .light-mode .news2-section .tech-news-card .tech-news-author,
 .light-mode .news2-section .tech-news-card .tech-news-author span,
 .light-mode .news2-section .tech-news-card .tech-news-date {
-  color: var(--light-text-secondary); /* Autor e data com cor secundária */
+  color: #484444; /* Autor e data com cor secundária */
 }
 
 .light-mode .news2-section .tech-news-card .tech-news-author a {
-  color: var(--light-text-primary); /* Link do autor com cor primária */
+  color: #000000; /* Link do autor com cor primária */
   text-decoration: none;
 }
 
@@ -3685,7 +3685,7 @@ body.light-mode .icon-sun {
 }
 
 .light-mode .stats-label {
-  color: var(--light-text-secondary, #6c757d); /* Label com cor secundária */
+  color: #484444; /* Label com cor secundária */
 }
 
 .light-mode .icon-newsletter-sign i {
@@ -3753,7 +3753,7 @@ body.light-mode .icon-sun {
 
 /* --- Data --- */
 .light-mode .card-date {
-  color: var(--light-text-secondary, #6c757d); /* Cor secundária */
+  color: #484444; /* Cor secundária */
 }
 
 /* --- Título do Card --- */
@@ -3775,12 +3775,12 @@ body.light-mode .icon-sun {
 
 /* --- Excerto / Resumo --- */
 .light-mode .card-excerpt {
-  color: var(--light-text-secondary, #6c757d); /* Cor secundária */
+  color: #484444; /* Cor secundária */
 }
 
 /* --- Autor --- */
 .light-mode .card-author-info {
-  color: #888; /* Cor secundária */
+  color: #484444; /* Cor secundária */
   /* Ou se preferir mais destaque: color: var(--light-text-primary, #212529); */
 }
 
@@ -3836,7 +3836,7 @@ body.light-mode .icon-sun {
    color: var(--light-accent-color, #f44336); /* Mantém cor de destaque */
 }
 .light-mode .art-section .section-intro-link {
-   color: var(--light-accent-color, #f44336); /* Mantém cor de destaque */
+   color: #F44336; /* Mantém cor de destaque */
 }
 .light-mode .art-section .section-intro-link:hover {
   color: var(--light-text-primary, #212529); /* Cor primária no hover */
@@ -3891,7 +3891,7 @@ body.light-mode .icon-sun {
 
 /* --- Paginação do Carrossel (Swiper) --- */
 .light-mode .art-section .swiper-pagination-bullet {
-  background: var(--light-border-color, #adb5bd); /* Cor clara/cinza para inativos */
+  background: #b1b1b1; /* Cor clara/cinza para inativos */
   opacity: 1; /* Opacidade pode ser ajustada */
 }
 
@@ -3930,7 +3930,7 @@ body.light-mode .icon-sun {
 
 /* --- Label/Texto abaixo do Ícone --- */
 .light-mode .art-section .creation-label {
-  color: #4e4f4f; /* Cor de texto secundária */
+  color: #484444; /* Cor de texto secundária */
 }
 
 /* O efeito de hover .creation-item:hover { transform: translateY(-5px); } pode ser mantido,
