@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <p class="tech-news-author">
           <span class="author-prefix">Por: </span>
           <a href="${authorLink}" class="author-link" title="Ver posts de ${authorName}" ${authorLink !== '#' ? 'target="_blank" rel="noopener noreferrer"' : ''}>${authorName}</a>
-          <span class="tech-news-date"> - ${newsDate}</span>
+          <span class="tech-news-date">${newsDate}</span>
         </p>
       `;
       // --- FIM DA CORREÇÃO ---

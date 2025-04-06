@@ -250,7 +250,7 @@ body.dark-theme .icon-sun { display: block; }
     color: #000000;
     border-radius: 5px;
     margin: 0.5rem auto 1rem auto;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0.8rem;
     max-width: 120px;
     width: auto;
     text-align: center;

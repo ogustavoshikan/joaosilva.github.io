@@ -1,7 +1,7 @@
 /* ===== VARIÁVEIS CSS ===== */
 :root {
   --primary-color: #000000; 
-  --secondary-color: #00BCD4;
+  --secondary-color: #f44336;
   --background-color: #000000; 
   --text-color: #ffffff; 
   --text-color2: #999999;
@@ -252,8 +252,8 @@ nav a::after {
 .nav-button {
   background-color: #ffffff;
   color: #000000;
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
+  padding: 0.5rem 0.8rem;
+  border-radius: 5px;
   font-family: "Anta", sans-serif;
   font-weight: 600;
   font-style: normal;
@@ -343,7 +343,7 @@ main {
   position: relative;
   width: 100%;
   height: 95vh;
-  background: url('assets/home-hero/home-hero.webp') center/cover no-repeat;
+  background: url('assets/imagens/geral/home-hero.webp') center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -403,7 +403,7 @@ main {
 }
 
 .btn {
-  padding: 10px 20px;
+  padding: 9px 18px;
   font-size: 1rem;
   border-radius: 5px;
   text-decoration: none;
@@ -500,7 +500,7 @@ main {
   border: 1px solid #232221;
   background-color: #1a1a1a;
   position: relative;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 /* Estilo para o card em destaque (maior) */
@@ -570,10 +570,10 @@ main {
 
 .news-card.featured .news-image-top img {
   height: 486px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .news-card.featured .news-image-top img:hover {
@@ -583,10 +583,10 @@ main {
 
 .news-card.side .news-image-top img {
   height: 234px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .news-card.side .news-image-top img:hover {
@@ -601,8 +601,8 @@ main {
 
 .news-image img {
   height: 150px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .news-image img:hover {
@@ -638,8 +638,8 @@ main {
   text-transform: none;
   box-sizing: border-box;
   transition: color 0.2s ease, text-decoration 0.3s ease;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 /* ADICIONADO .news-card.featured .home-news-overlay-title */
@@ -694,15 +694,15 @@ main {
   flex: 1;
   padding: 1rem;
   background: #0c0c0c;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 /* Estilo para a data nos cards inferiores */
 .news-card.bottom .news-date {
   font-size: 0.7rem;
   font-family: 'Anta', sans-serif;
-  color: var(--text-color2);
+  color: #999999;
   margin-bottom: 0.3rem;
 }
 
@@ -725,7 +725,7 @@ main {
 .news-card.bottom .news-excerpt {
   font-size: 0.9rem;
   font-family: "Roboto", serif;
-  color: #a9a3a3;
+  color: #999999;
   margin-bottom: 0.5rem;
   line-height: 1.4;
   display: -webkit-box;
@@ -741,7 +741,7 @@ main {
 .news-card.bottom .news-author-info {
   font-size: 0.75rem;
   font-family: 'Anta', sans-serif;
-  color: #484444;
+  color: #999999;
   margin-top: auto;
   margin-bottom: 0;
 }
@@ -956,7 +956,7 @@ main {
   max-width: 49%;
   height: 400px; /* Abaixado de 450px para 400px no desktop */
   background-color: #1a1a1a;
-  border-radius: 10px;
+  border-radius: 5px;
   border: transparent;
   overflow: hidden;
   padding: 0;
@@ -969,7 +969,7 @@ main {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .medium-card-slider {
@@ -987,7 +987,7 @@ main {
   cursor: pointer;
   display: block;
   transition: filter 0.2s ease;
-  border-radius: 0px;
+  border-radius: 5px;
 }
 
 .medium-card-image:hover {
@@ -1661,7 +1661,7 @@ main {
   flex: 1 1 calc(33.33% - 1rem);
   max-width: 407px;
   border: 1px solid #232221;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .trends-card:focus-visible {
@@ -1741,7 +1741,7 @@ main {
 .card-excerpt {
   font-size: 0.9rem;
   font-family: "Roboto", sans-serif;
-  color: #a9a3a3;
+  color: #999999;
   margin-bottom: 0.5rem;
   line-height: 1.4;
   display: -webkit-box;
@@ -1754,7 +1754,7 @@ main {
 .card-author-info {
   font-size: 0.75rem;
   font-family: 'Anta', sans-serif;
-  color: #888;
+  color: #999999;
   margin-bottom: 0.5rem;
   display: flex;
   justify-content: flex-start;
@@ -2054,7 +2054,7 @@ main {
 .news2-section .tech-news-card .tech-news-excerpt {
   font-family: 'Roboto', serif;
   font-size: 0.9rem;
-  color: #a9a3a3;
+  color: #999999;
   margin-bottom: 0.5rem;
   line-height: 1.4;
   flex: 1;
@@ -2100,16 +2100,19 @@ main {
 }
 
 /* Estilo para os ícones de redes sociais */
+/* Estilo para os ícones de redes sociais (MODIFICADO para ser compacto) */
 .news2-section .tech-news-card .social-icon {
   background-color: #000000;
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
+  border-radius: 4px; /* <<-- Alterado para bordas arredondadas (igual ao .social-share) */
+  /* width: 32px; */   /* <<-- Removida largura fixa */
+  /* height: 32px; */  /* <<-- Removida altura fixa */
+  padding: 7px;       /* <<-- Adicionado padding para controlar o tamanho (ajuste se necessário) */
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  line-height: 1; /* Ajuda no alinhamento vertical do ícone */
 }
 
 .news2-section .tech-news-card .social-icon:hover {
@@ -2619,7 +2622,7 @@ main {
   margin-right: 2.5rem; /* Ajuste que você adicionou */
   font-family: 'Anta', sans-serif;
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #f44336; /* Cor vibrante, combinando com o tema */
   text-decoration: none;
   transition: color 0.3s ease;
@@ -2857,7 +2860,7 @@ main {
   font-weight: 300;
   font-size: 0.9rem; /* Tamanho pequeno */
   font-style: italic;
-  color: #ffffff; /* Cor branca para contraste com o fundo escuro */
+  color: #aeaeae /* Cor branca para contraste com o fundo escuro */
   text-align: left; /* Alinha à esquerda */
   margin: 0 0 0.5rem 1rem; /* Margem para alinhar com o carrossel e dar espaço abaixo */
   position: absolute; /* Posiciona absolutamente em relação ao .swiper */
@@ -2922,7 +2925,7 @@ main {
   width: 80px;
   height: 80px;
   background-color: #1a1a1a; /* Fundo escuro para o retângulo */
-  border-radius: 10px;
+  border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2933,7 +2936,7 @@ main {
 .art-section .creation-icon img {
   width: 100%;
   height: 100%;
-  border-radius: 10px;
+  border-radius: 5px;
   object-fit: cover;
 }
 
@@ -3128,7 +3131,7 @@ body {
 
 /* --- Cards (Base) --- */
 .light-mode .news-card {
-  border: 1px solid #dee2e6; /* Borda clara */
+  border: 1px solid #cfcfcf; /* Borda clara */
   background-color: #ffffff; /* Fundo branco */
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Sombra sutil */
 }
@@ -3215,6 +3218,9 @@ body {
   color: #000000;
 }
 
+.light-mode .news-card.bottom .news-author-info {
+  color: #484444;
+}
 /* --- Fallback de Carregamento --- */
 .light-mode .loading-fallback {
   color: #6c757d; /* Texto secundário (cinza) */
@@ -3717,7 +3723,7 @@ body.light-mode .icon-sun {
 /* --- Cards de Tendências --- */
 .light-mode .trends-card {
   background-color: var(--light-bg-secondary, #ffffff); /* Fundo do card claro */
-  border: 1px solid #d1d1d1; /* Borda clara */
+  border: 1px solid #cfcfcf; /* Borda clara */
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Sombra sutil */
 }
 

@@ -2,613 +2,735 @@
 
 /* ESTILO PARA O BOTÃO VOLTAR AO TOPO (PÁGINA DE ARTIGOS DAS NOTÍCIAS) */
 .news-back-to-top-container {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    display: flex;
-    flex-direction: column;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1000;
+}
+
+#news-back-to-top {
+  background-color: #ffffff;
+  border: 1px solid #232221;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.3s ease;
+}
+
+#news-back-to-top .back-to-top-icon {
+  color: #000000ba;
+  width: 25px;
+  height: 25px;
+}
+
+#news-back-to-top:hover {
+  background-color: #F44336;
+}
+
+#news-back-to-top:hover .back-to-top-icon {
+  color: #ffffff;
+}
+
+#news-back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Ajuste no main para padding-top considerar o header fixo */
+main {
+    padding-top: 82px; /* Altura do seu header - ajuste se necessário */
+  }
+  
+  .article-section {
+    padding: 40px 0; /* Espaçamento vertical */
+    background-color: var(--background-color); /* Garante fundo escuro */
+    border-bottom: 1px solid #151515;
+  }
+  
+  /* Container específico para o artigo, usando a largura menor desejada */
+  .article-container {
+    max-width: 1268px; 
+    margin: 0 auto;
+    padding: 0 15px; /* Padding lateral padrão */
+  }
+  
+  /* --- Breadcrumbs --- */
+  /* --- Breadcrumbs --- */
+.breadcrumbs {
+  margin-bottom: 30px;
+  font-size: 0.85rem;
+  color: var(--text-color2); /* Cor mais suave */
+}
+
+.breadcrumbs ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex; /* Ajuda a alinhar o ícone */
+  align-items: center; /* Alinha verticalmente */
+}
+
+.breadcrumbs li {
+  display: contents; /* Mantém o comportamento anterior para o separador */
+}
+
+/* Estilo para o ícone home no breadcrumb */
+.breadcrumb-home-icon {
+  height: 0.99em; /* Ajusta a altura do ícone com base no tamanho da fonte */
+  width: auto;
+  margin-right: 3px; /* Espaço entre o ícone e o texto */
+  vertical-align: middle; /* Tenta alinhar melhor com o texto */
+  position: relative; /* Ajuste fino da posição vertical se necessário */
+  top: -1px; /* Exemplo de ajuste fino */
+}
+
+.breadcrumbs li:first-child a { /* Garante que o link após o ícone ainda se alinhe */
+    display: inline-flex;
     align-items: center;
-    z-index: 1000;
-  }
+}
+
+
+.breadcrumbs li + li::before { /* Adiciona o separador '>' */
+  content: ">";
+  margin: 0 8px;
+  color: var(--text-color2);
+}
+
+.breadcrumbs a {
+  font-family: Anta, sans-serif;
+  color: var(--text-color2);
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.breadcrumbs a:hover {
+  color: #F44336; /* Cor de destaque no hover */
+}
+
+.breadcrumbs li[aria-current="page"] { /* Estilo para o item atual */
+  font-family: Anta, sans-serif;
+  font-size: 0.95rem;
+  color: var(--text-color); /* Cor principal para o título atual */
+  font-weight: 500;
+  padding-left: 8px; /* Adiciona espaço após o último separador '>' */
+}
   
-  #news-back-to-top {
-    background-color: #ffffff;
-    border: 1px solid #232221;
-    border-radius: 50%;
-    width: 45px;
-    height: 45px;
+  /* --- Layout Principal (Flexbox) --- */
+  .article-layout {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.3s ease;
+    flex-wrap: wrap; /* Permite que a sidebar vá para baixo em telas menores */
+    gap: 40px; /* Espaço entre conteúdo e sidebar */
   }
   
-  #news-back-to-top .back-to-top-icon {
-    color: #000000ba;
-    width: 25px;
-    height: 25px;
+  .article-content {
+    flex: 1; /* Ocupa o espaço disponível */
+    min-width: 65%; /* Garante que o conteúdo principal tenha mais espaço */
+    margin-top: 1rem;
   }
   
-  #news-back-to-top:hover {
-    background-color: #F44336;
+  .article-sidebar {
+     /* Largura base da sidebar */
+      /* Não cresce além da base */
+     width: 290px;
   }
   
-  #news-back-to-top:hover .back-to-top-icon {
+  /* --- Conteúdo do Artigo --- */
+  .article-categories {
+    margin-bottom: 10px;
+  }
+  
+  .category-tag {
+    display: inline-block;
+    background-color: #131111; /* Fundo sutil para a tag */
+    color: var(--text-color2);
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    margin-right: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .category-tag:hover {
+    background-color: var(--secondary-color);
     color: #ffffff;
   }
   
-  #news-back-to-top.visible {
-    opacity: 1;
-    visibility: visible;
+  .article-title {
+    font-family: Roboto 'ROBOTO CONDENSED'; /* Usar fonte de título definida */
+    font-size: 2.5rem; /* Tamanho maior para o título */
+    color: var(--heading-color);
+    margin-bottom: 15px;
+    line-height: 1.2;
+    font-weight: 700; /* Ou o peso desejado */
   }
   
-  /* Ajuste no main para padding-top considerar o header fixo */
-  main {
-      padding-top: 82px; /* Altura do seu header - ajuste se necessário */
-    }
-    
-    .article-section {
-      padding: 40px 0; /* Espaçamento vertical */
-      background-color: var(--background-color); /* Garante fundo escuro */
-      border-bottom: 1px solid #151515;
-    }
-    
-    /* Container específico para o artigo, usando a largura menor desejada */
-    .article-container {
-      max-width: 1268px; 
-      margin: 0 auto;
-      padding: 0 15px; /* Padding lateral padrão */
-    }
-    
-    /* --- Breadcrumbs --- */
-    .breadcrumbs {
-      margin-bottom: 25px;
-      font-size: 0.85rem;
-      color: var(--text-color2); /* Cor mais suave */
-    }
-    
-    .breadcrumbs ol {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    
-    .breadcrumbs li {
-      display: contents;
-    }
-    
-    .breadcrumbs li + li::before { /* Adiciona o separador '>' */
-      content: ">";
-      margin: 0 8px;
-      color: var(--text-color2);
-    }
-    
-    .breadcrumbs a {
+  .article-meta {
+    font-size: 0.9rem;
+    color: var(--text-color2);
+    margin-bottom: 20px;
+  }
+
+  .article-meta .date {
+    font-family: Anta, sans-serif;
+    font-size: 0.85rem;
+    color: #999999;
+    margin-bottom: 20px;
+  }
+
+/* [...] Estilos meta, etc */
+
+.article-meta .read-time {
+  font-family: Anta, sans-serif;
+  font-size: 0.85rem;
+  color: #999999;
+  /* Removido margin-left para usar o hífen como separador */
+  /* margin-left: 1.5rem; */ 
+  font-style: italic;
+}
+
+/* Removendo o ::before automático que estava adicionando outro '-' */
+.article-meta span + span::before { 
+  content: ""; /* Remove o separador automático se existir */
+  margin: 0;
+}
+  
+  .author {
+    font-size: 0.9rem;
+    font-family: 'Anta', sans-serif;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+  }
+
+.article-meta .author:hover {
+  text-decoration: underline;
+  color: #ffffff;
+}
+
+  .article-meta .author-prefix {
+    font-size: 0.9rem;
+    font-family: 'Anta', sans-serif;
+    color: #999999;
+    margin-top: auto;
+  }
+  
+  /* --- Compartilhamento Social --- */
+.social-share {
+  margin-bottom: 10px;
+}
+
+.social-share a {
+  /*color: var(--text-color2);*/
+  font-size: 1.2rem;
+  margin-right: 5px; /* Reduzido para compensar padding no hover */
+  margin-left: 5px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  display: inline-block; /* Necessário para padding funcionar corretamente */
+  padding: 5px; /* Adicionado padding base para manter o espaço */
+  border-radius: 4px; /* Adicionado para arredondar o fundo do hover */
+  line-height: 1; /* Ajuda no alinhamento vertical do ícone */
+}
+
+.social-share a:hover {
+  /*color: var(--secondary-color);*/
+  /* ADICIONADO BACKGROUND-COLOR NO HOVER */
+  background-color: #03839461; 
+}
+
+/* --- Cores específicas para ícones de compartilhamento social --- */
+.social-share .fa-x-twitter {
+  color: #FFFFFF;
+}
+
+.social-share .fa-whatsapp {
+  color: #25D366;
+}
+
+.social-share .fa-facebook-f {
+  color: #1877F2;
+}
+
+.social-share .fa-linkedin-in {
+  color: #0A66C2;
+}
+  
+  
+  /* --- Imagem de Destaque --- */
+  .featured-image {
+    margin-bottom: 30px;
+    width: 100%;
+  }
+  
+  .featured-image img {
+    display: block; /* Remove espaço extra abaixo da imagem */
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px; /* Bordas levemente arredondadas */
+    border: 1px solid #333;
+  }
+  
+  .featured-image figcaption {
+    font-size: 0.8rem;
+    color: var(--text-color2);
+    text-align: center;
+    margin-top: 8px;
+    font-style: italic;
+  }
+  
+  /* --- Corpo do Artigo --- */
+  .article-body {
+    color: var(--text-color);
+    line-height: 1.7; /* Melhor legibilidade */
+  }
+  
+  .article-body p {
+    margin-bottom: 1.5em; /* Espaçamento entre parágrafos */
+    font-size: 1rem; /* Tamanho padrão do texto */
+    font-family: 'Roboto', sans-serif; /* Fonte para leitura */
+  }
+  
+  .article-body h2, 
+  .article-body h3, 
+  .article-body h4 {
+    font-family: var(--heading-font);
+    color: var(--heading-color);
+    margin-top: 2em;
+    margin-bottom: 1em;
+    line-height: 1.3;
+  }
+  
+  .article-body h2 {
+    font-size: 1.8rem;
+  }
+  
+  .article-body h3 {
+    font-size: 1.5rem;
+  }
+  
+  .article-body h4 {
+      font-size: 1.2rem;
+  }
+  
+  .article-body a {
+    color: var(--secondary-color); /* Cor de link destacada */
+    text-decoration: underline;
+  }
+  
+  .article-body a:hover {
+    text-decoration: none;
+  }
+  
+  .article-body ul,
+  .article-body ol {
+    margin-bottom: 1.5em;
+    padding-left: 25px; /* Recuo para listas */
+  }
+  
+  .article-body li {
+      margin-bottom: 0.5em;
+  }
+  
+  /* --- Tags no Final --- */
+  .article-tags-bottom {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #333; /* Linha separadora */
+      font-size: 0.9rem;
+  }
+  
+  .article-tags-bottom strong {
+      color: var(--text-color);
+      margin-right: 5px;
+  }
+  
+  .article-tags-bottom a {
       color: var(--text-color2);
       text-decoration: none;
       transition: color 0.3s ease;
-    }
-    
-    .breadcrumbs a:hover {
-      color: var(--secondary-color); /* Cor de destaque no hover */
-    }
-    
-    .breadcrumbs li[aria-current="page"] { /* Estilo para o item atual */
-      color: var(--text-color); /* Cor principal para o título atual */
-      font-weight: 500;
-    }
-    
-    /* --- Layout Principal (Flexbox) --- */
-    .article-layout {
-      display: flex;
-      flex-wrap: wrap; /* Permite que a sidebar vá para baixo em telas menores */
-      gap: 40px; /* Espaço entre conteúdo e sidebar */
-    }
-    
-    .article-content {
-      flex: 1; /* Ocupa o espaço disponível */
-      min-width: 65%; /* Garante que o conteúdo principal tenha mais espaço */
-    }
-    
-    .article-sidebar {
-       /* Largura base da sidebar */
-        /* Não cresce além da base */
-       width: 290px;
-    }
-    
-    /* --- Conteúdo do Artigo --- */
-    .article-categories {
-      margin-bottom: 10px;
-    }
-    
-    .category-tag {
-      display: inline-block;
-      background-color: #2a2a2a; /* Fundo sutil para a tag */
-      color: var(--text-color2);
-      padding: 3px 8px;
-      border-radius: 4px;
-      font-size: 0.8rem;
-      margin-right: 5px;
-      text-decoration: none;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    
-    .category-tag:hover {
-      background-color: var(--secondary-color);
-      color: #000;
-    }
-    
-    .article-title {
-      font-family: var(--heading-font); /* Usar fonte de título definida */
-      font-size: 2.5rem; /* Tamanho maior para o título */
-      color: var(--heading-color);
-      margin-bottom: 15px;
-      line-height: 1.2;
-      font-weight: 700; /* Ou o peso desejado */
-    }
-    
-    .article-meta {
-      font-size: 0.9rem;
-      color: var(--text-color2);
-      margin-bottom: 20px;
-    }
-    
-    .article-meta span + span::before { /* Separador entre meta infos */
-      content: "|";
-      margin: 0 10px;
-    }
-    
-    .author{
-      font-weight: bold; /* Dar ênfase no autor */
-    }
-    
-    /* --- Compartilhamento Social --- */
-    .social-share {
-        margin-bottom: 25px;
-    }
-    
-    .social-share a {
-        color: var(--text-color2);
-        font-size: 1.2rem;
-        margin-right: 15px;
-        transition: color 0.3s ease;
-    }
-    
-    .social-share a:hover {
-        color: var(--secondary-color);
-    }
-    
-    
-    /* --- Imagem de Destaque --- */
-    .featured-image {
-      margin-bottom: 30px;
-      width: 100%;
-    }
-    
-    .featured-image img {
-      display: block; /* Remove espaço extra abaixo da imagem */
-      max-width: 100%;
-      height: auto;
-      border-radius: 5px; /* Bordas levemente arredondadas */
-      border: 1px solid #333;
-    }
-    
-    .featured-image figcaption {
-      font-size: 0.8rem;
-      color: var(--text-color2);
-      text-align: center;
-      margin-top: 8px;
-      font-style: italic;
-    }
-    
-    /* --- Corpo do Artigo --- */
-    .article-body {
-      color: var(--text-color);
-      line-height: 1.7; /* Melhor legibilidade */
-    }
-    
-    .article-body p {
-      margin-bottom: 1.5em; /* Espaçamento entre parágrafos */
-      font-size: 1rem; /* Tamanho padrão do texto */
-      font-family: 'Roboto', sans-serif; /* Fonte para leitura */
-    }
-    
-    .article-body h2, 
-    .article-body h3, 
-    .article-body h4 {
-      font-family: var(--heading-font);
-      color: var(--heading-color);
-      margin-top: 2em;
-      margin-bottom: 1em;
-      line-height: 1.3;
-    }
-    
-    .article-body h2 {
-      font-size: 1.8rem;
-    }
-    
-    .article-body h3 {
-      font-size: 1.5rem;
-    }
-    
-    .article-body h4 {
-        font-size: 1.2rem;
-    }
-    
-    .article-body a {
-      color: var(--secondary-color); /* Cor de link destacada */
-      text-decoration: underline;
-    }
-    
-    .article-body a:hover {
-      text-decoration: none;
-    }
-    
-    .article-body ul,
-    .article-body ol {
-      margin-bottom: 1.5em;
-      padding-left: 25px; /* Recuo para listas */
-    }
-    
-    .article-body li {
-        margin-bottom: 0.5em;
-    }
-    
-    /* --- Tags no Final --- */
-    .article-tags-bottom {
-        margin-top: 30px;
-        padding-top: 20px;
-        border-top: 1px solid #333; /* Linha separadora */
-        font-size: 0.9rem;
-    }
-    
-    .article-tags-bottom strong {
-        color: var(--text-color);
-        margin-right: 5px;
-    }
-    
-    .article-tags-bottom a {
-        color: var(--text-color2);
-        text-decoration: none;
-        transition: color 0.3s ease;
-    }
-    
-    .article-tags-bottom a:hover {
-        color: var(--secondary-color);
-    }
-    
-    /* --- Caixa do Autor --- */
-    .author-box {
-        margin-top: 40px;
-        padding: 20px;
-        background-color: #1a1a1a; /* Fundo ligeiramente diferente */
-        border-radius: 5px;
-        display: flex;
-        align-items: center;
-        gap: 20px;
-    }
-    
-    .author-avatar {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        object-fit: cover;
-    }
-    
-    .author-info h4 {
-        margin: 0 0 5px 0;
-        font-family: var(--heading-font);
-        color: var(--heading-color);
-        font-size: 1.2rem;
-    }
-    
-    .author-info p {
-        margin: 0;
-        font-size: 0.9rem;
-        color: var(--text-color2);
-    }
-    
-    /* --- Notícias Relacionadas --- */
-    .related-news {
-        margin-top: 40px;
-        padding-top: 30px;
-        border-top: 1px solid #333; /* Linha separadora */
-    }
-    
-    .related-news h3 {
-        font-family: var(--heading-font);
-        color: var(--heading-color);
-        font-size: 1.5rem;
-        margin-bottom: 20px;
-    }
-    
-    .related-news-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Layout responsivo */
-        gap: 20px;
-    }
-    
-    .related-news-card img {
-        width: 100%;
-        height: 100px; /* Altura fixa para as imagens relacionadas */
-        object-fit: cover;
-        border-radius: 4px;
-        margin-bottom: 10px;
-        height: 250px;
-    }
-    
-    .related-news-card a {
-        font-size: 0.9rem;
-        color: var(--text-color);
-        text-decoration: none;
-        font-weight: 500;
-        transition: color 0.3s ease;
-    }
-    
-    .related-news-card a:hover {
-        color: var(--secondary-color);
-    }
-    
-    /* --- Sidebar --- */
-    .article-sidebar {
-      /* Estilos para a sidebar em si, se necessário (cor de fundo, etc.) */
-    }
-    
-    .product-card-placeholder,
-    .sidebar-widget {
-      background-color: #0b0a0a; /* Fundo sutil para widgets */
+  }
+  
+  .article-tags-bottom a:hover {
+      color: var(--secondary-color);
+  }
+  
+  /* --- Caixa do Autor --- */
+  .author-box {
+      margin-top: 40px;
       padding: 20px;
+      background-color: #1a1a1a; /* Fundo ligeiramente diferente */
       border-radius: 5px;
-      margin-bottom: 30px; /* Espaço entre widgets */
-      border: 1px solid #232221;
-    }
-    
-    .product-card-placeholder h3,
-    .sidebar-widget h4 {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+  }
+  
+  .author-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+  }
+  
+  .author-info h4 {
+      margin: 0 0 5px 0;
       font-family: var(--heading-font);
       color: var(--heading-color);
       font-size: 1.2rem;
-      margin: 0 0 15px 0; /* Ajuste o margin-bottom */
-      padding-bottom: 10px;
-      border-bottom: 1px solid #444;
-    }
-    
-    .product-card-placeholder img {
-        width: 100%;
-        height: 340px;
-        border-radius: 4px;
-        margin-bottom: 15px;
-    }
-    
-    .product-card-placeholder p {
-        font-size: 0.9rem;
-        color: var(--text-color2);
-        margin-bottom: 20px;
-    }
-    
-    /* Usar os estilos de botão existentes */
-    .product-card-placeholder .btn-primary { 
-      display: block; /* Faz o botão ocupar a largura */
-      text-align: center;
-      /* Reutilize os estilos do .btn-primary da index.html se aplicável */
-      background-color: var(--secondary-color); /* Exemplo */
-      color: #000;
-      padding: 10px 15px;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-    }
-    
-    .product-card-placeholder .btn-primary:hover {
-        background-color: #00a8bd; /* Exemplo de hover */
-    }
-    
-    .sidebar-widget ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-    
-    .sidebar-widget li {
-        margin-bottom: 10px;
-    }
-    
-    .sidebar-widget a {
-        color: var(--text-color2);
-        text-decoration: none;
-        transition: color 0.3s ease;
-        font-size: 0.9rem;
-    }
-    
-    .sidebar-widget a:hover {
-        color: var(--secondary-color);
-    }
-    
-    /* --- Classe Ativa para Navegação --- */
-    /* Remove a classe ativa da página inicial se existir */
-    .page-home-active {
-      /* Resetar estilos se necessário, ou apenas não aplicar */
-      color: var(--text-color); /* Volta à cor padrão */
-    }
-    
-    /* Define a classe ativa para Notícias */
-    .page-news-active {
-      color: #F44336; /* Sua cor ativa */
-      /* Adicione outros estilos ativos se houver (ex: sublinhado) */
-    }
-    
-    
-    /* --- Responsividade para a página de notícia --- */
-    @media (max-width: 992px) {
-      .article-title {
-        font-size: 2rem; /* Reduzir um pouco o título */
-      }
-    }
-    
-    @media (max-width: 768px) {
-      .article-layout {
-        flex-direction: column; /* Empilha conteúdo e sidebar */
-      }
-    
-      .article-content {
-        min-width: 100%; /* Ocupa toda a largura */
-      }
-    
-      .article-sidebar {
-        flex-basis: auto; /* Permite que a largura seja automática */
-        width: 100%; /* Ocupa toda a largura */
-      }
-    
-      .article-title {
-        font-size: 1.8rem;
-      }
-    
-      .breadcrumbs {
-          font-size: 0.8rem; /* Reduzir um pouco os breadcrumbs */
-      }
-    
-      .author-box {
-          flex-direction: column; /* Empilha avatar e info */
-          text-align: center;
-      }
-    
-      .author-avatar {
-          margin-bottom: 15px;
-      }
-    }
-    
-    @media (max-width: 480px) {
-        .article-title {
-            font-size: 1.6rem;
-        }
-        .article-body p {
-            font-size: 0.95rem;
-        }
-        .article-body h2 {
-            font-size: 1.5rem;
-        }
-        .article-body h3 {
-            font-size: 1.3rem;
-        }
-    }
-  
-    /*ESTILO DA FOOTER*/
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-  
-  :root {
-      --bg-dark: #000000;
-      --text-light: #ffffff;
-      --text-gray: #9ca3af;
-      --text-dark-gray: #6b7280;
-      --border-dark-gray: #1f2937;
   }
   
-  body {
+  .author-info p {
       margin: 0;
-      font-family: 'Roboto';
-      background-color: var(--bg-dark);
-      color: #ffffff;
+      font-size: 0.9rem;
+      color: var(--text-color2);
   }
   
-  .site-footer {
-      background-color: var(--bg-dark);
-      font-family: 'Roboto', sans-serif;
-      font-weight: 400;
-      color: #ffffff;
-      padding: 3rem 1.5rem 1.05rem;
-      max-width: 1200px;
-      margin: 0 auto;
+  /* --- Notícias Relacionadas --- */
+  .related-news {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid #333; /* Linha separadora */
+}
+
+.related-news h3 {
+    font-family: var(--heading-font);
+    color: var(--heading-color);
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.related-news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ajuste opcional no minmax */
+    gap: 20px;
+}
+
+.related-news-card {
+    /* Adicionado para melhor estrutura interna se necessário */
+    display: flex;
+    flex-direction: column;
+}
+
+.related-news-card img {
+    width: 100%;
+    /* height: 100px; */ /* Altura pode ser automática ou ajustada */
+    aspect-ratio: 23 / 12; /* Proporção mais comum para thumbnails */
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    /* height: 250px; */ /* Removido height fixo para usar aspect-ratio */
+}
+
+.related-news-card a {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    /* Garante que o texto não empurre outros elementos se for longo */
+    flex-grow: 1; 
+}
+
+.related-news-card a:hover {
+    color: var(--secondary-color);
+}
+  
+  /* --- Sidebar --- */
+  .article-sidebar {
+    /* Estilos para a sidebar em si, se necessário (cor de fundo, etc.) */
   }
   
-  .footer-content {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
+  .product-card-placeholder,
+  .sidebar-widget {
+    background-color: #0b0a0a; /* Fundo sutil para widgets */
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 30px; /* Espaço entre widgets */
+    border: 1px solid #232221;
   }
   
-  .footer-section h3,
-  .footer-section h4 {
-      margin-bottom: 1rem;
-      font-weight: 600;
+  .product-card-placeholder h3,
+  .sidebar-widget h4 {
+    font-family: var(--heading-font);
+    color: var(--heading-color);
+    font-size: 1.2rem;
+    margin: 0 0 15px 0; /* Ajuste o margin-bottom */
+    padding-bottom: 10px;
+    border-bottom: 1px solid #444;
   }
   
-  .footer-section.brand p {
-      color: var(--text-gray);
-      font-size: 0.875rem;
+  .product-card-placeholder img {
+      width: 100%;
+      height: 340px;
+      border-radius: 4px;
+      margin-bottom: 15px;
   }
   
-  .footer-section ul {
+  .product-card-placeholder p {
+      font-size: 0.9rem;
+      color: var(--text-color2);
+      margin-bottom: 20px;
+  }
+  
+  /* Usar os estilos de botão existentes */
+  .product-card-placeholder .btn-primary { 
+    display: block; /* Faz o botão ocupar a largura */
+    text-align: center;
+    /* Reutilize os estilos do .btn-primary da index.html se aplicável */
+    background-color: var(--secondary-color); /* Exemplo */
+    color: #000;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .product-card-placeholder .btn-primary:hover {
+      background-color: #00a8bd; /* Exemplo de hover */
+  }
+  
+  .sidebar-widget ul {
       list-style: none;
       padding: 0;
       margin: 0;
   }
   
-  .footer-section ul li {
-      margin-bottom: 0.5rem;
+  .sidebar-widget li {
+      margin-bottom: 10px;
   }
   
-  .footer-section ul li a {
-      color: var(--text-gray);
+  .sidebar-widget a {
+      color: var(--text-color2);
       text-decoration: none;
       transition: color 0.3s ease;
+      font-size: 0.9rem;
   }
   
-  .footer-section ul li a:hover {
-      color: var(--text-light);
+  .sidebar-widget a:hover {
+      color: var(--secondary-color);
   }
   
-  .social-icons {
-      display: flex;
-      gap: 1rem;
+  /* --- Classe Ativa para Navegação --- */
+  /* Remove a classe ativa da página inicial se existir */
+  .page-home-active {
+    /* Resetar estilos se necessário, ou apenas não aplicar */
+    color: var(--text-color); /* Volta à cor padrão */
   }
   
-  .social-icon {
-      color: var(--text-gray);
-      text-decoration: none;
-      transition: color 0.3s ease;
+  /* Define a classe ativa para Notícias */
+  .page-news-active {
+    color: #F44336; /* Sua cor ativa */
+    /* Adicione outros estilos ativos se houver (ex: sublinhado) */
   }
   
-  .social-icon svg {
-      width: 1.5rem;
-      height: 1.5rem;
-      fill: currentColor;
-  }
   
-  .social-icon:hover {
-      color: var(--text-light);
+  /* --- Responsividade para a página de notícia --- */
+@media (max-width: 992px) {
+  .article-title {
+    font-size: 2rem; /* Reduzir um pouco o título */
   }
-  
-  .footer-bottom {
-      margin-top: 1rem;
-      padding-top: 1rem;
-      border-top: 1px solid #151515;
+  /* Ajuste no grid de notícias relacionadas para telas médias */
+   .related-news-grid {
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+   }
+}
+
+@media (max-width: 768px) {
+  .article-layout {
+    flex-direction: column; /* Empilha conteúdo e sidebar */
+  }
+
+  .article-content {
+    min-width: 100%; /* Ocupa toda a largura */
+  }
+
+  .article-sidebar {
+    flex-basis: auto; /* Permite que a largura seja automática */
+    width: 100%; /* Ocupa toda a largura */
+    margin-top: 20px; /* Adiciona espaço quando empilhado */
+  }
+
+  .article-title {
+    font-size: 1.8rem;
+  }
+
+  .breadcrumbs {
+      font-size: 0.8rem; /* Reduzir um pouco os breadcrumbs */
+  }
+
+  .author-box {
+      flex-direction: column; /* Empilha avatar e info */
       text-align: center;
   }
-  
-  .footer-bottom .copyright {
-      color: var(--text-gray);
-      font-size: 0.875rem;
-      margin-bottom: 0.5rem;
+
+  .author-avatar {
+      margin-bottom: 15px;
   }
   
-  .footer-bottom .tagline {
-      color: var(--text-dark-gray);
-      font-size: 0.75rem;
+  /* Notícias Relacionadas em 2 colunas */
+  .related-news-grid {
+      grid-template-columns: repeat(2, 1fr); /* Duas colunas */
   }
-  
-  /* Responsividade */
-  @media (max-width: 768px) {
-      .footer-content {
-          grid-template-columns: repeat(2, 1fr);
-      }
-  }
-  
-  @media (max-width: 480px) {
-      .footer-content {
-          grid-template-columns: 1fr;
-      }
-  }
+
+}
+
+@media (max-width: 480px) {
+    .article-title {
+        font-size: 1.6rem;
+    }
+    .article-body p {
+        font-size: 0.95rem;
+    }
+    .article-body h2 {
+        font-size: 1.5rem;
+    }
+    .article-body h3 {
+        font-size: 1.3rem;
+    }
+
+    /* MELHORIA MOBILE: Notícias Relacionadas em 1 coluna */
+    .related-news-grid {
+        grid-template-columns: 1fr; /* Uma coluna */
+    }
+
+    .related-news-card img {
+        /* Opcional: ajustar aspect-ratio ou altura para mobile */
+        /* aspect-ratio: 16 / 9; */
+    }
+
+    .breadcrumbs ol {
+        flex-wrap: wrap; /* Permite quebra de linha se ficar muito longo */
+    }
+    .breadcrumbs li[aria-current="page"] {
+        padding-left: 0; /* Remove padding extra em mobile */
+        margin-left: 8px; /* Adiciona espaço após separador */
+    }
+
+}
+
+  /*ESTILO DA FOOTER*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+    --bg-dark: #000000;
+    --text-light: #ffffff;
+    --text-gray: #9ca3af;
+    --text-dark-gray: #6b7280;
+    --border-dark-gray: #1f2937;
+}
+
+body {
+    margin: 0;
+    font-family: 'Roboto';
+    background-color: var(--bg-dark);
+    color: #ffffff;
+}
+
+.site-footer {
+    background-color: var(--bg-dark);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    color: #ffffff;
+    padding: 3rem 1.5rem 1.05rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+.footer-section h3,
+.footer-section h4 {
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.footer-section.brand p {
+    color: var(--text-gray);
+    font-size: 0.875rem;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section ul li a {
+    color: var(--text-gray);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: var(--text-light);
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icon {
+    color: var(--text-gray);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.social-icon svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: currentColor;
+}
+
+.social-icon:hover {
+    color: var(--text-light);
+}
+
+.footer-bottom {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #151515;
+    text-align: center;
+}
+
+.footer-bottom .copyright {
+    color: var(--text-gray);
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.footer-bottom .tagline {
+    color: var(--text-dark-gray);
+    font-size: 0.75rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+}
