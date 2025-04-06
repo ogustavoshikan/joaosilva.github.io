@@ -2,7 +2,7 @@
   "designs": [
     {
       "id": 1,
-      "src": "assets/designs-images/9x16_An_anthropomorphic_cat_in_a_blac.png",
+      "src": "assets/designs/9x16_An_anthropomorphic_cat_in_a_blac.png",
       "alt": "Gato estiloso Sci-Fi",
       "category": "Photography",
       "description": "Um gato com um casaco estiloso",
@@ -14,7 +14,7 @@
     },
     {
       "id": 2,
-      "src": "assets/designs-images/9x16_Overhead_view_watercolor___A_fut (1).png",
+      "src": "assets/designs/9x16_Overhead_view_watercolor___A_fut (1).png",
       "alt": "Vista aérea de cidade futurista",
       "category": "Photography",
       "description": "Figura futuristica com led vermelha no rosto.",
@@ -26,7 +26,7 @@
     },
     {
       "id": 3,
-      "src": "assets/designs-images/9x16_Image_is_a_mirror_selfie_featuri.png",
+      "src": "assets/designs/9x16_Image_is_a_mirror_selfie_featuri.png",
       "alt": "Selfie no espelho Sci-Fi",
       "category": "Poster",
       "description": "Selfie no espelho de uma mulher com cabelo rosa.",
@@ -38,7 +38,7 @@
     },
     {
       "id": 4,
-      "src": "assets/designs-images/9x16_An_extremely_muscular_minion__we.png",
+      "src": "assets/designs/9x16_An_extremely_muscular_minion__we.png",
       "alt": "Minion musculoso",
       "category": "Poster",
       "description": "Um Minion extremamente musculoso.",
@@ -50,7 +50,7 @@
     },
     {
       "id": 5,
-      "src": "assets/designs-images/9x16_Black_Woman___Cool_Tones___Sleek (2).png",
+      "src": "assets/designs/9x16_Black_Woman___Cool_Tones___Sleek (2).png",
       "alt": "Mulher negra elegante",
       "category": "Logo",
       "description": "Retrato elegante de uma mulher negra",
@@ -62,7 +62,7 @@
     },
     {
       "id": 6,
-      "src": "assets/designs-images/9x16_Theme__A_stoic_warrior_standing_ (1).png",
+      "src": "assets/designs/9x16_Theme__A_stoic_warrior_standing_ (1).png",
       "alt": "Guerreiro estóico",
       "category": "Logo",
       "description": "Um guerreiro estóico",
@@ -74,7 +74,7 @@
     },
     {
       "id": 7,
-      "src": "assets/designs-images/9x16_A_poised_woman_sits_amid_large__ (1).png",
+      "src": "assets/designs/9x16_A_poised_woman_sits_amid_large__ (1).png",
       "alt": "Mulher entre flores grandes",
       "category": "Character",
       "description": "Uma mulher elegante sentada em meio a flores",
@@ -86,7 +86,7 @@
     },
     {
       "id": 8,
-      "src": "assets/designs-images/9x16_A_poised_woman_sits_amid_large__ (1).png",
+      "src": "assets/designs/9x16_A_poised_woman_sits_amid_large__ (1).png",
       "alt": "Mulher entre flores grandes",
       "category": "Character",
       "description": "Uma mulher elegante sentada em meio",
@@ -98,7 +98,7 @@
     },
     {
       "id": 9,
-      "src": "assets/designs-images/9x16_Image_is_a_mirror_selfie_featuri (4).png",
+      "src": "assets/designs/9x16_Image_is_a_mirror_selfie_featuri (4).png",
       "alt": "Selfie no espelho futurista",
       "category": "Food",
       "description": "Outra selfie no espelho com estética",
@@ -110,7 +110,7 @@
     },
     {
       "id": 10,
-      "src": "assets/designs-images/9x16_Norwegian_orthodox_Islamic_nice_.png",
+      "src": "assets/designs/9x16_Norwegian_orthodox_Islamic_nice_.png",
       "alt": "Homem norueguês islâmico",
       "category": "Food",
       "description": "Retrato de um homem norueguês",
@@ -122,7 +122,7 @@
     },
     {
       "id": 11,
-      "src": "assets/designs-images/9x16_An_charming_and_threatening_youn.png",
+      "src": "assets/designs/9x16_An_charming_and_threatening_youn.png",
       "alt": "Jovem ameaçador",
       "category": "Product",
       "description": "Um jovem charmoso mas com um olhar ameaçador",
@@ -134,7 +134,7 @@
     },
     {
       "id": 12,
-      "src": "assets/designs-images/9x16_Theme__A_stoic_warrior_standing_ (1).png",
+      "src": "assets/designs/9x16_Theme__A_stoic_warrior_standing_ (1).png",
       "alt": "Guerreiro estóico",
       "category": "Product",
       "description": "Um guerreiro estóico",
@@ -146,7 +146,7 @@
     },
     {
       "id": 13,
-      "src": "assets/designs-images/9x16_A_woman_with_long_dark_hair_wear.png",
+      "src": "assets/designs/9x16_A_woman_with_long_dark_hair_wear.png",
       "alt": "Mulher de cabelo escuro",
       "category": "Sci-fi",
       "description": "Uma mulher com longos cabelos escuros",
@@ -158,7 +158,7 @@
     },
     {
       "id": 14,
-      "src": "assets/designs-images/9x16_A_hyper_realistic__full_body_por.png",
+      "src": "assets/designs/9x16_A_hyper_realistic__full_body_por.png",
       "alt": "Retrato hiper-realista",
       "category": "Sci-fi",
       "description": "Retrato de corpo inteiro de uma figura",
@@ -170,7 +170,7 @@
     },
     {
       "id": 15,
-      "src": "assets/designs-images/9x16_beautiful_anime_artwork__a_cute_.png",
+      "src": "assets/designs/9x16_beautiful_anime_artwork__a_cute_.png",
       "alt": "Arte de anime fofa",
       "category": "Sci-fi",
       "description": "Linda arte de anime de uma personagem",
@@ -182,7 +182,7 @@
     },
     {
       "id": 16,
-      "src": "assets/designs-images/9x16_Overhead_view_watercolor___A_fut.png",
+      "src": "assets/designs/9x16_Overhead_view_watercolor___A_fut.png",
       "alt": "Cidade futurista em aquarela",
       "category": "Photography",
       "description": "Figura futuristica com led vermelha no rosto",
@@ -194,7 +194,7 @@
     },
     {
       "id": 17,
-      "src": "assets/designs-images/9x16_beautiful_anime_artwork__a_cute_.png",
+      "src": "assets/designs/9x16_beautiful_anime_artwork__a_cute_.png",
       "alt": "Arte de anime fofa",
       "category": "Photography",
       "description": "Linda arte de anime de uma personagem",
@@ -206,7 +206,7 @@
     },
     {
       "id": 18,
-      "src": "assets/designs-images/2x3_A_girl_in_a_white_dress_is_stand (1).png",
+      "src": "assets/designs/2x3_A_girl_in_a_white_dress_is_stand (1).png",
       "alt": "Garota de vestido branco",
       "category": "Photography",
       "description": "Uma garota em um vestido branco",
@@ -218,7 +218,7 @@
     },
     {
       "id": 19,
-      "src": "assets/designs-images/9x16_Pixar__Animation__Retro__Portrai (2).png",
+      "src": "assets/designs/9x16_Pixar__Animation__Retro__Portrai (2).png",
       "alt": "Retrato retrô Pixar",
       "category": "Animation Style",
       "description": "Retrato de personagem no estilo de animação",
@@ -230,7 +230,7 @@
     },
     {
       "id": 20,
-      "src": "assets/designs-images/9x16_beautiful_anime_artwork__a_cute_.png",
+      "src": "assets/designs/9x16_beautiful_anime_artwork__a_cute_.png",
       "alt": "Arte de anime fofa",
       "category": "Anime",
       "description": "Linda arte de anime de uma personagem",
@@ -242,7 +242,7 @@
     },
     {
       "id": 21,
-      "src": "assets/designs-images/9x16_Overhead_view_watercolor___A_fut (1).png",
+      "src": "assets/designs/9x16_Overhead_view_watercolor___A_fut (1).png",
       "alt": "Vista aérea de cidade futurista",
       "category": "Anime",
       "description": "Figura futuristica com led vermelha no rosto",
@@ -254,7 +254,7 @@
     },
     {
       "id": 22,
-      "src": "assets/designs-images/9x16_Overhead_view_watercolor___A_fut (1).png",
+      "src": "assets/designs/9x16_Overhead_view_watercolor___A_fut (1).png",
       "alt": "Vista aérea de cidade futurista",
       "category": "Sci-Fi",
       "description": "Figura futuristica com led vermelha no rosto",
@@ -266,7 +266,7 @@
     },
     {
       "id": 23,
-      "src": "assets/designs-images/9x16_Overhead_view_watercolor___A_fut (1).png",
+      "src": "assets/designs/9x16_Overhead_view_watercolor___A_fut (1).png",
       "alt": "Vista aérea de cidade futurista",
       "category": "Sci-fi",
        "description": "Figura futuristica com led vermelha no rosto",
@@ -278,7 +278,7 @@
     },
     {
       "id": 24,
-      "src": "assets/designs-images/teste1-4-3.webp",
+      "src": "assets/designs/teste1-4-3.webp",
       "alt": "Exemplo teste",
       "category": "Sci-fi",
       "description": "Imagem de teste com proporção diferente",
@@ -290,7 +290,7 @@
     },
     {
       "id": 25,
-      "src": "assets/designs-images/9x16_Overhead_view_watercolor___A_fut (1).png",
+      "src": "assets/designs/9x16_Overhead_view_watercolor___A_fut (1).png",
       "alt": "Vista aérea de cidade futurista",
       "category": "Architecture",
       "description": "Figura futuristica com led vermelha no rosto",
@@ -302,7 +302,7 @@
     },
     {
       "id": 26,
-      "src": "assets/designs-images/9x16_Overhead_view_watercolor___A_fut (1).png",
+      "src": "assets/designs/9x16_Overhead_view_watercolor___A_fut (1).png",
       "alt": "Vista aérea de cidade futurista",
       "category": "Anime",
       "description": "Figura futuristica com led vermelha no rosto",
@@ -314,7 +314,7 @@
     },
     {
       "id": 27,
-      "src": "assets/designs-images/9x16_Overhead_view_watercolor___A_fut (1).png",
+      "src": "assets/designs/9x16_Overhead_view_watercolor___A_fut (1).png",
       "alt": "Vista aérea de cidade futurista",
       "category": "Animals",
       "description": "Figura futuristica com led vermelha no rosto",
@@ -326,7 +326,7 @@
     },
     {
       "id": 28,
-      "src": "assets/designs-images/9x16_Overhead_view_watercolor___A_fut.png",
+      "src": "assets/designs/9x16_Overhead_view_watercolor___A_fut.png",
       "alt": "Vista aérea de cidade futurista",
       "category": "Sci-fi",
       "description": "Figura futuristica com led vermelha no rosto",

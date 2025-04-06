@@ -10,7 +10,7 @@
       "type": "topic",
       "title": "Modelos de IA",
       "description": "Conheça os modelos mais avançados e suas aplicações inovadoras.",
-      "image": "assets/topicos-images/modelos-ia.webp",
+      "image": "assets/secoes/topicos/modelos-ia.webp",
       "link": "#modelos-ia",
       "alt": "Imagem ilustrativa sobre modelos de Inteligência Artificial"
     },
@@ -24,7 +24,7 @@
       "type": "topic",
       "title": "Ética na IA",
       "description": "Entenda como a ética na IA é crucial para um desenvolvimento tecnológico responsável.",
-      "image": "assets/topicos-images/etica-na-ia.webp",
+      "image": "assets/secoes/topicos/etica-na-ia.webp",
       "link": "#etica-ia",
       "alt": "Imagem ilustrativa sobre ética na Inteligência Artificial"
     },
@@ -38,7 +38,7 @@
       "type": "topic",
       "title": "Futuro da IA",
       "description": "Descubra as tendências e inovações que moldarão o futuro da Inteligência Artificial.",
-      "image": "assets/topicos-images/futuro-ia.webp",
+      "image": "assets/secoes/topicos/futuro-ia.webp",
       "link": "#futuro-ia",
       "alt": "Imagem ilustrativa sobre o futuro da Inteligência Artificial"
     },
@@ -52,7 +52,7 @@
       "type": "topic",
       "title": "IA em Negócios",
       "description": "Saiba como a IA está revolucionando estratégias e processos no mundo corporativo.",
-      "image": "assets/topicos-images/ia-negocios.webp",
+      "image": "assets/secoes/topicos/ia-negocios.webp",
       "link": "#ia-negocios",
       "alt": "Imagem ilustrativa sobre Inteligência Artificial em negócios"
     },
