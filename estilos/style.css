@@ -343,7 +343,7 @@ main {
   position: relative;
   width: 100%;
   height: 95vh;
-  background: url('assets/imagens/geral/home-hero.webp') no-repeat center center / cover;
+  background: url('/assets/imagens/geral/home-hero.webp') no-repeat center center / cover;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1913,7 +1913,7 @@ main {
 }
 
 .hero-section {
-  background: url ('assets/imagens/geral/home-hero.webp') no-repeat center center / cover;
+  background: url('/assets/noticias/57047c51-b6c6-40cb-8a2c-c8849dda3b49.jpg') no-repeat center center / cover;
   padding: 6rem 0;
   position: relative;
   border-bottom: 1px solid #000000;
@@ -2860,7 +2860,7 @@ main {
   font-weight: 300;
   font-size: 0.9rem; /* Tamanho pequeno */
   font-style: italic;
-  color: #aeaeae /* Cor branca para contraste com o fundo escuro */
+  color: #aeaeae; /* Cor branca para contraste com o fundo escuro */
   text-align: left; /* Alinha à esquerda */
   margin: 0 0 0.5rem 1rem; /* Margem para alinhar com o carrossel e dar espaço abaixo */
   position: absolute; /* Posiciona absolutamente em relação ao .swiper */
@@ -3382,11 +3382,11 @@ body {
 
 /* Ícones de Compartilhamento */
 .light-mode .news2-section .tech-news-card .social-icon {
-  background-color: var(--light-hover-bg); /* Fundo cinza claro para ícones */
+  background-color: #ffffff; /* Fundo cinza claro para ícones */
 }
 
 .light-mode .news2-section .tech-news-card .social-icon:hover {
-  background-color: #cbcaca; /* Fundo vermelho bem claro no hover */
+  background-color: #03839461; /* Fundo vermelho bem claro no hover */
 }
 
 /* Cor dos ícones - Mantendo cores das marcas, exceto X/Twitter */
