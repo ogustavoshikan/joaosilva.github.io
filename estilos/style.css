@@ -235,7 +235,7 @@ nav a {
 }
 
 nav a:hover {
-  background-color: #000000;
+  background-color: #00000000;
   color: #F44336;
 }
 
@@ -335,6 +335,12 @@ main {
   .favicon-icon {
     width: 22px;
     height: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .news-creations-text {
+    font-size: 20px !important;
   }
 }
 
@@ -529,7 +535,7 @@ main {
 .bottom-cards-container {
   display: flex;
   flex-direction: row;
-  gap: 1.35rem;
+  gap: 1rem;
   width: 100%;
   justify-content: center;
 }
@@ -537,7 +543,7 @@ main {
 /* Estilo para os cards inferiores */
 .news-card.bottom {
   flex: 1;
-  max-width: calc(25% - 1.125rem);
+  max-width: calc(25.3% - 1.125rem);
   min-width: 0;
   min-height: 350px;
   display: flex;
@@ -806,20 +812,17 @@ main {
     gap: 1.5rem;
   }
 
-  .news-card.featured,
-  .news-card.side,
-  .news-card.bottom {
+  /* FEATURED */
+  .news-card.featured {
     flex: 0 0 100%;
     max-width: 100%;
     min-height: 230px;
   }
 
-  .news-card.featured .news-image-top img,
-  .news-card.side .news-image-top img {
-    height: 300px; /* Equalizado para todos os cards superiores no mobile */
+  .news-card.featured .news-image-top img {
+    height: 300px;
   }
 
-  /* ADICIONADO .news-card.featured .home-news-overlay-title */
   .news-card.featured .news-overlay-title,
   .news-card.featured .home-news-overlay-title {
     font-size: 1.5rem;
@@ -827,7 +830,18 @@ main {
     background: linear-gradient(0deg, #090808 50%, rgba(9, 8, 8, 0));
   }
 
-  /* Estilo específico para side cards (permanece inalterado) */
+  /* SIDE + BOTTOM */
+  .news-card.side,
+  .news-card.bottom {
+    flex: 0 0 100%;
+    max-width: 100%;
+    min-height: 250px;
+  }
+
+  .news-card.side .news-image-top img {
+    height: 300px;
+  }
+
   .news-card.side .news-overlay-title {
     font-size: 1.25rem;
   }
@@ -838,27 +852,31 @@ main {
 }
 
 @media (max-width: 480px) {
-  .news-card.featured .news-image-top img,
-  .news-card.side .news-image-top img {
-    height: 235px; /* Equalizado para todos os cards superiores em telas menores */
+  /* FEATURED */
+  .news-card.featured .news-image-top img {
+    height: 245px;
   }
 
-  .news-card.bottom .news-image img {
-    height: 215px;
-  }
-
-  /* ADICIONADO .news-card.featured .home-news-overlay-title */
   .news-card.featured .news-overlay-title,
   .news-card.featured .home-news-overlay-title {
     font-size: 1.3rem;
     padding: 0.75rem;
   }
 
-  /* Estilo específico para side cards (permanece inalterado) */
+  /* SIDE + BOTTOM */
+  .news-card.side .news-image-top img {
+    height: 235px;
+  }
+
   .news-card.side .news-overlay-title {
     font-size: 1.1rem;
   }
+
+  .news-card.bottom .news-image img {
+    height: 215px;
+  }
 }
+
 
 /* ===== SEÇÃO COMECE POR AQUI E TÓPICOS ===== */
 .topics-section {
@@ -1913,7 +1931,7 @@ main {
 }
 
 .hero-section {
-  background: url('../assets/noticias/57047c51-b6c6-40cb-8a2c-c8849dda3b49.jpg') no-repeat center center / cover;
+  background: url('../assets/imagens/noticias/57047c51-b6c6-40cb-8a2c-c8849dda3b49.jpg') no-repeat center center / cover;
   padding: 6rem 0;
   position: relative;
   border-bottom: 1px solid #000000;
@@ -2137,7 +2155,7 @@ main {
 }
 
 .news2-section .tech-news-card .social-icon i {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .news2-section .tech-news-card .tech-news-title a {
@@ -2156,7 +2174,7 @@ main {
 }
 
 /* Paginação */
-.news2-section .pagination {
+.news2-section .pagination-controls {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2164,27 +2182,28 @@ main {
   margin-top: 2rem;
 }
 
-.news2-section .pagination button {
+.news2-section .pagination-controls button {
   background-color: #232221;
   color: #ffffff;
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.063rem;
   border-radius: 5px;
   cursor: pointer;
 }
 
-.news2-section .pagination button:disabled {
+.news2-section .pagination-controls button:disabled {
   background-color: #1a1a1a;
   cursor: not-allowed;
 }
 
-.news2-section .pagination button:hover:not(:disabled) {
+.news2-section .pagination-controls button:hover:not(:disabled) {
   background-color: #F44336;
 }
 
-.news2-section .pagination .page-number {
+.news2-section .pagination-controls .page-number {
   font-family: 'Roboto Condensed', sans-serif;
   color: #ffffff;
+  font-size: 15px;
 }
 
 /* Ajustes responsivos */
@@ -2547,6 +2566,63 @@ main {
   font-style: normal;
   font-size: 1rem;
   position: relative;
+}
+
+/* Estilos para a Barra de Informação de Filtro (news.html) */
+.filter-info-bar {
+  padding: 10px 15px;
+  background-color: #2a2a2a; /* Cor de fundo sutil (ajuste conforme seu tema) */
+  color: var(--text-color2, #ccc); /* Cor de texto secundária ou fallback */
+  border-radius: 5px;
+  margin-bottom: 25px; /* Espaço abaixo da barra */
+  font-size: 0.9rem;
+  display: flex; /* Para alinhar texto e botão */
+  justify-content: space-between; /* Coloca o botão no final */
+  align-items: center;
+}
+
+.filter-info-bar strong {
+  color: var(--text-color, #fff); /* Destaca o nome do filtro */
+  font-weight: 600;
+}
+
+/* Estilo para o botão 'X' de limpar filtro */
+#clear-filter-btn,
+.clear-filter-button { /* Usando classe também para flexibilidade */
+  background: none;
+  border: none;
+  color: var(--text-color2, #ccc);
+  font-size: 1.3rem; /* Tamanho maior para o 'X' */
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0 5px; /* Pequeno padding para área de clique */
+  line-height: 1; /* Alinhar o 'X' */
+  margin-left: 10px; /* Espaço à esquerda */
+  transition: color 0.2s ease;
+}
+
+#clear-filter-btn:hover,
+.clear-filter-button:hover {
+  color: #F44336; /* Cor de destaque no hover (vermelho?) */
+}
+
+/* Estilos para modo claro, se aplicável */
+body.light-mode .filter-info-bar {
+    background-color: #e9e9e9;
+    color: #555;
+}
+
+body.light-mode .filter-info-bar strong {
+    color: #111;
+}
+
+body.light-mode #clear-filter-btn,
+body.light-mode .clear-filter-button {
+    color: #777;
+}
+body.light-mode #clear-filter-btn:hover,
+body.light-mode .clear-filter-button:hover {
+    color: #d32f2f; /* Vermelho mais escuro para modo claro */
 }
 
 /* ESTILO PARA A SEÇÃO TRANSFORME IDEIAS EM OBRAS DE ARTE COM IA */
@@ -3153,11 +3229,12 @@ body {
   background: linear-gradient(0deg, rgb(0 0 0 / 95%) 15%, rgb(0 0 0 / 70%) 50%, transparent 100%);
   color: #ffffff; /* Texto escuro */
 }
+
 /* Ajuste do gradiente no mobile (exemplo) */
 @media (max-width: 768px) {
-    .light-mode .news-card.featured .news-overlay-title {
-         background: linear-gradient(0deg, rgba(255, 255, 255, 1) 30%, rgba(255, 255, 255, 0.8) 60%, transparent 100%);
-    }
+  .light-mode .news-card.featured .news-overlay-title {
+    background: linear-gradient(0deg, #090808 50%, rgba(9, 8, 8, 0));  
+  }
 }
 
 
@@ -3246,6 +3323,8 @@ body {
 /* --- Seção Principal de Notícias --- */
 .light-mode .news2-section {
   background-color: var(--light-bg-primary);
+  padding: 2rem 0;
+  border-bottom: 1px solid #151515;
 }
 
 /* --- Breadcrumb --- */
@@ -3418,26 +3497,28 @@ body {
 }
 
 /* --- Paginação --- */
-.light-mode .news2-section .pagination button {
+.light-mode .news2-section .pagination-controls button {
   background-color: var(--light-hover-bg);
   color: var(--light-text-primary);
   border: 1px solid var(--light-border-color);
+  padding: 0.438rem 1.0001rem;
 }
 
-.light-mode .news2-section .pagination button:disabled {
+.light-mode .news2-section .pagination-controls button:disabled {
   background-color: var(--light-hover-bg);
   color: var(--light-text-secondary); /* Texto mais claro para desabilitado */
   opacity: 0.8;
   cursor: not-allowed;
 }
 
-.light-mode .news2-section .pagination button:hover:not(:disabled) {
+.light-mode .news2-section .pagination-controls button:hover:not(:disabled) {
   background-color: #cecdcd;
   color: #000000;
   border-color: #a8a8a8;
 }
 
-.light-mode .news2-section .pagination .page-number {
+.light-mode .news2-section .pagination-controls .page-number {
+  font-family: 'Roboto Condensed', sans-serif;
   color: var(--light-text-primary);
   font-size: 15px;
 }

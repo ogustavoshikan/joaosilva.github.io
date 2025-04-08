@@ -89,6 +89,12 @@
                 <option value="oldest">Mais antigas</option>
               </select>
             </div>
+            <!-- >>> ADICIONE A BARRA DE FILTRO AQUI <<< -->
+<div id="filter-info" class="filter-info-bar" style="display: none;" aria-live="polite">
+  <!-- O conteúdo (Ex: Filtrando por: Categoria: OpenAI [x]) será preenchido pelo scripts/noticias.js -->
+</div>
+<!-- >>> FIM DA BARRA DE FILTRO <<< -->
+<div id="loading" style="display: none;">Carregando...</div> <!-- Opcional: Indicador de Loading -->
           </div>
           <div class="tech-news-container" role="region" aria-label="Lista de todas as notícias">
             <!-- Indicador de carregamento -->
@@ -104,10 +110,10 @@
           </ul>
         </aside>
       </div>
-      <div class="pagination">
-        <button class="prev-page" disabled>Anterior</button>
-        <span class="page-number">Página 1</span>
-        <button class="next-page">Próxima</button>
+      <div class="pagination-controls"> 
+        <button class="prev-page">Anterior</button>
+        <span class="page-number">Página 1 de 1</span>
+        <button class="next-page">Próximo</button>
       </div>
     </section>
     <!-- Botão Voltar ao Topo - Página de Notícias -->
@@ -181,7 +187,7 @@
   </div>
 </footer>
 
-  <script src="scripts/noticias.js" defer=""></script>
   <script src="scripts/global.js" defer=""></script>
+  <script src="scripts/noticias.js" defer=""></script>
 </body>
 </html>

@@ -47,7 +47,7 @@
 
 /* Ajuste no main para padding-top considerar o header fixo */
 main {
-    padding-top: 82px; /* Altura do seu header - ajuste se necessário */
+    padding-top: 59px; /* Altura do seu header - ajuste se necessário */
   }
   
   .article-section {
@@ -77,6 +77,7 @@ main {
   margin: 0;
   display: flex; /* Ajuda a alinhar o ícone */
   align-items: center; /* Alinha verticalmente */
+  margin-top: -1rem;
 }
 
 .breadcrumbs li {
@@ -231,7 +232,7 @@ main {
 
 .social-share a {
   /*color: var(--text-color2);*/
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin-right: 5px; /* Reduzido para compensar padding no hover */
   margin-left: 5px;
   transition: color 0.3s ease, background-color 0.3s ease;
@@ -733,4 +734,184 @@ body {
     .footer-content {
         grid-template-columns: 1fr;
     }
+}
+
+/* ============================================== */
+/* ==== MODO LIGHT - PÁGINA DE NOTÍCIA (SINGLE) ==== */
+/* ============================================== */
+
+/* --- Fundo da Seção do Artigo --- */
+.light-mode .article-section {
+  background-color: var(--light-bg-primary, #f8f9fa); /* Fundo principal claro */
+  border-bottom: 1px solid var(--light-border-color, #dee2e6); /* Borda clara */
+}
+
+/* --- Breadcrumbs --- */
+.light-mode .breadcrumbs {
+  color: var(--light-text-secondary, #6c757d); /* Cor secundária */
+}
+.light-mode .breadcrumbs li + li::before {
+  color: var(--light-text-secondary, #6c757d); /* Cor do separador */
+}
+.light-mode .breadcrumbs a {
+  color: var(--light-text-secondary, #6c757d); /* Cor secundária para links */
+}
+.light-mode .breadcrumbs a:hover {
+  color: var(--light-accent-color, #F44336); /* Cor de destaque no hover */
+}
+.light-mode .breadcrumbs li[aria-current="page"] {
+  color: var(--light-text-primary, #212529); /* Cor primária para página atual */
+}
+/* Ícone home - Tenta inverter se for SVG inline ou ajustar cor se for fonte */
+.light-mode .breadcrumb-home-icon {
+   /* filter: invert(1); */ /* Descomente se for um SVG que precisa inverter */
+   /* color: var(--light-text-secondary); */ /* Descomente se for um ícone de fonte */
+}
+
+/* --- Tags de Categoria --- */
+.light-mode .category-tag {
+  background-color: var(--light-hover-bg, #e9ecef); /* Fundo cinza claro */
+  color: var(--light-text-secondary, #6c757d); /* Texto secundário */
+  border: 1px solid var(--light-border-color, #e0e0e0); /* Borda sutil */
+}
+.light-mode .category-tag:hover {
+  background-color: #cecdcd; /* Fundo de destaque no hover */
+  color: #6c757d; /* Texto branco no hover */
+  border-color: #a8a8a8;
+}
+
+/* --- Título e Meta --- */
+.light-mode .article-title {
+  color: var(--light-text-primary, #212529); /* Cor primária */
+}
+.light-mode .article-meta,
+.light-mode .article-meta .date,
+.light-mode .article-meta .read-time,
+.light-mode .article-meta .author-prefix {
+  color: var(--light-text-secondary, #6c757d); /* Cor secundária */
+}
+.light-mode .article-meta .author {
+  color: var(--light-text-primary, #212529); /* Cor primária para o nome do autor */
+}
+.light-mode .article-meta .author:hover {
+  color: var(--light-accent-color, #F44336); /* Cor de destaque no hover */
+  text-decoration: underline;
+}
+
+/* --- Compartilhamento Social --- */
+/* Cores dos ícones são mantidas. Ajusta apenas o hover do link. */
+.light-mode .social-share a:hover {
+  background-color: #03839461; /* Fundo azul claro no hover */
+  /* A cor do ícone permanece a original */
+}
+
+.light-mode .social-share .fa-x-twitter {
+  color: #000000;
+}
+
+/* --- Imagem de Destaque --- */
+.light-mode .featured-image img {
+  border: 1px solid var(--light-border-color, #dee2e6); /* Borda clara */
+}
+.light-mode .featured-image figcaption {
+  color: var(--light-text-secondary, #6c757d); /* Cor secundária */
+}
+
+/* --- Corpo do Artigo --- */
+.light-mode .article-body {
+  color: var(--light-text-primary, #212529); /* Cor primária */
+}
+.light-mode .article-body h2,
+.light-mode .article-body h3,
+.light-mode .article-body h4 {
+  color: var(--light-text-primary, #212529); /* Cor primária para títulos */
+}
+.light-mode .article-body a {
+  color: var(--light-accent-color, #F44336); /* Mantém cor de destaque */
+  /* text-decoration: underline; */ /* Já definido */
+}
+.light-mode .article-body a:hover {
+  /* text-decoration: none; */ /* Já definido */
+  filter: brightness(0.9); /* Escurece levemente a cor no hover */
+}
+
+/* --- Tags no Final --- */
+.light-mode .article-tags-bottom {
+  border-top: 1px solid var(--light-border-color, #dee2e6); /* Borda clara */
+}
+.light-mode .article-tags-bottom strong {
+  color: var(--light-text-primary, #212529); /* Cor primária */
+}
+.light-mode .article-tags-bottom a {
+  color: var(--light-text-secondary, #6c757d); /* Cor secundária */
+}
+.light-mode .article-tags-bottom a:hover {
+  color: var(--light-accent-color, #F44336); /* Cor de destaque no hover */
+}
+
+/* --- Caixa do Autor --- */
+.light-mode .author-box {
+  background-color: var(--light-hover-bg, #e9ecef); /* Fundo cinza claro */
+  border: 1px solid var(--light-border-color, #dee2e6); /* Borda opcional */
+}
+.light-mode .author-info h4 {
+  color: var(--light-text-primary, #212529); /* Cor primária */
+}
+.light-mode .author-info p {
+  color: var(--light-text-secondary, #6c757d); /* Cor secundária */
+}
+
+/* --- Notícias Relacionadas --- */
+.light-mode .related-news {
+  border-top: 1px solid var(--light-border-color, #dee2e6); /* Borda clara */
+}
+.light-mode .related-news h3 {
+  color: var(--light-text-primary, #212529); /* Cor primária */
+}
+.light-mode .related-news-card a {
+  color: var(--light-text-primary, #212529); /* Cor primária */
+}
+.light-mode .related-news-card a:hover {
+  color: var(--light-accent-color, #F44336); /* Cor de destaque no hover */
+}
+.light-mode .related-news-card img {
+   border: 1px solid var(--light-border-color, #dee2e6); /* Borda sutil na imagem */
+}
+
+
+/* --- Sidebar Widgets --- */
+.light-mode .product-card-placeholder,
+.light-mode .sidebar-widget {
+  background-color: var(--light-bg-secondary, #ffffff); /* Fundo branco */
+  border: 1px solid var(--light-border-color, #dee2e6); /* Borda clara */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04); /* Sombra leve */
+}
+.light-mode .product-card-placeholder h3,
+.light-mode .sidebar-widget h4 {
+  color: var(--light-text-primary, #212529); /* Cor primária */
+  border-bottom: 1px solid var(--light-border-color, #dee2e6); /* Borda clara */
+}
+.light-mode .product-card-placeholder p {
+  color: var(--light-text-secondary, #6c757d); /* Cor secundária */
+}
+.light-mode .product-card-placeholder .btn-primary {
+  background-color: var(--light-accent-color, #F44336); /* Cor de destaque */
+  color: #ffffff; /* Texto branco */
+}
+.light-mode .product-card-placeholder .btn-primary:hover {
+  background-color: #d32f2f; /* Destaque mais escuro */
+}
+.light-mode .sidebar-widget a {
+  color: var(--light-text-secondary, #6c757d); /* Cor secundária */
+}
+.light-mode .sidebar-widget a:hover {
+  color: var(--light-accent-color, #F44336); /* Cor de destaque no hover */
+}
+
+/* --- Estado Ativo Navegação (Exemplo) --- */
+.light-mode .page-home-active {
+  color: var(--light-text-primary, #212529); /* Cor primária para não ativo */
+}
+.light-mode .page-news-active {
+  color: var(--light-accent-color, #F44336); /* Mantém cor de destaque */
 }

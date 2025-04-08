@@ -1,288 +1,438 @@
-document.addEventListener("DOMContentLoaded", function () {
-  let currentPage = 1;
-  const newsPerPage = 8;
-  let allNews = []; // Armazena todas as notícias combinadas
-  let allNewsFiltered = []; // Armazena notícias após filtragem/ordenação
-  const loadingElement = document.getElementById('loading');
-  const menuToggle = document.querySelector('.menu-toggle');
-  const navLinks = document.querySelector('.nav-links');
+// scripts/noticias.js
 
-  if (!menuToggle || !navLinks) {
-    console.error('Elementos .menu-toggle ou .nav-links não encontrados!');
-    return;
-  }
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("DOM da página de notícias pronto.");
 
-  // Função para carregar dados dos dois arquivos JSON
-  function loadData() {
-    if (loadingElement) loadingElement.style.display = 'block';
-    return Promise.all([
-      fetch('data/news-cards.json').then(response => response.ok ? response.json() : Promise.reject('Falha ao carregar news-cards.json')),
-      fetch('data/archived-news.json').then(response => response.ok ? response.json() : Promise.reject('Falha ao carregar archived-news.json'))
-    ])
-      .then(([recentData, archivedData]) => {
-        // *** IMPORTANTE: Assumindo que archived-news.json TAMBÉM usa a NOVA estrutura ***
-        const recentNews = recentData.news || [];
-        const archivedNews = archivedData.archivedNews || [];
+    // --- Variáveis Globais ---
+    let currentPage = 1;
+    const newsPerPage = 8; // Quantas notícias por página
+    let allNews = []; // Armazena TODAS as notícias do noticias.json
+    let allNewsFiltered = []; // Armazena notícias após filtragem/ordenação/busca
+    let activeCategoryFilter = null; // Guarda o filtro de categoria da URL
+    let activeTagFilter = null; // Guarda o filtro de tag da URL
 
-        allNews = [...recentNews, ...archivedNews]
-          // Ordena usando isoDate para maior precisão, com fallback para date
-          .sort((a, b) => {
-             const dateA = a.isoDate || a.date;
-             const dateB = b.isoDate || b.date;
-             // Tenta converter para data; retorna 0 se inválido para não quebrar a ordenação
-             const timeA = dateA ? new Date(dateA).getTime() : 0;
-             const timeB = dateB ? new Date(dateB).getTime() : 0;
-             // Ordena do mais recente para o mais antigo (descendente)
-             return (timeB || 0) - (timeA || 0);
-          });
-
-        allNewsFiltered = [...allNews]; // Inicializa com todas as notícias ordenadas
-        if (loadingElement) {
-            setTimeout(() => { loadingElement.style.display = 'none'; }, 300); // Pequeno delay
-        }
-        loadNews(currentPage); // Carrega a primeira página
-      })
-      .catch(error => {
-        console.error('Erro ao carregar ou processar os dados:', error);
-        if (loadingElement) loadingElement.style.display = 'none';
-         const container = document.querySelector('.tech-news-container');
-         if(container) container.innerHTML = '<p class="error-fallback" role="alert">Erro ao carregar notícias.</p>';
-      });
-  }
-
-  // Função para exibir notícias na página atual
-  function loadNews(page) {
-    if (loadingElement) loadingElement.style.display = 'block';
+    // --- Seletores DOM ---
+    const loadingElement = document.getElementById('loading');
     const container = document.querySelector('.tech-news-container');
+    const sortSelect = document.getElementById('news-sort');
+    const searchInput = document.getElementById('news-search-input');
+    const searchButton = document.getElementById('news-search-button');
+    const clearButton = document.getElementById('news-clear-button'); // Botão de limpar busca
+    const prevPageButton = document.querySelector('.prev-page');
+    const nextPageButton = document.querySelector('.next-page');
+    const paginationContainer = document.querySelector('.pagination-controls'); // Seleciona o container da paginação
+    const filterInfoElement = document.getElementById('filter-info'); // Elemento para mostrar filtro ativo
+
+    // --- Validação Inicial Essencial ---
     if (!container) {
-      console.error('Container .tech-news-container não encontrado!');
-      if (loadingElement) loadingElement.style.display = 'none';
-      return;
-    }
-    container.innerHTML = ''; // Limpa o container
-
-    if (allNewsFiltered.length === 0) {
-      container.innerHTML = '<p class="no-results">Nenhuma notícia encontrada.</p>';
-      updatePaginationControls(page, 0); // Atualiza controles de paginação para estado vazio
-      if (loadingElement) loadingElement.style.display = 'none';
-      return;
+        console.error('Erro Crítico: Container de notícias (.tech-news-container) não encontrado!');
+        return; // Interrompe a execução se o container principal não existe
     }
 
-    const start = (page - 1) * newsPerPage;
-    const end = start + newsPerPage;
-    const paginatedNews = allNewsFiltered.slice(start, end);
+    // --- Função Principal de Inicialização ---
+    async function inicializarPaginaNoticias() {
+        console.log("Iniciando carregamento de data/noticias.json...");
+        if (loadingElement) loadingElement.style.display = 'block';
 
-    paginatedNews.forEach(news => {
-      const article = document.createElement('article');
-      article.classList.add('tech-news-card');
+        try {
+            // Carrega todas as notícias
+            const response = await fetch('data/noticias.json?v=' + Date.now()); // Cache bust
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status} ${response.statusText}`);
+            const data = await response.json();
+            if (!data || !Array.isArray(data.noticias)) throw new Error("Formato inválido em noticias.json");
 
-      // --- CORREÇÃO AQUI: Usa os novos campos do JSON ---
-      const authorName = news.authorName || 'Autor desconhecido';
-      const authorLink = news.authorLink || '#';
-      const imageWidth = news.imageWidth ? `width="${news.imageWidth}"` : 'width="200"'; // Usa JSON ou fallback
-      const imageHeight = news.imageHeight ? `height="${news.imageHeight}"` : 'height="100"'; // Usa JSON ou fallback
-      const newsDate = news.date || ''; // Usa a data formatada do JSON
-      const imageAlt = news.alt || `Imagem para ${news.title || 'notícia'}`;
-      const newsLink = news.link || '#';
+            allNews = data.noticias;
+            console.log(`Total de ${allNews.length} notícias carregadas.`);
 
-      // Monta o HTML do autor no formato desejado (similar ao original, mas com classes)
-      const authorHtml = `
-        <p class="tech-news-author">
-          <span class="author-prefix">Por: </span>
-          <a href="${authorLink}" class="author-link" title="Ver posts de ${authorName}" ${authorLink !== '#' ? 'target="_blank" rel="noopener noreferrer"' : ''}>${authorName}</a>
-          <span class="tech-news-date">${newsDate}</span>
-        </p>
-      `;
-      // --- FIM DA CORREÇÃO ---
+            // Verifica Parâmetros de URL para Filtros (ANTES de ordenar/exibir)
+            const urlParams = new URLSearchParams(window.location.search);
+            activeCategoryFilter = urlParams.get('categoria'); // Ex: 'modelos-de-linguagem'
+            activeTagFilter = urlParams.get('tag'); // Ex: 'openai'
 
-      article.innerHTML = `
-        <div class="tech-news-image">
-          <a href="${newsLink}" target="_blank" rel="noopener noreferrer">
-            <img src="${news.image || 'assets/placeholder.jpg'}" alt="${imageAlt}" loading="lazy" ${imageWidth} ${imageHeight}>
-          </a>
-        </div>
-        <div class="tech-news-content">
-          <h3 class="tech-news-title">
-            <a href="${newsLink}" target="_blank" rel="noopener noreferrer" aria-label="Leia sobre ${news.title || 'Notícia sem título'}" title="${news.title || ''}">
-              ${news.title || 'Notícia sem título'}
-            </a>
-          </h3>
-          <p class="tech-news-excerpt">${news.excerpt || ''}</p>
-          ${authorHtml}
-          <div class="share-container">
-            <div class="social-icon x" aria-label="Compartilhar no X"><i class="fab fa-x-twitter"></i></div>
-            <div class="social-icon whatsapp" aria-label="Compartilhar no WhatsApp"><i class="fab fa-whatsapp"></i></div>
-            <div class="social-icon facebook" aria-label="Compartilhar no Facebook"><i class="fab fa-facebook-f"></i></div>
-            <div class="social-icon linkedin" aria-label="Compartilhar no LinkedIn"><i class="fab fa-linkedin-in"></i></div>
-          </div>
-        </div>
-      `;
-      container.appendChild(article);
+            // Aplica filtros e ordenação inicial
+            applyFiltersAndSort(); // <<< Função centralizada para filtrar e ordenar
 
-      // Adiciona listeners de compartilhamento APÓS adicionar ao DOM
-      const shareContainer = article.querySelector('.share-container');
-      if(shareContainer) {
-          const currentTitle = news.title || '';
-          const currentUrl = newsLink;
-          shareContainer.querySelector('.social-icon.x')?.addEventListener('click', () => window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(currentTitle)}&url=${encodeURIComponent(currentUrl)}`, '_blank'));
-          shareContainer.querySelector('.social-icon.whatsapp')?.addEventListener('click', () => window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(currentTitle + ' ' + currentUrl)}`, '_blank'));
-          shareContainer.querySelector('.social-icon.facebook')?.addEventListener('click', () => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`, '_blank'));
-          shareContainer.querySelector('.social-icon.linkedin')?.addEventListener('click', () => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`, '_blank'));
-      }
-    });
+            // Configura os listeners (só precisa fazer uma vez)
+            setupEventListeners();
 
-    updatePaginationControls(page, allNewsFiltered.length); // Atualiza controles
-
-    // Rola suavemente para o topo após carregar novas notícias <<<--- CORREÇÃO APLICADA AQUI
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    if (loadingElement) {
-        setTimeout(() => { loadingElement.style.display = 'none'; }, 300);
+        } catch (error) {
+            console.error('Erro ao carregar ou processar data/noticias.json:', error);
+            container.innerHTML = '<p class="error-fallback" role="alert">Erro ao carregar notícias.</p>';
+        } finally {
+            // Esconde o loading mesmo se der erro
+            if (loadingElement) {
+                setTimeout(() => { loadingElement.style.display = 'none'; }, 300);
+            }
+        }
     }
-  }
 
-  // Função auxiliar para atualizar controles de paginação
-  function updatePaginationControls(currentPage, totalItems) {
-     const pageNumberDisplay = document.querySelector('.page-number');
-     const prevButton = document.querySelector('.prev-page');
-     const nextButton = document.querySelector('.next-page');
-     const totalPages = Math.ceil(totalItems / newsPerPage);
+    // --- Função para Aplicar Filtros (URL, Busca) e Ordenação ---
+    function applyFiltersAndSort() {
+        console.log(`Aplicando filtros: Categoria=${activeCategoryFilter}, Tag=${activeTagFilter}, Busca="${searchInput?.value || ''}"`);
+        let tempFiltered = [...allNews]; // Começa com todas
 
-     if (pageNumberDisplay) {
-         pageNumberDisplay.textContent = totalItems > 0 ? `Página ${currentPage} de ${totalPages}` : 'Página 1 de 1';
-     }
-     if (prevButton) {
-         prevButton.disabled = currentPage === 1;
-     }
-     if (nextButton) {
-        // Desabilita se não houver itens ou se for a última página
-         nextButton.disabled = totalItems === 0 || currentPage >= totalPages;
-     }
-  }
+        // 1. Aplica filtro de Categoria (se veio da URL)
+        if (activeCategoryFilter) {
+            tempFiltered = tempFiltered.filter(news =>
+                news.categorias?.some(cat => formatForUrl(cat) === activeCategoryFilter)
+            );
+            displayActiveFilter(`Categoria: ${getOriginalName(activeCategoryFilter, 'category')}`);
+        }
+        // 2. Aplica filtro de Tag (se veio da URL - ignora se já filtrou por categoria)
+        else if (activeTagFilter) {
+            tempFiltered = tempFiltered.filter(news =>
+                news.tags?.some(tag => formatForUrl(tag) === activeTagFilter)
+            );
+             displayActiveFilter(`Tag: ${getOriginalName(activeTagFilter, 'tag')}`);
+        }
+        // 3. Aplica filtro de Busca (se houver texto no input - ignora se já filtrou por URL)
+        else if (searchInput && searchInput.value.trim()) {
+             const searchLower = searchInput.value.trim().toLowerCase();
+             tempFiltered = tempFiltered.filter(news =>
+                (news.titulo?.toLowerCase() || '').includes(searchLower) ||
+                (news.resumo?.toLowerCase() || '').includes(searchLower) ||
+                (news.autor?.nome?.toLowerCase() || '').includes(searchLower) ||
+                (news.tags?.some(tag => tag.toLowerCase().includes(searchLower)) || false) ||
+                (news.categorias?.some(cat => cat.toLowerCase().includes(searchLower)) || false)
+            );
+            displayActiveFilter(`Busca por: "${searchInput.value.trim()}"`);
+        } else {
+             // Se nenhum filtro estiver ativo, limpa a exibição de filtro
+             displayActiveFilter(null);
+        }
 
+        // Armazena o resultado filtrado
+        allNewsFiltered = tempFiltered;
 
-  // Função para ordenar e re-renderizar
-  function sortNews(order) {
-    let sortedNews = [...allNewsFiltered]; // Ordena a partir dos já filtrados
-    if (order === 'recent') {
-      sortedNews.sort((a, b) => {
-          const dateA = a.isoDate || a.date;
-          const dateB = b.isoDate || b.date;
-          const timeA = dateA ? new Date(dateA).getTime() : 0;
-          const timeB = dateB ? new Date(dateB).getTime() : 0;
-          return (timeB || 0) - (timeA || 0); // Mais recentes primeiro
-      });
-    } else if (order === 'oldest') {
-      sortedNews.sort((a, b) => {
-          const dateA = a.isoDate || a.date;
-          const dateB = b.isoDate || b.date;
-          const timeA = dateA ? new Date(dateA).getTime() : 0;
-          const timeB = dateB ? new Date(dateB).getTime() : 0;
-          return (timeA || 0) - (timeB || 0); // Mais antigas primeiro
-      });
+        // Aplica a ordenação selecionada (ou padrão 'recent')
+        const currentSortOrder = sortSelect?.value || 'recent';
+        sortNewsInternal(currentSortOrder); // Chama a lógica interna de ordenação
+
+        // Exibe a primeira página dos resultados filtrados e ordenados
+        currentPage = 1;
+        displayNewsPage(currentPage);
     }
-    allNewsFiltered = sortedNews; // Atualiza a lista filtrada/ordenada
-    currentPage = 1;
-    loadNews(currentPage);
-  }
 
-  // Listener para o filtro de ordenação
-  const sortSelect = document.getElementById('news-sort');
-  if (sortSelect) {
-    sortSelect.addEventListener('change', () => {
-      sortNews(sortSelect.value);
-    });
-  } else {
-    console.warn('Elemento #news-sort não encontrado!');
-  }
+    // --- Funções Auxiliares para Filtro ---
+    function formatForUrl(text) {
+        if (!text) return '';
+        // Converte para minúsculas, remove acentos, troca espaços/não-alfanuméricos por hífens
+        return text.toLowerCase()
+               .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Remove acentos
+               .replace(/[^a-z0-9.]+/g, '-') // Mantém letras, números, PONTO e hífen, troca outros por hífen
+               .replace(/-+/g, '-') // Remove hífens duplicados
+               .replace(/^-+|-+$/g, ''); // Remove hífens no início/fim
+}
 
-  // Listeners para a barra de pesquisa
-  const searchInput = document.getElementById('news-search-input');
-  const searchButton = document.getElementById('news-search-button');
-  const clearButton = document.getElementById('news-clear-button');
-  if (searchInput && searchButton && clearButton) {
-    searchButton.addEventListener('click', () => filterNews(searchInput.value));
-    searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') filterNews(searchInput.value); });
-    searchInput.addEventListener('input', () => { clearButton.style.display = searchInput.value ? 'flex' : 'none'; });
-    clearButton.addEventListener('click', () => {
-      searchInput.value = '';
-      clearButton.style.display = 'none';
-      filterNews('');
-    });
-  } else {
-    console.warn('Elementos de pesquisa ou botão de limpar não encontrados!');
-  }
-
-  // Função para filtrar notícias
-  function filterNews(searchText) {
-    const searchLower = searchText.trim().toLowerCase();
-    if (!searchLower) {
-        allNewsFiltered = [...allNews]; // Restaura todas se a busca estiver vazia
-    } else {
-        allNewsFiltered = allNews.filter(news =>
-            (news.title?.toLowerCase() || '').includes(searchLower) ||
-            (news.excerpt?.toLowerCase() || '').includes(searchLower) ||
-            (news.authorName?.toLowerCase() || '').includes(searchLower) // Adiciona busca por autor
-        );
+    function getOriginalName(urlFormattedName, type) {
+    console.log(`Buscando nome original para: ${urlFormattedName} (tipo: ${type})`);
+    let bestMatch = null; // Armazena a melhor correspondência encontrada
+        // Itera por todas as notícias para encontrar uma correspondência exata (após formatação)
+    for (const news of allNews) {
+         const list = (type === 'category' ? news.categorias : news.tags) || [];
+         const found = list.find(item => formatForUrl(item) === urlFormattedName);
+         if (found) {
+             bestMatch = found; // Encontrou o nome original exato!
+             console.log(`Correspondência exata encontrada: ${bestMatch}`);
+             break; // Pode parar, já achou
+         }
     }
-    currentPage = 1;
-    loadNews(currentPage);
-  }
+    
+    // Se encontrou uma correspondência exata, retorna ela
+    if (bestMatch) {
+        return bestMatch;
+    }
+    
+    // --- Fallback (se não achou correspondência exata) ---
+    // Tenta reconstruir de forma simples, capitalizando palavras separadas por hífen
+    console.warn(`Não foi encontrada correspondência exata para "${urlFormattedName}". Tentando reconstrução.`);
+    let reconstructedName = urlFormattedName
+                            .split('-') // Separa por hífen
+                            .map(word => word.charAt(0).toUpperCase() + word.slice(1)) // Capitaliza cada parte
+                            .join(' '); // Junta com espaço
+                            
+                            // Tenta corrigir casos como 'Gpt 4.5' para 'GPT 4.5' (detecta número após ponto)
+    reconstructedName = reconstructedName.replace(/(\b[a-z]) (\d+\.\d+)/gi, (match, p1, p2) => `${p1.toUpperCase()} ${p2}`);
+    // Tenta corrigir casos como 'Gpt 4' para 'GPT 4'
+    reconstructedName = reconstructedName.replace(/(\b[a-z]) (\d+)\b/gi, (match, p1, p2) => `${p1.toUpperCase()} ${p2}`);
+    console.log(`Nome reconstruído (fallback): ${reconstructedName}`);
+    return reconstructedName;
+    
+        // Capitaliza a primeira letra de cada palavra (opcional, para melhor exibição)
+        return originalName.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+    }
 
-  // Botão Voltar ao Topo
-  const newsBackToTopButton = document.getElementById('news-back-to-top');
-  if (newsBackToTopButton) {
-    window.addEventListener('scroll', () => {
-      newsBackToTopButton.classList.toggle('visible', window.scrollY > 600);
-    });
-    newsBackToTopButton.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  } else {
-    console.warn('Botão #news-back-to-top não encontrado!');
-  }
+    // --- Função para Exibir o Filtro Ativo ---
+    function displayActiveFilter(filterText) {
+        if (filterInfoElement) {
+            if (filterText) {
+                // Cria o botão apenas se o texto do filtro existir
+                filterInfoElement.innerHTML = `Filtrando por: <strong>${filterText}</strong> <button id="clear-filter-btn" class="clear-filter-button" aria-label="Remover filtro">×</button>`;
+                filterInfoElement.style.display = 'block'; // Ou 'flex', dependendo do seu CSS
+                // Adiciona listener ao botão DEPOIS de criá-lo
+                const clearFilterBtn = document.getElementById('clear-filter-btn');
+                 if (clearFilterBtn) {
+                     clearFilterBtn.addEventListener('click', clearAllFilters);
+                 } else {
+                      console.warn("Não foi possível encontrar o botão #clear-filter-btn após criá-lo.");
+                 }
+            } else {
+                filterInfoElement.innerHTML = '';
+                filterInfoElement.style.display = 'none';
+            }
+        } else {
+            console.warn("Elemento #filter-info não encontrado para exibir filtro ativo.");
+        }
+    }
 
-  // Paginação
-  const prevPageButton = document.querySelector('.prev-page');
-  const nextPageButton = document.querySelector('.next-page');
+    // --- Função para Limpar Todos os Filtros (URL, Busca) ---
+    function clearAllFilters() {
+        console.log("Limpando todos os filtros...");
+        activeCategoryFilter = null;
+        activeTagFilter = null;
+        if (searchInput) searchInput.value = '';
+        if (clearButton) clearButton.style.display = 'none';
 
-  if (prevPageButton) {
-      prevPageButton.addEventListener('click', () => {
-          if (currentPage > 1) {
-              currentPage--;
-              loadNews(currentPage); // Chamada já existente
-          }
-      });
-  }
-   if (nextPageButton) {
-      nextPageButton.addEventListener('click', () => {
-          // Calcula o total de páginas ANTES de incrementar
-          const totalPages = Math.ceil(allNewsFiltered.length / newsPerPage);
-          if (currentPage < totalPages) {
-              currentPage++;
-              loadNews(currentPage); // Chamada já existente
-          }
-      });
-  }
+        // Remove parâmetros da URL sem recarregar
+        if (window.history.pushState) {
+            const newUrl = window.location.pathname;
+            window.history.pushState({path:newUrl}, '', newUrl);
+            console.log("Parâmetros da URL removidos.");
+        }
 
-  // Menu Hamburger
-  if(menuToggle && navLinks) {
-      menuToggle.addEventListener('click', (e) => {
-          e.stopPropagation(); // Evita que o clique feche o menu imediatamente
-          navLinks.classList.toggle('active');
-      });
-      document.addEventListener('click', (e) => {
-          if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
-              navLinks.classList.remove('active');
-          }
-      });
-      navLinks.querySelectorAll('a').forEach(link => {
-          link.addEventListener('click', () => {
-              navLinks.classList.remove('active');
-          });
-      });
-  }
+        applyFiltersAndSort(); // Re-aplica (sem filtros) para mostrar tudo e ordenar
+    }
 
-  // Carrega os dados iniciais
-  loadData();
-});
+
+    // --- Lógica Interna de Ordenação ---
+    function sortNewsInternal(order) {
+        console.log(`Ordenando interno por: ${order}`);
+        if (order === 'recent') {
+            allNewsFiltered.sort((a, b) => new Date(b.isoDate || 0) - new Date(a.isoDate || 0));
+        } else if (order === 'oldest') {
+            allNewsFiltered.sort((a, b) => new Date(a.isoDate || 0) - new Date(b.isoDate || 0));
+        }
+    }
+
+    // --- Função para Filtrar Notícias (APENAS por Busca do Input) ---
+    function filterNewsBySearch() {
+        console.log("Filtrando por busca do input...");
+        // Limpa filtros de URL se uma busca for feita
+        if(activeCategoryFilter || activeTagFilter) {
+            activeCategoryFilter = null;
+            activeTagFilter = null;
+            // Remove parâmetros da URL sem recarregar
+            if (window.history.pushState) {
+                const newUrl = window.location.pathname;
+                window.history.pushState({path:newUrl}, '', newUrl);
+            }
+        }
+        // Chama a função centralizada que agora usará o valor do input
+        applyFiltersAndSort();
+    }
+
+    // --- Função para Exibir Notícias da Página Atual ---
+    function displayNewsPage(page) {
+        console.log(`Exibindo página ${page}...`);
+        if (loadingElement) loadingElement.style.display = 'block';
+        if (!container) return; // Segurança extra
+        container.innerHTML = ''; // Limpa o container
+
+        if (allNewsFiltered.length === 0) {
+            // Mantém a exibição do filtro ativo (já definido por applyFiltersAndSort)
+            container.innerHTML = '<p class="no-results">Nenhuma notícia encontrada com os filtros aplicados.</p>';
+            updatePaginationControls(page, 0);
+            if (loadingElement) loadingElement.style.display = 'none';
+            return;
+        }
+
+        const start = (page - 1) * newsPerPage;
+        const end = start + newsPerPage;
+        const paginatedNews = allNewsFiltered.slice(start, end);
+
+        console.log(`Exibindo notícias ${start + 1} a ${Math.min(end, allNewsFiltered.length)} de ${allNewsFiltered.length}`);
+
+        paginatedNews.forEach(news => {
+            const article = criarCardArquivoHtml(news);
+            container.appendChild(article);
+
+            // Adiciona listeners de compartilhamento
+            const shareContainer = article.querySelector('.share-container');
+            if (shareContainer) {
+                const currentTitle = news.titulo || '';
+                // Tenta pegar a URL absoluta do link da notícia, senão usa a URL atual
+                const newsLinkElement = article.querySelector('.tech-news-title a');
+                const currentUrl = newsLinkElement ? newsLinkElement.href : window.location.href;
+
+                // Usando funções separadas para clareza e evitar repetição
+                const addShareListener = (selector, url) => {
+                    const element = shareContainer.querySelector(selector);
+                    if (element) {
+                        element.addEventListener('click', (e) => {
+                             e.stopPropagation(); // Evita que o clique propague para o card
+                             window.open(url, '_blank', 'noopener,noreferrer');
+                         });
+                    }
+                };
+
+                addShareListener('.social-icon.x', `https://twitter.com/intent/tweet?text=${encodeURIComponent(currentTitle)}&url=${encodeURIComponent(currentUrl)}`);
+                addShareListener('.social-icon.whatsapp', `https://api.whatsapp.com/send?text=${encodeURIComponent(currentTitle + ' ' + currentUrl)}`);
+                addShareListener('.social-icon.facebook', `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`);
+                addShareListener('.social-icon.linkedin', `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`);
+            }
+        });
+
+        updatePaginationControls(page, allNewsFiltered.length);
+
+        // Rola suavemente para o topo (se desejar)
+        // window.scrollTo({ top: 0, behavior: 'smooth' }); // Pode ser irritante se o usuário só estiver paginando
+
+        if (loadingElement) {
+            setTimeout(() => { loadingElement.style.display = 'none'; }, 300);
+        }
+    }
+
+    // --- Função Auxiliar para Criar o HTML do Card (sem alterações necessárias aqui) ---
+    function criarCardArquivoHtml(cardData) {
+        const article = document.createElement('article');
+        article.classList.add('tech-news-card');
+
+        const linkNoticia = `noticia.html?artigo=${cardData.slug || ''}`;
+        const titulo = cardData.titulo || 'Notícia sem título';
+        const resumo = cardData.resumo || '';
+        const imagemSrc = cardData.imagemCard || cardData.imagemBanner || 'assets/imagens/geral/placeholder.png';
+        const altImagem = cardData.altImagem || `Imagem para ${titulo}`;
+        let dataFormatada = cardData.data || '';
+        if(cardData.isoDate) {
+             try {
+                 dataFormatada = new Date(cardData.isoDate + 'T00:00:00').toLocaleDateString('pt-BR', { year: 'numeric', month: '2-digit', day: '2-digit' });
+             } catch { /* usa data original */ }
+        }
+        const isoDate = cardData.isoDate || '';
+        const autorNome = cardData.autor?.nome || '';
+        const autorLink = cardData.autor?.link || '#';
+
+        const authorHtml = autorNome
+            ? `
+            <p class="tech-news-author">
+              <span class="author-prefix">Por: </span>
+              <a href="${autorLink}" class="author-link" title="Ver perfil de ${autorNome}" ${autorLink !== '#' ? 'target="_blank" rel="noopener noreferrer"' : ''}>${autorNome}</a>
+              ${dataFormatada ? `<span class="tech-news-date"><time datetime="${isoDate}">${dataFormatada}</time></span>` : ''}
+            </p>`
+            : `${dataFormatada ? `<p class="tech-news-author"><span class="tech-news-date"><time datetime="${isoDate}">${dataFormatada}</time></span></p>` : ''}`;
+
+        article.innerHTML = `
+            <div class="tech-news-image">
+              <a href="${linkNoticia}" aria-label="Leia mais sobre ${titulo}">
+                <img src="${imagemSrc}" alt="${altImagem}" loading="lazy">
+              </a>
+            </div>
+            <div class="tech-news-content">
+              <h3 class="tech-news-title">
+                <a href="${linkNoticia}" title="${titulo}">
+                  ${titulo}
+                </a>
+              </h3>
+              <p class="tech-news-excerpt">${resumo}</p>
+              <div class="card-bottom-row">
+                ${authorHtml}
+                <div class="share-container">
+                  <div class="social-icon x" role="button" tabindex="0" aria-label="Compartilhar no X"><i class="fab fa-x-twitter"></i></div>
+                  <div class="social-icon whatsapp" role="button" tabindex="0" aria-label="Compartilhar no WhatsApp"><i class="fab fa-whatsapp"></i></div>
+                  <div class="social-icon facebook" role="button" tabindex="0" aria-label="Compartilhar no Facebook"><i class="fab fa-facebook-f"></i></div>
+                  <div class="social-icon linkedin" role="button" tabindex="0" aria-label="Compartilhar no LinkedIn"><i class="fab fa-linkedin-in"></i></div>
+                </div>
+              </div>
+            </div>
+        `;
+        return article;
+    }
+
+    // --- Função Auxiliar para Atualizar Controles de Paginação ---
+    function updatePaginationControls(page, totalItems) {
+        console.log(`Atualizando paginação: page=${page}, totalItems=${totalItems}`);
+        const pageNumberDisplay = document.querySelector('.page-number');
+        // Seleciona os botões novamente aqui para garantir que temos as referências certas
+        const currentPrevButton = document.querySelector('.prev-page');
+        const currentNextButton = document.querySelector('.next-page');
+
+        if (!paginationContainer) {
+             console.warn("Container da paginação .pagination-controls não encontrado!");
+             return;
+        }
+
+        const totalPages = Math.ceil(totalItems / newsPerPage);
+        console.log(`Total de páginas calculado: ${totalPages}`);
+
+        if (totalItems === 0 || totalPages <= 1) {
+            paginationContainer.style.display = 'none';
+        } else {
+            paginationContainer.style.display = 'flex';
+
+            if (pageNumberDisplay) {
+                pageNumberDisplay.textContent = `Página ${page} de ${totalPages}`;
+            } else { console.warn("Elemento .page-number não encontrado."); }
+
+            if (currentPrevButton) {
+                currentPrevButton.disabled = (page === 1);
+            } else { console.warn("Botão .prev-page não encontrado."); }
+
+            if (currentNextButton) {
+                currentNextButton.disabled = (page >= totalPages);
+            } else { console.warn("Botão .next-page não encontrado."); }
+        }
+    }
+
+    // --- Configuração dos Event Listeners (Chamado uma vez) ---
+    function setupEventListeners() {
+        console.log("Configurando event listeners da página de notícias...");
+        // Listener para o filtro de ordenação
+        if (sortSelect) {
+            sortSelect.addEventListener('change', () => {
+                sortNewsInternal(sortSelect.value); // Ordena os dados filtrados
+                currentPage = 1; // Volta para a primeira página
+                displayNewsPage(currentPage); // Re-exibe
+            });
+        } else { console.warn('Elemento #news-sort não encontrado!'); }
+
+        // Listeners para a barra de pesquisa
+        if (searchInput && searchButton && clearButton) {
+            searchButton.addEventListener('click', filterNewsBySearch); // Chama a função que limpa filtros URL e aplica a busca
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') filterNewsBySearch();
+            });
+            searchInput.addEventListener('input', () => {
+                clearButton.style.display = searchInput.value ? 'inline-block' : 'none';
+            });
+            clearButton.addEventListener('click', clearAllFilters); // Botão limpar chama a limpeza geral
+            clearButton.style.display = searchInput.value ? 'inline-block' : 'none';
+        } else { console.warn('Elementos de pesquisa não encontrados!'); }
+
+        // Paginação - Listeners
+        if (prevPageButton) {
+            prevPageButton.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    displayNewsPage(currentPage);
+                }
+            });
+        } else { console.warn("Botão de paginação .prev-page não encontrado.");}
+
+        if (nextPageButton) {
+            nextPageButton.addEventListener('click', () => {
+                const totalPages = Math.ceil(allNewsFiltered.length / newsPerPage);
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    displayNewsPage(currentPage);
+                }
+            });
+        } else { console.warn("Botão de paginação .next-page não encontrado.");}
+
+         // REMOVIDO: Listener para Botão Voltar ao Topo específico daqui (agora é global)
+         // REMOVIDO: Lógica do Menu Hamburger (agora é global)
+    }
+
+    // --- Inicia todo o processo ---
+    inicializarPaginaNoticias();
+
+}); // Fim do DOMContentLoaded

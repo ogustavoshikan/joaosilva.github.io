@@ -6,7 +6,7 @@
       "date": "2025-03-12",
       "authorName": "Gustavo G.",
       "authorLink": "https://instagram.com/ogustavogoncalvess",
-      "image": "assets/tendencias/espanha-new.webp",
+      "image": "assets/imagens/tendencias/espanha-new.webp",
       "link": "https://exemplo.com/espanha-ia-agencia",
       "alt": "Imagem da sede da nova Agência de Supervisão de IA da Espanha em A Coruña"
     },
@@ -16,7 +16,7 @@
       "date": "2025-03-12",
       "authorName": "Gustavo G.",
       "authorLink": "#",
-      "image": "assets/tendencias/russia-news.webp",
+      "image": "assets/imagens/tendencias/russia-news.webp",
       "link": "https://exemplo.com/russia-ia-alianca",
       "alt": "Imagem ilustrativa mostrando cooperação entre Rússia e países emergentes em tecnologia de IA"
     },
@@ -26,7 +26,7 @@
       "date": "2025-03-12",
       "authorName": "Gustavo G.",
       "authorLink": "#",
-      "image": "assets/tendencias/openai-logo.webp",
+      "image": "assets/imagens/tendencias/openai-logo.webp",
       "link": "https://exemplo.com/openai-missao",
       "alt": "Logo da OpenAI em fundo escuro"
     },
@@ -36,7 +36,7 @@
       "date": "2025-03-14",
       "authorName": "João Silva",
       "authorLink": "https://instagram.com/ogustavogoncalvess",
-      "image": "assets/tendencias/etica-na-ia.webp",
+      "image": "assets/imagens/tendencias/etica-na-ia.webp",
       "link": "https://exemplo.com/etica-ia",
       "alt": "Imagem ilustrativa sobre ética na inteligência artificial"
     },
@@ -46,7 +46,7 @@
       "date": "2025-03-13",
       "authorName": "Ana Clara",
       "authorLink": "https://instagram.com/ogustavogoncalvess",
-      "image": "assets/tendencias/iagenerativa.jpg",
+      "image": "assets/imagens/tendencias/iagenerativa.jpg",
       "link": "https://exemplo.com/ia-generativa",
       "alt": "Imagem ilustrativa sobre o futuro da IA generativa na criação de conteúdo"
     },
@@ -56,7 +56,7 @@
       "date": "2025-03-17",
       "authorName": "Laura Mendes",
       "authorLink": "#",
-      "image": "assets/tendencias/modelos-ia.webp",
+      "image": "assets/imagens/tendencias/modelos-ia.webp",
       "link": "https://exemplo.com/modelos-ia",
       "alt": "Imagem ilustrativa sobre modelos de inteligência artificial"
     }

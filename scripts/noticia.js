@@ -1,191 +1,298 @@
 // scripts/noticia.js
 
-// --- Banco de Dados Simulado das Notícias ---
-// Em um projeto real, isso viria de um JSON, API, etc.
-const todasAsNoticias = [
-    {
-        slug: 'openai-gpt-4.5',
-        titulo: 'OpenAI Lança Modelo GPT-4.5 com Inteligência Emocional Avançada',
-        autor: 'Gustavo G.',
-        data: '07/03/2025',
-        imagemUrl: 'assets/news/gpt4.5-baanner.jpg', // Imagem GRANDE para a página
-        imagemAlt: 'Logo OpenAI ChatGPT 4.5',
-        categorias: ['Modelos de Linguagem', 'OpenAI'],
-        // O corpo pode ser HTML direto ou Markdown (que precisaria ser processado)
-        corpoHtml: ` 
-            <p>A OpenAI anunciou nesta quinta-feira o lançamento oficial do GPT-4.5, uma nova versão do seu já popular modelo de linguagem. A grande novidade da atualização está na introdução de recursos avançados de inteligência emocional, capazes de tornar as interações com o modelo ainda mais naturais, empáticas e contextualmente sensíveis.</p>
-                    
-            <h2>Um salto no entendimento emocional</h2>
-            <p>De acordo com a empresa, o GPT-4.5 foi treinado com um foco especial na compreensão de nuances emocionais, permitindo que ele identifique e responda com mais precisão a sentimentos como ansiedade, frustração, empolgação ou tristeza nas mensagens dos usuários. Esse avanço busca aproximar ainda mais o relacionamento entre humanos e inteligência artificial.</p>
-            <p>“O GPT-4.5 representa um passo importante rumo a interações mais humanas com a IA. Ele não apenas entende o que está sendo dito, mas também como está sendo dito e o 'por quê'”, disse Mira Takahashi, pesquisadora-chefe da OpenAI, durante a coletiva de lançamento.</p>
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("DOM da página de artigo pronto. Carregando notícia específica...");
+    carregarNoticiaDoJson(); // Chama a função para carregar o conteúdo desta página
 
-            <h2>Aplicações práticas</h2>
-            <p>Além de chatbots mais empáticos, a tecnologia pode ser aplicada em áreas como atendimento ao cliente, educação personalizada e até mesmo ferramentas de suporte à saúde mental (com as devidas ressalvas éticas).</p>
+    // REMOVIDO: Chamada para inicializarMenuMobile() - será feito pelo global.js
+});
 
-            <h2>Transparência e controle</h2>
-            <p>Para evitar preocupações com manipulação emocional, a OpenAI incorporou mecanismos de transparência aprimorados, permitindo ao usuário visualizar quando o modelo está reagindo a um suposto estado emocional detectado. Além disso, é possível ajustar o nível de empatia do modelo ou até desativar completamente esse recurso.</p>
-
-            <h2>Limitações e Ética</h2>
-            <p>Apesar do avanço, a empresa reconhece que o GPT-4.5 ainda não é capaz de sentir emoções – apenas simula compreensão emocional com base em padrões de linguagem. Isso levanta questões éticas, especialmente em contextos sensíveis como aconselhamento psicológico e relacionamentos digitais. Organizações de direitos digitais alertam para a necessidade de regulamentações claras sobre o uso da inteligência emocional em IA, a fim de evitar abusos ou confusões sobre os limites do que a tecnologia pode realmente fazer.</p>
-
-            <h2>Disponibilidade</h2>
-            <p>O GPT-4.5 já está disponível para desenvolvedores via API na plataforma da OpenAI, e será gradualmente integrado aos produtos existentes da empresa, como o ChatGPT e o Copilot, nas próximas semanas. A versão gratuita do ChatGPT começará a receber parte dos benefícios do novo modelo, enquanto funcionalidades mais avançadas serão exclusivas para assinantes do plano Plus.</p>
-        `,
-        tags: ['GPT-4.5', 'Inteligência Emocional', 'OpenAI', 'LLM'],
-        figcaption: 'Imagem gerada por Inteligência Artificial', // Legenda da imagem
-        // Dados para Notícias Relacionadas (exemplo)
-        relacionadas: [
-            { slug: 'elon-musk-grok-3', titulo: 'Elon Musk Lança Grok 3: A "IA Mais Inteligente da Terra"', imagemUrl: 'assets/news/grok3-related.jpg' },
-            { slug: 'claude-sonnet-3.7', titulo: 'Claude Sonnet 3.7: A Nova Fronteira da IA que Supera OpenAI e Grok 3', imagemUrl: 'assets/news/claude-related.jpg' }
-        ]
-    },
-    {
-        slug: 'claude-sonnet-3.7',
-        titulo: 'Claude Sonnet 3.7: A Nova Fronteira da IA que Supera OpenAI e Grok 3',
-        autor: 'Redação AI',
-        data: '06/03/2025',
-        imagemUrl: 'assets/news/claude-banner.jpg',
-        imagemAlt: 'Claude 3.7 Sonnet',
-        categorias: ['Modelos de Linguagem', 'Anthropic'],
-        corpoHtml: `<p>A Anthropic surpreendeu o mercado ao anunciar o Claude 3.7 Sonnet...</p><h2>Performance</h2><p>Benchmarks indicam...</p>`,
-        tags: ['Claude 3.7', 'Anthropic', 'LLM', 'Benchmark'],
-        figcaption: 'Conceito visual do Claude 3.7',
-        relacionadas: [
-             { slug: 'openai-gpt-4.5', titulo: 'OpenAI Lança Modelo GPT-4.5 com Inteligência Emocional Avançada', imagemUrl: 'assets/news/gpt4.5-related.jpg' },
-             { slug: 'elon-musk-grok-3', titulo: 'Elon Musk Lança Grok 3: A "IA Mais Inteligente da Terra"', imagemUrl: 'assets/news/grok3-related.jpg' },
-        ]
-    },
-     {
-        slug: 'elon-musk-grok-3',
-        titulo: 'Elon Musk Lança Grok 3: A "IA Mais Inteligente da Terra"',
-        autor: 'Analista de IA',
-        data: '05/03/2025',
-        imagemUrl: 'assets/news/grok3-banner.jpg',
-        imagemAlt: 'Elon Musk apresentando Grok 3',
-        categorias: ['Modelos de Linguagem', 'xAI'],
-        corpoHtml: `<p>Elon Musk revelou o Grok 3, afirmando ser...</p>`,
-        tags: ['Grok 3', 'Elon Musk', 'xAI', 'LLM'],
-        figcaption: 'Elon Musk no palco do lançamento do Grok 3',
-         relacionadas: [
-             { slug: 'openai-gpt-4.5', titulo: 'OpenAI Lança Modelo GPT-4.5 com Inteligência Emocional Avançada', imagemUrl: 'assets/news/gpt4.5-related.jpg' },
-             { slug: 'claude-sonnet-3.7', titulo: 'Claude Sonnet 3.7: A Nova Fronteira da IA que Supera OpenAI e Grok 3', imagemUrl: 'assets/news/claude-related.jpg' }
-        ]
-    }
-    // --- Adicione os dados das outras notícias aqui ---
-];
-
-// --- Função para Carregar o Conteúdo da Notícia ---
-function carregarNoticia() {
+async function carregarNoticiaDoJson() {
     // 1. Pegar o parâmetro 'artigo' da URL
     const urlParams = new URLSearchParams(window.location.search);
     const artigoSlug = urlParams.get('artigo');
 
+    // Seleciona os elementos do DOM que serão preenchidos
+    const articleContentElement = document.querySelector('.article-content');
+    const sidebarElement = document.querySelector('.article-sidebar');
+
+    if (!articleContentElement) {
+        console.error("Elemento .article-content não encontrado no DOM.");
+        return; // Não pode continuar sem o container principal
+    }
+
+    // --- Exibição de Erro Genérica ---
+    function exibirErroNaPagina(mensagem) {
+        articleContentElement.innerHTML = `<h1 class="article-title">Erro</h1><p>${mensagem}</p>`;
+        if (sidebarElement) sidebarElement.style.display = 'none'; // Opcional: esconde sidebar
+        console.error(mensagem); // Loga o erro também
+    }
+
     if (!artigoSlug) {
-        exibirErro("Artigo não especificado.");
+        exibirErroNaPagina("Nenhuma notícia especificada na URL (parâmetro 'artigo' ausente).");
         return;
     }
 
-    // 2. Encontrar a notícia no nosso "banco de dados"
-    const noticia = todasAsNoticias.find(n => n.slug === artigoSlug);
+    console.log(`Tentando carregar notícia com slug: ${artigoSlug}`);
 
-    if (!noticia) {
-        exibirErro(`Artigo "${artigoSlug}" não encontrado.`);
-        return;
+    try {
+        // 2. Fazer fetch para carregar TODAS as notícias do JSON
+        // Adicionando cache busting para garantir dados frescos
+        const response = await fetch('data/noticias.json?v=' + Date.now()); // Adiciona timestamp
+        if (!response.ok) {
+            throw new Error(`Erro ao buscar noticias.json: ${response.status} ${response.statusText}`);
+        }
+        const data = await response.json();
+
+        if (!data || !Array.isArray(data.noticias)) {
+            throw new Error("Formato inválido ou array 'noticias' ausente em data/noticias.json");
+        }
+
+        // 3. Encontrar a notícia específica pelo slug
+        const noticia = data.noticias.find(n => n.slug === artigoSlug);
+
+        if (!noticia) {
+            throw new Error(`Notícia com slug "${artigoSlug}" não encontrada em noticias.json.`);
+        }
+
+        console.log("Notícia encontrada:", noticia.titulo);
+
+        // 4. Preencher o HTML com os dados da notícia encontrada
+        preencherConteudoNoticia(noticia, data.noticias); // Passa a notícia e a lista completa para relacionados
+
+    } catch (error) {
+        exibirErroNaPagina(`Não foi possível carregar a notícia: ${error.message}`);
     }
+}
 
-    // 3. Preencher o HTML com os dados da notícia encontrada
-    
-    // Título da Página
-    document.title = `${noticia.titulo} - Technology AI`;
+// --- Função para Preencher o Conteúdo no HTML ---
+function preencherConteudoNoticia(noticia, todasNoticias) {
 
-    // Breadcrumbs (Atualiza o último item)
+    // Título da Página (aba do navegador)
+    document.title = `${noticia.titulo || 'Notícia'} - Technology AI`;
+
+    // --- Preenchimento dos Elementos (com verificações) ---
+
+    // Breadcrumbs (Último item)
     const breadcrumbAtual = document.querySelector('.breadcrumbs li[aria-current="page"]');
-    if (breadcrumbAtual) {
-        breadcrumbAtual.textContent = noticia.titulo;
-    }
+    if (breadcrumbAtual) breadcrumbAtual.textContent = noticia.titulo || '';
 
     // Categorias
     const containerCategorias = document.querySelector('.article-categories');
-    if (containerCategorias) {
+    if (containerCategorias && Array.isArray(noticia.categorias)) {
         containerCategorias.innerHTML = noticia.categorias
-            .map(cat => `<a href="#" class="category-tag">${cat}</a>`) // Idealmente, o href levaria para uma página de categoria
+            .map(cat => `<a href="news.html?categoria=${encodeURIComponent(cat.toLowerCase().replace(/\s+/g, '-'))}" class="category-tag">${cat}</a>`)
             .join('');
+    } else if (containerCategorias) {
+        containerCategorias.innerHTML = ''; // Limpa se não houver categorias
     }
 
-    // Título do Artigo
+    // Título do Artigo (H1)
     const tituloElemento = document.querySelector('.article-title');
-    if (tituloElemento) {
-        tituloElemento.textContent = noticia.titulo;
+    if (tituloElemento) tituloElemento.textContent = noticia.titulo || 'Título Indisponível';
+
+    // Meta Informações (Autor, Data)
+    const metaContainer = document.querySelector('.article-meta');
+    if (metaContainer) {
+         const autorPrefix = metaContainer.querySelector('.author-prefix');
+         const autorLink = metaContainer.querySelector('a.author');
+         const dataSpan = metaContainer.querySelector('span.date');
+
+         if(autorPrefix) autorPrefix.style.display = noticia.autor?.nome ? 'inline' : 'none'; // Mostra "Por:"
+
+         if (autorLink) {
+            if(noticia.autor?.nome) {
+                autorLink.textContent = noticia.autor.nome;
+                autorLink.href = noticia.autor.link || '#';
+                autorLink.style.display = 'inline';
+            } else {
+                autorLink.style.display = 'none'; // Esconde se não houver autor
+            }
+         } else {
+              console.warn("Elemento a.author não encontrado no container .article-meta");
+         }
+
+         if (dataSpan) {
+            // Formata a data de forma mais robusta
+            let dataFormatada = '';
+            if(noticia.isoDate) {
+                try {
+                    dataFormatada = new Date(noticia.isoDate + 'T00:00:00').toLocaleDateString('pt-BR', { year: 'numeric', month: '2-digit', day: '2-digit' });
+                } catch (e) {
+                    console.warn("Erro ao formatar isoDate:", noticia.isoDate, e);
+                    dataFormatada = noticia.data || ''; // Fallback para a data string original
+                }
+            } else {
+                 dataFormatada = noticia.data || '';
+            }
+            dataSpan.textContent = dataFormatada ? `- ${dataFormatada}` : '';
+         } else {
+             console.warn("Elemento span.date não encontrado no container .article-meta");
+         }
+    } else {
+        console.warn("Container .article-meta não encontrado.");
     }
 
-    // Meta Informações
-    const autorElemento = document.querySelector('.article-meta .author');
-    if (autorElemento) {
-        autorElemento.textContent = `Por: ${noticia.autor}`;
-    }
-    const dataElemento = document.querySelector('.article-meta .date');
-    if (dataElemento) {
-        dataElemento.textContent = noticia.data;
-    }
+     // Botões de Compartilhamento Social (Atualiza links)
+     const socialShareContainer = document.querySelector('.social-share');
+     if (socialShareContainer) {
+         try {
+             const pageUrl = window.location.href;
+             const shareTitle = noticia.titulo || '';
+             // Usando optional chaining (?) para evitar erros se o querySelector retornar null
+             socialShareContainer.querySelector('a[aria-label*="X"]')?.setAttribute('href', `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareTitle)}&url=${encodeURIComponent(pageUrl)}`);
+             socialShareContainer.querySelector('a[aria-label*="WhatsApp"]')?.setAttribute('href', `https://api.whatsapp.com/send?text=${encodeURIComponent(shareTitle + ' ' + pageUrl)}`);
+             socialShareContainer.querySelector('a[aria-label*="Facebook"]')?.setAttribute('href', `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`);
+             socialShareContainer.querySelector('a[aria-label*="LinkedIn"]')?.setAttribute('href', `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(pageUrl)}`);
+         } catch (e) {
+             console.error("Erro ao configurar botões de compartilhamento:", e);
+         }
+     } else {
+         console.warn("Container .social-share não encontrado.");
+     }
+
 
     // Imagem de Destaque
     const imagemElemento = document.querySelector('.featured-image img');
     const figcaptionElemento = document.querySelector('.featured-image figcaption');
     if (imagemElemento) {
-        imagemElemento.src = noticia.imagemUrl;
-        imagemElemento.alt = noticia.imagemAlt || noticia.titulo; // Usa alt específico ou título
+        imagemElemento.src = noticia.imagemBanner || noticia.imagemCard || 'assets/imagens/geral/placeholder.png';
+        imagemElemento.alt = noticia.altImagem || noticia.titulo || '';
+    } else {
+         console.warn("Elemento img dentro de .featured-image não encontrado.");
     }
-     if (figcaptionElemento) {
-        figcaptionElemento.textContent = noticia.figcaption || ''; // Usa legenda específica
+    if (figcaptionElemento) {
+        figcaptionElemento.textContent = noticia.legendaImagemBanner || '';
+        figcaptionElemento.style.display = noticia.legendaImagemBanner ? 'block' : 'none';
+    } else {
+         console.warn("Elemento figcaption dentro de .featured-image não encontrado.");
     }
-
 
     // Corpo do Artigo
     const corpoElemento = document.querySelector('.article-body');
     if (corpoElemento) {
-        corpoElemento.innerHTML = noticia.corpoHtml; // CUIDADO: innerHTML pode ser risco de XSS se o HTML não for confiável
+        // Cuidado com XSS se o HTML não for confiável
+        corpoElemento.innerHTML = noticia.corpoHtml || '<p>Conteúdo indisponível.</p>';
+    } else {
+         console.warn("Elemento .article-body não encontrado.");
     }
 
-    // Tags no Final
+    // Tags no Final (com links para filtro)
     const containerTags = document.querySelector('.article-tags-bottom');
-     if (containerTags) {
-        // Remove o texto "Tags:" se ele já estiver no HTML, para não duplicar
-        const strongTag = containerTags.querySelector('strong');
-        containerTags.innerHTML = ''; // Limpa o container
-        if (strongTag) containerTags.appendChild(strongTag); // Readiciona o "Tags:"
-        
-        containerTags.innerHTML += noticia.tags
-            .map(tag => `<a href="#">${tag}</a>`) // Idealmente, link para página de tag
-            .join(', '); // Separa por vírgula
+    if (containerTags) {
+        if (Array.isArray(noticia.tags) && noticia.tags.length > 0) {
+            containerTags.style.display = 'block';
+            const strongTag = containerTags.querySelector('strong');
+            let tagsHtml = noticia.tags
+               .map(tag => `<a href="news.html?tag=${encodeURIComponent(tag.toLowerCase().replace(/\s+/g, '-'))}">${tag}</a>`)
+               .join(', ');
+            containerTags.innerHTML = ''; // Limpa primeiro
+            if (strongTag) containerTags.appendChild(strongTag); // Readiciona o <strong>
+            containerTags.innerHTML += ' ' + tagsHtml; // Adiciona os links das tags
+        } else {
+            containerTags.style.display = 'none'; // Esconde se não houver tags
+        }
+    } else {
+        console.warn("Container .article-tags-bottom não encontrado.");
     }
+
+
+    // Caixa do Autor (Atualiza informações)
+    const authorBox = document.querySelector('.author-box');
+    if (authorBox) {
+        const authorAvatar = authorBox.querySelector('.author-avatar');
+        const authorNameH4 = authorBox.querySelector('.author-info h4');
+
+        if (authorAvatar) {
+             // Mapeamento simples para a imagem do autor principal
+            if (noticia.autor?.nome === 'Gustavo G.') {
+                 authorAvatar.src = 'assets/imagens/autores/gustavo-g.webp'; // Caminho corrigido ou adequado
+                 authorAvatar.alt = `Avatar ${noticia.autor.nome}`;
+            } else {
+                 // Placeholder para outros autores ou se não houver nome
+                 authorAvatar.src = 'assets/imagens/autores/placeholder-avatar.png';
+                 authorAvatar.alt = `Avatar ${noticia.autor?.nome || 'Autor Desconhecido'}`;
+            }
+        } else {
+             console.warn("Elemento .author-avatar não encontrado na caixa do autor.");
+        }
+
+        if(authorNameH4) {
+            authorNameH4.textContent = `Sobre ${noticia.autor?.nome || 'o Autor'}`;
+        } else {
+            console.warn("Elemento h4 dentro de .author-info não encontrado.");
+        }
+
+    } else {
+        console.warn("Container .author-box não encontrado.");
+    }
+
 
     // Notícias Relacionadas
     const relatedContainer = document.querySelector('.related-news-grid');
-    if (relatedContainer && noticia.relacionadas) {
-        relatedContainer.innerHTML = noticia.relacionadas.map(rel => `
-            <div class="related-news-card">
-                <a href="noticia.html?artigo=${rel.slug}"> 
-                    <img src="${rel.imagemUrl}" alt="${rel.titulo}">
-                    ${rel.titulo}
-                </a>
-            </div>
-        `).join('');
-    }
-    
-    // -- Outros elementos que precisam ser preenchidos (Caixa do autor, etc.) --
+    if (relatedContainer) {
+        try {
+            const relatedNews = todasNoticias
+                .filter(n => n.slug !== noticia.slug)
+                .sort(() => 0.5 - Math.random()) // Aleatório como exemplo
+                .slice(0, 2);
 
+            if (relatedNews.length > 0) {
+                relatedContainer.innerHTML = relatedNews.map(rel => `
+                    <div class="related-news-card">
+                        <a href="noticia.html?artigo=${rel.slug}">
+                            <img src="${rel.imagemCard || 'assets/imagens/geral/placeholder.png'}" alt="${rel.titulo || ''}" loading="lazy">
+                            ${rel.titulo || ''}
+                        </a>
+                    </div>
+                `).join('');
+            } else {
+                const relatedWrapper = relatedContainer.closest('.related-news');
+if (relatedWrapper) relatedWrapper.style.display = 'none';
+
+            }
+        } catch(e) {
+            console.error("Erro ao gerar notícias relacionadas:", e);
+            const relatedWrapper = relatedContainer.closest('.related-news');
+if (relatedWrapper) relatedWrapper.style.display = 'none';
+
+        }
+    } else {
+         console.warn("Container .related-news-grid não encontrado.");
+    }
+
+
+    // Sidebar - Últimas Notícias
+     const recentPostsList = document.querySelector('.sidebar-widget.recent-posts ul');
+     if (recentPostsList) {
+         try {
+             const recentNews = todasNoticias
+                .filter(n => n.slug !== noticia.slug)
+                .sort((a, b) => new Date(b.isoDate || 0) - new Date(a.isoDate || 0))
+                .slice(0, 3);
+
+            if (recentNews.length > 0) {
+                recentPostsList.innerHTML = recentNews.map(rec => `
+                    <li><a href="noticia.html?artigo=${rec.slug}">${rec.titulo || ''}</a></li>
+                `).join('');
+            } else {
+                recentPostsList.innerHTML = '<li>Nenhuma notícia recente.</li>';
+            }
+         } catch(e) {
+              console.error("Erro ao gerar últimas notícias da sidebar:", e);
+              recentPostsList.innerHTML = '<li>Erro ao carregar.</li>';
+         }
+     } else {
+          console.warn("Lista ul dentro de .sidebar-widget.recent-posts não encontrada.");
+     }
+
+
+    console.log("Conteúdo da notícia preenchido no HTML.");
 }
 
-// --- Função para Exibir Erro ---
-function exibirErro(mensagem) {
-    const articleContent = document.querySelector('.article-content');
-    if (articleContent) {
-        articleContent.innerHTML = `<h1 class="article-title">Erro</h1><p>${mensagem}</p>`;
-    }
-    // Opcional: esconder a sidebar se der erro
-    const sidebar = document.querySelector('.article-sidebar');
-    if(sidebar) sidebar.style.display = 'none';
-}
 
-// --- Executar a função quando o DOM estiver pronto ---
-document.addEventListener('DOMContentLoaded', carregarNoticia);
+// ===============================================
+// --- CÓDIGO REMOVIDO DAQUI ---
+// A lógica do Theme Toggle e a função inicializarMenuMobile()
+// foram removidas pois agora são gerenciadas pelo scripts/global.js
+// ===============================================

@@ -1,5 +1,5 @@
 function loadTrendsCards() {
-  fetch('data/cards.json')
+  fetch('data/tendencias.json')
     .then(response => {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
