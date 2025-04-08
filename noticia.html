@@ -4,223 +4,128 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Título dinâmico - Idealmente seria preenchido por JS -->
-  <title>Título da Notícia Específica - Technology AI</title> 
-  
-  <meta name="description" content="Descrição breve da notícia específica..."> <!-- Preencher dinamicamente -->
-  <meta name="keywords" content="Inteligência Artificial, IA, tecnologia, AI, [palavras chave da notícia]"> <!-- Preencher dinamicamente -->
-  <meta name="author" content="Gustavo G."> <!-- Ou o autor específico da notícia -->
-  <meta name="robots" content="index, follow">
+  <!-- Título será preenchido -->
+  <title>Technology AI</title>
+
+  <!-- Meta Tags serão preenchidas -->
+  <meta name="description" content="Acompanhe as últimas notícias e insights sobre Inteligência Artificial.">
+  <meta name="keywords" content="Inteligência Artificial, IA, tecnologia, AI, notícias">
+  <meta name="author" content="Technology AI">
+  <meta name="robots" content="index, follow"> <!-- Manter ou ajustar conforme necessário -->
 
   <!-- Ícone do site -->
   <link rel="icon" href="assets/imagens/geral/favicon.png" type="image/x-icon">
 
-  <!-- Google Fonts (Manter as mesmas da index) -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-  <link href="https://fonts.googleapis.com/css2?family=Belleza&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Monomakh&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Rationale&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Anta&family=Genos:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Anta&family=Megrim&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- ... (links de fontes) ... -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_right_alt">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-  <!-- Font Awesome para ícones -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
   <!-- Estilos -->
-  <link rel="stylesheet" href="estilos/style.css">  
+  <link rel="stylesheet" href="estilos/style.css">
   <link rel="stylesheet" href="estilos/noticia.css">
 
-  <!-- Note: Se você tiver muitos estilos específicos para a notícia, 
-       pode criar um `noticia.css` e linká-lo aqui também -->
-
-  <!-- Swiper.js (Se for usar algum slider nesta página, senão pode remover) -->
-  <!-- <link rel="stylesheet" href="https://unpkg.com/swiper@8.4.7/swiper-bundle.min.css" /> -->
-  <!-- <script src="https://unpkg.com/swiper@8.4.7/swiper-bundle.min.js"></script> -->
 </head>
-
-<body>
+<body class="preload"> <!-- Classe opcional para evitar FOUC -->
   <header class="site-header" role="banner">
-    <div class="container header-container">
-      <a href="https://ogustavoshikan.github.io/joaosilva.github.io/" class="logo"> <!-- Link para a Página Inicial -->
-        <span class="logo-icon">
-          <img src="assets/imagens/geral/favicon.png" alt="Ícone do site" class="favicon-icon">
-        </span>
-        <span class="logo-text">ECHNOLOGY AI</span>
-      </a>
-      
-      <!-- Botão menu hamburger para mobile -->
-      <button class="menu-toggle" aria-label="Abrir menu de navegação" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      
-      <nav>
-        <ul class="nav-links">
-          <!-- Botão para alternar tema -->
-          <button id="theme-toggle-button" class="theme-toggle" aria-label="Alternar tema claro/escuro">
-            <!-- Ícone Lua (Dark Mode) -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="theme-icon icon-moon">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
-            </svg>
-            <!-- Ícone Sol (Light Mode) -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="theme-icon icon-sun">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
-            </svg>
-          </button>
-          <li><a href="https://ogustavoshikan.github.io/joaosilva.github.io/">Página Inicial</a></li>
-          <!-- Marcar 'Notícias' como ativo nesta página -->
-          <li><a href="https://ogustavoshikan.github.io/joaosilva.github.io/news.html" class="page-news-active">Notícias</a></li> 
-          <li><a href="https://ogustavoshikan.github.io/joaosilva.github.io/designs.html">Designs</a></li>
-          <li><a href="#">Sobre</a></li>
-          <li><a href="https://wa.me/61999999999" class="nav-button">Contato</a></li>
-        </ul>
-      </nav>
-    </div>
+      <div class="container header-container">
+        <a href="index.html" class="logo"> <!-- Link Atualizado -->
+          <span class="logo-icon">
+            <img src="assets/imagens/geral/favicon.png" alt="Ícone do site" class="favicon-icon">
+          </span>
+          <span class="logo-text">ECHNOLOGY AI</span>
+        </a>
+        <button class="menu-toggle" aria-label="Abrir menu de navegação" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <nav>
+          <ul class="nav-links">
+            <button id="theme-toggle-button" class="theme-toggle" aria-label="Alternar tema claro/escuro">
+               <svg class="theme-icon icon-moon"><path d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" /></svg>
+               <svg class="theme-icon icon-sun"><path d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" /></svg>
+            </button>
+            <li><a href="index.html">Página Inicial</a></li>
+            <li><a href="news.html" class="page-news-active">Notícias</a></li>
+            <li><a href="designs.html">Designs</a></li>
+            <li><a href="#">Sobre</a></li>
+            <li><a href="https://wa.me/61999999999" class="nav-button">Contato</a></li>
+          </ul>
+        </nav>
+      </div>
   </header>
 
   <main>
-    <!-- Seção do Artigo -->
     <section class="article-section">
-        <div class="container article-container"> <!-- Usar um container de 1268px aqui -->
-            
-            <!-- Breadcrumbs -->
+        <div class="container article-container">
+
+            <!-- Breadcrumbs (Estrutura pronta) -->
             <nav aria-label="breadcrumb" class="breadcrumbs">
                 <ol>
                     <li>
-                        <!-- ADICIONADO ÍCONE HOME AQUI -->
-                        <img src="assets/imagens/geral/home-icon.png" alt="Ícone Home" class="breadcrumb-home-icon">
-                        <a href="https://ogustavoshikan.github.io/joaosilva.github.io/">Página Inicial</a>
+                        <img src="assets/imagens/geral/home-icon.png" alt="" class="breadcrumb-home-icon">
+                        <a href="index.html">Página Inicial</a>
                     </li>
-                    <li><a href="https://ogustavoshikan.github.io/joaosilva.github.io/news.html">Notícias</a></li>
-                    <!-- Título da notícia atual (não linkável ou link para a própria página) -->
-                    <li aria-current="page">OpenAI Lança Modelo GPT-4.5 com Inteligência Emocional Avançada</li> 
+                    <li><a href="news.html">Notícias</a></li>
+                    <li aria-current="page"></li> <!-- Conteúdo virá do JS -->
                 </ol>
             </nav>
 
-            <!-- Layout Principal (Conteúdo + Sidebar) -->
+            <!-- Layout Principal -->
             <div class="article-layout">
 
                 <!-- Coluna Principal do Conteúdo -->
                 <article class="article-content">
-                    
-                    <!-- Categorias/Tags (Opcional, mas recomendado) -->
-                    <div class="article-categories">
-                        <a href="#link-categoria-modelos" class="category-tag">Modelos de Linguagem</a>
-                        <a href="#link-categoria-openai" class="category-tag">OpenAI</a>
-                        <!-- Adicionar mais tags/categorias conforme necessário -->
+                    <!-- Indicador de Carregamento -->
+                    <div id="article-loading" class="loading-placeholder" style="text-align: center; padding: 50px 0;">
+                        <p>Carregando notícia...</p>
+                        <!-- Pode adicionar um spinner CSS aqui -->
                     </div>
 
-                    <!-- Título da Notícia -->
-                    <h1 class="article-title">OpenAI Lança Modelo GPT-4.5 com Inteligência Emocional Avançada</h1>
-
-                    <!-- Meta Informações (Autor, Data) -->
-                    <div class="article-meta">
-                        <span class="author-prefix">Por:</span>
-                        <a href="https://instagram.com/ogustavogoncalvess" class="author" target="_blank" rel="noopener noreferrer">Gustavo G.</a>
-                        <span class="date">- 07/03/2025</span> 
-                        <!-- ADICIONADO HÍFEN AQUI -->
-                        <span class="read-time">- Leitura de 8 min</span> <!-- Tempo de Leitura -->
-                    </div>
-                    
-                    <!-- Botões de Compartilhamento Social (Opcional) -->
-                    <div class="social-share">
-                        <!-- ÍCONES TROCADOS E REORDENADOS -->
-                        <a href="#" aria-label="Compartilhar no X (Twitter)"><i class="fab fa-x-twitter"></i></a>
-                        <a href="#" aria-label="Compartilhar no WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#" aria-label="Compartilhar no Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Compartilhar no LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-
-                    <!-- Imagem de Destaque -->
-                    <figure class="featured-image">
-                        <img src="assets/imagens/noticias/chatgpt-4.5-card.webp" alt="Logo OpenAI ChatGPT 4.5"> <!-- Caminho Dinâmico -->
-                        <figcaption>Imagem gerada por Inteligência Artificial</figcaption> <!-- Legenda opcional -->
-                    </figure>
-
-                    <!-- Corpo do Artigo -->
-                    <div class="article-body">
-                        <p>A OpenAI anunciou nesta quinta-feira o lançamento oficial do GPT-4.5, uma nova versão do seu já popular modelo de linguagem. A grande novidade da atualização está na introdução de recursos avançados de inteligência emocional, capazes de tornar as interações com o modelo ainda mais naturais, empáticas e contextualmente sensíveis.</p>
-                        
-                        <h2>Um salto no entendimento emocional</h2>
-                        <p>De acordo com a empresa, o GPT-4.5 foi treinado com um foco especial na compreensão de nuances emocionais, permitindo que ele identifique e responda com mais precisão a sentimentos como ansiedade, frustração, empolgação ou tristeza nas mensagens dos usuários. Esse avanço busca aproximar ainda mais o relacionamento entre humanos e inteligência artificial.</p>
-                        <p>“O GPT-4.5 representa um passo importante rumo a interações mais humanas com a IA. Ele não apenas entende o que está sendo dito, mas também como está sendo dito e o 'por quê'”, disse Mira Takahashi, pesquisadora-chefe da OpenAI, durante a coletiva de lançamento.</p>
-
-                        <h2>Aplicações práticas</h2>
-                        <p>De acordo com a empresa, o GPT-4.5 foi treinado com um foco especial na compreensão de nuances emocionais, permitindo que ele identifique e responda com mais precisão a sentimentos como ansiedade, frustração, empolgação ou tristeza nas mensagens dos usuários. Esse avanço busca aproximar ainda mais o relacionamento entre humanos e inteligência artificial.</p>
-                        <p>“O GPT-4.5 representa um passo importante rumo a interações mais humanas com a IA. Ele não apenas entende o que está sendo dito, mas também como está sendo dito e o 'por quê'”, disse Mira Takahashi, pesquisadora-chefe da OpenAI, durante a coletiva de lançamento.</p>
-
-                        <h2>Transparência e controle</h2>
-                        <p>Para evitar preocupações com manipulação emocional, a OpenAI incorporou mecanismos de transparência emocional, permitindo que o usuário visualize quando o modelo está reagindo a um suposto estado emocional detectado. Além disso, é possível ajustar o “nível de empatia” do modelo ou até desativar completamente esse recurso.</p>
-                        
-                        <h2>Limitações e ética</h2>
-                        <p>Apesar do avanço, a empresa reconhece que o GPT-4.5 ainda não é capaz de sentir emoções — apenas simula compreensão emocional com base em padrões de linguagem. Isso levanta questões éticas, especialmente em contextos sensíveis como aconselhamento psicológico e relacionamentos digitais. Organizações de direitos digitais alertam para a necessidade de regulamentações claras sobre o uso da inteligência emocional em IA, a fim de evitar abusos ou confusões sobre os limites do que a tecnologia pode realmente fazer.</p>
-                        
-                        <h2>Disponibilidade</h2>
-                        <p>O GPT-4.5 já está disponível para desenvolvedores via API na plataforma da OpenAI, e será gradualmente integrado aos produtos existentes da empresa, como o ChatGPT e o Copilot, nas próximas semanas. A versão gratuita do ChatGPT começará a receber parte dos benefícios do novo modelo, enquanto funcionalidades mais avançadas serão exclusivas para assinantes do plano Plus.</p>
-
-                        <!-- Adicionar mais parágrafos, listas, imagens internas, etc. -->
-                    </div>
-
-                     <!-- Tags no final do artigo (Opcional) -->
-                    <div class="article-tags-bottom">
-                        <strong>Tags:</strong> 
-                        <a href="#">GPT-4.5</a>, 
-                        <a href="#">Inteligência Emocional</a>, 
-                        <a href="#">OpenAI</a>, 
-                        <a href="#">LLM</a>
-                    </div>
-
-                    <!-- Caixa do Autor (Opcional) -->
-                    <div class="author-box">
-                        <img src="assets/imagens/autores/gustavo-g.webp" alt="Avatar Gustavo G." class="author-avatar">
-                        <div class="author-info">
-                            <h4>Sobre Gustavo G.</h4>
-                            <p>Entusiasta de tecnologia e especialista em Inteligência Artificial, explorando o futuro da inovação.</p>
-                            <!-- Links para redes sociais do autor, etc. -->
+                    <!-- Conteúdo Dinâmico (Começa Escondido) -->
+                    <div class="article-dynamic-content" style="visibility: hidden; opacity: 0; transition: opacity 0.5s ease-in-out;">
+                        <div class="article-categories"></div>
+                        <h1 class="article-title"></h1>
+                        <div class="article-meta">
+                            <span class="author-prefix" style="display: none;">Por:</span>
+                            <a href="#" class="author" target="_blank" rel="noopener noreferrer" style="display: none;"></a>
+                            <span class="date"></span>
+                            <span class="read-time" style="display: none;"></span> <!-- Para tempo de leitura -->
                         </div>
-                    </div>
-
-                    <!-- Notícias Relacionadas (Opcional) -->
-                    <section class="related-news">
-                        <h3>Notícias Relacionadas</h3>
-                        <div class="related-news-grid">
-                            <!-- Exemplo de card relacionado (repetir 2-4 vezes) -->
-                            <div class="related-news-card">
-                                <img src="assets/imagens/noticias/related-1-elon-musk-grok3-xAI.webp.png" alt="Elon Musk anuncia Grok 3">
-                                <a href="#">Elon Musk Lança Grok 3: A ''IA Mais Inteligente da Terra''</a>
-                            </div>
-                            <div class="related-news-card">
-                                <img src="assets/imagens/noticias/related-2-claude-sonnet-3.7.png" alt="Nova versão Claude Sonnet 3.7">
-                                <a href="#">Claude Sonnet 3.7: A Nova Fronteira da IA que Supera OpenAI e Grok 3</a>
-                            </div>
-                            <!-- Adicionar mais cards -->
+                        <div class="social-share">
+                            <a href="#" aria-label="Compartilhar no X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+                            <a href="#" aria-label="Compartilhar no WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#" aria-label="Compartilhar no Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" aria-label="Compartilhar no LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                         </div>
-                    </section>
-
-                    <!-- Seção de Comentários (Opcional) -->
-                    <!-- <section id="comments" class="comments-section"> -->
-                    <!--    <h3>Comentários</h3> -->
-                    <!--     Integrar sistema de comentários (Disqus, etc.) ou criar um próprio -->
-                    <!-- </section> -->
-
+                        <figure class="featured-image">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
+                            <figcaption style="display: none;"></figcaption>
+                        </figure>
+                        <div class="article-body"></div>
+                        <div class="article-tags-bottom" style="display: none;">
+                            <strong>Tags:</strong>
+                        </div>
+                        <div class="author-box" style="display: none;"> <!-- Começa escondido -->
+                             <img src="assets/imagens/autores/placeholder-avatar.png" alt="Avatar do Autor" class="author-avatar">
+                             <div class="author-info">
+                                 <h4></h4>
+                                 <p></p> <!-- Bio virá do JS -->
+                             </div>
+                        </div>
+                        <section class="related-news" style="display: none;"> <!-- Começa escondido -->
+                            <h3>Notícias Relacionadas</h3>
+                            <div class="related-news-grid"></div>
+                        </section>
+                    </div>
                 </article>
 
                 <!-- Coluna da Sidebar -->
                 <aside class="article-sidebar">
-                    <!-- Card do Produto Pessoal -->
+                    <!-- Card Produto Pessoal (Estático) -->
                     <div class="product-card-placeholder">
                         <h3>Crie Artes Incríveis com IA!</h3>
                         <img src="assets/imagens/noticias/300-prompts-product.jpg" alt="Promoção curso de arte com IA">
@@ -228,49 +133,29 @@
                         <a href="#link-para-seu-produto" class="btn btn-primary">Saiba Mais</a>
                     </div>
 
-                    <!-- Widget de Notícias Recentes (Opcional) -->
+                    <!-- Widget de Notícias Recentes (Dinâmico) -->
                     <div class="sidebar-widget recent-posts">
                         <h4>Últimas Notícias</h4>
                         <ul>
-                            <li><a href="#">Claude Sonnet 3.7: A Nova Fronteira</a></li>
-                            <li><a href="#">Meta Investe Bilhões em Supercomputação</a></li>
-                            <li><a href="#">Elon Musk Lança Grok 3</a></li>
+                            <li>Carregando...</li>
                         </ul>
                     </div>
-
-                    <!-- Widget de Categorias (Opcional) -->
-                    <!-- <div class="sidebar-widget categories"> -->
-                    <!--    <h4>Categorias</h4> -->
-                    <!--    <ul> -->
-                    <!--        <li><a href="#">Modelos de Linguagem</a></li> -->
-                    <!--        <li><a href="#">Hardware</a></li> -->
-                    <!--        <li><a href="#">Ética em IA</a></li> -->
-                    <!--    </ul> -->
-                    <!-- </div> -->
                 </aside>
 
             </div> <!-- Fim .article-layout -->
         </div> <!-- Fim .container -->
     </section>
 
-    <!-- Botão Voltar ao Topo (Reutilizado da Página Inicial) -->
+    <!-- Botão Voltar ao Topo -->
     <div class="home-back-to-top-container">
         <button id="home-back-to-top" aria-label="Voltar ao topo">
-          <svg viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="back-to-top-icon">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M10 5C10.1409 5 10.2752 5.05943 10.37 5.16366L15.37 10.6637C15.5557 10.868 15.5407 11.1842 15.3363 11.37C15.132 11.5557 14.8158 11.5407 14.63 11.3363L10.5 6.7933L10.5 17.5C10.5 17.7761 10.2761 18 10 18C9.72386 18 9.5 17.7761 9.5 17.5L9.5 6.7933L5.36997 11.3363C5.18422 11.5407 4.86799 11.5557 4.66366 11.37C4.45933 11.1842 4.44428 10.868 4.63003 10.6637L9.63003 5.16366C9.72479 5.05943 9.85913 5 10 5Z"></path>
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M18 2.5C18 2.77614 17.7761 3 17.5 3L2.5 3C2.22386 3 2 2.77614 2 2.5C2 2.22385 2.22386 2 2.5 2L17.5 2C17.7761 2 18 2.22386 18 2.5Z"></path>
-          </svg>
+            <svg viewBox="0 0 20 20" fill="currentColor" class="back-to-top-icon"><path fill-rule="evenodd" clip-rule="evenodd" d="M10 5C10.1409 5 10.2752 5.05943 10.37 5.16366L15.37 10.6637C15.5557 10.868 15.5407 11.1842 15.3363 11.37C15.132 11.5557 14.8158 11.5407 14.63 11.3363L10.5 6.7933L10.5 17.5C10.5 17.7761 10.2761 18 10 18C9.72386 18 9.5 17.7761 9.5 17.5L9.5 6.7933L5.36997 11.3363C5.18422 11.5407 4.86799 11.5557 4.66366 11.37C4.45933 11.1842 4.44428 10.868 4.63003 10.6637L9.63003 5.16366C9.72479 5.05943 9.85913 5 10 5Z"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M18 2.5C18 2.77614 17.7761 3 17.5 3L2.5 3C2.22386 3 2 2.77614 2 2.5C2 2.22385 2.22386 2 2.5 2L17.5 2C17.7761 2 18 2.22386 18 2.5Z"></path></svg>
         </button>
-        <!-- O texto "Topo" pode ser adicionado via JS como na index, se desejado -->
-        <!-- <span class="home-back-to-top-text">Topo</span> -->
     </div>
-    
-    <!-- Adicionar o Footer aqui quando ele estiver pronto -->
-    <!-- <footer> ... </footer> -->
 
   </main>
-  
-<!-- FOOTER -->
+
+  <!-- FOOTER -->
 <footer class="site-footer">
     <div class="footer-content">
         <div class="footer-section brand">
@@ -329,10 +214,9 @@
     </div>
   </footer>
 
-    <script src="scripts/global.js" defer></script>
-    <script src="scripts/noticia.js" defer></script>
-  <!-- <script src="scripts/main.js"></script> --> 
-  <!-- <script src="scripts/noticia.js"></script> --> <!-- Script específico da notícia, se necessário -->
+  <!-- Scripts -->
+  <script src="scripts/global.js" defer></script>
+  <script src="scripts/noticia.js" defer></script>
 
 </body>
 </html>

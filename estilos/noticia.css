@@ -275,7 +275,7 @@ main {
   .featured-image img {
     display: block; /* Remove espaço extra abaixo da imagem */
     max-width: 100%;
-    height: auto;
+    height: 500px;
     border-radius: 5px; /* Bordas levemente arredondadas */
     border: 1px solid #333;
   }
@@ -312,6 +312,7 @@ main {
   
   .article-body h2 {
     font-size: 1.8rem;
+    text-align: center;
   }
   
   .article-body h3 {
@@ -340,6 +341,34 @@ main {
   .article-body li {
       margin-bottom: 0.5em;
   }
+
+/* Estilos para imagens dentro do corpo do artigo */
+.article-body .image-in-article {
+  margin: 2em 0; /* Espaçamento vertical antes e depois da imagem/figura */
+  max-width: 100%; /* Garante que não ultrapasse a largura do container */
+  text-align: center; /* Centraliza a imagem e legenda se o container for mais largo */
+}
+
+.article-body .image-in-article img {
+  max-width: 100%; /* Imagem responsiva */
+  height: 450px; /* Mantém a proporção */
+  width: 680px;
+  border-radius: 5px; /* Bordas levemente arredondadas (opcional) */
+  display: block; /* Remove espaço extra abaixo */
+  margin: 0 auto; /* Centraliza a imagem se ela for menor que a largura total */
+}
+
+.article-body .image-in-article figcaption {
+  font-size: 0.85rem; /* Tamanho menor para a legenda */
+  color: var(--text-color2, #aaa); /* Cor de texto secundária */
+  margin-top: 0.5em; /* Espaço entre imagem e legenda */
+  font-style: italic;
+}
+
+/* Ajustes para modo claro, se necessário */
+body.light-mode .article-body .image-in-article figcaption {
+    color: #666;
+}
   
   /* --- Tags no Final --- */
   .article-tags-bottom {

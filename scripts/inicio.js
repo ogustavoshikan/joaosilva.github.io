@@ -6,8 +6,6 @@ function inicializarPaginaInicial() {
     inicializarSliderMedio(); // Mantém a lógica do card médio
     inicializarCardsTopicos(); // Mantém a lógica dos cards de tópicos
     carregarNoticiasDestaque(); // <<< NOVA função para notícias da home
-    inicializarRolagemSuave();
-    inicializarBotaoVoltarTopo();
 }
 
 // === 2. Navegação do Card Médio (Seção "Comece por Aqui") ===
