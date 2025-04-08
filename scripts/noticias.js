@@ -392,19 +392,33 @@ document.addEventListener('DOMContentLoaded', () => {
                 sortNewsInternal(sortSelect.value); // Ordena os dados filtrados
                 currentPage = 1; // Volta para a primeira página
                 displayNewsPage(currentPage); // Re-exibe
+                // Opcional: rolar ao topo ao mudar ordenação também?
+                // window.scrollTo({ top: 0, behavior: 'smooth' }); 
             });
         } else { console.warn('Elemento #news-sort não encontrado!'); }
 
         // Listeners para a barra de pesquisa
         if (searchInput && searchButton && clearButton) {
-            searchButton.addEventListener('click', filterNewsBySearch); // Chama a função que limpa filtros URL e aplica a busca
+            searchButton.addEventListener('click', () => {
+                filterNewsBySearch();
+                 // Opcional: rolar ao topo ao buscar?
+                 window.scrollTo({ top: 0, behavior: 'smooth' });
+             });
             searchInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') filterNewsBySearch();
+                if (e.key === 'Enter') {
+                     filterNewsBySearch();
+                     // Opcional: rolar ao topo ao buscar com Enter?
+                     window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
             });
             searchInput.addEventListener('input', () => {
                 clearButton.style.display = searchInput.value ? 'inline-block' : 'none';
             });
-            clearButton.addEventListener('click', clearAllFilters); // Botão limpar chama a limpeza geral
+            clearButton.addEventListener('click', () => {
+                clearAllFilters();
+                 // Opcional: rolar ao topo ao limpar filtros?
+                 //window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
             clearButton.style.display = searchInput.value ? 'inline-block' : 'none';
         } else { console.warn('Elementos de pesquisa não encontrados!'); }
 
@@ -414,6 +428,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (currentPage > 1) {
                     currentPage--;
                     displayNewsPage(currentPage);
+                    // <<< ADICIONADO AQUI >>>
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    console.log("Rolado para o topo após clicar em Anterior");
                 }
             });
         } else { console.warn("Botão de paginação .prev-page não encontrado.");}
@@ -424,12 +441,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (currentPage < totalPages) {
                     currentPage++;
                     displayNewsPage(currentPage);
+                    // <<< ADICIONADO AQUI >>>
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                     console.log("Rolado para o topo após clicar em Próxima");
                 }
             });
         } else { console.warn("Botão de paginação .next-page não encontrado.");}
-
-         // REMOVIDO: Listener para Botão Voltar ao Topo específico daqui (agora é global)
-         // REMOVIDO: Lógica do Menu Hamburger (agora é global)
     }
 
     // --- Inicia todo o processo ---
