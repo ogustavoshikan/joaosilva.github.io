@@ -12,13 +12,12 @@ jobs:
       - name: Checkout repository code
         uses: actions/checkout@v4
 
-      # <<< SEÇÃO MODIFICADA PARA USAR CONTA DE SERVIÇO >>>
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          # firebaseServiceAccount: Conteúdo da chave JSON da conta de serviço
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}' 
-          channelId: live # Garante deploy no canal principal 'live'
-          # projectId: seu-projeto-id # Opcional: pode especificar se necessário
-        # REMOVIDO: A seção 'env' com FIREBASE_CLI_TOKEN não é mais necessária aqui
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}'
+          channelId: live
+          projectId: exalted-splicer-456312-e8 # <<< SEU ID DE PROJETO CORRETO
+          # Adicionando o comando explícito com --project
+          args: deploy --only hosting --project exalted-splicer-456312-e8 
