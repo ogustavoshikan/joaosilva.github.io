@@ -8,8 +8,6 @@ on:
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
-    # Permissões podem não ser estritamente necessárias para esta action, 
-    # mas não prejudicam deixá-las por enquanto.
     permissions:
       contents: read
       id-token: write 
@@ -18,18 +16,10 @@ jobs:
       - name: Checkout repository code
         uses: actions/checkout@v4
 
-      # REMOVIDO: Passo "Setup Firebase CLI and Ensure Hosting Site"
-      # REMOVIDO: Passo "Authenticate to Google Cloud"
-
-      # <<< Voltamos ao Passo de Deploy Original usando a Conta de Serviço >>>
       - name: Deploy to Firebase Hosting
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          with:
-       name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}' 
           channelId: live 
-          projectId: technology-ai-site # <<< ID CORRETO AQUI
+          projectId: technology-ai-site 
