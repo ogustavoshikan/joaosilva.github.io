@@ -75,9 +75,9 @@ main {
   list-style: none;
   padding: 0;
   margin: 0;
-  display: flex; /* Ajuda a alinhar o ícone */
+  display: inline; /* Ajuda a alinhar o ícone */
   align-items: center; /* Alinha verticalmente */
-  margin-top: -1rem;
+  margin-top: 0rem;
 }
 
 .breadcrumbs li {
@@ -267,26 +267,34 @@ main {
   
   
   /* --- Imagem de Destaque --- */
-  .featured-image {
-    margin-bottom: 30px;
-    width: 100%;
-  }
+.featured-image {
+  margin-bottom: 30px;
+  width: 100%; /* Ocupa a largura do container pai (.article-content) */
+  text-align: center; /* Ajuda a centralizar se a imagem for menor */
+}
   
   .featured-image img {
-    display: block; /* Remove espaço extra abaixo da imagem */
-    max-width: 100%;
-    height: 500px;
-    border-radius: 5px; /* Bordas levemente arredondadas */
-    border: 1px solid #333;
-  }
+  display: block;
+  max-width: 100%;    /* <<< IMPORTANTE: Mantém a responsividade */
+  width: 860px;       /* <<< Largura máxima desejada */
+  height: 450px;      /* <<< Altura fixa desejada */
+  object-fit: cover;  /* <<< ESSENCIAL: Evita distorção. Cobre a área definida, cortando se necessário */
+  margin: 0 auto;     /* <<< Centraliza a imagem se o container for maior que 860px */
+  border-radius: 5px;
+  border: 1px solid #333; /* Manter ou remover a borda, como preferir */
+}
   
   .featured-image figcaption {
-    font-size: 0.8rem;
-    color: var(--text-color2);
-    text-align: center;
-    margin-top: 8px;
-    font-style: italic;
-  }
+  font-size: 0.8rem;
+  color: var(--text-color2, #aaa);
+  text-align: center;
+  margin-top: 8px;
+  font-style: italic;
+  /* Opcional: Limitar largura da legenda para não ficar muito larga */
+  max-width: 860px; 
+  margin-left: auto;
+  margin-right: auto;
+}
   
   /* --- Corpo do Artigo --- */
   .article-body {
@@ -342,20 +350,22 @@ main {
       margin-bottom: 0.5em;
   }
 
-/* Estilos para imagens dentro do corpo do artigo */
+/* Estilos para imagens DENTRO do corpo do artigo */
 .article-body .image-in-article {
-  margin: 2em 0; /* Espaçamento vertical antes e depois da imagem/figura */
-  max-width: 100%; /* Garante que não ultrapasse a largura do container */
-  text-align: center; /* Centraliza a imagem e legenda se o container for mais largo */
+  margin: 2em auto; /* Adicionado 'auto' para margens laterais ajudarem na centralização */
+  max-width: 640px;   /* <<< Largura máxima para o container da figura */
+  width: 100%;       /* Ocupa 100% do espaço disponível até o max-width */
+  text-align: center;
 }
 
 .article-body .image-in-article img {
-  max-width: 100%; /* Imagem responsiva */
-  height: 450px; /* Mantém a proporção */
-  width: 680px;
-  border-radius: 5px; /* Bordas levemente arredondadas (opcional) */
-  display: block; /* Remove espaço extra abaixo */
-  margin: 0 auto; /* Centraliza a imagem se ela for menor que a largura total */
+  display: block;
+  max-width: 100%;    /* <<< Imagem se ajusta ao container da figura */
+  width: 100%;       /* <<< Faz a imagem ocupar a largura da figura */
+  height: 425px;      /* <<< Altura fixa desejada */
+  object-fit: cover;  /* <<< ESSENCIAL: Evita distorção */
+  margin: 0 auto;
+  border-radius: 5px;
 }
 
 .article-body .image-in-article figcaption {
@@ -565,87 +575,66 @@ body.light-mode .article-body .image-in-article figcaption {
   
   
   /* --- Responsividade para a página de notícia --- */
-@media (max-width: 992px) {
-  .article-title {
-    font-size: 2rem; /* Reduzir um pouco o título */
+/* --- Responsividade --- */
+
+@media (max-width: 900px) { /* Ponto de quebra próximo à largura da imagem de destaque */
+  .featured-image img {
+    /* Remove largura fixa, deixa max-width: 100% controlar */
+    width: auto; 
+    /* Mantém altura fixa ou ajusta proporcionalmente? */
+    /* Opção A: Mantém altura fixa (pode cortar mais em telas estreitas) */
+     height: 400px; /* Exemplo: reduzir um pouco a altura */
+
+    /* Opção B: Usar aspect-ratio para manter proporção (Remove height) */
+    /* height: auto; */
+    /* aspect-ratio: 860 / 450; */
   }
-  /* Ajuste no grid de notícias relacionadas para telas médias */
-   .related-news-grid {
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+   .featured-image figcaption {
+      max-width: 95%; /* Ajusta largura da legenda */
    }
 }
 
+
 @media (max-width: 768px) {
-  .article-layout {
-    flex-direction: column; /* Empilha conteúdo e sidebar */
+  /* ... (estilos existentes para .article-layout, sidebar, etc.) ... */
+
+  .featured-image img {
+    height: 350px; /* Reduzir mais a altura em telas médias/tablets */
+     /* Se usou aspect-ratio, não precisa mexer aqui */
   }
 
-  .article-content {
-    min-width: 100%; /* Ocupa toda a largura */
+  .article-body .image-in-article {
+     /* Opcional: Reduzir um pouco a margem vertical */
+     /* margin: 1.5em auto; */
   }
 
-  .article-sidebar {
-    flex-basis: auto; /* Permite que a largura seja automática */
-    width: 100%; /* Ocupa toda a largura */
-    margin-top: 20px; /* Adiciona espaço quando empilhado */
-  }
-
-  .article-title {
-    font-size: 1.8rem;
-  }
-
-  .breadcrumbs {
-      font-size: 0.8rem; /* Reduzir um pouco os breadcrumbs */
-  }
-
-  .author-box {
-      flex-direction: column; /* Empilha avatar e info */
-      text-align: center;
-  }
-
-  .author-avatar {
-      margin-bottom: 15px;
-  }
-  
-  /* Notícias Relacionadas em 2 colunas */
-  .related-news-grid {
-      grid-template-columns: repeat(2, 1fr); /* Duas colunas */
+  .article-body .image-in-article img {
+      height: 300px; /* Reduzir altura da imagem interna */
+       /* Se usou aspect-ratio, não precisa mexer aqui */
   }
 
 }
 
 @media (max-width: 480px) {
-    .article-title {
-        font-size: 1.6rem;
-    }
-    .article-body p {
-        font-size: 0.95rem;
-    }
-    .article-body h2 {
-        font-size: 1.5rem;
-    }
-    .article-body h3 {
-        font-size: 1.3rem;
-    }
+  /* ... (estilos existentes para títulos, parágrafos, related-news) ... */
 
-    /* MELHORIA MOBILE: Notícias Relacionadas em 1 coluna */
-    .related-news-grid {
-        grid-template-columns: 1fr; /* Uma coluna */
-    }
+  .featured-image img {
+    height: 250px; /* Altura ainda menor para mobile */
+     /* Se usou aspect-ratio, não precisa mexer aqui */
+  }
 
-    .related-news-card img {
-        /* Opcional: ajustar aspect-ratio ou altura para mobile */
-        /* aspect-ratio: 16 / 9; */
-    }
+  .article-body .image-in-article img {
+      height: 220px; /* Altura ainda menor para mobile */
+       /* Se usou aspect-ratio, não precisa mexer aqui */
+  }
+}
 
-    .breadcrumbs ol {
-        flex-wrap: wrap; /* Permite quebra de linha se ficar muito longo */
-    }
-    .breadcrumbs li[aria-current="page"] {
-        padding-left: 0; /* Remove padding extra em mobile */
-        margin-left: 8px; /* Adiciona espaço após separador */
-    }
-
+/* Ajustes para modo claro (colocar no final ou dentro dos seletores) */
+body.light-mode .featured-image figcaption {
+    color: #666;
+}
+body.light-mode .article-body .image-in-article figcaption {
+    color: #666;
 }
 
   /*ESTILO DA FOOTER*/
