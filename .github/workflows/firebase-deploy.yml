@@ -25,9 +25,9 @@ jobs:
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          # Usa a chave JSON da conta de serviço do segredo
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}' 
-          channelId: live 
-          # Especifica o ID do projeto correto
-          projectId: exalted-splicer-456312-e8 
+          with:
+        repoToken: '${{ secrets.GITHUB_TOKEN }}'
+        firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}' 
+        channelId: live 
+        projectId: exalted-splicer-456312-e8 
+        firebaseToolsVersion: "13.7.0" # <<< TENTA UMA VERSÃO FIXA (Exemplo)
