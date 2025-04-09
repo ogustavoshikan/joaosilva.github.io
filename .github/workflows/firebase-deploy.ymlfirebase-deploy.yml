@@ -1,0 +1,34 @@
+# Nome do Workflow (aparecerá na aba "Actions" do GitHub)
+name: Deploy to Firebase Hosting on push to main
+
+# Gatilho: Executar quando houver push na branch 'main'
+on:
+  push:
+    branches:
+      - main  # Mude para 'master' ou outra branch se necessário
+
+# Tarefas a serem executadas
+jobs:
+  build_and_deploy:
+    # Usar a última versão do Ubuntu como ambiente
+    runs-on: ubuntu-latest
+
+    # Passos da tarefa
+    steps:
+      # 1. Baixar o código do repositório para o ambiente da Action
+      - name: Checkout repository code
+        uses: actions/checkout@v4 # Usa a action oficial para checkout
+
+      # 2. Fazer o deploy para o Firebase Hosting
+      - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0 # Usa a action oficial do Firebase para deploy
+        with:
+          # Usa o token GITHUB_TOKEN padrão para associar o deploy ao commit (recomendado)
+          repoToken: '${{ secrets.GITHUB_TOKEN }}' 
+          # Opcional: Especifique o canal (omitir para deploy no 'live')
+          # channelId: live 
+          # Opcional: Especifique o projeto (geralmente não necessário se .firebaserc estiver no repo)
+          # projectId: seu-projeto-id 
+        env:
+          # Fornece o token de autenticação do Firebase que guardamos como segredo
+          FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }} 
