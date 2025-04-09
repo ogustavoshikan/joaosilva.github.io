@@ -1,34 +1,24 @@
-# Nome do Workflow (aparecerá na aba "Actions" do GitHub)
 name: Deploy to Firebase Hosting on push to main
 
-# Gatilho: Executar quando houver push na branch 'main'
 on:
   push:
     branches:
-      - main  # Mude para 'master' ou outra branch se necessário
+      - main
 
-# Tarefas a serem executadas
 jobs:
   build_and_deploy:
-    # Usar a última versão do Ubuntu como ambiente
     runs-on: ubuntu-latest
-
-    # Passos da tarefa
     steps:
-      # 1. Baixar o código do repositório para o ambiente da Action
       - name: Checkout repository code
-        uses: actions/checkout@v4 # Usa a action oficial para checkout
+        uses: actions/checkout@v4
 
-      # 2. Fazer o deploy para o Firebase Hosting
+      # <<< SEÇÃO MODIFICADA PARA USAR CONTA DE SERVIÇO >>>
       - name: Deploy to Firebase Hosting
-        uses: FirebaseExtended/action-hosting-deploy@v0 # Usa a action oficial do Firebase para deploy
+        uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          # Usa o token GITHUB_TOKEN padrão para associar o deploy ao commit (recomendado)
-          repoToken: '${{ secrets.GITHUB_TOKEN }}' 
-          # Opcional: Especifique o canal (omitir para deploy no 'live')
-          # channelId: live 
-          # Opcional: Especifique o projeto (geralmente não necessário se .firebaserc estiver no repo)
-          # projectId: seu-projeto-id 
-        env:
-          # Fornece o token de autenticação do Firebase que guardamos como segredo
-          FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }} 
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          # firebaseServiceAccount: Conteúdo da chave JSON da conta de serviço
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}' 
+          channelId: live # Garante deploy no canal principal 'live'
+          # projectId: seu-projeto-id # Opcional: pode especificar se necessário
+        # REMOVIDO: A seção 'env' com FIREBASE_CLI_TOKEN não é mais necessária aqui
