@@ -15,7 +15,7 @@
 </head>
 <body class="news-page">
   <header>
-    <div class="container header-container">
+    <div class="container news2-header-container">
       
       <div class="news-logo-container"> 
           <a href="https://ogustavoshikan.github.io/joaosilva.github.io/" class="logo">
@@ -35,22 +35,23 @@
       
       <nav>
         <ul class="nav-links">
-          <!-- Botão para alternar tema -->
-          <button id="theme-toggle-button" class="theme-toggle" aria-label="Alternar tema claro/escuro">
-            <!-- Ícone Lua (Dark Mode) -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="theme-icon icon-moon">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
-            </svg>
-            <!-- Ícone Sol (Light Mode) -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="theme-icon icon-sun">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
-            </svg>
-          </button>
-          <li><a href="https://technologyai.com.br/">Página Inicial</a></li>
+          <li><a href="https://technologyai.com.br" class=>Página Inicial</a></li>
           <li><a href="/" class="news2-active">Notícias</a></li> 
           <li><a href="/designs">Designs</a></li>
           <li><a href="/sobre">Sobre</a></li>
           <li><a href="https://wa.me/61999999999" class="nav-button">Contato</a></li>
+          <li> <!-- Novo LI envolvendo o botão -->
+            <button id="theme-toggle-button" class="theme-toggle" aria-label="Alternar tema claro/escuro">
+              <!-- Ícone Lua (Dark Mode) -->
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="theme-icon icon-moon">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+              </svg>
+              <!-- Ícone Sol (Light Mode) -->
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="theme-icon icon-sun">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+              </svg>
+            </button>
+          </li>
         </ul>
       </nav>
     </div>
@@ -116,15 +117,15 @@
         <button class="next-page">Próximo</button>
       </div>
     </section>
-    <!-- Botão Voltar ao Topo - Página de Notícias -->
-<div class="news-back-to-top-container">
-  <button id="news-back-to-top" aria-label="Voltar ao topo">
-    <svg viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="back-to-top-icon">
-      <!-- Rotacionei o ícone para apontar para cima em vez de para a esquerda -->
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M10 5C10.1409 5 10.2752 5.05943 10.37 5.16366L15.37 10.6637C15.5557 10.868 15.5407 11.1842 15.3363 11.37C15.132 11.5557 14.8158 11.5407 14.63 11.3363L10.5 6.7933L10.5 17.5C10.5 17.7761 10.2761 18 10 18C9.72386 18 9.5 17.7761 9.5 17.5L9.5 6.7933L5.36997 11.3363C5.18422 11.5407 4.86799 11.5557 4.66366 11.37C4.45933 11.1842 4.44428 10.868 4.63003 10.6637L9.63003 5.16366C9.72479 5.05943 9.85913 5 10 5Z"></path>
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M18 2.5C18 2.77614 17.7761 3 17.5 3L2.5 3C2.22386 3 2 2.77614 2 2.5C2 2.22385 2.22386 2 2.5 2L17.5 2C17.7761 2 18 2.22386 18 2.5Z"></path>
-    </svg>
-  </button>
+    <!-- Botão Voltar ao Topo -->
+<div class="home-back-to-top-container">
+    <button id="home-back-to-top" aria-label="Voltar ao topo">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="back-to-top-icon">
+            <!-- Rotacionei o ícone para apontar para cima em vez de para a esquerda -->
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M10 5C10.1409 5 10.2752 5.05943 10.37 5.16366L15.37 10.6637C15.5557 10.868 15.5407 11.1842 15.3363 11.37C15.132 11.5557 14.8158 11.5407 14.63 11.3363L10.5 6.7933L10.5 17.5C10.5 17.7761 10.2761 18 10 18C9.72386 18 9.5 17.7761 9.5 17.5L9.5 6.7933L5.36997 11.3363C5.18422 11.5407 4.86799 11.5557 4.66366 11.37C4.45933 11.1842 4.44428 10.868 4.63003 10.6637L9.63003 5.16366C9.72479 5.05943 9.85913 5 10 5Z"></path>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M18 2.5C18 2.77614 17.7761 3 17.5 3L2.5 3C2.22386 3 2 2.77614 2 2.5C2 2.22385 2.22386 2 2.5 2L17.5 2C17.7761 2 18 2.22386 18 2.5Z"></path>
+        </svg>
+    </button>
 </div>
 </main>
 

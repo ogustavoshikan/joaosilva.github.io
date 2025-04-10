@@ -130,7 +130,7 @@ main {
   .article-layout {
     display: flex;
     flex-wrap: wrap; /* Permite que a sidebar vá para baixo em telas menores */
-    gap: 40px; /* Espaço entre conteúdo e sidebar */
+    gap: 88px; /* Espaço entre conteúdo e sidebar */
   }
   
   .article-content {
@@ -270,7 +270,7 @@ main {
 .featured-image {
   margin-bottom: 30px;
   width: 100%; /* Ocupa a largura do container pai (.article-content) */
-  text-align: center; /* Ajuda a centralizar se a imagem for menor */
+  text-align: left; /* Ajuda a centralizar se a imagem for menor */
 }
   
   .featured-image img {
@@ -365,7 +365,7 @@ main {
   height: 425px;      /* <<< Altura fixa desejada */
   object-fit: cover;  /* <<< ESSENCIAL: Evita distorção */
   margin: 0 auto;
-  border-radius: 5px;
+  border-radius: 0px;
 }
 
 .article-body .image-in-article figcaption {

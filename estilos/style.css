@@ -135,13 +135,15 @@ a:hover {
   z-index: 100;
 }
 
-.header-container {
+.home-header-container {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.5rem 1rem;
-  max-width: 1356px;
-  margin: 0 auto;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px auto 5px;
+    max-width: 1330px;
+    width: 100%;
+    padding: 0px 0rem 0rem 2rem;
+    height: 50px;
 }
 
 .logo {
@@ -171,6 +173,7 @@ a:hover {
   font-family: "Anta", sans-serif;
   font-weight: 400;
   font-style: normal;
+  margin-top: 1px;
 }
 
 .page-home-active{
@@ -272,6 +275,7 @@ main {
 @media (min-width: 769px) {
   nav ul.nav-links {
     display: flex; /* Exibe os links em telas grandes */
+    align-items: center;
   }
 }
 
@@ -486,7 +490,7 @@ main {
 }
 
 /* Ajustar o container para permitir maior largura */
-.container {
+.container-news-container {
   max-width: 1300px;
   width: 100%;
   padding: 12px 1rem;
@@ -1917,7 +1921,7 @@ main {
 .news-logo-container {
   display: flex; /* Alinha os itens filhos (logo e span) em linha */
   align-items: center; /* Alinha verticalmente ao centro (opcional, mas comum) */
-  gap: 8px; /* Adiciona um espaço entre o logo e o texto (ajuste o valor) */
+  gap: 10px; /* Adiciona um espaço entre o logo e o texto (ajuste o valor) */
 }
 
 /* Pode ser necessário ajustar o estilo do .creations-text também */
@@ -1928,6 +1932,7 @@ main {
   font-weight: 400;
   font-style: normal;
   line-height: 1;
+  margin-top: 1px;
 }
 
 .hero-section {
@@ -1945,8 +1950,23 @@ main {
 }
 
 .news2-section .container {
+  width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 15px;
   display: flex;
   gap: 2rem;
+}
+
+.news2-header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px auto 5px;
+  max-width: 1330px;
+  width: 100%;
+  padding: 0px 0rem 0rem 2rem;
+  height: 50px;
 }
 
 .news2-section .tech-news-grid {
@@ -3575,6 +3595,7 @@ body {
   color: var(--icon-color); /* Usa a variável de cor do ícone */
   border-radius: 50%; /* Torna o fundo (se houver) redondo */
   transition: background-color 0.2s ease, color 0.2s ease;
+  margin-top: 5px;
 }
 
 .theme-toggle:hover {
