@@ -28,19 +28,21 @@ html {
 }
 
 .header-container {
-    display: flex;
+    display: flex
+;
     align-items: center;
     justify-content: space-between;
-    padding: 10.5px 15px 9px 17px;
-    max-width: 1356px;
-    height: 60px;
+    margin: 5px auto 5px;
+    max-width: 1330px;
+    width: 100%;
+    padding: 0px 0rem 0rem 1rem;
+    height: 50px;
 }
 
 .logo-container {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-left: 1.72rem;
     margin-top: 0px;
 }
 
@@ -92,7 +94,7 @@ html {
 .header-actions {
     display: flex; /* Alinha os itens filhos (botão tema e dropdown) horizontalmente */
     align-items: center; /* Alinha verticalmente os itens ao centro */
-    gap: 0.8rem; /* Adiciona um espaço entre o botão de tema e o dropdown (ajuste se necessário) */
+    gap: 0.7rem; /* Adiciona um espaço entre o botão de tema e o dropdown (ajuste se necessário) */
 }
 /* --- FIM DA NOVA REGRA --- */
 
@@ -107,14 +109,14 @@ html {
     display: flex; /* Garante que os ícones dentro se alinhem corretamente */
     align-items: center;
     justify-content: center;
-    width: 30px; /* Ajuste conforme necessário */
-    height: 30px; /* Ajuste conforme necessário */
+    width: 35px; /* Ajuste conforme necessário */
+    height: 35px; /* Ajuste conforme necessário */
 }
 
 .theme-toggle .theme-icon {
-    width: 25px; /* Tamanho dos ícones */
-    height: 25px;
-    margin-top: 4px;
+    width: 30px; /* Tamanho dos ícones */
+    height: 30px;
+    margin-top: 3px;
 }
 
 /* Esconde o ícone não ativo (lógica já deve existir no seu JS/CSS) */
