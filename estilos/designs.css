@@ -28,8 +28,7 @@ html {
 }
 
 .header-container {
-    display: flex
-;
+    display: flex;
     align-items: center;
     justify-content: space-between;
     margin: 5px auto 5px;

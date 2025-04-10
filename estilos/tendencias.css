@@ -1,0 +1,523 @@
+/* estilos/tendencias.css */
+
+/* ===== HEADER ===== */
+.site-header {
+  background-color: #000000;
+  box-shadow: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.home-header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px auto 5px;
+  max-width: 1330px;
+  width: 100%;
+  padding: 0px 0rem 0rem 1rem;
+  height: 50px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  color: var(--text-color);
+  text-transform: none;
+  margin-left: 0;
+}
+
+.logo-icon {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 0.2rem;
+}
+
+.favicon-icon {
+  width: 186px;
+  height: 40px;
+  vertical-align: middle;
+}
+
+.logo-text {
+  font-size: 22px;
+  color: var(--text-color);
+  font-family: "Anta", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  margin-top: 1px;
+}
+
+/* ===== MODIFICAÇÃO PARA DUAS IMAGENS LADO A LADO ===== */
+.news-logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-techai {
+  width: 186px;
+  height: 40px;
+  display: block;
+  object-fit: contain;
+}
+
+.logo-noticias {
+  width: 99px;
+  height: 40px;
+  display: block;
+  object-fit: contain;
+}
+/* ====================================================== */
+
+.page-home-active {
+  color: #F44336;
+  font-family: "Anta", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1rem;
+  position: relative;
+}
+
+/* Estilizando o botão Contato */
+.nav-button {
+  background-color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  color: #090909;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.nav-button:hover {
+  background-color: #b3b0b0;
+  color: #000000;
+}
+
+/* Menu hamburger para mobile */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: var(--text-color);
+  border-radius: 3px;
+}
+
+/* ===== NAVEGAÇÃO ===== */
+nav ul.nav-links {
+  list-style: none;
+  gap: 1.5rem;
+}
+
+nav li {
+  margin-right: 0;
+}
+
+nav a {
+  color: var(--text-color);
+  font-family: "Anta", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1rem;
+  position: relative;
+}
+
+nav a:hover {
+  background-color: #00000000;
+  color: #F44336;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -8px;
+  left: 0;
+  background-color: var(--secondary-color);
+}
+
+.nav-button {
+  background-color: #ffffff;
+  color: #000000;
+  padding: 0.5rem 0.8rem;
+  border-radius: 5px;
+  font-family: "Anta", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.nav-button::after {
+  display: none;
+}
+
+/* Ajuste para o conteúdo principal não ficar escondido sob o header */
+main {
+  padding-top: 59px;
+}
+
+/* Responsividade */
+@media (min-width: 769px) {
+  nav ul.nav-links {
+    display: flex; /* Exibe os links em telas grandes */
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .logo {
+    margin-left: 0;
+  }
+
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    margin-left: auto;
+    margin-right: 11px;
+  }
+
+  .menu-toggle span {
+    background-color: #ffffff; /* Alterado para branco para melhor visibilidade */
+    height: 3px;
+    width: 25px;
+  }
+
+  .nav-links {
+    display: none; /* Esconde os links por padrão no mobile */
+    position: absolute;
+    top: 82px;
+    left: 0;
+    background-color: #090909;
+    width: 100%;
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem 0;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .nav-links.active {
+    display: flex; /* Exibe os links quando a classe .active é adicionada */
+  }
+
+  .nav-links li {
+    margin: 0.8rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-text {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 320px) {
+  .logo-text {
+    font-size: 18px;
+  }
+
+  .favicon-icon {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+.article-section {
+  padding: 40px 0; /* Espaçamento vertical */
+  background-color: var(--background-color); /* Garante fundo escuro */
+  border-bottom: 1px solid #151515;
+}
+
+/* Container específico para o artigo, usando a largura menor desejada */
+.article-container {
+  max-width: 1268px; 
+  margin: 0 auto;
+  padding: 0 15px; /* Padding lateral padrão */
+}
+
+  /* --- Breadcrumbs --- */
+  .breadcrumbs {
+    margin-bottom: 30px;
+    font-size: 0.85rem;
+    color: var(--text-color2); /* Cor mais suave */
+  }
+  
+  .breadcrumbs ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: inline; /* Ajuda a alinhar o ícone */
+    align-items: center; /* Alinha verticalmente */
+    margin-top: 0rem;
+  }
+  
+  .breadcrumbs li {
+    display: contents; /* Mantém o comportamento anterior para o separador */
+  }
+  
+  /* Estilo para o ícone home no breadcrumb */
+  .breadcrumb-home-icon {
+    height: 0.99em; /* Ajusta a altura do ícone com base no tamanho da fonte */
+    width: auto;
+    margin-right: 3px; /* Espaço entre o ícone e o texto */
+    vertical-align: middle; /* Tenta alinhar melhor com o texto */
+    position: relative; /* Ajuste fino da posição vertical se necessário */
+    top: -1px; /* Exemplo de ajuste fino */
+  }
+  
+  .breadcrumbs li:first-child a { /* Garante que o link após o ícone ainda se alinhe */
+      display: inline-flex;
+      align-items: center;
+  }
+  
+  
+  .breadcrumbs li + li::before { /* Adiciona o separador '>' */
+    content: ">";
+    margin: 0 8px;
+    color: var(--text-color2);
+  }
+  
+  .breadcrumbs a {
+    font-family: Anta, sans-serif;
+    color: var(--text-color2);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .breadcrumbs a:hover {
+    color: #F44336; /* Cor de destaque no hover */
+  }
+  
+  .breadcrumbs li[aria-current="page"] { /* Estilo para o item atual */
+    font-family: Anta, sans-serif;
+    font-size: 0.95rem;
+    color: var(--text-color); /* Cor principal para o título atual */
+    font-weight: 500;
+    padding-left: 8px; /* Adiciona espaço após o último separador '>' */
+  }
+
+/* Pode adicionar um estilo específico para o hero da página de tendências */
+.trends-hero {
+  /* Exemplo: background, altura, etc. */
+  padding: 40px 0;
+  text-align: center;
+  background-color: #111; /* Ajuste */
+}
+
+.trends-hero h1 {
+    font-size: 2.5rem; /* Ajuste */
+    color: var(--heading-color);
+    margin: 0;
+}
+
+/* Seção principal de conteúdo */
+.trends-content-section {
+    padding: 40px 0;
+}
+
+/* Layout com sidebar */
+.trends-layout {
+    display: flex;
+    flex-wrap: wrap; /* Permite empilhar em telas menores */
+    gap: 30px; /* Espaço entre conteúdo e sidebar */
+}
+
+.trends-main-content {
+    flex: 1;
+    min-width: 65%; /* Ocupa mais espaço */
+}
+
+.trends-sidebar {
+    flex-basis: 300px; /* Largura da sidebar */
+    flex-grow: 0;
+}
+
+.trends-header {
+    margin-bottom: 30px;
+    /* Estilos para o título "Últimas Tendências", se necessário */
+}
+
+/* --- Grid de Cards de Tendência --- */
+.trends-cards-container-grid {
+  display: grid;
+  /* 4 colunas por padrão */
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 20px; /* Espaçamento entre os cards */
+  margin-bottom: 30px; /* Espaço antes da paginação */
+}
+
+/* Estilo Individual do Card de Tendência */
+.trend-card-item {
+  background-color: var(--card-background, #1a1a1a); /* Cor de fundo do card */
+  border-radius: 8px; /* Bordas arredondadas */
+  overflow: hidden; /* Garante que a imagem não vaze */
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+  transition: transform 0.2s ease-in-out;
+  border: 1px solid #232221;
+}
+
+ .trend-card-item:hover {
+  transform: translateY(-5px); /* Efeito de levantar no hover */
+} 
+
+.trend-card-item .card-image img {
+  display: block;
+  width: 100%;
+  height: 150px; /* Altura fixa para a imagem, ajuste conforme necessário */
+  object-fit: cover; /* Cobre a área sem distorcer */
+}
+
+.trend-card-item .card-content {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Faz o conteúdo ocupar espaço restante */
+}
+
+.trend-card-item .card-title {
+  font-size: 1rem; /* Tamanho do título */
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+  font-family: 'Roboto Condensed', sans-serif; /* Exemplo de fonte */
+}
+
+.trend-card-item .card-title a {
+  color: var(--heading-color);
+  text-decoration: none;
+}
+
+.trend-card-item .card-title a:hover {
+  color: var(--secondary-color);
+}
+
+.trend-card-item .card-excerpt {
+  font-size: 0.85rem;
+  color: var(--text-color2);
+  line-height: 1.5;
+  margin-bottom: 15px; /* Espaço antes dos metadados */
+  flex-grow: 1; /* Empurra metadados para baixo */
+}
+
+.trend-card-item .card-meta {
+  font-size: 0.75rem;
+  color: var(--text-color2);
+  display: flex;
+  justify-content: space-between; /* Alinha autor e data */
+  align-items: center;
+  border-top: 1px solid #333; /* Linha separadora sutil */
+  padding-top: 10px;
+  margin-top: auto; /* Garante que fique no final */
+}
+
+.trend-card-item .card-meta .author-link {
+    color: var(--text-color2);
+    text-decoration: none;
+    font-weight: 500;
+}
+.trend-card-item .card-meta .author-link:hover {
+    color: var(--secondary-color);
+}
+
+/* Sidebar na página de tendências (reutiliza estilos se possível) */
+.trends-sidebar .sidebar-widget {
+    /* Estilos base já definidos em style.css/noticia.css? */
+    background-color: var(--card-background, #1a1a1a);
+    border: 1px solid #232221;
+    /* ... outros estilos ... */
+}
+.trends-sidebar .popular-news-widget ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.trends-sidebar .popular-news-widget li {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #333; /* Separador */
+}
+.trends-sidebar .popular-news-widget li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+.trends-sidebar .popular-news-widget a {
+    color: var(--text-color2);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+.trends-sidebar .popular-news-widget a:hover {
+    color: var(--secondary-color);
+}
+
+
+/* --- Responsividade para o Grid de Tendências --- */
+
+/* Tablets e telas médias */
+@media (max-width: 1024px) {
+  .trends-cards-container-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas */
+  }
+}
+
+/* Telas menores e tablets em modo retrato */
+@media (max-width: 768px) {
+  .trends-layout {
+    flex-direction: column; /* Empilha conteúdo e sidebar */
+  }
+  .trends-main-content { min-width: 100%; }
+  .trends-sidebar { flex-basis: auto; width: 100%; margin-top: 30px; }
+  
+  .trends-cards-container-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 colunas */
+  }
+}
+
+/* Celulares */
+@media (max-width: 480px) {
+  .trends-cards-container-grid {
+    grid-template-columns: 1fr; /* 1 coluna */
+    gap: 15px; /* Espaçamento menor */
+  }
+   .trends-hero h1 {
+       font-size: 2rem;
+   }
+    .trend-card-item .card-title {
+        font-size: 0.9rem;
+   }
+   .trend-card-item .card-excerpt {
+       font-size: 0.8rem;
+   }
+}
+
+/* Estilos modo claro */
+body.light-mode .trend-card-item {
+    background-color: #fff;
+    border-color: #ddd;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+body.light-mode .trend-card-item .card-title a { color: #222; }
+body.light-mode .trend-card-item .card-excerpt { color: #555; }
+body.light-mode .trend-card-item .card-meta { color: #777; border-top-color: #eee; }
+body.light-mode .trend-card-item .card-meta .author-link { color: #555; }
+/* ... (outros ajustes light-mode) ... */
