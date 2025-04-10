@@ -5,7 +5,7 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
-    // <<< ADICIONAR/MODIFICAR A PARTIR DAQUI >>>
+    ], // <<< ADICIONAR/MODIFICAR A PARTIR DAQUI >>>
     "cleanUrls": true, // Remove automaticamente a extensão .html das URLs
     "trailingSlash": false, // Opcional: Remove barras finais (ex: /noticias/ vira /noticias)
     "rewrites": [
