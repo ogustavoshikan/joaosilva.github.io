@@ -27,6 +27,10 @@
         // Vamos manter noticia.html?artigo=... por enquanto, é mais simples.
          "source": "/noticia/**", // Captura qualquer coisa depois de /noticia/
          "destination": "/noticia.html" // Serve sempre noticia.html (o JS pega o slug da URL real)
+      },
+      {
+        "source": "/tendências", // Quando alguém acessar /designs
+        "destination": "/tendências.html" // Sirva o conteúdo de /designs.html
       }
       // Adicione mais regras se tiver outras páginas
     ]

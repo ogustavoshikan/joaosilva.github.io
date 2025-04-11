@@ -419,16 +419,45 @@ function criarCardNoticiaHtml(cardData, tipoCard) {
     const article = document.createElement('article');
     article.classList.add('news-card', tipoCard); // Usa o tipo para a classe
 
-    const linkNoticia = `noticia.html?artigo=${cardData.slug}`; // <<< Link para a página de detalhe
+    const linkNoticia = `noticia.html?artigo=${cardData.slug}`; 
     const titulo = cardData.titulo || 'Sem Título';
     const resumo = cardData.resumo || '';
-    const imagemSrc = cardData.imagemCard || 'assets/imagens/geral/placeholder.png'; // Usa imagem do card ou placeholder
+    const imagemSrc = cardData.imagemCard || 'assets/imagens/geral/placeholder.png'; 
     const altImagem = cardData.altImagem || `Imagem para ${titulo}`;
-    const dataFormatada = cardData.data || '';
-    const isoDate = cardData.isoDate || '';
-    const autorNome = cardData.autor?.nome || ''; // Optional chaining para segurança
+    // const dataFormatadaSimples = cardData.data || ''; // Não usaremos mais esta diretamente
+    const isoDateTimeString = cardData.dateTimeIso || cardData.isoDate; // Prioriza data/hora completa, fallback para data
+    const autorNome = cardData.autor?.nome || ''; 
     const autorLink = cardData.autor?.link || '#';
+    
+    // --- NOVA Lógica de Formatação de Data e Hora ---
+    let dataHoraFormatada = '';
+    let dateTimeAttr = ''; // Para o atributo datetime da tag <time>
+    if (isoDateTimeString) {
+        try {
+            const dateObj = new Date(isoDateTimeString); // Tenta criar objeto Date
+             dateTimeAttr = dateObj.toISOString(); // Formato ISO para o atributo
 
+             // Opções para formatação legível em português
+             const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' }; // Ex: 2 de março de 2025
+             const timeOptions = { hour: 'numeric', minute: 'numeric', hour12: true }; // Ex: 11:40 AM / 09:00 AM
+
+             // Verifica se a string ISO contém informação de hora (presença de 'T')
+             if (isoDateTimeString.includes('T')) {
+                 dataHoraFormatada = `${dateObj.toLocaleDateString('pt-BR', dateOptions)} - ${dateObj.toLocaleTimeString('en-US', timeOptions)}`; // Usa en-US para AM/PM
+                 // Ajuste para minúsculas am/pm se preferir: .toLowerCase();
+             } else {
+                 // Se só tiver a data, formata apenas a data
+                 dataHoraFormatada = dateObj.toLocaleDateString('pt-BR', dateOptions);
+             }
+
+        } catch (e) {
+            console.warn(`Erro ao formatar data/hora para ${cardData.slug}: ${isoDateTimeString}`, e);
+            dataHoraFormatada = cardData.data || ''; // Fallback para a data string simples
+            dateTimeAttr = cardData.isoDate || '';
+        }
+    }
+    // --- FIM da Nova Lógica ---
+    
     const autorHtml = autorNome
         ? `<div class="news-author-info">
              <span class="author-prefix">Por: </span>
@@ -436,7 +465,7 @@ function criarCardNoticiaHtml(cardData, tipoCard) {
            </div>`
         : '';
 
-    // Estrutura HTML varia ligeiramente entre os tipos
+    // Estrutura HTML (Ajustada para usar a nova data/hora formatada)
     if (tipoCard === 'featured' || tipoCard === 'side') {
         article.innerHTML = `
           <div class="news-image-top">
@@ -448,7 +477,8 @@ function criarCardNoticiaHtml(cardData, tipoCard) {
             </a>
           </div>
           <div class="news-content">
-            <time datetime="${isoDate}" class="news-date">${dataFormatada}</time>
+            <!-- Usa a nova variável dataHoraFormatada -->
+            <time datetime="${dateTimeAttr}" class="news-date">${dataHoraFormatada}</time> 
             <h3 class="news-title">
               <a href="${linkNoticia}" aria-label="Leia sobre ${titulo}" title="Leia o artigo completo: ${titulo}">
                 ${titulo}
@@ -466,7 +496,8 @@ function criarCardNoticiaHtml(cardData, tipoCard) {
             </a>
           </div>
           <div class="news-content">
-            <time datetime="${isoDate}" class="news-date">${dataFormatada}</time>
+             <!-- Usa a nova variável dataHoraFormatada -->
+            <time datetime="${dateTimeAttr}" class="news-date">${dataHoraFormatada}</time>
             <h3 class="news-title">
               <a href="${linkNoticia}" aria-label="Leia sobre ${titulo}" title="Leia o artigo completo: ${titulo}">
                 ${titulo}
@@ -480,6 +511,5 @@ function criarCardNoticiaHtml(cardData, tipoCard) {
 
     return article;
 }
-
 // --- Chama a função principal quando o DOM estiver pronto ---
 document.addEventListener('DOMContentLoaded', inicializarPaginaInicial);

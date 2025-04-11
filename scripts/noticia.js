@@ -79,7 +79,7 @@ function preencherConteudoNoticia(noticia, todasNoticias) {
 
     // --- Preenchimento do <head> ---
     document.title = `${noticia.tituloCurto || noticia.titulo || 'Notícia'} - Technology AI`;
-
+    
     // Função auxiliar para atualizar ou criar meta tags
     const setMetaTag = (name, content) => {
         if (!content) return; // Não faz nada se o conteúdo for vazio
@@ -123,49 +123,91 @@ function preencherConteudoNoticia(noticia, todasNoticias) {
     // Título H1
     const tituloElemento = document.querySelector('.article-title');
     if (tituloElemento) tituloElemento.textContent = noticia.titulo || '';
+    
+    const subtituloElemento = document.querySelector('.article-subtitle');
+    if (subtituloElemento) {
+        if (noticia.resumo) { // Usa o campo resumo existente
+            subtituloElemento.textContent = noticia.resumo;
+            subtituloElemento.style.display = 'block'; // Garante visibilidade
+        } else {
+            subtituloElemento.textContent = '';
+            subtituloElemento.style.display = 'none'; // Esconde se não houver resumo
+        }
+    } else {
+        console.warn("Elemento .article-subtitle não encontrado.");
+    }
 
     // Meta Informações (Autor, Data, Tempo Leitura)
     const metaContainer = document.querySelector('.article-meta');
     if (metaContainer) {
-        const autorPrefix = metaContainer.querySelector('.author-prefix');
-        const autorLink = metaContainer.querySelector('a.author');
-        const dataSpan = metaContainer.querySelector('span.date');
-        const readTimeSpan = metaContainer.querySelector('span.read-time'); // Seleciona o span do tempo
+        metaContainer.innerHTML = ''; // Limpa o conteúdo estático do HTML se houver
 
-        // Autor
+        let authorAvatarHtml = '';
+        if (noticia.autor?.avatarUrl) {
+             authorAvatarHtml = `
+                <img src="${noticia.autor.avatarUrl}" alt="Avatar de ${noticia.autor.nome || ''}" class="author-avatar-meta">
+             `;
+        } else if (noticia.autor?.nome) { // Mostra um placeholder se tiver nome mas não avatar
+             authorAvatarHtml = `
+                <img src="assets/imagens/autores/placeholder-avatar.png" alt="Avatar" class="author-avatar-meta">
+             `;
+        }
+        
+        // --- HTML do Nome do Autor (com prefixo "Por:") ---
+        let authorNameHtml = '';
         if (noticia.autor?.nome) {
-            if(autorPrefix) autorPrefix.style.display = 'inline';
-            if(autorLink) {
-                autorLink.textContent = noticia.autor.nome;
-                autorLink.href = noticia.autor.link || '#';
-                autorLink.style.display = 'inline';
+             authorNameHtml = `
+                <div class="author-name-line"> 
+                    <span class="author-prefix-meta">Por:</span> 
+                    <a href="${noticia.autor.link || '#'}" class="author-link-meta" ${noticia.autor.link ? 'target="_blank" rel="noopener noreferrer"' : ''}>
+                        <span class="author-name-meta">${noticia.autor.nome}</span>
+                    </a>
+                </div>
+             `;
+             // Adicionamos classes específicas: author-prefix-meta, author-link-meta, author-name-meta
+        }
+        
+        let dateTimeText = '';
+        let dateTimeAttr = '';
+        if (noticia.dateTimeIso) {
+            try {
+                const dateObj = new Date(noticia.dateTimeIso);
+                dateTimeAttr = dateObj.toISOString(); 
+                const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+                const timeOptions = { hour: 'numeric', minute: 'numeric', hour12: true };
+
+                if (noticia.dateTimeIso.includes('T')) {
+                    dateTimeText = `${dateObj.toLocaleDateString('pt-BR', dateOptions)} - ${dateObj.toLocaleTimeString('en-US', timeOptions).toLowerCase()}`; 
+                } else {
+                    dateTimeText = dateObj.toLocaleDateString('pt-BR', dateOptions);
+                }
+            } catch (e) { 
+                // Fallback para data simples
+                 try {
+                     const dateObjFallback = new Date(noticia.isoDate + 'T00:00:00');
+                     dateTimeText = dateObjFallback.toLocaleDateString('pt-BR', dateOptions);
+                     dateTimeAttr = noticia.isoDate || '';
+                 } catch { dateTimeText = noticia.data || ''; dateTimeAttr = noticia.isoDate || ''; }
             }
-        } else {
-            if(autorPrefix) autorPrefix.style.display = 'none';
-            if(autorLink) autorLink.style.display = 'none';
         }
 
-        // Data
-        if (dataSpan) {
-            let dataFormatada = '';
-            if(noticia.isoDate) {
-                try { dataFormatada = new Date(noticia.isoDate + 'T00:00:00').toLocaleDateString('pt-BR', { year: 'numeric', month: '2-digit', day: '2-digit' }); }
-                catch { dataFormatada = noticia.data || ''; }
-            } else { dataFormatada = noticia.data || ''; }
-            dataSpan.textContent = dataFormatada ? `- ${dataFormatada}` : ''; // Mantém o hífen
+        let readTimeText = '';
+        if (noticia.tempoLeituraEstimado) {
+            readTimeText = `Tempo de Leitura: ${noticia.tempoLeituraEstimado}`;
         }
 
-        // Tempo de Leitura (NOVO)
-        if(readTimeSpan) {
-            if (noticia.tempoLeituraEstimado) {
-                 readTimeSpan.textContent = `- ${noticia.tempoLeituraEstimado}`; // Adiciona hífen
-                 readTimeSpan.style.display = 'inline'; // Mostra o span
-            } else {
-                 readTimeSpan.style.display = 'none'; // Esconde se não houver dado
-            }
-        }
+        // Constrói o HTML final para .article-meta
+        // Usando uma única div principal para facilitar o flexbox
+        metaContainer.innerHTML = `
+            ${authorAvatarHtml} 
+            <div class="author-date-read-group"> 
+                ${authorNameHtml ? `<div class="author-name-line">${authorNameHtml}</div>` : ''}
+                ${dateTimeText ? `<time datetime="${dateTimeAttr}" class="publish-date-time">${dateTimeText}</time>` : ''}
+                ${readTimeText ? `<span class="read-time-meta">${readTimeText}</span>` : ''}
+            </div>
+        `;
     }
-
+    
      // Botões de Compartilhamento Social
      const socialShareContainer = document.querySelector('.social-share');
      if (socialShareContainer) {
@@ -246,31 +288,22 @@ function preencherConteudoNoticia(noticia, todasNoticias) {
     const relatedSection = document.querySelector('.related-news');
     const relatedGrid = document.querySelector('.related-news-grid');
     if (relatedGrid && relatedSection) {
-        let relatedNewsHtml = '';
-        if (Array.isArray(noticia.relatedSlugs) && noticia.relatedSlugs.length > 0) {
-            let relatedCount = 0;
-            for (const relatedSlug of noticia.relatedSlugs) {
-                if (relatedCount >= 2) break;
-                const relatedArticle = todasNoticias.find(n => n.slug === relatedSlug);
-                if (relatedArticle) {
-                    relatedNewsHtml += `
-                        <div class="related-news-card">
-                            <a href="noticia.html?artigo=${relatedArticle.slug}">
-                                <img src="${relatedArticle.imagemCard || 'assets/imagens/geral/placeholder.png'}" alt="${relatedArticle.titulo || ''}" loading="lazy">
-                                ${relatedArticle.titulo || ''}
-                            </a>
-                        </div>
-                    `;
-                    relatedCount++;
-                }
-            }
-        }
+        
+        // Encontrar até 2 notícias relacionadas com base em tags OU categorias
+        const relatedNews = findRelatedNews(noticia, todasNoticias, 2); // Chama função auxiliar
 
-        if (relatedNewsHtml) {
-             relatedGrid.innerHTML = relatedNewsHtml;
-             relatedSection.style.display = 'block';
+        if (relatedNews.length > 0) {
+            relatedGrid.innerHTML = relatedNews.map(rel => `
+                <div class="related-news-card">
+                    <a href="noticia.html?artigo=${rel.slug}">
+                        <img src="${rel.imagemCard || 'assets/imagens/geral/placeholder.png'}" alt="${rel.titulo || ''}" loading="lazy">
+                        ${rel.titulo || ''}
+                    </a>
+                </div>
+            `).join('');
+            relatedSection.style.display = 'block'; // Mostra a seção
         } else {
-             relatedSection.style.display = 'none';
+            relatedSection.style.display = 'none'; // Esconde se não encontrar
         }
     }
 
@@ -297,6 +330,51 @@ function preencherConteudoNoticia(noticia, todasNoticias) {
      }
 
     console.log("Conteúdo da notícia preenchido no HTML.");
+}
+
+function findRelatedNews(currentNews, allNews, maxCount) {
+    const currentTags = new Set(currentNews.tags || []);
+    const currentCategories = new Set(currentNews.categorias || []);
+    const related = [];
+
+    // Filtra outras notícias
+    const otherNews = allNews.filter(n => n.slug !== currentNews.slug);
+
+    // Calcula pontuação de relevância (exemplo simples)
+    otherNews.forEach(news => {
+        let score = 0;
+        const newsTags = new Set(news.tags || []);
+        const newsCategories = new Set(news.categorias || []);
+
+        // Pontua por tags em comum
+        currentTags.forEach(tag => {
+            if (newsTags.has(tag)) {
+                score += 2; // Mais peso para tags
+            }
+        });
+
+        // Pontua por categorias em comum
+        currentCategories.forEach(cat => {
+            if (newsCategories.has(cat)) {
+                score += 1;
+            }
+        });
+
+        if (score > 0) {
+            related.push({ ...news, score }); // Adiciona notícia com pontuação
+        }
+    });
+
+    // Ordena por pontuação (maior primeiro) e depois por data (mais recente)
+    related.sort((a, b) => {
+        if (b.score !== a.score) {
+            return b.score - a.score;
+        }
+        return new Date(b.isoDate || 0) - new Date(a.isoDate || 0);
+    });
+
+    // Retorna o número máximo desejado
+    return related.slice(0, maxCount);
 }
 
 // Função auxiliar para formatação de URL (importante mantê-la)

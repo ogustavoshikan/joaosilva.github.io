@@ -89,19 +89,19 @@
                     <!-- Indicador de Carregamento -->
                     <div id="article-loading" class="loading-placeholder" style="text-align: center; padding: 50px 0;">
                         <p>Carregando notícia...</p>
-                        <!-- Pode adicionar um spinner CSS aqui -->
                     </div>
 
-                    <!-- Conteúdo Dinâmico (Começa Escondido) -->
+                    <!-- Conteúdo Dinâmico -->
                     <div class="article-dynamic-content" style="visibility: hidden; opacity: 0; transition: opacity 0.1s ease-in-out;">
                         <div class="article-categories"></div>
                         <h1 class="article-title"></h1>
+                        <p class="article-subtitle"></p> 
+                        <!-- <<< Estrutura META VAZIA - JS vai preencher >>> -->
                         <div class="article-meta">
-                            <span class="author-prefix" style="display: none;">Por:</span>
-                            <a href="#" class="author" target="_blank" rel="noopener noreferrer" style="display: none;"></a>
-                            <span class="date"></span>
-                            <span class="read-time" style="display: none;"></span> <!-- Para tempo de leitura -->
+                            <!-- JS INSERIRÁ .author-section-meta e .date-read-time-section AQUI -->
                         </div>
+                        <!-- <<< FIM Estrutura META >>> -->
+                        
                         <div class="social-share">
                             <a href="#" aria-label="Compartilhar no X (Twitter)"><i class="fab fa-x-twitter"></i></a>
                             <a href="#" aria-label="Compartilhar no WhatsApp"><i class="fab fa-whatsapp"></i></a>
@@ -116,14 +116,14 @@
                         <div class="article-tags-bottom" style="display: none;">
                             <strong>Tags:</strong>
                         </div>
-                        <div class="author-box" style="display: none;"> <!-- Começa escondido -->
-                             <img src="assets/imagens/autores/placeholder-avatar.png" alt="Avatar do Autor" class="author-avatar">
+                        <div class="author-box" style="display: none;"> 
+                             <img src="assets/imagens/autores/gustavo-g.webp" alt="Avatar do Autor" class="author-avatar">
                              <div class="author-info">
                                  <h4></h4>
-                                 <p></p> <!-- Bio virá do JS -->
+                                 <p></p> 
                              </div>
                         </div>
-                        <section class="related-news" style="display: none;"> <!-- Começa escondido -->
+                        <section class="related-news" style="display: none;"> 
                             <h3>Notícias Relacionadas</h3>
                             <div class="related-news-grid"></div>
                         </section>

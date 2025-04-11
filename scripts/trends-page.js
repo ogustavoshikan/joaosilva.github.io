@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Ordena por data (mais recentes primeiro) - Ajuste o campo de data se necessário
             allTrends.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0)); 
 
-            // Aplica filtros (nenhum por enquanto)
+            // Aplica filtros (nenhum por enquanto)c
             applyFiltersAndSort(); 
 
             // Configura listeners
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Estrutura do Card Menor (inspirado na BBC / seu trends.js da index)
         article.innerHTML = `
-            <div class="card-image">
+            <div class="trend-card-item__image-container">
               <a href="${trendData.link || '#'}" target="_blank" rel="noopener noreferrer" aria-label="Ver artigo completo sobre ${trendData.title || 'Tendência'}">
                 <img src="${trendData.image || 'assets/imagens/geral/placeholder.png'}" alt="${trendData.alt || `Imagem ${trendData.title || 'Tendência'}`}" loading="lazy">
               </a>

@@ -58,9 +58,9 @@ main {
   
   /* Container específico para o artigo, usando a largura menor desejada */
   .article-container {
-    max-width: 1268px; 
+    max-width: 1268px;
     margin: 0 auto;
-    padding: 0 15px; /* Padding lateral padrão */
+    padding: 0 20px; /* Padding lateral padrão */
   }
   
   /* --- Breadcrumbs --- */
@@ -142,7 +142,7 @@ main {
   .article-sidebar {
      /* Largura base da sidebar */
       /* Não cresce além da base */
-     width: 290px;
+     width: 280px;
   }
   
   /* --- Conteúdo do Artigo --- */
@@ -168,68 +168,130 @@ main {
   }
   
   .article-title {
-    font-family: Roboto 'ROBOTO CONDENSED'; /* Usar fonte de título definida */
+    font-family:'Roboto Condensed'; /* Usar fonte de título definida */
     font-size: 2.5rem; /* Tamanho maior para o título */
     color: var(--heading-color);
     margin-bottom: 15px;
     line-height: 1.2;
     font-weight: 700; /* Ou o peso desejado */
   }
-  
-  .article-meta {
-    font-size: 0.9rem;
-    color: var(--text-color2);
-    margin-bottom: 20px;
-  }
 
-  .article-meta .date {
-    font-family: Anta, sans-serif;
-    font-size: 0.85rem;
-    color: #999999;
-    margin-bottom: 20px;
-  }
-
-/* [...] Estilos meta, etc */
-
-.article-meta .read-time {
-  font-family: Anta, sans-serif;
-  font-size: 0.85rem;
-  color: #999999;
-  /* Removido margin-left para usar o hífen como separador */
-  /* margin-left: 1.5rem; */ 
-  font-style: italic;
-}
-
-/* Removendo o ::before automático que estava adicionando outro '-' */
-.article-meta span + span::before { 
-  content: ""; /* Remove o separador automático se existir */
-  margin: 0;
+  /* Estilo para o Subtítulo/Excerto abaixo do H1 */
+.article-subtitle {
+  font-size: 1.2rem; /* Tamanho intermediário (ajuste) */
+  color: var(--text-color2, #ccc);
+  line-height: 1.6;
+  margin-top: 16px; /* Espaço abaixo do H1 */
+  margin-bottom: 8px; /* Espaço antes dos meta-dados */
+  font-family: 'Roboto', sans-serif; /* Fonte diferente ou a mesma do corpo */
+  font-weight: 400; /* Peso normal */
+  max-width: 75ch; /* Limita largura da linha para leitura (opcional) */
 }
   
-  .author {
-    font-size: 0.9rem;
-    font-family: 'Anta', sans-serif;
-    color: #ffffff;
-    margin-bottom: 0.5rem;
-  }
-
-.article-meta .author:hover {
-  text-decoration: underline;
-  color: #ffffff;
+  /* --- Meta Informações Atualizadas --- */
+.article-meta {
+  display: flex; /* Alinha avatar e grupo de texto */
+  align-items: center; /* Centraliza verticalmente */
+  margin-bottom: 25px; /* Aumenta um pouco o espaço abaixo */
+  gap: 10px; /* Espaço entre avatar e grupo de texto */
+  flex-wrap: wrap; /* Permite quebra se necessário */
 }
 
-  .article-meta .author-prefix {
-    font-size: 0.9rem;
-    font-family: 'Anta', sans-serif;
-    color: #999999;
-    margin-top: auto;
-  }
-  
-  /* --- Compartilhamento Social --- */
+/* Avatar (mantém similar) */
+.author-avatar-meta {
+    width: 65px; /* Aumenta ligeiramente o avatar */
+    height: 65px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 0px solid var(--border-color-light, #444);
+    flex-shrink: 0;
+}
+
+/* Grupo de Texto (Nome, Data, Tempo) */
+.author-date-read-group {
+    display: flex;
+    flex-direction: column; /* Empilha nome, data, tempo por padrão */
+    justify-content: center; /* Ajuda no alinhamento vertical */
+    gap: 3px; /* Espaço pequeno entre as linhas */
+}
+
+/* Linha completa do nome (prefixo + link) */
+.author-name-line {
+  display: flex; /* Alinha prefixo e link na mesma linha */
+  align-items: baseline; /* Alinha pela base do texto */
+  gap: 5px; /* Espaço entre "Por:" e o nome */
+}
+
+/* Estilo para o "Por:" */
+.author-prefix-meta {
+  font-size: 0.875rem; /* Tamanho um pouco menor */
+  color: #999999; /* Cor secundária */
+  font-family: 'Roboto', sans-serif; /* Fonte leve */
+  font-weight: 500;
+}
+
+/* Estilo para o link do autor */
+.author-link-meta {
+  color: var(--text-color, #fff); 
+  text-decoration: none;
+  font-weight: 600; 
+  font-size: 0.95rem; 
+  font-family: 'Roboto Condensed', sans-serif; 
+  transition: color 0.2s ease;
+}
+.author-link-meta:hover {
+  color: var(--secondary-color);
+}
+/* O span .author-name-meta dentro do link não precisa de estilo extra */
+
+
+/* Data/Hora e Tempo de Leitura (iguais antes) */
+.publish-date-time,
+.read-time-meta {
+  font-size: 0.875rem;
+  color: var(--text-color2, #aaa);
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.4;
+}
+.read-time-meta {
+  font-style: italic; /* Pode remover ou manter */
+}
+
+/* Colocar data e tempo na mesma linha em telas maiores */
+@media (min-width: 450px) { 
+ .publish-date-time,
+ .read-time-meta { display: inline; }
+ 
+ .publish-date-time::after {
+     content: " • "; 
+     margin: 0 5px;
+     color: var(--text-color2, #aaa);
+     display: inline-block; 
+ }
+ /* Esconder separador se tempo de leitura vazio */
+ .publish-date-time:has(+ .read-time-meta:empty)::after,
+ .read-time-meta:empty { 
+     display: none; 
+ }
+ .publish-date-time:empty + .read-time-meta::before { content: ""; }
+
+ .author-date-read-group { gap: 5px; }
+}
+
+/* Ajuste para layout lado a lado em telas maiores (igual antes) */
+@media (min-width: 576px) {
+  /* .article-meta { flex-direction: row; gap: 15px; } */ /* Descomente se necessário */
+  .author-date-read-group { padding-left: 0; }
+}
+
+
+/* --- Compartilhamento Social (Reposicionado e Estilizado) --- */
 .social-share {
-  margin-bottom: 10px;
+  margin-top: 0px; /* Sobe um pouco para perto dos meta dados */
+  margin-bottom: 15px; /* Aumenta espaço abaixo */
+  padding-left: 0px; /* Alinha com o texto abaixo do avatar (largura avatar + gap) */
 }
-
+  
 .social-share a {
   /*color: var(--text-color2);*/
   font-size: 1.1rem;
@@ -594,6 +656,12 @@ body.light-mode .article-body .image-in-article figcaption {
    }
 }
 
+@media (max-width: 768px) {
+  .article-subtitle {
+      font-size: 1.1rem; /* Reduzir um pouco em telas menores */
+      margin-bottom: 20px;
+  }
+}
 
 @media (max-width: 768px) {
   /* ... (estilos existentes para .article-layout, sidebar, etc.) ... */
@@ -758,6 +826,33 @@ body {
 /* ==== MODO LIGHT - PÁGINA DE NOTÍCIA (SINGLE) ==== */
 /* ============================================== */
 
+.light-mode .article-title {
+  font-family:'Roboto Condensed'; /* Usar fonte de título definida */
+  font-size: 2.5rem; /* Tamanho maior para o título */
+  color: #000000;
+  margin-bottom: 15px;
+  line-height: 1.2;
+  font-weight: 700; /* Ou o peso desejado */
+}
+
+.light-mode .author-link-meta {
+  color: #282828; /* Cor de texto principal no modo claro */
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.light-mode .author-link-meta:hover {
+  color: var(--secondary-color);
+}
+
+body.light-mode .article-subtitle {
+  color: #808080; /* Cor para modo claro */
+}
+
 /* --- Fundo da Seção do Artigo --- */
 .light-mode .article-section {
   background-color: var(--light-bg-primary, #f8f9fa); /* Fundo principal claro */
@@ -799,22 +894,22 @@ body {
 }
 
 /* --- Título e Meta --- */
-.light-mode .article-title {
-  color: var(--light-text-primary, #212529); /* Cor primária */
+/* --- Estilos Light Mode para Meta --- */
+body.light-mode .author-section-meta .author-link {
+  color: #111; /* Cor de texto principal no modo claro */
 }
-.light-mode .article-meta,
-.light-mode .article-meta .date,
-.light-mode .article-meta .read-time,
-.light-mode .article-meta .author-prefix {
-  color: var(--light-text-secondary, #6c757d); /* Cor secundária */
+body.light-mode .author-section-meta .author-link:hover {
+  color: var(--secondary-color); /* Manter cor de destaque */
 }
-.light-mode .article-meta .author {
-  color: var(--light-text-primary, #212529); /* Cor primária para o nome do autor */
+body.light-mode .author-avatar-meta {
+  border-color: #ccc;
 }
-.light-mode .article-meta .author:hover {
-  color: var(--light-accent-color, #F44336); /* Cor de destaque no hover */
-  text-decoration: underline;
+body.light-mode .publish-date-time,
+body.light-mode .read-time-meta {
+  color: #808080; /* Cor de texto secundária no modo claro */
 }
+/* Opcional: Cor da borda separadora no modo claro */
+/* body.light-mode .date-read-time-section { border-left-color: #ddd; } */
 
 /* --- Compartilhamento Social --- */
 /* Cores dos ícones são mantidas. Ajusta apenas o hover do link. */
