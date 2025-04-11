@@ -34,7 +34,7 @@
       },
       {
         "source": "/tendências", // Quando alguém acessar /tendências
-        "destination": "/tendências.html" // Sirva o conteúdo de /tendencias.html
+        "destination": "/tendencias.html" // Sirva o conteúdo de /tendencias.html
       }
       // Adicione mais regras se tiver outras páginas
     ]
