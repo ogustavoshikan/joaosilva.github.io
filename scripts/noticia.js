@@ -74,7 +74,7 @@ async function carregarNoticiaDoJson() {
     }
 }
 
-// --- Função para Preencher o Conteúdo no HTML ---
+// --- Função para Preencher o Conteúdo no HTML (MODIFICADA V4) ---
 function preencherConteudoNoticia(noticia, todasNoticias) {
 
     // --- Preenchimento do <head> ---
@@ -144,66 +144,89 @@ function preencherConteudoNoticia(noticia, todasNoticias) {
 
         let authorAvatarHtml = '';
         if (noticia.autor?.avatarUrl) {
-             authorAvatarHtml = `
-                <img src="${noticia.autor.avatarUrl}" alt="Avatar de ${noticia.autor.nome || ''}" class="author-avatar-meta">
-             `;
-        } else if (noticia.autor?.nome) { // Mostra um placeholder se tiver nome mas não avatar
-             authorAvatarHtml = `
-                <img src="assets/imagens/autores/placeholder-avatar.png" alt="Avatar" class="author-avatar-meta">
-             `;
+             authorAvatarHtml = `<img src="${noticia.autor.avatarUrl}" alt="Avatar de ${noticia.autor.nome || ''}" class="author-avatar-meta">`;
+        } else if (noticia.autor?.nome) {
+             authorAvatarHtml = `<img src="assets/imagens/autores/placeholder-avatar.png" alt="Avatar" class="author-avatar-meta">`;
         }
         
-        // --- HTML do Nome do Autor (com prefixo "Por:") ---
+        // --- HTML do Nome do Autor (com prefixo "por:") ---
         let authorNameHtml = '';
         if (noticia.autor?.nome) {
              authorNameHtml = `
                 <div class="author-name-line"> 
-                    <span class="author-prefix-meta">Por:</span> 
+                    <span class="author-prefix-meta">por:</span> 
                     <a href="${noticia.autor.link || '#'}" class="author-link-meta" ${noticia.autor.link ? 'target="_blank" rel="noopener noreferrer"' : ''}>
                         <span class="author-name-meta">${noticia.autor.nome}</span>
                     </a>
                 </div>
              `;
-             // Adicionamos classes específicas: author-prefix-meta, author-link-meta, author-name-meta
         }
         
-        let dateTimeText = '';
-        let dateTimeAttr = '';
-        if (noticia.dateTimeIso) {
-            try {
-                const dateObj = new Date(noticia.dateTimeIso);
-                dateTimeAttr = dateObj.toISOString(); 
-                const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-                const timeOptions = { hour: 'numeric', minute: 'numeric', hour12: true };
+        // --- NOVA Formatação de Data/Hora (V2 - com ajuste de formato) ---
+        let dateTimeHtml = '';
+let dateTimeAttr = ''; 
+if (noticia.dataPublicacao && noticia.horaPublicacao) {
+    const parts = noticia.dataPublicacao.split('/');
+    if (parts.length === 3) {
+        const isoDateOnly = `${parts[2]}-${parts[1].padStart(2, '0')}-${parts[0].padStart(2, '0')}`;
+         const isoDateTimeString = `${isoDateOnly}T${noticia.horaPublicacao}:00`; 
+         try {
+            const dateObj = new Date(isoDateTimeString); 
+            if (!isNaN(dateObj.getTime())) { 
+                 dateTimeAttr = dateObj.toISOString(); // Guarda ISO para o atributo datetime
 
-                if (noticia.dateTimeIso.includes('T')) {
-                    dateTimeText = `${dateObj.toLocaleDateString('pt-BR', dateOptions)} - ${dateObj.toLocaleTimeString('en-US', timeOptions).toLowerCase()}`; 
-                } else {
-                    dateTimeText = dateObj.toLocaleDateString('pt-BR', dateOptions);
-                }
-            } catch (e) { 
-                // Fallback para data simples
-                 try {
-                     const dateObjFallback = new Date(noticia.isoDate + 'T00:00:00');
-                     dateTimeText = dateObjFallback.toLocaleDateString('pt-BR', dateOptions);
-                     dateTimeAttr = noticia.isoDate || '';
-                 } catch { dateTimeText = noticia.data || ''; dateTimeAttr = noticia.isoDate || ''; }
+                         // Formata para "DD Mês AAAA às HHhMM"
+                 const dateOptions = { day: '2-digit', month: 'short', year: 'numeric' }; // Ex: 28 fev. 2025
+                 const timeOptions = { hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }; // Ex: 15:00
+
+                 let formattedDate = dateObj.toLocaleDateString('pt-BR', dateOptions);
+                 
+                 // <<< AJUSTES PARA O FORMATO "DD Fev AAAA" >>>
+                 // 1. Remover o ponto final do mês abreviado (ex: fev.)
+                 formattedDate = formattedDate.replace('.', ''); 
+                 // 2. Substituir " de " por espaços
+                 formattedDate = formattedDate.replace(/ de /g, ' '); 
+                 // 3. Capitalizar a primeira letra do mês (após o dia e espaço)
+                 formattedDate = formattedDate.replace(/ (\w)/, (match, p1) => ` ${p1.toUpperCase()}`); 
+                 // <<< FIM DOS AJUSTES >>>
+
+                 const formattedTime = dateObj.toLocaleTimeString('pt-BR', timeOptions)
+                                             .replace(':', 'h'); // Troca : por h
+                                             
+                         dateTimeHtml = `<time datetime="${dateTimeAttr}" class="publish-date-time">${formattedDate} às ${formattedTime}</time>`;
+                         
+                    } else { throw new Error('Data inválida criada'); }
+         } catch (e) {
+                              console.warn(`Erro ao formatar data/hora simples para ${noticia.slug}: ${noticia.dataPublicacao} ${noticia.horaPublicacao}`, e);
+                     // Fallback se der erro
+                     dateTimeHtml = `<span class="publish-date-time">${noticia.dataPublicacao || ''} ${noticia.horaPublicacao ? '- '+noticia.horaPublicacao : ''}</span>`;
+                     dateTimeAttr = noticia.isoDate || ''; // Usa isoDate se disponível
+                 }
+            } else {
+                 dateTimeHtml = `<span class="publish-date-time">${noticia.dataPublicacao || ''}</span>`; // Se só tiver data
+                 dateTimeAttr = noticia.isoDate || '';
             }
+        } else if (noticia.isoDate) { // Fallback se só tiver isoDate
+             try {
+                  const dateObjFallback = new Date(noticia.isoDate + 'T00:00:00');
+                  dateTimeHtml = `<time datetime="${noticia.isoDate}" class="publish-date-time">${dateObjFallback.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' }).replace('.','')}</time>`;
+                  dateTimeAttr = noticia.isoDate;
+             } catch { dateTimeHtml = `<span class="publish-date-time">${noticia.data || ''}</span>`; dateTimeAttr = '';}
         }
+        // --- Fim Formatação Data/Hora ---
 
-        let readTimeText = '';
+        let readTimeHtml = '';
         if (noticia.tempoLeituraEstimado) {
-            readTimeText = `Tempo de Leitura: ${noticia.tempoLeituraEstimado}`;
+            //readTimeHtml = `<span class="read-time-meta">Tempo de Leitura: ${noticia.tempoLeituraEstimado}</span>`;
         }
 
-        // Constrói o HTML final para .article-meta
-        // Usando uma única div principal para facilitar o flexbox
+        // Constrói o HTML final
         metaContainer.innerHTML = `
             ${authorAvatarHtml} 
             <div class="author-date-read-group"> 
-                ${authorNameHtml ? `<div class="author-name-line">${authorNameHtml}</div>` : ''}
-                ${dateTimeText ? `<time datetime="${dateTimeAttr}" class="publish-date-time">${dateTimeText}</time>` : ''}
-                ${readTimeText ? `<span class="read-time-meta">${readTimeText}</span>` : ''}
+                ${authorNameHtml} 
+                ${dateTimeHtml}
+                ${readTimeHtml}
             </div>
         `;
     }
@@ -284,13 +307,15 @@ function preencherConteudoNoticia(noticia, todasNoticias) {
         }
     }
 
-    // Notícias Relacionadas (Usando relatedSlugs)
+    // ===============================================
+    // <<< MODIFICAÇÃO V4: Notícias Relacionadas Opção C >>>
+    // ===============================================
     const relatedSection = document.querySelector('.related-news');
     const relatedGrid = document.querySelector('.related-news-grid');
     if (relatedGrid && relatedSection) {
-        
-        // Encontrar até 2 notícias relacionadas com base em tags OU categorias
-        const relatedNews = findRelatedNews(noticia, todasNoticias, 2); // Chama função auxiliar
+
+        // Encontrar até 5 mais relevantes e escolher 2 aleatoriamente
+        const relatedNews = findRelatedNewsOptionC(noticia, todasNoticias, 5, 2); // <<< CHAMA OPÇÃO C
 
         if (relatedNews.length > 0) {
             relatedGrid.innerHTML = relatedNews.map(rel => `
@@ -301,11 +326,14 @@ function preencherConteudoNoticia(noticia, todasNoticias) {
                     </a>
                 </div>
             `).join('');
-            relatedSection.style.display = 'block'; // Mostra a seção
+            relatedSection.style.display = 'block'; 
         } else {
-            relatedSection.style.display = 'none'; // Esconde se não encontrar
+            relatedSection.style.display = 'none'; 
         }
     }
+     // ===============================================
+     // <<< FIM RELACIONADOS OPÇÃO C >>>
+     // ===============================================
 
     // Sidebar - Últimas Notícias
      const recentPostsList = document.querySelector('.sidebar-widget.recent-posts ul');
@@ -332,50 +360,74 @@ function preencherConteudoNoticia(noticia, todasNoticias) {
     console.log("Conteúdo da notícia preenchido no HTML.");
 }
 
-function findRelatedNews(currentNews, allNews, maxCount) {
+// ===========================================================
+// <<< NOVA Função Auxiliar para Encontrar Relacionados (Opção C) >>>
+// ===========================================================
+function findRelatedNewsOptionC(currentNews, allNews, topN, count) {
     const currentTags = new Set(currentNews.tags || []);
     const currentCategories = new Set(currentNews.categorias || []);
-    const related = [];
+    const candidates = [];
 
-    // Filtra outras notícias
     const otherNews = allNews.filter(n => n.slug !== currentNews.slug);
 
-    // Calcula pontuação de relevância (exemplo simples)
+    // Calcula pontuação
     otherNews.forEach(news => {
         let score = 0;
         const newsTags = new Set(news.tags || []);
         const newsCategories = new Set(news.categorias || []);
-
-        // Pontua por tags em comum
-        currentTags.forEach(tag => {
-            if (newsTags.has(tag)) {
-                score += 2; // Mais peso para tags
-            }
-        });
-
-        // Pontua por categorias em comum
-        currentCategories.forEach(cat => {
-            if (newsCategories.has(cat)) {
-                score += 1;
-            }
-        });
-
+        currentTags.forEach(tag => { if (newsTags.has(tag)) { score += 2; } });
+        currentCategories.forEach(cat => { if (newsCategories.has(cat)) { score += 1; } });
+        
+        // Considera apenas notícias com alguma relevância
         if (score > 0) {
-            related.push({ ...news, score }); // Adiciona notícia com pontuação
+            candidates.push({ ...news, score });
         }
+        
+        // Opcional: Adicionar notícias sem score para ter mais opções se houver poucas relevantes
+        else {
+             candidates.push({ ...news, score: 0 }); // Adiciona com score 0
+         }
     });
-
-    // Ordena por pontuação (maior primeiro) e depois por data (mais recente)
-    related.sort((a, b) => {
-        if (b.score !== a.score) {
-            return b.score - a.score;
-        }
+        
+    // Ordena por pontuação e data
+    candidates.sort((a, b) => {
+        if (b.score !== a.score) return b.score - a.score;
         return new Date(b.isoDate || 0) - new Date(a.isoDate || 0);
     });
 
-    // Retorna o número máximo desejado
-    return related.slice(0, maxCount);
+    // Pega os top N mais relevantes
+    const topCandidates = candidates.slice(0, topN);
+
+    // Embaralha (Shuffle) os top N 
+    for (let i = topCandidates.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [topCandidates[i], topCandidates[j]] = [topCandidates[j], topCandidates[i]];
+    }
+    
+    // <<< NOVO: Seleciona 'count' notícias garantindo unicidade >>>
+    const finalRelated = [];
+    const seenSlugs = new Set(); // Conjunto para rastrear slugs já adicionados
+
+    for (const related of topCandidates) {
+        if (finalRelated.length >= count) {
+            break; // Para quando atingir a contagem desejada
+        }
+        // Adiciona apenas se o slug ainda não foi visto
+        if (related.slug && !seenSlugs.has(related.slug)) {
+            finalRelated.push(related);
+            seenSlugs.add(related.slug);
+        }
+    }
+    
+    // Se, mesmo após o shuffle dos topN, não conseguimos 'count' únicos
+    // (improvável, mas possível se topN < count ou houver muitas duplicatas nos dados originais)
+    // Poderíamos pegar mais candidatos gerais aqui, mas vamos manter simples por enquanto.
+
+    console.log("Notícias relacionadas selecionadas (garantindo unicidade):", finalRelated.map(n => n.slug));
+    return finalRelated; 
+    // <<< FIM DA MUDANÇA DE UNICIDADE >>>
 }
+// ===============================================
 
 // Função auxiliar para formatação de URL (importante mantê-la)
 function formatForUrl(text) {

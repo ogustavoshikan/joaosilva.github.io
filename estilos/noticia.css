@@ -110,6 +110,7 @@ main {
   font-family: Anta, sans-serif;
   color: var(--text-color2);
   font-size: 0.9rem;
+  font-weight: 400;
   text-decoration: none;
   transition: color 0.3s ease;
 }
@@ -119,10 +120,10 @@ main {
 }
 
 .breadcrumbs li[aria-current="page"] { /* Estilo para o item atual */
-  font-family: Anta, sans-serif;
-  font-size: 0.95rem;
+  font-family: 'Roboto';
+  font-size: 0.9rem;
   color: var(--text-color); /* Cor principal para o título atual */
-  font-weight: 500;
+  font-weight: 400;
   padding-left: 8px; /* Adiciona espaço após o último separador '>' */
 }
   
@@ -130,7 +131,7 @@ main {
   .article-layout {
     display: flex;
     flex-wrap: wrap; /* Permite que a sidebar vá para baixo em telas menores */
-    gap: 88px; /* Espaço entre conteúdo e sidebar */
+    gap: 50px; /* Espaço entre conteúdo e sidebar */
   }
   
   .article-content {
@@ -169,20 +170,20 @@ main {
   
   .article-title {
     font-family:'Roboto Condensed'; /* Usar fonte de título definida */
-    font-size: 2.5rem; /* Tamanho maior para o título */
+    font-size: 2.8125rem; /* Tamanho maior para o título */
     color: var(--heading-color);
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     line-height: 1.2;
     font-weight: 700; /* Ou o peso desejado */
   }
 
   /* Estilo para o Subtítulo/Excerto abaixo do H1 */
 .article-subtitle {
-  font-size: 1.2rem; /* Tamanho intermediário (ajuste) */
+  font-size: 1.25rem; /* Tamanho intermediário (ajuste) */
   color: var(--text-color2, #ccc);
   line-height: 1.6;
-  margin-top: 16px; /* Espaço abaixo do H1 */
-  margin-bottom: 8px; /* Espaço antes dos meta-dados */
+  margin-top: 5px; /* Espaço abaixo do H1 */
+  margin-bottom: 15px; /* Espaço antes dos meta-dados */
   font-family: 'Roboto', sans-serif; /* Fonte diferente ou a mesma do corpo */
   font-weight: 400; /* Peso normal */
   max-width: 75ch; /* Limita largura da linha para leitura (opcional) */
@@ -224,10 +225,10 @@ main {
 
 /* Estilo para o "Por:" */
 .author-prefix-meta {
-  font-size: 0.875rem; /* Tamanho um pouco menor */
-  color: #999999; /* Cor secundária */
+  font-size: 1rem; /* Tamanho um pouco menor */
+  color: #ffffff; /* Cor secundária */
   font-family: 'Roboto', sans-serif; /* Fonte leve */
-  font-weight: 500;
+  font-weight: 400;
 }
 
 /* Estilo para o link do autor */
@@ -235,7 +236,7 @@ main {
   color: var(--text-color, #fff); 
   text-decoration: none;
   font-weight: 600; 
-  font-size: 0.95rem; 
+  font-size: 1rem; 
   font-family: 'Roboto Condensed', sans-serif; 
   transition: color 0.2s ease;
 }
@@ -253,6 +254,7 @@ main {
   font-family: 'Roboto', sans-serif;
   line-height: 1.4;
 }
+
 .read-time-meta {
   font-style: italic; /* Pode remover ou manter */
 }
@@ -265,7 +267,7 @@ main {
  .publish-date-time::after {
      content: " • "; 
      margin: 0 5px;
-     color: var(--text-color2, #aaa);
+     color: transparent;
      display: inline-block; 
  }
  /* Esconder separador se tempo de leitura vazio */
@@ -341,7 +343,7 @@ main {
   width: 860px;       /* <<< Largura máxima desejada */
   height: 450px;      /* <<< Altura fixa desejada */
   object-fit: cover;  /* <<< ESSENCIAL: Evita distorção. Cobre a área definida, cortando se necessário */
-  margin: 0 auto;     /* <<< Centraliza a imagem se o container for maior que 860px */
+  margin: 0;     /* <<< Centraliza a imagem se o container for maior que 860px */
   border-radius: 5px;
   border: 1px solid #333; /* Manter ou remover a borda, como preferir */
 }
@@ -368,6 +370,7 @@ main {
     margin-bottom: 1.5em; /* Espaçamento entre parágrafos */
     font-size: 1rem; /* Tamanho padrão do texto */
     font-family: 'Roboto', sans-serif; /* Fonte para leitura */
+    text-align: justify; /* Justifica o texto */
   }
   
   .article-body h2, 
@@ -687,12 +690,12 @@ body.light-mode .article-body .image-in-article figcaption {
   /* ... (estilos existentes para títulos, parágrafos, related-news) ... */
 
   .featured-image img {
-    height: 250px; /* Altura ainda menor para mobile */
+    height: 220px; /* Altura ainda menor para mobile */
      /* Se usou aspect-ratio, não precisa mexer aqui */
   }
 
   .article-body .image-in-article img {
-      height: 220px; /* Altura ainda menor para mobile */
+      height: 200px; /* Altura ainda menor para mobile */
        /* Se usou aspect-ratio, não precisa mexer aqui */
   }
 }
@@ -828,9 +831,9 @@ body {
 
 .light-mode .article-title {
   font-family:'Roboto Condensed'; /* Usar fonte de título definida */
-  font-size: 2.5rem; /* Tamanho maior para o título */
+  font-size: 2.8125rem; /* Tamanho maior para o título */
   color: #000000;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
   line-height: 1.2;
   font-weight: 700; /* Ou o peso desejado */
 }
@@ -851,6 +854,14 @@ body {
 
 body.light-mode .article-subtitle {
   color: #808080; /* Cor para modo claro */
+}
+
+/* Estilo para o "Por:" */
+.light-mode .author-prefix-meta {
+  font-size: 1rem; /* Tamanho um pouco menor */
+  color: #000000; /* Cor secundária */
+  font-family: 'Roboto', sans-serif; /* Fonte leve */
+  font-weight: 400;
 }
 
 /* --- Fundo da Seção do Artigo --- */
@@ -882,11 +893,25 @@ body.light-mode .article-subtitle {
 }
 
 /* --- Tags de Categoria --- */
+
+.light-mode .category-tag {
+  display: inline-block;
+  background-color: var(--light-hover-bg, #e9ecef); /* Fundo cinza claro */
+  color: var(--light-text-secondary, #6c757d); /* Texto secundário */
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  margin-right: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 .light-mode .category-tag {
   background-color: var(--light-hover-bg, #e9ecef); /* Fundo cinza claro */
   color: var(--light-text-secondary, #6c757d); /* Texto secundário */
-  border: 1px solid var(--light-border-color, #e0e0e0); /* Borda sutil */
+  
 }
+
 .light-mode .category-tag:hover {
   background-color: #cecdcd; /* Fundo de destaque no hover */
   color: #6c757d; /* Texto branco no hover */
@@ -962,10 +987,20 @@ body.light-mode .read-time-meta {
   color: var(--light-accent-color, #F44336); /* Cor de destaque no hover */
 }
 
+
+.light-mode .author-box {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: var(--light-hover-bg, #e9ecef); /* Fundo cinza claro */
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
 /* --- Caixa do Autor --- */
 .light-mode .author-box {
   background-color: var(--light-hover-bg, #e9ecef); /* Fundo cinza claro */
-  border: 1px solid var(--light-border-color, #dee2e6); /* Borda opcional */
 }
 .light-mode .author-info h4 {
   color: var(--light-text-primary, #212529); /* Cor primária */

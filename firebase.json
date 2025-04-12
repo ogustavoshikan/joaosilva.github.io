@@ -30,7 +30,7 @@
       },
       {
         "source": "/tendencias", // Quando alguém acessar /tendencias
-        "destination": "/tendências.html" // Sirva o conteúdo de /tendencias.html
+        "destination": "/tendencias.html" // Sirva o conteúdo de /tendencias.html
       },
       {
         "source": "/tendências", // Quando alguém acessar /tendências

@@ -1,71 +1,70 @@
 function loadTrendsCards() {
-  fetch('data/tendencias.json?v=' + Date.now())
+  fetch('data/tendencias.json?v=' + Date.now()) 
     .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       return response.json();
     })
     .then(data => {
-      const container = document.querySelector('.trends-cards-container'); // Container na index.html
-      if (!container) {
-          console.warn("Container .trends-cards-container não encontrado na página atual.");
-          return; // Sai se o container não existir
-      }
+      const container = document.querySelector('.trends-cards-container'); 
+      if (!container) return; // Sai se não achar o container
       const fallback = container.querySelector('.loading-fallback');
 
       if (data && data.trends && data.trends.length > 0) {
-        if (fallback) {
-          fallback.remove();
-        }
-
+        if (fallback) fallback.remove();
         const fragment = document.createDocumentFragment();
         
-        // Pega apenas as 9 tendências mais recentes para a home page
-        // Assumindo que o JSON já está ordenado por data no futuro, ou ordenamos aqui
+        // Ordena e pega as 9 mais recentes
         const trendsToShow = data.trends
-                                 .sort((a, b) => new Date(b.dateTimeIso || b.date || 0) - new Date(a.dateTimeIso || a.date || 0)) // Ordena por data/hora completa
-                                 .slice(0, 9); // Pega as 9 primeiras
+                                 .sort((a, b) => new Date(b.dateTimeIso || b.date || 0) - new Date(a.dateTimeIso || a.date || 0)) 
+                                 .slice(0, 9);
 
         trendsToShow.forEach(card => {
           const article = document.createElement('article');
           article.classList.add('trends-card');
           
-          // --- Lógica de Formatação de Data/Hora (similar ao inicio.js) ---
+          // --- Lógica de Formatação de Data/Hora (Formato: DD Fev AAAA às HHhMM) ---
           let dataHoraFormatada = '';
-          let dateTimeAttr = '';
-          const isoDateTimeString = card.dateTimeIso || card.date; // Usa dateTimeIso ou fallback para date
-
-          if (isoDateTimeString) {
-              try {
-                  const dateObj = new Date(isoDateTimeString);
-                  dateTimeAttr = dateObj.toISOString();
-
-                  const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-                  const timeOptions = { hour: 'numeric', minute: 'numeric', hour12: true };
-
-                  if (isoDateTimeString.includes('T')) {
-                      dataHoraFormatada = `${dateObj.toLocaleDateString('pt-BR', dateOptions)} - ${dateObj.toLocaleTimeString('en-US', timeOptions).toLowerCase()}`; // AM/PM minúsculo
-                  } else {
-                      dataHoraFormatada = dateObj.toLocaleDateString('pt-BR', dateOptions);
-                  }
-              } catch (e) {
-                   console.warn(`Erro ao formatar data/hora para tendência "${card.title}": ${isoDateTimeString}`, e);
-                   // Fallback para data simples se houver erro
+          let dateTimeAttr = ''; 
+          // Tenta construir a partir dos campos simples (assumindo que você adicionou dataPublicacao e horaPublicacao a tendencias.json)
+          if (card.dataPublicacao && card.horaPublicacao) { 
+              const parts = card.dataPublicacao.split('/');
+              if (parts.length === 3) {
+                  const isoDateOnly = `${parts[2]}-${parts[1].padStart(2, '0')}-${parts[0].padStart(2, '0')}`;
+                   const isoDateTimeString = `${isoDateOnly}T${card.horaPublicacao}:00`; 
                    try {
-                       dateTimeAttr = card.date || '';
-                       dataFormatada = card.date ? new Date(card.date + 'T00:00:00').toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' }) : '';
-                   } catch { dataHoraFormatada = card.date || ''; }
-              }
+                      const dateObj = new Date(isoDateTimeString); 
+                      if (!isNaN(dateObj.getTime())) { 
+                           dateTimeAttr = dateObj.toISOString(); 
+                           const dateOptions = { day: '2-digit', month: 'short', year: 'numeric' };
+                           const timeOptions = { hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }; 
+                           let formattedDate = dateObj.toLocaleDateString('pt-BR', dateOptions).replace('.', ''); 
+                           formattedDate = formattedDate.replace(/ de /g, ' '); 
+                           formattedDate = formattedDate.replace(/ (\w)/, (match, p1) => ` ${p1.toUpperCase()}`); 
+                           const formattedTime = dateObj.toLocaleTimeString('pt-BR', timeOptions).replace(':', 'h'); 
+                           dataHoraFormatada = `${formattedDate} às ${formattedTime}`; // Formato final
+                      } else { throw new Error('Data inválida criada'); }
+                   } catch (e) {
+                       console.warn(`Erro ao formatar data/hora (tendência ${card.title}):`, e);
+                       dataHoraFormatada = card.dataPublicacao || ''; 
+                       dateTimeAttr = card.date || ''; // Fallback para campo 'date' antigo se existir
+                   }
+              } else { 
+                   dataHoraFormatada = card.dataPublicacao || '';
+                   dateTimeAttr = card.date || '';
+               }
+          } else if (card.date) { // Fallback se só tiver o campo 'date' antigo
+               try {
+                    const dateObjFallback = new Date(card.date + 'T00:00:00');
+                    let formattedDate = dateObjFallback.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' }).replace('.','');
+                    formattedDate = formattedDate.replace(/ de /g, ' ');
+                    formattedDate = formattedDate.replace(/ (\w)/, (match, p1) => ` ${p1.toUpperCase()}`);
+                    dataHoraFormatada = formattedDate;
+                    dateTimeAttr = card.date;
+               } catch { dataHoraFormatada = card.date || ''; dateTimeAttr = '';}
           }
-          // --- Fim da Lógica de Data/Hora ---
+          // --- Fim Formatação Data/Hora ---
 
-          // Imagem não precisa de width/height aqui se o CSS controlar
-          const imageWidth = ''; // Removido card.imageWidth
-          const imageHeight = '';// Removido card.imageHeight
-          
-          // HTML do autor (mantido igual)
-           const autorHtml = card.authorName
+          const autorHtml = card.authorName
                 ? `<div class="card-author-info">
                      <span class="author-prefix">Por: </span>
                      <a href="${card.authorLink || '#'}" class="author-link" ${card.authorLink ? 'target="_blank" rel="noopener noreferrer"' : ''}>${card.authorName}</a>
@@ -74,33 +73,25 @@ function loadTrendsCards() {
 
           article.innerHTML = `
             <div class="card-image">
-              <a href="${card.link}" target="_blank" rel="noopener noreferrer" aria-label="Ver artigo completo sobre ${card.title} (abre em nova aba)">
-                <img
-                  src="${card.image || 'assets/imagens/geral/placeholder.png'}" 
-                  alt="${card.alt || 'Imagem ilustrativa para ' + card.title}"
-                  loading="lazy">
+              <a href="${card.link}" target="_blank" rel="noopener noreferrer" aria-label="Ver artigo completo sobre ${card.title || 'Tendência'}">
+                <img src="${card.image || 'assets/imagens/geral/placeholder.png'}" alt="${card.alt || 'Imagem ilustrativa para ' + card.title}" loading="lazy">
               </a>
             </div>
             <div class="card-content">
-              <!-- Usa a nova data/hora formatada -->
               <time datetime="${dateTimeAttr}" class="card-date">${dataHoraFormatada}</time> 
               <h3 class="card-title">
-                <a
-                  href="${card.link}"
-                  aria-label="Leia mais sobre ${card.title} (abre em nova aba)"
-                  title="Leia o artigo completo: ${card.title}"
-                  target="_blank"
-                  rel="noopener noreferrer">
+                <a href="${card.link}" target="_blank" rel="noopener noreferrer" title="${card.title || ''}">
                     ${card.title || 'Sem Título'}
                 </a>
               </h3>
               <p class="card-excerpt">${card.excerpt || ''}</p>
-              ${autorHtml} <!-- Insere o HTML do autor -->
+              ${autorHtml}
             </div>
           `;
           fragment.appendChild(article);
         });
 
+        container.innerHTML = ''; // Limpa antes de adicionar
         container.appendChild(fragment);
 
       } else {

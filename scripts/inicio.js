@@ -413,50 +413,60 @@ function carregarNoticiasDestaque() {
         });
 }
 
-// --- Função Auxiliar para Criar o HTML do Card de Notícia ---
-// Recebe o objeto da notícia e o tipo ('featured', 'side', 'bottom')
+// --- Função Auxiliar para Criar o HTML do Card de Notícia (MODIFICADA DATA/HORA) ---
 function criarCardNoticiaHtml(cardData, tipoCard) {
     const article = document.createElement('article');
-    article.classList.add('news-card', tipoCard); // Usa o tipo para a classe
+    article.classList.add('news-card', tipoCard);
 
     const linkNoticia = `noticia.html?artigo=${cardData.slug}`; 
     const titulo = cardData.titulo || 'Sem Título';
     const resumo = cardData.resumo || '';
     const imagemSrc = cardData.imagemCard || 'assets/imagens/geral/placeholder.png'; 
     const altImagem = cardData.altImagem || `Imagem para ${titulo}`;
-    // const dataFormatadaSimples = cardData.data || ''; // Não usaremos mais esta diretamente
-    const isoDateTimeString = cardData.dateTimeIso || cardData.isoDate; // Prioriza data/hora completa, fallback para data
     const autorNome = cardData.autor?.nome || ''; 
     const autorLink = cardData.autor?.link || '#';
     
-    // --- NOVA Lógica de Formatação de Data e Hora ---
+    // --- Lógica de Formatação de Data/Hora (Formato: DD Fev AAAA às HHhMM) ---
     let dataHoraFormatada = '';
-    let dateTimeAttr = ''; // Para o atributo datetime da tag <time>
-    if (isoDateTimeString) {
-        try {
-            const dateObj = new Date(isoDateTimeString); // Tenta criar objeto Date
-             dateTimeAttr = dateObj.toISOString(); // Formato ISO para o atributo
-
-             // Opções para formatação legível em português
-             const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' }; // Ex: 2 de março de 2025
-             const timeOptions = { hour: 'numeric', minute: 'numeric', hour12: true }; // Ex: 11:40 AM / 09:00 AM
-
-             // Verifica se a string ISO contém informação de hora (presença de 'T')
-             if (isoDateTimeString.includes('T')) {
-                 dataHoraFormatada = `${dateObj.toLocaleDateString('pt-BR', dateOptions)} - ${dateObj.toLocaleTimeString('en-US', timeOptions)}`; // Usa en-US para AM/PM
-                 // Ajuste para minúsculas am/pm se preferir: .toLowerCase();
-             } else {
-                 // Se só tiver a data, formata apenas a data
-                 dataHoraFormatada = dateObj.toLocaleDateString('pt-BR', dateOptions);
+    let dateTimeAttr = ''; 
+    // Tenta construir a partir dos campos simples
+    if (cardData.dataPublicacao && cardData.horaPublicacao) {
+        const parts = cardData.dataPublicacao.split('/');
+        if (parts.length === 3) {
+            const isoDateOnly = `${parts[2]}-${parts[1].padStart(2, '0')}-${parts[0].padStart(2, '0')}`;
+             const isoDateTimeString = `${isoDateOnly}T${cardData.horaPublicacao}:00`; 
+             try {
+                const dateObj = new Date(isoDateTimeString); 
+                if (!isNaN(dateObj.getTime())) { 
+                     dateTimeAttr = dateObj.toISOString(); 
+                     const dateOptions = { day: '2-digit', month: 'short', year: 'numeric' };
+                     const timeOptions = { hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }; 
+                     let formattedDate = dateObj.toLocaleDateString('pt-BR', dateOptions).replace('.', ''); 
+                     formattedDate = formattedDate.replace(/ de /g, ' '); 
+                     formattedDate = formattedDate.replace(/ (\w)/, (match, p1) => ` ${p1.toUpperCase()}`); 
+                     const formattedTime = dateObj.toLocaleTimeString('pt-BR', timeOptions).replace(':', 'h'); 
+                     dataHoraFormatada = `${formattedDate} às ${formattedTime}`; // Formato final
+                } else { throw new Error('Data inválida criada'); }
+             } catch (e) {
+                 console.warn(`Erro ao formatar data/hora (notícia ${cardData.slug}):`, e);
+                 dataHoraFormatada = cardData.dataPublicacao || ''; 
+                 dateTimeAttr = cardData.isoDate || ''; 
              }
-
-        } catch (e) {
-            console.warn(`Erro ao formatar data/hora para ${cardData.slug}: ${isoDateTimeString}`, e);
-            dataHoraFormatada = cardData.data || ''; // Fallback para a data string simples
-            dateTimeAttr = cardData.isoDate || '';
-        }
+        } else { 
+             dataHoraFormatada = cardData.dataPublicacao || '';
+             dateTimeAttr = cardData.isoDate || '';
+         }
+    } else if (cardData.isoDate) { // Fallback se só tiver isoDate
+         try {
+              const dateObjFallback = new Date(cardData.isoDate + 'T00:00:00');
+              let formattedDate = dateObjFallback.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' }).replace('.','');
+              formattedDate = formattedDate.replace(/ de /g, ' ');
+              formattedDate = formattedDate.replace(/ (\w)/, (match, p1) => ` ${p1.toUpperCase()}`);
+              dataHoraFormatada = formattedDate;
+              dateTimeAttr = cardData.isoDate;
+         } catch { dataHoraFormatada = cardData.data || ''; dateTimeAttr = '';}
     }
-    // --- FIM da Nova Lógica ---
+    // --- Fim Formatação Data/Hora ---
     
     const autorHtml = autorNome
         ? `<div class="news-author-info">
@@ -465,7 +475,7 @@ function criarCardNoticiaHtml(cardData, tipoCard) {
            </div>`
         : '';
 
-    // Estrutura HTML (Ajustada para usar a nova data/hora formatada)
+    // Estrutura HTML (Usando a nova data/hora formatada)
     if (tipoCard === 'featured' || tipoCard === 'side') {
         article.innerHTML = `
           <div class="news-image-top">
