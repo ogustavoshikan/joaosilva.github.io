@@ -23,6 +23,56 @@ document.addEventListener('DOMContentLoaded', () => {
         if(loadingElement) loadingElement.textContent = 'Erro ao carregar layout.';
         return;
     }
+    
+    // --- Função para Calcular Tempo Relativo ---
+function formatRelativeTime(isoDateTimeString) {
+    if (!isoDateTimeString) return ''; // Retorna vazio se não houver data/hora
+
+    try {
+        const publicationDate = new Date(isoDateTimeString);
+        if (isNaN(publicationDate.getTime())) throw new Error('Data inválida'); // Verifica se a data é válida
+
+        const now = new Date();
+        const diffInSeconds = Math.floor((now - publicationDate) / 1000);
+        const diffInMinutes = Math.floor(diffInSeconds / 60);
+        const diffInHours = Math.floor(diffInMinutes / 60);
+        const diffInDays = Math.floor(diffInHours / 24);
+
+        const thresholdDays = 7; // Limite para mostrar "X dias atrás"
+
+        if (diffInSeconds < 60) {
+            return "Agora mesmo";
+        } else if (diffInMinutes < 60) {
+            return `${diffInMinutes} minuto${diffInMinutes > 1 ? 's' : ''} atrás`;
+        } else if (diffInHours < 24) {
+            return `${diffInHours} hora${diffInHours > 1 ? 's' : ''} atrás`;
+        } else if (diffInDays <= thresholdDays) {
+            return `${diffInDays} dia${diffInDays > 1 ? 's' : ''} atrás`;
+        } else {
+            // Se for mais antigo, retorna a data formatada "DD Mês AAAA"
+            const dateOptions = { day: '2-digit', month: 'short', year: 'numeric' };
+            let formattedDate = publicationDate.toLocaleDateString('pt-BR', dateOptions).replace('.', '');
+            formattedDate = formattedDate.replace(/ de /g, ' ');
+            formattedDate = formattedDate.replace(/ (\w)/, (match, p1) => ` ${p1.toUpperCase()}`);
+            return formattedDate;
+        }
+    } catch (error) {
+        console.warn(`Erro ao formatar tempo relativo para ${isoDateTimeString}:`, error);
+        // Fallback para data original se houver erro
+        try {
+           // Tenta formatar a data original se possível
+           const fallbackDate = new Date(isoDateTimeString.split('T')[0] + 'T00:00:00'); // Pega só a data
+           if(!isNaN(fallbackDate.getTime())){
+                const dateOptions = { day: '2-digit', month: 'short', year: 'numeric' };
+                let formattedDate = fallbackDate.toLocaleDateString('pt-BR', dateOptions).replace('.', '');
+                formattedDate = formattedDate.replace(/ de /g, ' ');
+                formattedDate = formattedDate.replace(/ (\w)/, (match, p1) => ` ${p1.toUpperCase()}`);
+                return formattedDate;
+           }
+        } catch {}
+        return isoDateTimeString || ''; // Último fallback
+    }
+}
 
     // --- Função Principal de Inicialização ---
     async function inicializarPaginaTendencias() {
@@ -69,12 +119,11 @@ document.addEventListener('DOMContentLoaded', () => {
      function sortTrendsInternal(order) {
         console.log(`Ordenando tendências por: ${order}`);
         if (order === 'recent') {
-            allTrendsFiltered.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
-        } else if (order === 'oldest') {
-            allTrendsFiltered.sort((a, b) => new Date(a.date || 0) - new Date(b.date || 0));
-        }
-        // Adicionar outras opções de ordenação se necessário (ex: por título)
-    }
+         allTrendsFiltered.sort((a, b) => new Date(b.dateTimeIso || b.date || 0) - new Date(a.dateTimeIso || a.date || 0));
+     } else if (order === 'oldest') {
+         allTrendsFiltered.sort((a, b) => new Date(a.dateTimeIso || a.date || 0) - new Date(b.dateTimeIso || b.date || 0));
+     }
+ }
 
 
     // --- Função para Exibir Tendências da Página Atual ---
@@ -104,46 +153,54 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Função Auxiliar para Criar o HTML do Card de Tendência (Grid) ---
     function criarCardTendenciaHtml(trendData) {
         const article = document.createElement('article');
-        // Classe base para o item do grid
-        article.classList.add('trend-card-item'); 
+    article.classList.add('trend-card-item'); 
 
-        // Formata a data (adapte se o formato em tendencias.json for diferente)
-        let dataFormatada = '';
-        try {
-           if(trendData.date) {
-               dataFormatada = new Date(trendData.date + 'T00:00:00').toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' }); // Ex: 09 abr, 2025
-           }
-        } catch { dataFormatada = trendData.date || ''; }
-        const dateTimeAttr = trendData.date || ''; // Para o <time>
+        // --- Formatação de Tempo Relativo ---
+    const relativeTime = formatRelativeTime(trendData.dateTimeIso || trendData.date); // <<< USA A NOVA FUNÇÃO
+    const dateTimeAttr = trendData.dateTimeIso || trendData.date || ''; // Para atributo datetime
 
-        // Link do autor (opcional)
-        const autorHtml = trendData.authorName
-         ? `<a href="${trendData.authorLink || '#'}" class="author-link" ${trendData.authorLink ? 'target="_blank" rel="noopener noreferrer"' : ''}>${trendData.authorName}</a>`
-         : '';
+    // --- HTML do Autor e Avatar ---
+    const authorNameHtml = trendData.authorName
+        ? `<a href="${trendData.authorLink || '#'}" class="trend-author-link" ${trendData.authorLink ? 'target="_blank" rel="noopener noreferrer"' : ''}>${trendData.authorName}</a>`
+        : '<span class="trend-author-name">Redação</span>'; // Fallback se não houver nome
 
+    const authorAvatarHtml = `
+        <img 
+            src="${trendData.authorAvatarUrl || 'assets/imagens/autores/placeholder-avatar.png'}" 
+            alt="${trendData.authorName ? 'Avatar de ' + trendData.authorName : 'Avatar Padrão'}" 
+            class="trend-author-avatar" 
+            loading="lazy">
+    `;
+    // --- Fim Autor ---
 
         // Estrutura do Card Menor (inspirado na BBC / seu trends.js da index)
         article.innerHTML = `
-            <div class="trend-card-item__image-container">
-              <a href="${trendData.link || '#'}" target="_blank" rel="noopener noreferrer" aria-label="Ver artigo completo sobre ${trendData.title || 'Tendência'}">
-                <img src="${trendData.image || 'assets/imagens/geral/placeholder.png'}" alt="${trendData.alt || `Imagem ${trendData.title || 'Tendência'}`}" loading="lazy">
-              </a>
-            </div>
-            <div class="card-content">
-              <h3 class="card-title">
-                <a href="${trendData.link || '#'}" target="_blank" rel="noopener noreferrer" title="${trendData.title || ''}">
-                    ${trendData.title || 'Sem Título'}
-                </a>
-              </h3>
-              <p class="card-excerpt">${trendData.excerpt || ''}</p>
-              <div class="card-meta">
-                  ${autorHtml ? `<span class="author-info">${autorHtml}</span>` : ''}
-                  ${dataFormatada ? `<time datetime="${dateTimeAttr}" class="card-date">${dataFormatada}</time>` : ''}
+           <div class="trend-card-item__image-container">
+          <a href="${trendData.link || '#'}" target="_blank" rel="noopener noreferrer" aria-label="Ver artigo completo sobre ${trendData.title || 'Tendência'}">
+            <img src="${trendData.image || 'assets/imagens/geral/placeholder.png'}" alt="${trendData.alt || `Imagem ${trendData.title || 'Tendência'}`}" loading="lazy">
+          </a>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">
+            <a href="${trendData.link || '#'}" target="_blank" rel="noopener noreferrer" title="${trendData.title || ''}">
+                ${trendData.title || 'Sem Título'}
+            </a>
+          </h3>
+          <p class="card-excerpt">${trendData.excerpt || ''}</p>
+          
+          <!-- <<< NOVA ESTRUTURA META >>> -->
+          <div class="card-meta-new"> 
+              ${authorAvatarHtml}
+              <div class="trend-meta-text">
+                  <span class="trend-author-name">${authorNameHtml}</span> 
+                  <time datetime="${dateTimeAttr}" class="trend-relative-time">${relativeTime}</time> 
               </div>
-            </div>
-          `;
-        return article;
-    }
+          </div>
+          <!-- <<< FIM NOVA ESTRUTURA META >>> -->
+        </div>
+      `;
+    return article;
+}
 
     // --- Função Auxiliar para Atualizar Controles de Paginação ---
     function updatePaginationControls(page, totalItems) {

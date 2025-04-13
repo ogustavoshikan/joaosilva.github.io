@@ -33,8 +33,8 @@ padding-right: 15px;
 /* Layout com sidebar */
 .trends-layout {
   display: flex;
-  flex-wrap: wrap; 
-  gap: 40px; 
+  flex-wrap: wrap;
+  gap: 40px;
 }
 
 .trends-main-content {
@@ -51,8 +51,8 @@ padding-right: 15px;
 /* Cabeçalho dentro do conteúdo principal */
 .trends-header {
   margin-bottom: 30px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid var(--border-color, #333); 
+  padding-bottom: 0px;
+  border-bottom: 0px solid var(--border-color, #333);
 }
 
 .trends-header .section-title { /* Estilo para o H1 */
@@ -78,7 +78,7 @@ padding-right: 15px;
 .trends-cards-container-grid {
 display: grid;
 grid-template-columns: repeat(4, 1fr); /* COMEÇANDO COM 4 COLUNAS */
-gap: 20px; 
+gap: 15px; 
 margin-bottom: 40px; 
 }
 
@@ -89,14 +89,13 @@ border-radius: 6px;
 overflow: hidden;
 display: flex;
 flex-direction: column;
-transition: transform 0.2s ease-in-out, border-color 0.2s ease-in-out;
 border: 1px solid var(--border-color-light, #282828); 
 }
 
-.trend-card-item:hover {
+/*.trend-card-item:hover {
 transform: translateY(-4px);
 border-color: var(--secondary-color, #00BCD4); 
-}
+}*/
 
 .trend-card-item .card-image a { display: block; }
 
@@ -119,12 +118,7 @@ object-fit: cover;
    border-bottom: 1px solid var(--border-color-light, #282828); 
 }
 
-.trend-card-item .card-content {
-padding: 15px 18px; 
-display: flex;
-flex-direction: column;
-flex-grow: 1;
-}
+.trend-card-item .card-content {padding: 10px 18px;display: flex;flex-direction: column;flex-grow: 1;}
 
 .trend-card-item .card-title {
 font-size: 1.05rem; 
@@ -210,9 +204,11 @@ opacity: 0.8;
 .trends-sidebar .popular-news-widget a:hover { color: var(--secondary-color); }
 
 .trends-sidebar .product-card-placeholder img {
-  height: auto; 
-  aspect-ratio: 1 / 1; 
+  height: auto;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
+  width: 238px;
+  height: 340px;
 }
 
 /* --- Responsividade para o Grid de Tendências --- */
@@ -251,6 +247,53 @@ opacity: 0.8;
 .trends-header .section-title { font-size: 1.8rem; }
 }
 
+.card-meta-new {
+  display: flex;
+  align-items: center; /* Alinha avatar e texto verticalmente */
+  gap: 10px; /* Espaço entre avatar e texto */
+  margin-top: auto; /* Empurra para o final do card-content */
+  padding-top: 12px; /* Espaço acima */
+  border-top: 1px solid var(--border-color-light, #282828); /* Linha separadora */
+}
+
+.trend-author-avatar {
+  width: 32px; /* Tamanho do avatar no card */
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0; /* Não deixa o avatar encolher */
+}
+
+.trend-meta-text {
+  display: flex;
+  flex-direction: column; /* Empilha nome e data */
+  gap: 2px; /* Espaço pequeno entre nome e data */
+  flex-grow: 1; /* Ocupa espaço restante */
+  min-width: 0; /* Ajuda a evitar overflow com flexbox */
+}
+
+.trend-author-name {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-color); /* Cor principal para o nome */
+  white-space: nowrap; /* Evita quebra de linha no nome */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Adiciona '...' se o nome for muito longo */
+}
+.trend-author-name .trend-author-link { /* Estilo para o link DENTRO do span */
+    color: inherit; /* Herda a cor do span */
+    text-decoration: none;
+}
+.trend-author-name .trend-author-link:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+.trend-relative-time {
+  font-size: 0.75rem;
+  color: var(--text-color2); /* Cor secundária para o tempo */
+  line-height: 1.3;
+}
 
 /* --- Breadcrumbs --- */
 .breadcrumbs {
@@ -307,10 +350,10 @@ opacity: 0.8;
 }
 
 .breadcrumbs li[aria-current="page"] { /* Estilo para o item atual */
-  font-family: Anta, sans-serif;
-  font-size: 0.95rem;
+  font-family: 'Roboto';
+  font-size: 0.9rem;
   color: var(--text-color); /* Cor principal para o título atual */
-  font-weight: 500;
+  font-weight: 400;
   padding-left: 8px; /* Adiciona espaço após o último separador '>' */
 }
 
@@ -321,7 +364,6 @@ opacity: 0.8;
     border-radius: 5px;
     margin-bottom: 30px; /* Espaço entre widgets */
     border: 1px solid #232221;
-    margin-top: 7.02rem;
   }
   
   .product-card-placeholder h3,
@@ -399,8 +441,10 @@ opacity: 0.8;
 /* ======== MODO LIGHT - PÁGINA TENDÊNCIAS ======== */
 /* ============================================== */
 
+
+
 /* --- Fundo Geral (se necessário) --- */
-.light-mode body.trends-page { background-color: var(--light-bg-primary, #f8f9fa); }
+.light-mode .body.trends-page { background-color: var(--light-bg-primary, #f8f9fa); color: #000000; }
 .light-mode .trends-content-section { background-color: var(--light-bg-primary, #f8f9fa); }
 
 .trends-page-container {
@@ -413,9 +457,9 @@ opacity: 0.8;
 }
 
 /* --- Cabeçalho da Seção --- */
-.light-mode .trends-header {
+/*.light-mode .trends-header {
   border-bottom: 1px solid var(--light-border-color, #dee2e6); /* Borda clara */
-}
+/*}*/
 
 .light-mode .trends-header .section-title {
   color: var(--light-text-primary, #212529); /* Cor primária */

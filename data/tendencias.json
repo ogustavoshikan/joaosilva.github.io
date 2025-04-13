@@ -2,55 +2,51 @@
   "trends": [
     {
       "title": "Espanha Fortalece Supervisão de IA com Nova Agência",
-      "excerpt": "A Agência Espanhola de Supervisão da Inteligência Artificial (AESIA), situada em A Coruña, planeja contratar até 80 funcionários até o final de 2025.",
-      "dataPublicacao": "15/02/2025",
-      "horaPublicacao": "15:00",
+      "excerpt": "A Agência Espanhola de Supervisão da Inteligência Artificial (AESIA)...",
       "date": "2025-03-12",
-      "dateTimeIso": "2025-03-12T10:00:00Z",
+      "dateTimeIso": "2025-04-12T21:55:00Z",
       "authorName": "Gustavo G.",
       "authorLink": "https://instagram.com/ogustavogoncalvess",
+      "authorAvatarUrl": "assets/imagens/autores/gustavo-g.webp",
       "image": "assets/imagens/tendencias/espanha-new.webp",
       "link": "https://exemplo.com/espanha-ia-agencia",
-      "alt": "Imagem da sede da nova Agência de Supervisão de IA da Espanha em A Coruña"
+      "alt": "Sede da nova Agência de Supervisão de IA da Espanha"
     },
     {
       "title": "Rússia Lidera Aliança de IA com Países Emergentes",
-      "excerpt": "Rússia desafia EUA e China com nova aliança com países do BRICS e outros, desenvolvendo sua própria Inteligência Artificial.",
-      "dataPublicacao": "15/02/2025",
-      "horaPublicacao": "08:37",
+      "excerpt": "Rússia desafia EUA e China com nova aliança...",
       "date": "2025-03-12",
-      "dateTimeIso": "2025-03-12T10:00:00Z",
+      "dateTimeIso": "2025-03-12T09:30:00Z",
       "authorName": "Gustavo G.",
       "authorLink": "#",
+      "authorAvatarUrl": "assets/imagens/autores/gustavo-g.webp",
       "image": "assets/imagens/tendencias/russia-news.webp",
       "link": "https://exemplo.com/russia-ia-alianca",
-      "alt": "Imagem ilustrativa mostrando cooperação entre Rússia e países emergentes em tecnologia de IA"
+      "alt": "Cooperação Rússia e países emergentes em IA"
     },
-    {
+     {
       "title": "Nossa missão é garantir que a AGI beneficie toda a humanidade",
-      "excerpt": "Sam Altman, o atual CEO da OpenAI, fala sobre a missão da empresa de desenvolver inteligência artificial geral que seja segura e benéfica para todos.",
-      "dataPublicacao": "15/02/2025",
-      "horaPublicacao": "15:00",
-      "date": "2025-03-12",
-      "dateTimeIso": "2025-03-12T10:00:00Z",
+      "excerpt": "Sam Altman, o atual CEO da OpenAI, fala sobre a missão da empresa...",
+      "date": "2025-04-08",
+      "dateTimeIso": "2025-04-08T18:15:00-03:00",
       "authorName": "Gustavo G.",
       "authorLink": "#",
+       "authorAvatarUrl": "assets/imagens/autores/gustavo-g.webp",
       "image": "assets/imagens/tendencias/openai-logo.webp",
       "link": "https://exemplo.com/openai-missao",
-      "alt": "Logo da OpenAI em fundo escuro"
+      "alt": "Logo da OpenAI"
     },
     {
       "title": "Ética na IA: Desafios e Soluções",
-      "excerpt": "Especialistas discutem os desafios éticos na implementação de inteligência artificial e propõem soluções para um uso mais responsável.",
-      "dataPublicacao": "15/02/2025",
-      "horaPublicacao": "15:00",
-      "date": "2025-03-14",
-      "dateTimeIso": "2025-03-12T10:00:00Z",
+      "excerpt": "Especialistas discutem os desafios éticos que podemos enfrentar com a utilização da Inteligência Artificial...",
+      "date": "2025-04-09",
+      "dateTimeIso": "2025-04-09T14:00:00-03:00",
       "authorName": "João Silva",
       "authorLink": "https://instagram.com/ogustavogoncalvess",
+      "authorAvatarUrl": "assets/imagens/autores/placeholder-avatar.png",
       "image": "assets/imagens/tendencias/etica-na-ia.webp",
       "link": "https://exemplo.com/etica-ia",
-      "alt": "Imagem ilustrativa sobre ética na inteligência artificial"
+      "alt": "Ética na inteligência artificial"
     },
     {
       "title": "IA Generativa: O Futuro da Criação de Conteúdo",

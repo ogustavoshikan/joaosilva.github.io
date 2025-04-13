@@ -75,7 +75,7 @@ img {
 a {
   text-decoration: none;
   color: #ffffff;
-  transition: color 0.3s ease;
+  /*transition: color 0.3s ease;*/
   background-color: #4b2f2f00;
 }
 
@@ -93,21 +93,6 @@ a:hover {
   flex-direction: column;
   align-items: center;
   z-index: 1000; /* Garante que o botão fique acima de outros elementos */
-}
-
-#home-back-to-top {
-  background-color: #ffffff;
-  border: 1px solid #232221;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  opacity: 0; /* Inicialmente invisível */
-  visibility: hidden; /* Inicialmente escondido */
-  transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.3s ease;
 }
 
 #home-back-to-top i {
@@ -992,6 +977,7 @@ main {
   padding: 0;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
+  border: 1px solid #101010; /* Borda sutil */
 }
 
 .medium-card-container {
@@ -1017,7 +1003,7 @@ main {
   cursor: pointer;
   display: block;
   transition: filter 0.2s ease;
-  border-radius: 8px;
+  border-radius: 0px;
 }
 
 .medium-card-image:hover {
@@ -1186,6 +1172,7 @@ main {
   align-items: center;
   overflow: hidden;
   position: relative;
+  border-bottom: 1px solid #101010;
 }
 
 .ethics-card,
@@ -1193,6 +1180,7 @@ main {
 .small-topic-card.stats-card-4,
 .small-topic-card.stats-card-8 {
   background-color: #101010;
+  border-bottom: 1px solid var(--light-border-color, #f1f1f1);
 }
 
 .small-topic-card:not(.stats-card-2):not(.stats-card-4):not(.stats-card-6):not(.stats-card-8) {
@@ -1259,7 +1247,7 @@ main {
   overflow: hidden;
   text-overflow: ellipsis;
   cursor: pointer;
-  transition: color 0.3s ease, text-decoration 0.3s ease;
+  /*transition: color 0.3s ease, text-decoration 0.3s ease;*/
 }
 
 .small-card-title-link:hover .small-card-title {
@@ -1338,7 +1326,7 @@ main {
 .icon-newsletter-sign i {
   font-size: 2.1rem;
   color: #d6d6d6;
-  transition: color 0.3s ease;
+  /*transition: color 0.3s ease;*/
   margin-bottom: 5px;
 }
 
@@ -2140,7 +2128,7 @@ main {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  /*transition: background-color 0.3s ease;*/
   line-height: 1; /* Ajuda no alinhamento vertical do ícone */
 }
 
@@ -2526,7 +2514,7 @@ main {
 
 #home-back-to-top {
   background-color: #ffffff;
-  border: 1px solid #232221;
+  border: 0px;
   border-radius: 50%;
   width: 45px;
   height: 45px;
@@ -2536,7 +2524,7 @@ main {
   cursor: pointer;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.3s ease;
+  transition: opacity 0.2s ease, visibility 0.2s ease, background-color 0.1s ease;
 }
 
 #home-back-to-top .back-to-top-icon {
@@ -3023,7 +3011,7 @@ body.light-mode .clear-filter-button:hover {
 .art-section .creation-icon img {
   width: 100%;
   height: 100%;
-  border-radius: 5px;
+  /*border-radius: 5px;*/
   object-fit: cover;
 }
 
@@ -3226,7 +3214,7 @@ body {
 
 /* --- Fundo da Seção --- */
 .light-mode .news-section {
-  background-color: #f8f9faf7; /* Fundo principal claro */
+  background-color: #fbfbfbf7; /* Fundo principal claro */
 }
 
 /* --- Título da Seção --- */
@@ -3544,7 +3532,7 @@ body {
 .light-mode .news2-section .pagination-controls button:hover:not(:disabled) {
   background-color: #cecdcd;
   color: #000000;
-  border-color: #a8a8a8;
+  border-color: #cecdcd;
 }
 
 .light-mode .news2-section .pagination-controls .page-number {
@@ -3825,7 +3813,7 @@ body.light-mode .icon-sun {
 
 /* --- Fundo da Seção --- */
 .light-mode .trends-section {
-  background-color: #f8f9faf7; /* Fundo principal claro */
+  background-color: #fbfbfbf7; /* Fundo principal claro */
 }
 
 .light-mode .trends-section-title {
@@ -4020,13 +4008,16 @@ body.light-mode .icon-sun {
   color: #000000; /* Cor de texto primária */
 }
 
-/* --- Container do Ícone --- */
-.light-mode .art-section .creation-icon {
-  /* Fundo claro sutil, ou pode ser o secundário branco */
+.art-section .creation-icon {
+  width: 80px;
+  height: 80px;
   background-color: var(--light-hover-bg, #e9ecef);
-  /* Adiciona uma borda clara para definir melhor o quadrado */
-  border: 1px solid var(--light-border-color, #dee2e6);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04); /* Sombra bem leve */
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
 }
 
 /* --- Label/Texto abaixo do Ícone --- */
