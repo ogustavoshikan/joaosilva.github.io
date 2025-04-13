@@ -136,6 +136,67 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         console.warn("Global: Botão Voltar ao Topo (#home-back-to-top) não encontrado nesta página.");
     }
+    
+    // ==========================================
+    // <<< NOVO: Lógica do Header Auto-Hide >>>
+    // ==========================================
+    const header = document.querySelector('.site-header');
+    if (header) {
+        let lastScrollTop = 0;
+        const delta = 50; // Tolerância mínima geral
+        const headerHeight = header.offsetHeight;
+        // NOVO: Limiar para mostrar ao rolar para cima (ex: 50 pixels)
+        const scrollUpThreshold = 150; 
+        // NOVO: Guarda a distância rolada para cima continuamente
+        let scrollUpDistance = 0; 
+
+        console.log("Global: Configurando header auto-hide (com limiar p/ cima).");
+
+        window.addEventListener('scroll', function() {
+            const currentScrollTop = window.scrollY || document.documentElement.scrollTop;
+
+            // Ignora scrolls muito pequenos ou perto do topo absoluto
+            if (Math.abs(lastScrollTop - currentScrollTop) <= delta || currentScrollTop < 0) {
+                return; 
+            }
+
+            if (currentScrollTop > lastScrollTop) {
+                // --- Rolando para BAIXO ---
+                // Esconde se já passou da altura do header
+                if (currentScrollTop > headerHeight) {
+                    header.classList.add('header-hidden');
+                    //console.log("Header hidden (Scrolling Down)");
+                }
+                // Reseta a distância rolada para cima
+                scrollUpDistance = 0; 
+
+            } else {
+                // --- Rolando para CIMA ---
+                // Acumula a distância rolada para cima
+                scrollUpDistance += lastScrollTop - currentScrollTop; 
+
+                // Mostra o header APENAS se acumulou distância suficiente OU se está perto do topo
+                if (scrollUpDistance > scrollUpThreshold || currentScrollTop <= headerHeight) {
+                     header.classList.remove('header-hidden');
+                     //console.log("Header shown (Scrolling Up Threshold Met or Near Top)");
+                     // Opcional: Resetar scrollUpDistance aqui se quiser exigir o limiar novamente
+                     // scrollUpDistance = 0; 
+                } else {
+                    //console.log(`Scrolling Up Distance: ${scrollUpDistance} (Threshold: ${scrollUpThreshold})`);
+                }
+            }
+
+            lastScrollTop = currentScrollTop; // Atualiza a última posição
+
+        }, { passive: true });
+
+    } else {
+        console.warn("Global: Elemento .site-header não encontrado.");
+    }
+    // =================================================
+    // <<< FIM: Header Auto-Hide (V2) >>>
+    // =================================================
+    
 
     console.log("Global scripts: Inicialização concluída.");
 }); // Fim do DOMContentLoaded

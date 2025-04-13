@@ -131,7 +131,7 @@ main {
   .article-layout {
     display: flex;
     flex-wrap: wrap; /* Permite que a sidebar vá para baixo em telas menores */
-    gap: 48px; /* Espaço entre conteúdo e sidebar */
+    gap: 68px; /* Espaço entre conteúdo e sidebar */
   }
   
   .article-content {
@@ -161,11 +161,13 @@ main {
     margin-right: 5px;
     text-decoration: none;
     /*transition: background-color 0.3s ease, color 0.3s ease;*/
+    border: 1px solid #1e1e1e; /* Borda sutil */
   }
   
   .category-tag:hover {
-    background-color: var(--secondary-color);
+    background-color: #343434;
     color: #ffffff;
+    border: 1px solid #585858;
   }
   
   .article-title {
@@ -233,7 +235,7 @@ main {
 
 /* Estilo para o link do autor */
 .author-link-meta {
-  color: var(--text-color, #fff); 
+  color: #ffffff; 
   text-decoration: none;
   font-weight: 600; 
   font-size: 1rem; 
@@ -241,7 +243,8 @@ main {
 /*  transition: color 0.2s ease;*/
 }
 .author-link-meta:hover {
-  color: var(--secondary-color);
+  color: #ffffff;
+  text-decoration: underline;
 }
 /* O span .author-name-meta dentro do link não precisa de estilo extra */
 
@@ -306,30 +309,75 @@ main {
   line-height: 1; /* Ajuda no alinhamento vertical do ícone */
 }
 
-.social-share a:hover {
-  /*color: var(--secondary-color);*/
-  /* ADICIONADO BACKGROUND-COLOR NO HOVER */
-  background-color: #03839461; 
+.dark-mode .social-share a {
+  font-size: 1rem;
+  border-radius: 4px;
+  padding: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  line-height: 1;
+  background-color: transparent;
 }
 
-/* --- Cores específicas para ícones de compartilhamento social --- */
-.social-share .fa-x-twitter {
+/* X */
+.social-share a.x {
+  background-color: #55555500;
+}
+.social-share a.x i {
+  color: #FFFFFF;
+}
+.social-share a.x:hover {
+  background-color: #e3e3e3;
+}
+.social-share a.x:hover i {
+  color: #000000;
+}
+
+/* WhatsApp */
+.social-share a.whatsapp {
+  background-color: #128c7e00;
+}
+ .social-share a.whatsapp i {
+  color: #25D366;
+}
+.social-share a.whatsapp:hover {
+  background-color: #25D366;
+}
+.social-share a.whatsapp:hover i {
   color: #FFFFFF;
 }
 
-.social-share .fa-whatsapp {
-  color: #25D366;
+/* Facebook */
+.social-share a.facebook {
+  background-color: #0e5dc900;
 }
-
-.social-share .fa-facebook-f {
+.social-share a.facebook i {
   color: #1877F2;
 }
+.social-share a.facebook:hover {
+  background-color: #1877F2;
+}
+.social-share a.facebook:hover i {
+  color: #FFFFFF;
+}
 
-.social-share .fa-linkedin-in {
+/* LinkedIn */
+.social-share a.linkedin {
+  background-color: #084b8a00;
+}
+.social-share a.linkedin i {
   color: #0A66C2;
 }
-  
-  
+.social-share a.linkedin:hover {
+  background-color: #0A66C2;
+}
+.social-share a.linkedin:hover i {
+  color: #FFFFFF;
+}
+
+
   /* --- Imagem de Destaque --- */
 .featured-image {
   margin-bottom: 30px;
@@ -840,7 +888,7 @@ body {
 }
 
 .light-mode .author-link-meta {
-  color: #282828; /* Cor de texto principal no modo claro */
+  color: #000000; /* Cor de texto principal no modo claro */
   text-decoration: none;
   font-weight: 600;
   font-size: 1rem;
@@ -850,7 +898,8 @@ body {
 }
 
 .light-mode .author-link-meta:hover {
-  color: var(--secondary-color);
+  color: #000000;
+  text-decoration: underline;
 }
 
 body.light-mode .article-subtitle {
@@ -905,6 +954,7 @@ body.light-mode .article-subtitle {
   margin-right: 5px;
   text-decoration: none;
 /*  transition: background-color 0.3s ease, color 0.3s ease;*/
+  border: 1px solid var(--light-border-color);
 }
 
 .light-mode .category-tag {
@@ -916,7 +966,7 @@ body.light-mode .article-subtitle {
 .light-mode .category-tag:hover {
   background-color: #cecdcd; /* Fundo de destaque no hover */
   color: #6c757d; /* Texto branco no hover */
-  border-color: #a8a8a8;
+  border-color: #aaa9a9;
 }
 
 /* --- Título e Meta --- */
@@ -938,15 +988,74 @@ body.light-mode .read-time-meta {
 /* body.light-mode .date-read-time-section { border-left-color: #ddd; } */
 
 /* --- Compartilhamento Social --- */
-/* Cores dos ícones são mantidas. Ajusta apenas o hover do link. */
-.light-mode .social-share a:hover {
-  background-color: #03839461; /* Fundo azul claro no hover */
-  /* A cor do ícone permanece a original */
+.light-mode .social-share a {
+  font-size: 1rem;
+  border-radius: 4px;
+  padding: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  line-height: 1;
+  background-color: transparent;
 }
 
-.light-mode .social-share .fa-x-twitter {
+/* X */
+.light-mode .social-share a.x {
+  background-color: transparent; /* Fundo transparente */
+}
+.light-mode .social-share a.x i {
   color: #000000;
 }
+.light-mode .social-share a.x:hover {
+  background-color: #000000;
+}
+.light-mode .social-share a.x:hover i {
+  color: #ffffff;
+}
+
+/* WhatsApp */
+.light-mode .social-share a.whatsapp {
+  background-color: transparent; /* Fundo transparente */
+}
+.light-mode .social-share a.whatsapp i {
+  color: #25D366;
+}
+.light-mode .social-share a.whatsapp:hover {
+  background-color: #25D366;
+}
+.light-mode .social-share a.whatsapp:hover i {
+  color: #ffffff;
+}
+
+/* Facebook */
+.light-mode .social-share a.facebook {
+  background-color: transparent; /* Fundo transparente */
+}
+.light-mode .social-share a.facebook i {
+  color: #1877F2;
+}
+.light-mode .social-share a.facebook:hover {
+  background-color: #1877F2;
+}
+.light-mode .social-share a.facebook:hover i {
+  color: #ffffff;
+}
+
+/* LinkedIn */
+.light-mode .social-share a.linkedin {
+  background-color: transparent; /* Fundo transparente */
+}
+.light-mode .social-share a.linkedin i {
+  color: #0A66C2;
+}
+.light-mode .social-share a.linkedin:hover {
+  background-color: #0A66C2;
+}
+.light-mode .social-share a.linkedin:hover i {
+  color: #ffffff;
+}
+
 
 /* --- Imagem de Destaque --- */
 .light-mode .featured-image img {

@@ -81,7 +81,7 @@ a {
 
 a:hover {
   color: #ffffff;
-  text-decoration: none;
+  /*text-decoration: underline;*/
 }
 
 /* ESTILO PARA O BOTÃO VOLTAR AO TOPO (PÁGINA INICIAL) */
@@ -118,7 +118,14 @@ a:hover {
   left: 0;
   width: 100%;
   z-index: 100;
+  transition: transform 0.2s ease-in-out; /* Anima a propriedade transform */
 }
+
+/* <<< NOVA REGRA para esconder o header >>> */
+.site-header.header-hidden {
+  transform: translateY(-100%); /* Move o header para cima, escondendo-o */
+}
+
 
 .home-header-container {
   display: flex;
@@ -1308,9 +1315,9 @@ main {
 }
 
 .stats-label {
-  font-size: 0.6rem;
+  font-size: 0.65rem;
   font-family: 'Roboto', sans-serif;
-  font-weight: 500;
+  font-weight: 600;
   color: #999999;
   text-transform: uppercase;
   margin: 0;
@@ -1912,14 +1919,38 @@ main {
   }
 }
 
+.trends-button-wrapper {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.trends-load-more-link {
+  font-family: 'Roboto Condensed';
+  font-weight: 500;
+  display: inline-block;
+  background-color: #232221;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 12px 50px;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  /*transition: background-color 0.3s ease;*/
+  border: 1px solid #464646;
+}
+
+.trends-load-more-link:hover {
+  background-color: #343434;
+  border: 1px solid #585858;
+}
+
 /* ESTILO PARA A PÁGINA DE TODAS AS NOTÍCIAS */
 /* Estilo para a seção hero */
-.hero-section {
+/*.hero-section {
   background: url('../assets/imagens/noticias/57047c51-b6c6-40cb-8a2c-c8849dda3b49.jpg') no-repeat center center / cover;
   padding: 6rem 0;
   position: relative;
   border-bottom: 1px solid #000000;
-}
+}*/
 
 /* Estilo para a seção de notícias */
 .news2-section {
@@ -1958,7 +1989,7 @@ main {
 .news2-section .tech-news-container {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .news2-section .tech-news-sidebar {
@@ -2029,7 +2060,7 @@ main {
 
 .news2-section .tech-news-card .tech-news-image {
   flex: 0 0 40%;
-  max-width: 341px;
+  max-width: 320px;
   min-height: 160px;
   overflow: hidden;
   border: 1px solid #232221;
@@ -2132,44 +2163,75 @@ main {
   line-height: 1; /* Ajuda no alinhamento vertical do ícone */
 }
 
-.news2-section .tech-news-card .social-icon:hover {
-  background-color: #03839461;
+/* Estilo para os ícones de redes sociais */
+/* Estilo base */
+.news2-section .tech-news-card .social-icon {
+  font-size: 1rem;
+  border-radius: 4px;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  line-height: 1;
+  /*transition: background-color 0.3s ease, color 0.3s ease;*/
 }
 
-/* Cores reais para cada ícone */
+/* X (Twitter/X) */
+.news2-section .tech-news-card .social-icon.x {
+  background-color: #55555500; /* cinza escuro */
+}
 .news2-section .tech-news-card .social-icon.x i {
-  color: #FFFFFF; /* Cor do X alterada para branco */
+  color: #FFFFFF;
+}
+.news2-section .tech-news-card .social-icon.x:hover {
+  background-color: #e3e3e3;
+}
+.news2-section .tech-news-card .social-icon.x:hover i {
+  color: #000000;
 }
 
+/* WhatsApp */
+.news2-section .tech-news-card .social-icon.whatsapp {
+  color:#ffffff;
+  background-color: #128c7e00; /* tom mais escuro do verde oficial */
+}
 .news2-section .tech-news-card .social-icon.whatsapp i {
-  color: #25D366; /* Cor oficial do WhatsApp (verde) */
+  color: #25D366;
+}
+.news2-section .tech-news-card .social-icon.whatsapp:hover {
+  background-color: #25D366; /* verde claro */
+}
+.news2-section .tech-news-card .social-icon.whatsapp:hover i {
+  color: #FFFFFF;
 }
 
+/* Facebook */
+.news2-section .tech-news-card .social-icon.facebook {
+  background-color: #0e5dc900; /* azul escurecido */
+}
 .news2-section .tech-news-card .social-icon.facebook i {
-  color: #1877F2; /* Cor oficial do Facebook (azul) */
+  color: #1877F2;
+}
+.news2-section .tech-news-card .social-icon.facebook:hover {
+  background-color: #1877F2; /* azul original */
+}
+.news2-section .tech-news-card .social-icon.facebook:hover i {
+  color: #FFFFFF;
 }
 
+/* LinkedIn */
+.news2-section .tech-news-card .social-icon.linkedin {
+  background-color: #084b8a00; /* azul escuro mais fechado */
+}
 .news2-section .tech-news-card .social-icon.linkedin i {
-  color: #0A66C2; /* Cor oficial do LinkedIn (azul escuro) */
+  color: #0A66C2;
 }
-
-.news2-section .tech-news-card .social-icon i {
-  font-size: 16px;
+.news2-section .tech-news-card .social-icon.linkedin:hover {
+  background-color: #0A66C2;
 }
-
-.news2-section .tech-news-card .tech-news-title a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.news2-section .tech-news-card .tech-news-title a:hover {
-  color: #ffffff;
-  text-decoration: underline;
-}
-
-.news2-section .tech-news-card .tech-news-date {
-  font-size: 0.75rem;
-  color: #888;
+.news2-section .tech-news-card .social-icon.linkedin:hover i {
+  color: #FFFFFF;
 }
 
 /* Paginação */
@@ -2182,21 +2244,28 @@ main {
 }
 
 .news2-section .pagination-controls button {
+  font-family: 'Roboto';
+  font-size: 0.9rem;
   background-color: #232221;
   color: #ffffff;
   border: none;
   padding: 0.5rem 1.063rem;
   border-radius: 5px;
   cursor: pointer;
+  border: 1px solid #464646;
 }
 
 .news2-section .pagination-controls button:disabled {
-  background-color: #1a1a1a;
+  background-color: #232221;
+  border: 1px solid #585858;
   cursor: not-allowed;
+  color: #ffffff;
+  padding: 0.5rem 1.132rem;
 }
 
 .news2-section .pagination-controls button:hover:not(:disabled) {
-  background-color: #F44336;
+  background-color: #343434;
+  border: 1px solid #585858;
 }
 
 .news2-section .pagination-controls .page-number {
@@ -3377,9 +3446,9 @@ body {
 
 .light-mode .news2-section .news-search input:focus {
   background-color: var(--light-bg-secondary);
-  border-color: #86b7fe; /* Cor de foco similar ao Bootstrap */
+  border-color: #aaa9a9; /* Cor de foco similar ao Bootstrap */
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25); /* Sombra de foco */
+  /*box-shadow: 0 0 0 0.1rem rgba(160, 160, 160, 0.25); /* Sombra de foco */
 }
 
 .light-mode .news2-section .news-search button {
@@ -3431,7 +3500,7 @@ body {
 .light-mode .news2-section .news-filter select:hover,
 .light-mode .news2-section .news-filter select:focus {
   background-color: var(--light-bg-secondary);
-  border-color: #86b7fe; /* Cor de foco */
+  border-color: #aaa9a9; /* Cor de foco */
 }
 
 /* --- Grid de Notícias e Cards --- */
@@ -3448,7 +3517,7 @@ body {
 /* Efeito hover na imagem pode ser mantido ou ajustado */
 /* .light-mode .news2-section .tech-news-card .tech-news-image img:hover { filter: brightness(0.95); } */
 
-.light-mode .news2-section .tech-news-card .tech-news-title {
+.light-mode .news2-section .tech-news-card .tech-news-title a {
   color: #000000;
 }
 
@@ -3477,19 +3546,76 @@ body {
   text-decoration: underline;
 }
 
-/* Ícones de Compartilhamento */
+/*Redes Sociais compartilhamento Light Mode*/
+/* Estilo icones de compartilhamento - Light Mode */
 .light-mode .news2-section .tech-news-card .social-icon {
-  background-color: #ffffff; /* Fundo cinza claro para ícones */
+  border-radius: 4px;
+  padding: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  line-height: 1;
+  background-color: #ffffff;
+  /*transition: background-color 0.3s ease, color 0.3s ease;*/
 }
 
-.light-mode .news2-section .tech-news-card .social-icon:hover {
-  background-color: #03839461; /* Fundo vermelho bem claro no hover */
+/* X (Twitter/X) - Light Mode */
+.light-mode .news2-section .tech-news-card .social-icon.x {
+  background-color: #eeeeee00;
 }
-
-/* Cor dos ícones - Mantendo cores das marcas, exceto X/Twitter */
 .light-mode .news2-section .tech-news-card .social-icon.x i {
-  color: #000000; /* Ícone X preto */
+  color: #000000;
 }
+.light-mode .news2-section .tech-news-card .social-icon.x:hover {
+  background-color: #121212;
+}
+.light-mode .news2-section .tech-news-card .social-icon.x:hover i {
+  color: #ffffff;
+}
+
+/* WhatsApp - Light Mode */
+.light-mode .news2-section .tech-news-card .social-icon.whatsapp {
+  background-color: #d3f6e900; /* tom claro de verde com branco */
+}
+.light-mode .news2-section .tech-news-card .social-icon.whatsapp i {
+  color: #25D366;
+}
+.light-mode .news2-section .tech-news-card .social-icon.whatsapp:hover {
+  background-color: #25D366;
+}
+.light-mode .news2-section .tech-news-card .social-icon.whatsapp:hover i {
+  color: #ffffff;
+}
+
+/* Facebook - Light Mode */
+.light-mode .news2-section .tech-news-card .social-icon.facebook {
+  background-color: #d6e6fb00; /* azul claro */
+}
+.light-mode .news2-section .tech-news-card .social-icon.facebook i {
+  color: #1877F2;
+}
+.light-mode .news2-section .tech-news-card .social-icon.facebook:hover {
+  background-color: #1877F2;
+}
+.light-mode .news2-section .tech-news-card .social-icon.facebook:hover i {
+  color: #ffffff;
+}
+
+/* LinkedIn - Light Mode */
+.light-mode .news2-section .tech-news-card .social-icon.linkedin {
+  background-color: #d0e5f900; /* azul claro */
+}
+.light-mode .news2-section .tech-news-card .social-icon.linkedin i {
+  color: #0A66C2;
+}
+.light-mode .news2-section .tech-news-card .social-icon.linkedin:hover {
+  background-color: #0A66C2;
+}
+.light-mode .news2-section .tech-news-card .social-icon.linkedin:hover i {
+  color: #ffffff;
+}
+
 /* As cores de WhatsApp, Facebook, LinkedIn são mantidas do CSS original */
 
 
@@ -3510,15 +3636,15 @@ body {
 }
 
 .light-mode .news2-section .tech-news-sidebar .popular-news a:hover {
-  color: var(--light-accent-color); /* Accent no hover */
+  color: #000000; /* Accent no hover */
   text-decoration: underline;
 }
 
 /* --- Paginação --- */
 .light-mode .news2-section .pagination-controls button {
-  background-color: var(--light-hover-bg);
+  background-color: #dddddd;
   color: var(--light-text-primary);
-  border: 1px solid var(--light-border-color);
+  border: 1px solid #b0b0b0;
   padding: 0.438rem 1.0001rem;
 }
 
@@ -3532,7 +3658,7 @@ body {
 .light-mode .news2-section .pagination-controls button:hover:not(:disabled) {
   background-color: #cecdcd;
   color: #000000;
-  border-color: #cecdcd;
+  border-color: #aaa9a9;
 }
 
 .light-mode .news2-section .pagination-controls .page-number {
@@ -3753,12 +3879,12 @@ body.light-mode .icon-sun {
 }
 
 .light-mode .small-card-title-link:hover .small-card-title {
-  color: var(--light-text-primary, #212529); /* Mantém cor primária com sublinhado */
+  color: #000000; /* Mantém cor primária com sublinhado */
   text-decoration: underline;
 }
 
 .light-mode .small-card-description {
-  color: var(--light-text-secondary, #6c757d); /* Descrição usa cor secundária */
+  color: #484444; /* Descrição usa cor secundária */
 }
 
 
@@ -3894,6 +4020,25 @@ body.light-mode .icon-sun {
 .light-mode #home-back-to-top:hover {
   background-color: #cecdcd; /* Fundo vermelho no hover */
   border-color: #b0aeae;
+}
+
+.light-mode .trends-load-more-link {
+  font-family: 'Roboto Condensed';
+  font-weight: 500;
+  display: inline-block;
+  background-color: #dddddd;
+  color: #000000;
+  text-decoration: none;
+  padding: 12px 50px;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  /*transition: background-color 0.3s ease;*/
+  border: 1px solid #c4c4c4;
+}
+
+.light-mode .trends-load-more-link:hover {
+  background-color: #cecdcd;
+  border: 1px solid #aaa9a9;
 }
 
 /* --- Fallback de Carregamento (se aplicável nesta seção) --- */

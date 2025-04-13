@@ -145,17 +145,17 @@ text-decoration: underline;
 }
 
 .trend-card-item .card-excerpt {
-font-size: 0.88rem; 
-color: var(--text-color2);
-line-height: 1.6;
-margin-bottom: 15px;
-flex-grow: 1; /* Empurra meta para baixo */
+ font-size: 0.88rem;
+ color: var(--text-color2);
+ line-height: 1.6;
+ margin-bottom: 15px;
+ /*flex-grow: 1; /* Empurra meta para baixo */
  /* Limita número de linhas (opcional) */
-/* display: -webkit-box; 
--webkit-line-clamp: 3; 
--webkit-box-orient: vertical;  
-overflow: hidden; */
-}
+ display: -webkit-box;
+ -webkit-line-clamp: 3;
+ -webkit-box-orient: vertical;
+ overflow: hidden; */
+ }
 
 .trend-card-item .card-meta {
 font-size: 0.78rem;
@@ -255,9 +255,9 @@ opacity: 0.8;
   display: flex;
   align-items: center; /* Alinha avatar e texto verticalmente */
   gap: 10px; /* Espaço entre avatar e texto */
-  margin-top: auto; /* Empurra para o final do card-content */
-  padding-top: 12px; /* Espaço acima */
-  border-top: 1px solid var(--border-color-light, #282828); /* Linha separadora */
+  margin-top: 0; /* Empurra para o final do card-content */
+  padding-top: 0px; /* Espaço acima */
+  border-top: 0px solid var(--border-color-light, #282828); /* Linha separadora */
 }
 
 .trend-author-avatar {
@@ -285,11 +285,13 @@ opacity: 0.8;
   text-overflow: ellipsis; /* Adiciona '...' se o nome for muito longo */
 }
 .trend-author-name .trend-author-link { /* Estilo para o link DENTRO do span */
-    color: inherit; /* Herda a cor do span */
+    font-family: 'Roboto Condensed';
+    font-weight: 600;
+    color: #ffffff; /* Herda a cor do span */
     text-decoration: none;
 }
 .trend-author-name .trend-author-link:hover {
-    color: var(--secondary-color);
+    color: #ffffff;
     text-decoration: underline;
 }
 
@@ -477,13 +479,13 @@ opacity: 0.8;
 /* --- Card de Tendência --- */
 .light-mode .trend-card-item {
   background-color: var(--light-bg-secondary, #ffffff); /* Fundo branco */
-  border: 1px solid var(--light-border-color, #dee2e6); /* Borda clara */
+  border: 1px solid #cfcfcf; /* Borda clara */
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* Sombra leve */
 }
 
 .light-mode .trend-card-item:hover {
   /* Mantém transformação, ajusta cor da borda */
-  border-color: var(--light-accent-color, #F44336); /* Cor de destaque na borda ao passar o mouse */
+  /*border-color: var(--light-accent-color, #F44336); /* Cor de destaque na borda ao passar o mouse */
   /* Ou use a cor secundária original se preferir: */
   /* border-color: var(--secondary-color, #00BCD4); */
 }
@@ -497,17 +499,23 @@ opacity: 0.8;
 }
 
 .light-mode .trend-card-item .card-title a {
-  /* A cor é herdada */
+  color:#000000; /* Cor primária */
 }
 
 .light-mode .trend-card-item .card-title a:hover {
-  color: var(--light-accent-color, #F44336); /* Cor de destaque no hover */
+  /*color: var(--light-accent-color, #F44336); /* Cor de destaque no hover */
   /* Ou use a cor secundária original se preferir: */
   /* color: var(--secondary-color, #00BCD4); */
 }
 
 .light-mode .trend-card-item .card-excerpt {
-  color: var(--light-text-secondary, #6c757d); /* Cor secundária */
+  color: #484444; /* Cor secundária */
+}
+
+.light-mode .trend-relative-time {
+  font-size: 0.75rem;
+  color: #484444;
+  line-height: 1.3;
 }
 
 .light-mode .trend-card-item .card-meta {
@@ -603,4 +611,25 @@ color: var(--light-text-primary, #212529); /* Cor primária para página atual *
 .light-mode .breadcrumb-home-icon {
  /* filter: invert(1); */ /* Descomente se for um SVG que precisa inverter */
  /* color: var(--light-text-secondary); */ /* Descomente se for um ícone de fonte */
+}
+
+.light-mode .trend-author-name {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #000000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Adiciona '...' se o nome for muito longo */
+}
+
+.light-mode .trend-author-name .trend-author-link:hover {
+  color: #000000;
+  text-decoration: underline;
+}
+
+.light-mode .trend-author-name .trend-author-link {
+  font-family: 'Roboto Condensed';
+  font-weight: 600;
+  color: #000000;
+  text-decoration: none;
 }

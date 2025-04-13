@@ -232,17 +232,40 @@ if (noticia.dataPublicacao && noticia.horaPublicacao) {
     }
     
      // Botões de Compartilhamento Social
-     const socialShareContainer = document.querySelector('.social-share');
-     if (socialShareContainer) {
-         try {
-             const pageUrl = window.location.href;
-             const shareTitle = noticia.titulo || '';
-             socialShareContainer.querySelector('a[aria-label*="X"]')?.setAttribute('href', `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareTitle)}&url=${encodeURIComponent(pageUrl)}`);
-             socialShareContainer.querySelector('a[aria-label*="WhatsApp"]')?.setAttribute('href', `https://api.whatsapp.com/send?text=${encodeURIComponent(shareTitle + ' ' + pageUrl)}`);
-             socialShareContainer.querySelector('a[aria-label*="Facebook"]')?.setAttribute('href', `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`);
-             socialShareContainer.querySelector('a[aria-label*="LinkedIn"]')?.setAttribute('href', `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(pageUrl)}`);
-         } catch (e) { console.error("Erro ao configurar botões de share:", e); }
-     }
+const socialShareContainer = document.querySelector('.social-share');
+if (socialShareContainer) {
+    try {
+        const pageUrl = window.location.href;
+        const shareTitle = noticia.titulo || '';
+
+        const xBtn = socialShareContainer.querySelector('a[aria-label*="X"]');
+        const whatsappBtn = socialShareContainer.querySelector('a[aria-label*="WhatsApp"]');
+        const facebookBtn = socialShareContainer.querySelector('a[aria-label*="Facebook"]');
+        const linkedinBtn = socialShareContainer.querySelector('a[aria-label*="LinkedIn"]');
+
+        if (xBtn) {
+            xBtn.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareTitle)}&url=${encodeURIComponent(pageUrl)}`;
+            xBtn.classList.add('x');
+        }
+
+        if (whatsappBtn) {
+            whatsappBtn.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareTitle + ' ' + pageUrl)}`;
+            whatsappBtn.classList.add('whatsapp');
+        }
+
+        if (facebookBtn) {
+            facebookBtn.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`;
+            facebookBtn.classList.add('facebook');
+        }
+
+        if (linkedinBtn) {
+            linkedinBtn.href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(pageUrl)}`;
+            linkedinBtn.classList.add('linkedin');
+        }
+    } catch (e) {
+        console.error("Erro ao configurar botões de share:", e);
+    }
+}
 
     // Imagem de Destaque e Legenda
     const imagemElemento = document.querySelector('.featured-image img');
