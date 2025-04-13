@@ -1,3 +1,44 @@
+// --- Função para Calcular Tempo Relativo (PRECISA ESTAR AQUI TAMBÉM) ---
+function formatRelativeTime(isoDateTimeString) {
+    if (!isoDateTimeString) return ''; 
+    try {
+        const publicationDate = new Date(isoDateTimeString);
+        if (isNaN(publicationDate.getTime())) throw new Error('Data inválida'); 
+        const now = new Date();
+        const diffInSeconds = Math.floor((now - publicationDate) / 1000);
+        const diffInMinutes = Math.floor(diffInSeconds / 60);
+        const diffInHours = Math.floor(diffInMinutes / 60);
+        const diffInDays = Math.floor(diffInHours / 24);
+        const thresholdDays = 7; 
+
+        if (diffInSeconds < 60) return "Agora mesmo";
+        if (diffInMinutes < 60) return `${diffInMinutes} minuto${diffInMinutes > 1 ? 's' : ''} atrás`;
+        if (diffInHours < 24) return `${diffInHours} hora${diffInHours > 1 ? 's' : ''} atrás`;
+        if (diffInDays <= thresholdDays) return `${diffInDays} dia${diffInDays > 1 ? 's' : ''} atrás`;
+        
+        // Fallback para data DD Mês AAAA se for mais antigo
+        const dateOptions = { day: '2-digit', month: 'short', year: 'numeric' };
+        let formattedDate = publicationDate.toLocaleDateString('pt-BR', dateOptions).replace('.', '');
+        formattedDate = formattedDate.replace(/ de /g, ' ');
+        formattedDate = formattedDate.replace(/ (\w)/, (match, p1) => ` ${p1.toUpperCase()}`);
+        return formattedDate;
+    } catch (error) {
+        console.warn(`Erro ao formatar tempo relativo para ${isoDateTimeString}:`, error);
+        try {
+           const fallbackDate = new Date(isoDateTimeString.split('T')[0] + 'T00:00:00');
+           if(!isNaN(fallbackDate.getTime())){
+                const dateOptions = { day: '2-digit', month: 'short', year: 'numeric' };
+                let formattedDate = fallbackDate.toLocaleDateString('pt-BR', dateOptions).replace('.', '');
+                formattedDate = formattedDate.replace(/ de /g, ' ');
+                formattedDate = formattedDate.replace(/ (\w)/, (match, p1) => ` ${p1.toUpperCase()}`);
+                return formattedDate;
+           }
+        } catch {}
+        return isoDateTimeString || ''; 
+    }
+}
+
+
 function loadTrendsCards() {
   fetch('data/tendencias.json?v=' + Date.now()) 
     .then(response => {
@@ -6,7 +47,10 @@ function loadTrendsCards() {
     })
     .then(data => {
       const container = document.querySelector('.trends-cards-container'); 
-      if (!container) return; // Sai se não achar o container
+      if (!container) {
+          console.warn("Container .trends-cards-container não encontrado na página inicial.");
+          return; 
+      }
       const fallback = container.querySelector('.loading-fallback');
 
       if (data && data.trends && data.trends.length > 0) {
@@ -16,53 +60,16 @@ function loadTrendsCards() {
         // Ordena e pega as 9 mais recentes
         const trendsToShow = data.trends
                                  .sort((a, b) => new Date(b.dateTimeIso || b.date || 0) - new Date(a.dateTimeIso || a.date || 0)) 
-                                 .slice(0, 9);
+                                 .slice(0, 9); 
 
         trendsToShow.forEach(card => {
           const article = document.createElement('article');
           article.classList.add('trends-card');
           
-          // --- Lógica de Formatação de Data/Hora (Formato: DD Fev AAAA às HHhMM) ---
-          let dataHoraFormatada = '';
-          let dateTimeAttr = ''; 
-          // Tenta construir a partir dos campos simples (assumindo que você adicionou dataPublicacao e horaPublicacao a tendencias.json)
-          if (card.dataPublicacao && card.horaPublicacao) { 
-              const parts = card.dataPublicacao.split('/');
-              if (parts.length === 3) {
-                  const isoDateOnly = `${parts[2]}-${parts[1].padStart(2, '0')}-${parts[0].padStart(2, '0')}`;
-                   const isoDateTimeString = `${isoDateOnly}T${card.horaPublicacao}:00`; 
-                   try {
-                      const dateObj = new Date(isoDateTimeString); 
-                      if (!isNaN(dateObj.getTime())) { 
-                           dateTimeAttr = dateObj.toISOString(); 
-                           const dateOptions = { day: '2-digit', month: 'short', year: 'numeric' };
-                           const timeOptions = { hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }; 
-                           let formattedDate = dateObj.toLocaleDateString('pt-BR', dateOptions).replace('.', ''); 
-                           formattedDate = formattedDate.replace(/ de /g, ' '); 
-                           formattedDate = formattedDate.replace(/ (\w)/, (match, p1) => ` ${p1.toUpperCase()}`); 
-                           const formattedTime = dateObj.toLocaleTimeString('pt-BR', timeOptions).replace(':', 'h'); 
-                           dataHoraFormatada = `${formattedDate} às ${formattedTime}`; // Formato final
-                      } else { throw new Error('Data inválida criada'); }
-                   } catch (e) {
-                       console.warn(`Erro ao formatar data/hora (tendência ${card.title}):`, e);
-                       dataHoraFormatada = card.dataPublicacao || ''; 
-                       dateTimeAttr = card.date || ''; // Fallback para campo 'date' antigo se existir
-                   }
-              } else { 
-                   dataHoraFormatada = card.dataPublicacao || '';
-                   dateTimeAttr = card.date || '';
-               }
-          } else if (card.date) { // Fallback se só tiver o campo 'date' antigo
-               try {
-                    const dateObjFallback = new Date(card.date + 'T00:00:00');
-                    let formattedDate = dateObjFallback.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' }).replace('.','');
-                    formattedDate = formattedDate.replace(/ de /g, ' ');
-                    formattedDate = formattedDate.replace(/ (\w)/, (match, p1) => ` ${p1.toUpperCase()}`);
-                    dataHoraFormatada = formattedDate;
-                    dateTimeAttr = card.date;
-               } catch { dataHoraFormatada = card.date || ''; dateTimeAttr = '';}
-          }
-          // --- Fim Formatação Data/Hora ---
+          // --- USA A FUNÇÃO DE TEMPO RELATIVO ---
+          const relativeTime = formatRelativeTime(card.dateTimeIso || card.date); // <<< CORREÇÃO AQUI
+          const dateTimeAttr = card.dateTimeIso || card.date || ''; 
+          // --- FIM DA CORREÇÃO ---
 
           const autorHtml = card.authorName
                 ? `<div class="card-author-info">
@@ -78,7 +85,8 @@ function loadTrendsCards() {
               </a>
             </div>
             <div class="card-content">
-              <time datetime="${dateTimeAttr}" class="card-date">${dataHoraFormatada}</time> 
+              <!-- Usa a variável relativeTime -->
+              <time datetime="${dateTimeAttr}" class="card-date">${relativeTime}</time>  
               <h3 class="card-title">
                 <a href="${card.link}" target="_blank" rel="noopener noreferrer" title="${card.title || ''}">
                     ${card.title || 'Sem Título'}
@@ -91,9 +99,8 @@ function loadTrendsCards() {
           fragment.appendChild(article);
         });
 
-        container.innerHTML = ''; // Limpa antes de adicionar
+        container.innerHTML = ''; // Limpa antes
         container.appendChild(fragment);
-
       } else {
         const errorMessage = 'Nenhuma tendência encontrada no momento.';
         if (fallback) {

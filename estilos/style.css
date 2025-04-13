@@ -609,7 +609,7 @@ main {
 }
 
 .news-image img:hover {
-  filter: brightness(0.8);
+  filter: brightness(0.85);
   transition: filter 0.1s ease;
 }
 

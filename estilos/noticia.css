@@ -143,7 +143,7 @@ main {
   .article-sidebar {
      /* Largura base da sidebar */
       /* Não cresce além da base */
-     width: 300px;
+     width: 280px;
   }
   
   /* --- Conteúdo do Artigo --- */
