@@ -2674,6 +2674,24 @@ main {
   color: #F44336; /* Cor de destaque no hover (vermelho?) */
 }
 
+/* Estilos para o Título Principal da Página de Notícias/Seção */
+.page-title-news {
+  font-size: 2.5rem; /* Ajuste conforme necessário */
+  font-family: var(--heading-font, Orbitron, sans-serif); /* Use sua fonte de título */
+  color: var(--heading-color);
+  text-align: center; /* Ou left, se preferir */
+  margin-bottom: 25px; /* Espaço antes dos controles/filtros */
+  margin-top: 10px; /* Espaço após o breadcrumb */
+}
+
+/* Ajuste responsivo */
+@media (max-width: 768px) {
+  .page-title-news {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+}
+
 /* Estilos para modo claro, se aplicável */
 body.light-mode .filter-info-bar {
     background-color: #e9e9e9;
@@ -3283,7 +3301,7 @@ body {
 
 /* --- Fundo da Seção --- */
 .light-mode .news-section {
-  background-color: #fbfbfbf7; /* Fundo principal claro */
+  background-color: #000000f7; /* Fundo principal claro */
 }
 
 /* --- Título da Seção --- */
@@ -3294,8 +3312,8 @@ body {
 
 /* --- Cards (Base) --- */
 .light-mode .news-card {
-  border: 1px solid #cfcfcf; /* Borda clara */
-  background-color: #ffffff; /* Fundo branco */
+  border: 1px solid #232221; /* Borda clara */
+  /*background-color: #ffffff; /* Fundo branco */
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Sombra sutil */
 }
 

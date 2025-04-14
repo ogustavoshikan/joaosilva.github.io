@@ -11,7 +11,7 @@
       "title": "Modelos de IA - LLMs",
       "description": "Conheça os modelos mais avançados e suas aplicações inovadoras.",
       "image": "assets/imagens/secoes/topicos/modelos-ia.webp",
-      "link": "#modelos-ia",
+      "link": "/news.html?secao=topico-modelos-ia",
       "alt": "Imagem ilustrativa sobre modelos de Inteligência Artificial"
     },
     {
@@ -25,7 +25,7 @@
       "title": "Text-to-Image",
       "description": "Entenda como a ética na IA é crucial para um desenvolvimento tecnológico responsável.",
       "image": "assets/imagens/secoes/topicos/etica-na-ia.webp",
-      "link": "#etica-ia",
+      "link": "/news.html?secao=topico-text-to-image",
       "alt": "Imagem ilustrativa sobre ética na Inteligência Artificial"
     },
     {
@@ -53,7 +53,7 @@
       "title": "Playground AI",
       "description": "Saiba como a IA está revolucionando estratégias e processos no mundo corporativo.",
       "image": "assets/imagens/secoes/topicos/ia-negocios.webp",
-      "link": "#ia-negocios",
+      "link": "/news.html?secao=topico-playground",
       "alt": "Imagem ilustrativa sobre Inteligência Artificial em negócios"
     },
     {

@@ -268,6 +268,37 @@
       "corpoHtml": "<p>Conteúdo completo da notícia IA Medicina aqui...</p>",
       "destaqueHome": null,
       "relatedSlugs": []
-    }
-  ]
+    },
+    {
+      "slug": "introducao-llms",
+      "tipoConteudo": "topico-modelos-ia",
+      "titulo": "Introdução aos Modelos de Linguagem Grandes (LLMs)",
+      "tituloCurto": "O que são LLMs?",
+      "metaDescription": "Entenda os conceitos fundamentais por trás dos LLMs, como GPT e Claude.",
+      "metaKeywords": ["LLM", "Modelo de Linguagem", "IA", "Inteligência Artificial", "GPT", "Claude", "Conceitos"],
+      "resumo": "Um guia completo para iniciantes sobre o funcionamento e o impacto dos Large Language Models.",
+      "dataPublicacao": "10/04/2025",
+      "horaPublicacao": "09:00",
+      "isoDate": "2025-04-10", 
+      "autor": {
+        "nome": "Especialista AI",
+        "link": "#",
+        "avatarUrl": "assets/imagens/autores/placeholder-avatar.png",
+        "bio": "Focado em desmistificar a IA."
+      },
+      "imagemCard": "assets/imagens/topicos/llm-intro-card.webp",
+      "imagemBanner": "assets/imagens/topicos/llm-intro-banner.webp",
+      "altImagem": "Diagrama explicando o conceito de LLM",
+      "legendaImagemBanner": "Arquitetura básica de um LLM.",
+      "categorias": ["Modelos de Linguagem", "Conceitos Fundamentais"],
+      "tags": ["LLM", "Introdução", "IA", "GPT", "Fundamentos", "Deep Learning"],
+      "tempoLeituraEstimado": "12 min",
+      "corpoHtml": [
+          "<p>Os Modelos de Linguagem Grandes, ou LLMs...</p>",
+          "<h2>Como Funcionam?</h2>",
+          "<p>...</p>"
+      ],
+     "destaqueHome": null
+  }
+ ]
 }

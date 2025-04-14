@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let allNewsFiltered = []; // Armazena notícias após filtragem/ordenação/busca
     let activeCategoryFilter = null; // Guarda o filtro de categoria da URL
     let activeTagFilter = null; // Guarda o filtro de tag da URL
+    let activeSectionFilter = null; // <<< NOVO: Guarda o filtro de seção da URL
 
     // --- Seletores DOM ---
     const loadingElement = document.getElementById('loading');
@@ -22,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextPageButton = document.querySelector('.next-page');
     const paginationContainer = document.querySelector('.pagination-controls'); // Seleciona o container da paginação
     const filterInfoElement = document.getElementById('filter-info'); // Elemento para mostrar filtro ativo
+    const pageTitleElement = document.querySelector('.page-title-news'); // <<< NOVO: Seletor para o título H1 da página news.html
 
     // --- Validação Inicial Essencial ---
     if (!container) {
@@ -48,7 +50,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             activeCategoryFilter = urlParams.get('categoria'); // Ex: 'modelos-de-linguagem'
             activeTagFilter = urlParams.get('tag'); // Ex: 'openai'
+            activeSectionFilter = urlParams.get('secao'); // <<< LÊ O PARÂMETRO SECAO
 
+            // Ajusta título da página se filtrando por seção
+            updatePageTitle(); // <<< NOVA FUNÇÃO
+            
             // Aplica filtros e ordenação inicial
             applyFiltersAndSort(); // <<< Função centralizada para filtrar e ordenar
 
@@ -65,52 +71,107 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
+    
+    // --- Função para Atualizar Título da Página ---
+    function updatePageTitle() {
+        if (!pageTitleElement) return; // Sai se não encontrar o elemento H1
+
+        let title = "Últimas Notícias"; // Título padrão
+        if (activeSectionFilter) {
+             // Mapeia o slug da seção para um nome amigável
+             if (activeSectionFilter === 'topico-modelos-ia') title = "Tópico: Modelos de IA - LLMs";
+             else if (activeSectionFilter === 'topico-text-to-image') title = "Tópico: Text-to-Image";
+             else if (activeSectionFilter === 'topico-playground') title = "Tópico: Playground AI";
+             else title = `Seção: ${activeSectionFilter}`; // Fallback
+        } else if (activeCategoryFilter) {
+             title = `Notícias sobre: ${getOriginalName(activeCategoryFilter, 'category')}`;
+        } else if (activeTagFilter) {
+              title = `Notícias com a tag: ${getOriginalName(activeTagFilter, 'tag')}`;
+        }
+        pageTitleElement.textContent = title;
+    }
 
     // --- Função para Aplicar Filtros (URL, Busca) e Ordenação ---
     function applyFiltersAndSort() {
         console.log(`Aplicando filtros: Categoria=${activeCategoryFilter}, Tag=${activeTagFilter}, Busca="${searchInput?.value || ''}"`);
         let tempFiltered = [...allNews]; // Começa com todas
 
-        // 1. Aplica filtro de Categoria (se veio da URL)
-        if (activeCategoryFilter) {
+        // 1. Aplica filtro de SEÇÃO (se veio da URL)
+        if (activeSectionFilter) {
+            tempFiltered = tempFiltered.filter(item => item.tipoConteudo === activeSectionFilter);
+            displayActiveFilter(getPageTitleFromSection(activeSectionFilter)); // Mostra nome amigável da seção
+        }
+        
+        // 2. Aplica filtro de Categoria (se veio da URL E NÃO filtrou por seção)
+        else if (activeCategoryFilter) {
             tempFiltered = tempFiltered.filter(news =>
                 news.categorias?.some(cat => formatForUrl(cat) === activeCategoryFilter)
             );
             displayActiveFilter(`Categoria: ${getOriginalName(activeCategoryFilter, 'category')}`);
         }
-        // 2. Aplica filtro de Tag (se veio da URL - ignora se já filtrou por categoria)
+        
+        // 3. Aplica filtro de Tag (se veio da URL E NÃO filtrou por seção/categoria)
         else if (activeTagFilter) {
             tempFiltered = tempFiltered.filter(news =>
                 news.tags?.some(tag => formatForUrl(tag) === activeTagFilter)
             );
              displayActiveFilter(`Tag: ${getOriginalName(activeTagFilter, 'tag')}`);
         }
-        // 3. Aplica filtro de Busca (se houver texto no input - ignora se já filtrou por URL)
+        
+        // 4. Aplica filtro de Busca (se houver texto E NÃO filtrou por URL)
         else if (searchInput && searchInput.value.trim()) {
              const searchLower = searchInput.value.trim().toLowerCase();
-             tempFiltered = tempFiltered.filter(news =>
-                (news.titulo?.toLowerCase() || '').includes(searchLower) ||
-                (news.resumo?.toLowerCase() || '').includes(searchLower) ||
-                (news.autor?.nome?.toLowerCase() || '').includes(searchLower) ||
-                (news.tags?.some(tag => tag.toLowerCase().includes(searchLower)) || false) ||
-                (news.categorias?.some(cat => cat.toLowerCase().includes(searchLower)) || false)
-            );
+             // IMPORTANTE: Decide se a busca deve procurar SÓ em notícias ou em tudo
+             // Opção A: Busca em TUDO (notícias e tópicos)
+             tempFiltered = tempFiltered.filter(item => 
+                (item.titulo?.toLowerCase() || '').includes(searchLower) ||
+                (item.resumo?.toLowerCase() || '').includes(searchLower) ||
+                (item.autor?.nome?.toLowerCase() || '').includes(searchLower) ||
+                (item.tags?.some(tag => tag.toLowerCase().includes(searchLower)) || false) ||
+                (item.categorias?.some(cat => cat.toLowerCase().includes(searchLower)) || false)
+             );
+             // Opção B: Busca SÓ em notícias (tipoConteudo == 'noticia')
+             /*
+             tempFiltered = tempFiltered.filter(item => 
+                item.tipoConteudo === 'noticia' && ( // Filtra por tipo primeiro
+                    (item.titulo?.toLowerCase() || '').includes(searchLower) ||
+                    (item.resumo?.toLowerCase() || '').includes(searchLower) ||
+                    (item.autor?.nome?.toLowerCase() || '').includes(searchLower) ||
+                    (item.tags?.some(tag => tag.toLowerCase().includes(searchLower)) || false) ||
+                    (item.categorias?.some(cat => cat.toLowerCase().includes(searchLower)) || false)
+                )
+             );
+             */
             displayActiveFilter(`Busca por: "${searchInput.value.trim()}"`);
-        } else {
-             // Se nenhum filtro estiver ativo, limpa a exibição de filtro
-             displayActiveFilter(null);
         }
-
+        
+        // 5. <<< NENHUM FILTRO ATIVO (DEFAULT) >>>
+        else { 
+             // ANTES: tempFiltered = tempFiltered.filter(item => item.tipoConteudo === 'noticia'); 
+             // AGORA: Não aplica filtro extra, mostra tudo (já está em tempFiltered)
+             console.log("Nenhum filtro ativo, mostrando todos os itens.");
+             displayActiveFilter(null); // Limpa a barra de info de filtro
+        }
+        // <<< FIM DA MODIFICAÇÃO DEFAULT >>>
+        
         // Armazena o resultado filtrado
         allNewsFiltered = tempFiltered;
 
         // Aplica a ordenação selecionada (ou padrão 'recent')
         const currentSortOrder = sortSelect?.value || 'recent';
-        sortNewsInternal(currentSortOrder); // Chama a lógica interna de ordenação
+        sortNewsInternal(currentSortOrder);
 
         // Exibe a primeira página dos resultados filtrados e ordenados
         currentPage = 1;
         displayNewsPage(currentPage);
+    }
+    
+    // --- Função Auxiliar para Pegar Título da Seção ---
+    function getPageTitleFromSection(sectionSlug) {
+        if (sectionSlug === 'topico-modelos-ia') return "Tópico: Modelos de IA - LLMs";
+        if (sectionSlug === 'topico-text-to-image') return "Tópico: Text-to-Image";
+        if (sectionSlug === 'topico-playground') return "Tópico: Playground AI";
+        return `Seção: ${sectionSlug}`; // Fallback
     }
 
     // --- Funções Auxiliares para Filtro ---
@@ -185,22 +246,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- Função para Limpar Todos os Filtros (URL, Busca) ---
+    // --- Função para Limpar Todos os Filtros (MODIFICADA) ---
     function clearAllFilters() {
-        console.log("Limpando todos os filtros...");
+        console.log("Limpando filtros...");
+        activeSectionFilter = null; // Limpa filtro de seção
         activeCategoryFilter = null;
         activeTagFilter = null;
-        if (searchInput) searchInput.value = '';
+        if (searchInput) searchInput.value = ''; 
         if (clearButton) clearButton.style.display = 'none';
 
-        // Remove parâmetros da URL sem recarregar
         if (window.history.pushState) {
-            const newUrl = window.location.pathname;
+            // Leva para a URL base de notícias (sem parâmetros)
+            const newUrl = window.location.pathname.replace(/\/$/, '') + '/noticias'; // Garante que termine com /noticias
             window.history.pushState({path:newUrl}, '', newUrl);
-            console.log("Parâmetros da URL removidos.");
+            console.log("URL resetada para /noticias");
         }
-
-        applyFiltersAndSort(); // Re-aplica (sem filtros) para mostrar tudo e ordenar
+        
+        updatePageTitle(); // Reseta o título para "Últimas Notícias"
+        applyFiltersAndSort(); // Re-aplica (agora mostrará só notícias normais por padrão)
     }
 
 
@@ -214,21 +277,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- Função para Filtrar Notícias (APENAS por Busca do Input) ---
+    // --- Função para Filtrar por Busca (MODIFICADA) ---
     function filterNewsBySearch() {
         console.log("Filtrando por busca do input...");
         // Limpa filtros de URL se uma busca for feita
-        if(activeCategoryFilter || activeTagFilter) {
+        if(activeSectionFilter || activeCategoryFilter || activeTagFilter) {
+            activeSectionFilter = null;
             activeCategoryFilter = null;
             activeTagFilter = null;
-            // Remove parâmetros da URL sem recarregar
             if (window.history.pushState) {
-                const newUrl = window.location.pathname;
+                const newUrl = window.location.pathname.replace(/\/$/, '') + '/noticias';
                 window.history.pushState({path:newUrl}, '', newUrl);
             }
+            updatePageTitle(); // Reseta título
         }
-        // Chama a função centralizada que agora usará o valor do input
-        applyFiltersAndSort();
+        applyFiltersAndSort(); // Chama a função centralizada que usará o valor do input
     }
 
     // --- Função para Exibir Notícias da Página Atual ---
