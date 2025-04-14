@@ -77,18 +77,22 @@ function loadTrendsCards() {
                      <a href="${card.authorLink || '#'}" class="author-link" ${card.authorLink ? 'target="_blank" rel="noopener noreferrer"' : ''}>${card.authorName}</a>
                    </div>`
                 : '';
+                
+                // <<< CRIA O LINK INTERNO PARA A PÁGINA DE DETALHE >>>
+          const linkDetalheTendencia = `/tendencia.html?slug=${card.slug || ''}`; 
 
           article.innerHTML = `
             <div class="card-image">
-              <a href="${card.link}" target="_blank" rel="noopener noreferrer" aria-label="Ver artigo completo sobre ${card.title || 'Tendência'}">
+              <!-- <<< USA O linkDetalheTendencia >>> -->
+              <a href="${linkDetalheTendencia}" aria-label="Ver detalhes sobre ${card.title || 'Tendência'}">
                 <img src="${card.image || 'assets/imagens/geral/placeholder.png'}" alt="${card.alt || 'Imagem ilustrativa para ' + card.title}" loading="lazy">
               </a>
             </div>
             <div class="card-content">
-              <!-- Usa a variável relativeTime -->
               <time datetime="${dateTimeAttr}" class="card-date">${relativeTime}</time>  
               <h3 class="card-title">
-                <a href="${card.link}" target="_blank" rel="noopener noreferrer" title="${card.title || ''}">
+                 <!-- <<< USA O linkDetalheTendencia >>> -->
+                <a href="${linkDetalheTendencia}" title="${card.title || ''}">
                     ${card.title || 'Sem Título'}
                 </a>
               </h3>
@@ -98,7 +102,7 @@ function loadTrendsCards() {
           `;
           fragment.appendChild(article);
         });
-
+        
         container.innerHTML = ''; // Limpa antes
         container.appendChild(fragment);
       } else {

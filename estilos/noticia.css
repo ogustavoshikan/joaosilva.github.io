@@ -302,7 +302,7 @@ main {
   font-size: 1.1rem;
   margin-right: 5px; /* Reduzido para compensar padding no hover */
   margin-left: 5px;
-  transition: color 0.3s ease, background-color 0.3s ease;
+  /*transition: color 0.3s ease, background-color 0.3s ease;*/
   display: inline-block; /* Necessário para padding funcionar corretamente */
   padding: 5px; /* Adicionado padding base para manter o espaço */
   border-radius: 4px; /* Adicionado para arredondar o fundo do hover */
@@ -583,6 +583,11 @@ body.light-mode .article-body .image-in-article figcaption {
     /* height: 250px; */ /* Removido height fixo para usar aspect-ratio */
 }
 
+.related-news-card img:hover {
+  filter: brightness(0.85);
+  transition: filter 0.1s ease;
+}
+
 .related-news-card a {
     font-size: 0.9rem;
     color: var(--text-color);
@@ -594,7 +599,8 @@ body.light-mode .article-body .image-in-article figcaption {
 }
 
 .related-news-card a:hover {
-    color: var(--secondary-color);
+  color: #ffffff;
+  text-decoration:underline;
 }
   
   /* --- Sidebar --- */
@@ -916,7 +922,7 @@ body.light-mode .article-subtitle {
 
 /* --- Fundo da Seção do Artigo --- */
 .light-mode .article-section {
-  background-color: var(--light-bg-primary, #f8f9fa); /* Fundo principal claro */
+  background-color: #ffffff; /* Fundo principal claro */
   border-bottom: 1px solid var(--light-border-color, #dee2e6); /* Borda clara */
 }
 
@@ -989,9 +995,9 @@ body.light-mode .read-time-meta {
 
 /* --- Compartilhamento Social --- */
 .light-mode .social-share a {
-  font-size: 1rem;
+  font-size: 1.1rem;
   border-radius: 4px;
-  padding: 6px;
+  padding: 5px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1127,10 +1133,11 @@ body.light-mode .read-time-meta {
   color: var(--light-text-primary, #212529); /* Cor primária */
 }
 .light-mode .related-news-card a {
-  color: var(--light-text-primary, #212529); /* Cor primária */
+  color: #000000; /* Cor primária */
 }
 .light-mode .related-news-card a:hover {
-  color: var(--light-accent-color, #F44336); /* Cor de destaque no hover */
+  color: #000000; /* Cor de destaque no hover */
+  text-decoration: underline; /* Adiciona sublinhado no hover */
 }
 .light-mode .related-news-card img {
   /*border: 1px solid var(--light-border-color, #dee2e6); /* Borda sutil na imagem */

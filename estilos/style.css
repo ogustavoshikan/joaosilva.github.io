@@ -1219,7 +1219,7 @@ main {
   width: 90px;
   height: 60px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 5px;
   margin-left: 0px;
   flex-shrink: 0;
   cursor: pointer;
@@ -1931,9 +1931,9 @@ main {
   background-color: #232221;
   color: #ffffff;
   text-decoration: none;
-  padding: 12px 50px;
+  padding: 10px 50px;
   font-size: 1.2rem;
-  border-radius: 8px;
+  border-radius: 5px;
   /*transition: background-color 0.3s ease;*/
   border: 1px solid #464646;
 }

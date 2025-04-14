@@ -169,6 +169,23 @@ function preencherConteudoTendencia(tendencia) {
     // Excerto/Resumo
     const excertoElemento = document.querySelector('.trend-excerpt');
     if (excertoElemento) excertoElemento.textContent = tendencia.excerpt || '';
+    
+    // <<< PREENCHER CORPO DO TEXTO >>>
+    const corpoElemento = document.querySelector('.trend-body-content');
+    if (corpoElemento) {
+        if (Array.isArray(tendencia.corpoTexto) && tendencia.corpoTexto.length > 0) {
+            corpoElemento.innerHTML = tendencia.corpoTexto.join('\n'); // Junta se for array
+            corpoElemento.style.display = 'block'; // Garante visibilidade
+        } else if (typeof tendencia.corpoTexto === 'string' && tendencia.corpoTexto.trim() !== '') {
+            corpoElemento.innerHTML = tendencia.corpoTexto; // Usa direto se for string
+             corpoElemento.style.display = 'block';
+        } else {
+            corpoElemento.style.display = 'none'; // Esconde se não houver corpo
+        }
+    } else {
+         console.warn("Elemento .trend-body-content não encontrado.");
+    }
+    // <<< FIM PREENCHER CORPO >>>
 
     // Link para Fonte Original
     const linkFonteElemento = document.querySelector('.trend-source-link');
@@ -204,7 +221,7 @@ function preencherMaisTendencias(currentTrend, allTrends) {
     const recentTrends = allTrends
         .filter(t => t.slug !== currentTrend.slug) // Exclui a atual
         .sort((a, b) => new Date(b.dateTimeIso || b.date || 0) - new Date(a.dateTimeIso || a.date || 0)) // Ordena
-        .slice(0, 3); // Pega as 3 primeiras
+        .slice(0, 4); // Pega as 3 primeiras
 
     if (recentTrends.length > 0) {
         moreTrendsGrid.innerHTML = recentTrends.map(trend => `

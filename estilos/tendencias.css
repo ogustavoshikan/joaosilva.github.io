@@ -155,7 +155,7 @@ text-decoration: underline;
  -webkit-line-clamp: 3;
  -webkit-box-orient: vertical;
  overflow: hidden; */
- }
+}
 
 .trend-card-item .card-meta {
 font-size: 0.78rem;
@@ -450,8 +450,8 @@ opacity: 0.8;
 
 
 /* --- Fundo Geral (se necessário) --- */
-.light-mode .body.trends-page { background-color: var(--light-bg-primary, #f8f9fa); color: #000000; }
-.light-mode .trends-content-section { background-color: var(--light-bg-primary, #f8f9fa); }
+.light-mode .body.trends-page { background-color: #ffffff; color: #000000; }
+.light-mode .trends-content-section { background-color:#ffffff; }
 
 .trends-page-container {
   width: 100%;

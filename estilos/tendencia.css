@@ -9,14 +9,14 @@ body.trend-detail-page main {
 /* Container principal da página de detalhe */
 .trend-detail-container {
   width: 100%;
-  max-width: 1100px; /* Um pouco mais estreito que outras páginas */
+  max-width: 1268px; /* Um pouco mais estreito que outras páginas */
   margin: 30px auto 50px auto; /* Margem superior/inferior e centralizado */
-  padding: 0 15px; 
+  padding: 9px 20px;
 }
 
 /* Breadcrumbs (Reutiliza estilo global de style.css, mas talvez precise de ajuste de margem) */
 .trend-detail-page .breadcrumbs {
-  margin-bottom: 20px; 
+  margin-bottom: 30px;
 }
 
 /* --- Conteúdo Principal da Tendência --- */
@@ -124,13 +124,28 @@ body.trend-detail-page main {
     margin-bottom: 30px;
     text-align: center; /* Centraliza o botão */
 }
+
 .trend-source-link.btn { /* Estilo baseado nos seus botões globais */
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-style: italic;
+    font-size: 1rem;
+    border-radius: 5px;
     display: inline-block;
     /* Herda estilos de .btn e .btn-secondary do style.css */
     /* Exemplo de override se necessário: */
-    /* padding: 10px 25px; */
-    /* font-size: 0.95rem; */
+    padding: 10px 20px;
+    border: 1px solid #464646;
+    background-color: #232221;
+    text-decoration: none;
+    color: #ffffff;
+    transition: none;
 }
+
+.trend-source-link.btn:hover {
+    background-color: #343434;
+    border: 1px solid #585858;
+  }
 
 /* --- Seção Mais Tendências --- */
 .more-trends-section {
@@ -148,7 +163,7 @@ body.trend-detail-page main {
 
 .more-trends-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 colunas como na BBC */
+    grid-template-columns: repeat(4, 1fr); /* 4 colunas como na BBC */
     gap: 25px;
 }
 
@@ -156,10 +171,10 @@ body.trend-detail-page main {
     display: block; /* Faz o link ocupar o espaço */
     text-decoration: none;
     color: inherit; /* Herda cor padrão */
-    background-color: var(--card-background, #1a1a1a); /* Fundo sutil */
+    /* background-color: var(--card-background, #1a1a1a); */ /* Fundo sutil */
     border-radius: 5px;
     overflow: hidden;
-    border: 1px solid var(--border-color-light, #282828);
+    /* border: 1px solid var(--border-color-light, #282828); */
     transition: border-color 0.2s ease;
 }
 .more-trend-item:hover {
@@ -173,19 +188,25 @@ body.trend-detail-page main {
     object-fit: cover;
 }
 
+.more-trend-item img:hover {
+filter: brightness(0.85);
+ transition: filter 0.1s ease;
+}
+
 .more-trend-item .more-trend-title {
     font-size: 0.9rem;
     font-weight: 600;
-    padding: 12px 15px;
+    padding: 12px 0px;
     line-height: 1.4;
     color: var(--heading-color);
     margin: 0; /* Remove margem padrão de h3 */
-     transition: color 0.2s ease;
+    /*transition: color 0.2s ease;*/
 }
 
 .more-trend-item:hover .more-trend-title {
-    color: var(--secondary-color);
-}
+    color: #ffffff;
+    text-decoration:underline;
+  }
 
 /* --- Responsividade para Detalhe da Tendência --- */
 
@@ -250,7 +271,7 @@ body.trend-detail-page main {
   .breadcrumbs li + li::before { /* Adiciona o separador '>' */
     content: ">";
     margin: 0 8px;
-    color: var(--text-color2);
+    color: #6c757d;
   }
   
   .breadcrumbs a {
@@ -273,11 +294,173 @@ body.trend-detail-page main {
     padding-left: 8px; /* Adiciona espaço após o último separador '>' */
   }
 
-/* --- Estilos Light Mode (Exemplos) --- */
-body.light-mode .trend-author-name { color: #222; }
-body.light-mode .trend-relative-time { color: #666; }
-body.light-mode .trend-excerpt { color: #333; }
-body.light-mode .more-trend-item { background-color: #fff; border-color: #e0e0e0; }
-body.light-mode .more-trend-item:hover { border-color: #bdbdbd; }
-body.light-mode .more-trend-item .more-trend-title { color: #222; }
-/* ... */
+  /* Estilos para o corpo de texto da tendência */
+.trend-body-content {
+    font-size: 1rem; /* Tamanho padrão do corpo */
+    line-height: 1.7;
+    color: var(--text-color);
+    margin-top: -10px; /* Aproxima do excerto */
+    margin-bottom: 30px; /* Espaço antes do link da fonte */
+}
+
+.trend-body-content p {
+    margin-bottom: 1em; /* Espaçamento entre parágrafos */
+}
+/* Adicione mais estilos se precisar (h2, ul, etc.) */
+
+/* ============================================== */
+/* ==== MODO LIGHT - PÁGINA DETALHE TENDÊNCIA ==== */
+/* ============================================== */
+
+body.trend-detail-page.light-mode main {
+    background: #ffffff;
+}
+
+.light-mode .trend-detail-section{
+    background: #ffffff;
+}
+
+/* --- Fundo Geral (se necessário) --- */
+/* .light-mode body.trend-detail-page { background-color: var(--light-bg-primary, #f8f9fa); } */
+
+/* --- Breadcrumbs (Reutiliza estilos já definidos para light mode) --- */
+/* Nenhuma regra adicional necessária aqui se os estilos globais de breadcrumb
+   já estiverem definidos no seu style.css para .light-mode */
+
+/* --- Conteúdo Principal da Tendência --- */
+.light-mode .trend-content {
+    border-bottom: 1px solid var(--light-border-color, #dee2e6); /* Borda clara */
+  }
+  
+  /* --- Placeholder de Loading --- */
+  .light-mode .trend-content .loading-placeholder {
+    color: var(--light-text-secondary, #6c757d); /* Cor secundária */
+  }
+  
+  /* --- Título Principal H1 --- */
+  .light-mode .trend-title {
+    color: var(--light-text-primary, #212529); /* Cor primária */
+  }
+  
+  /* --- Meta Dados --- */
+  .light-mode .trend-author-name {
+    color: var(--light-text-primary, #212529); /* Cor primária */
+  }
+  
+  .light-mode .trend-author-name .trend-author-link-meta:hover {
+    color: var(--light-accent-color, #F44336); /* Cor de destaque no hover */
+    /* Ou use a cor secundária original se preferir: */
+    /* color: var(--secondary-color, #00BCD4); */
+  }
+  
+  .light-mode .trend-relative-time {
+    color: var(--light-text-secondary, #6c757d); /* Cor secundária */
+  }
+  
+  /* --- Imagem de Destaque --- */
+  .light-mode .trend-featured-image img {
+    /*border: 1px solid var(--light-border-color, #dee2e6); /* Borda clara sutil */
+  }
+  
+  /* --- Excerto/Resumo --- */
+  .light-mode .trend-excerpt {
+    color: var(--light-text-primary, #212529); /* Cor primária */
+  }
+  
+  /* --- Corpo do Texto da Tendência --- */
+  .light-mode .trend-body-content {
+    color: var(--light-text-primary, #212529); /* Cor primária */
+  }
+  
+  /* --- Botão/Link Fonte Original --- */
+  /* Assumindo que herda de .btn.btn-secondary global */
+  /* Se precisar de override específico para light mode: */
+  /* .light-mode .trend-source-link.btn {
+      background-color: var(--light-button-secondary-bg, #6c757d);
+      color: var(--light-button-secondary-text, #ffffff);
+      border-color: var(--light-button-secondary-bg, #6c757d);
+     }
+     .light-mode .trend-source-link.btn:hover {
+      background-color: #5a6268;
+      border-color: #545b62;
+     } */
+  
+  
+  /* --- Seção Mais Tendências --- */
+  .light-mode .more-trends-title {
+    color: var(--light-text-primary, #212529); /* Cor primária */
+    border-bottom: 1px solid var(--light-border-color, #dee2e6); /* Borda clara */
+  }
+  
+  .light-mode .more-trend-item {
+    background-color: var(--light-bg-secondary, #ffffff); /* Fundo branco */
+    /* border: 1px solid var(--light-border-color, #dee2e6); */ /* Borda clara */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04); /* Sombra bem leve */
+  }
+  
+  .light-mode .more-trend-item:hover {
+    /* border-color: var(--light-accent-color, #F44336); */ /* Cor de destaque na borda */
+     /* Ou use a cor secundária original se preferir: */
+    /* border-color: var(--secondary-color, #00BCD4); */
+  }
+  
+  .light-mode .more-trend-item .more-trend-title {
+    color: #000000; /* Cor primária */
+  }
+  
+  .light-mode .more-trend-item:hover .more-trend-title {
+    color: #000000; /* Cor de destaque no hover */
+    text-decoration: underline;
+  }
+
+  .breadcrumb-home-icon {
+    height: 0.99em;
+    width: auto;
+    margin-right: 3px;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+}
+
+.breadcrumbs li:first-child a {
+    display: inline-flex;
+    align-items: center;
+}
+
+.light-mode .breadcrumbs a {
+    font-family: Anta, sans-serif;
+    color: #6c757d; /* Cor secundária clara */
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.light-mode .breadcrumbs li[aria-current="page"] {
+    font-family: 'Roboto';
+    font-size: 0.9rem;
+    color: #212529;
+    font-weight: 400;
+    padding-left: 8px;
+}
+
+.light-mode .trend-source-link.btn { /* Estilo baseado nos seus botões globais */
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-style: italic;
+    font-size: 1rem;
+    border-radius: 5px;
+    display: inline-block;
+    /* Herda estilos de .btn e .btn-secondary do style.css */
+    /* Exemplo de override se necessário: */
+    padding: 10px 20px;
+    border: 1px solid #c4c4c4;
+    background-color: #dddddd;
+    text-decoration: none;
+    color: #000000;
+    transition: none;
+}
+
+.light-mode .trend-source-link.btn:hover {
+    background-color: #cecdcd;
+    border: 1px solid #aaa9a9;
+}

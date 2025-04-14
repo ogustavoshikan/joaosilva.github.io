@@ -13,7 +13,11 @@
       "authorAvatarUrl": "assets/imagens/autores/gustavo-g.webp",
       "image": "assets/imagens/tendencias/espanha-new.webp",
       "link": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2023-18618",
-      "alt": "Sede da nova Agência de Supervisão de IA da Espanha"
+      "alt": "Sede da nova Agência de Supervisão de IA da Espanha",
+      "corpoTexto": [
+      "<p>A criação da AESIA marca um passo significativo na regulação da IA na Europa, buscando equilibrar inovação com proteção de direitos.</p>",
+      "<p>A agência será responsável por supervisionar o desenvolvimento e uso de sistemas de IA, garantindo conformidade com o AI Act da União Europeia.</p>"
+  ]
     },
     {
       "slug": "russia-alianca-ia",
