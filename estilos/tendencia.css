@@ -1,0 +1,283 @@
+/* estilos/tendencia.css */
+/* Estilos para a página de detalhe de uma Tendência */
+
+/* Classe do Body */
+body.trend-detail-page main {
+    padding-top: 60px; 
+}
+
+/* Container principal da página de detalhe */
+.trend-detail-container {
+  width: 100%;
+  max-width: 1100px; /* Um pouco mais estreito que outras páginas */
+  margin: 30px auto 50px auto; /* Margem superior/inferior e centralizado */
+  padding: 0 15px; 
+}
+
+/* Breadcrumbs (Reutiliza estilo global de style.css, mas talvez precise de ajuste de margem) */
+.trend-detail-page .breadcrumbs {
+  margin-bottom: 20px; 
+}
+
+/* --- Conteúdo Principal da Tendência --- */
+.trend-content {
+  max-width: 750px; /* Largura máxima para o conteúdo principal */
+  margin: 0 auto 40px auto; /* Centraliza e adiciona espaço abaixo */
+  border-bottom: 1px solid var(--border-color-light, #333); /* Linha separadora antes de "Mais Tendências" */
+  padding-bottom: 30px; 
+}
+
+/* Placeholder de Loading */
+.trend-content .loading-placeholder {
+    color: var(--text-color2);
+    font-style: italic;
+    min-height: 200px; /* Altura para evitar colapso */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Conteúdo dinâmico (para fade-in) */
+.trend-content .trend-dynamic-content {
+    visibility: hidden; /* Será mudado pelo JS */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Título Principal H1 */
+.trend-title {
+  font-size: 2.2rem; /* Tamanho grande */
+  font-family: var(--heading-font, 'Roboto Condensed', sans-serif);
+  color: var(--heading-color);
+  line-height: 1.25;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+/* Meta Dados (Layout similar aos cards) */
+.trend-meta {
+  display: flex;
+  align-items: center; 
+  gap: 10px; 
+  margin-bottom: 25px;
+}
+
+.trend-author-avatar-meta { /* Reutiliza nome de classe, mas pode ser diferente */
+  width: 36px; 
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0; 
+}
+
+.trend-meta-text { /* Reutiliza nome de classe */
+  display: flex;
+  flex-direction: column; 
+  gap: 2px; 
+}
+
+.trend-author-name { /* Reutiliza nome de classe */
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-color);
+}
+.trend-author-name .trend-author-link-meta { /* Reutiliza nome de classe */
+  color: inherit; 
+  text-decoration: none;
+}
+.trend-author-name .trend-author-link-meta:hover {
+  color: var(--secondary-color);
+  text-decoration: underline;
+}
+
+.trend-relative-time { /* Reutiliza nome de classe */
+  font-size: 0.8rem;
+  color: var(--text-color2);
+}
+
+/* Imagem de Destaque */
+.trend-featured-image {
+  margin-bottom: 25px;
+  width: 100%; 
+}
+.trend-featured-image img {
+  display: block;
+  max-width: 100%; 
+  width: 100%; /* Ocupa a largura do .trend-content */
+  height: auto; /* Altura automática */
+  aspect-ratio: 16 / 9; /* Proporção comum para destaque */
+  object-fit: cover; 
+  border-radius: 5px;
+}
+
+/* Excerto/Resumo */
+.trend-excerpt {
+  font-size: 1.1rem; /* Tamanho um pouco maior */
+  color: var(--text-color);
+  line-height: 1.7;
+  margin-bottom: 30px;
+  font-family: 'Roboto', sans-serif; /* Ou outra fonte de leitura */
+}
+
+/* Botão/Link Fonte Original */
+.trend-source-link-container {
+    margin-bottom: 30px;
+    text-align: center; /* Centraliza o botão */
+}
+.trend-source-link.btn { /* Estilo baseado nos seus botões globais */
+    display: inline-block;
+    /* Herda estilos de .btn e .btn-secondary do style.css */
+    /* Exemplo de override se necessário: */
+    /* padding: 10px 25px; */
+    /* font-size: 0.95rem; */
+}
+
+/* --- Seção Mais Tendências --- */
+.more-trends-section {
+    margin-top: 40px; /* Espaço acima */
+}
+
+.more-trends-title {
+    font-size: 1.6rem;
+    font-family: var(--heading-font);
+    color: var(--heading-color);
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color, #333);
+}
+
+.more-trends-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas como na BBC */
+    gap: 25px;
+}
+
+.more-trend-item {
+    display: block; /* Faz o link ocupar o espaço */
+    text-decoration: none;
+    color: inherit; /* Herda cor padrão */
+    background-color: var(--card-background, #1a1a1a); /* Fundo sutil */
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid var(--border-color-light, #282828);
+    transition: border-color 0.2s ease;
+}
+.more-trend-item:hover {
+     border-color: var(--secondary-color, #00BCD4);
+}
+
+.more-trend-item img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Proporção da imagem */
+    object-fit: cover;
+}
+
+.more-trend-item .more-trend-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 12px 15px;
+    line-height: 1.4;
+    color: var(--heading-color);
+    margin: 0; /* Remove margem padrão de h3 */
+     transition: color 0.2s ease;
+}
+
+.more-trend-item:hover .more-trend-title {
+    color: var(--secondary-color);
+}
+
+/* --- Responsividade para Detalhe da Tendência --- */
+
+@media (max-width: 768px) {
+  .trend-content {
+    max-width: 100%; /* Ocupa toda a largura */
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+  }
+  .trend-title { font-size: 1.8rem; }
+  .trend-excerpt { font-size: 1rem; }
+  
+  .more-trends-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 colunas em tablet */
+    gap: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .more-trends-grid {
+    grid-template-columns: 1fr; /* 1 coluna em mobile */
+  }
+   .trend-title { font-size: 1.6rem; }
+}
+
+/* --- Breadcrumbs --- */
+.breadcrumbs {
+    margin-bottom: 30px;
+    font-size: 0.85rem;
+    color: var(--text-color2); /* Cor mais suave */
+  }
+  
+  .breadcrumbs ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: inline; /* Ajuda a alinhar o ícone */
+    align-items: center; /* Alinha verticalmente */
+    margin-top: 0rem;
+  }
+  
+  .breadcrumbs li {
+    display: contents; /* Mantém o comportamento anterior para o separador */
+  }
+  
+  /* Estilo para o ícone home no breadcrumb */
+  .breadcrumb-home-icon {
+    height: 0.99em; /* Ajusta a altura do ícone com base no tamanho da fonte */
+    width: auto;
+    margin-right: 3px; /* Espaço entre o ícone e o texto */
+    vertical-align: middle; /* Tenta alinhar melhor com o texto */
+    position: relative; /* Ajuste fino da posição vertical se necessário */
+    top: -1px; /* Exemplo de ajuste fino */
+  }
+  
+  .breadcrumbs li:first-child a { /* Garante que o link após o ícone ainda se alinhe */
+      display: inline-flex;
+      align-items: center;
+  }
+  
+  
+  .breadcrumbs li + li::before { /* Adiciona o separador '>' */
+    content: ">";
+    margin: 0 8px;
+    color: var(--text-color2);
+  }
+  
+  .breadcrumbs a {
+    font-family: Anta, sans-serif;
+    color: var(--text-color2);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .breadcrumbs a:hover {
+    color: #F44336; /* Cor de destaque no hover */
+  }
+  
+  .breadcrumbs li[aria-current="page"] { /* Estilo para o item atual */
+    font-family: 'Roboto';
+    font-size: 0.9rem;
+    color: var(--text-color); /* Cor principal para o título atual */
+    font-weight: 400;
+    padding-left: 8px; /* Adiciona espaço após o último separador '>' */
+  }
+
+/* --- Estilos Light Mode (Exemplos) --- */
+body.light-mode .trend-author-name { color: #222; }
+body.light-mode .trend-relative-time { color: #666; }
+body.light-mode .trend-excerpt { color: #333; }
+body.light-mode .more-trend-item { background-color: #fff; border-color: #e0e0e0; }
+body.light-mode .more-trend-item:hover { border-color: #bdbdbd; }
+body.light-mode .more-trend-item .more-trend-title { color: #222; }
+/* ... */

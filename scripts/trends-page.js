@@ -160,47 +160,42 @@ function formatRelativeTime(isoDateTimeString) {
     const dateTimeAttr = trendData.dateTimeIso || trendData.date || ''; // Para atributo datetime
 
     // --- HTML do Autor e Avatar ---
-    const authorNameHtml = trendData.authorName
-        ? `<a href="${trendData.authorLink || '#'}" class="trend-author-link" ${trendData.authorLink ? 'target="_blank" rel="noopener noreferrer"' : ''}>${trendData.authorName}</a>`
-        : '<span class="trend-author-name">Redação</span>'; // Fallback se não houver nome
+        const authorNameHtml = trendData.authorName
+            ? `<a href="${trendData.authorLink || '#'}" class="trend-author-link" ${trendData.authorLink ? 'target="_blank" rel="noopener noreferrer"' : ''}>${trendData.authorName}</a>`
+            : '<span class="trend-author-name">Redação</span>'; 
+        const authorAvatarHtml = `<img src="${trendData.authorAvatarUrl || 'assets/imagens/autores/placeholder-avatar.png'}" alt="${trendData.authorName ? 'Avatar de ' + trendData.authorName : 'Avatar'}" class="trend-author-avatar" loading="lazy">`;
+        
+        // <<< MODIFICAÇÃO: Link Principal aponta para a página de detalhe >>>
+        const linkDetalheTendencia = `/tendencia.html?slug=${trendData.slug || ''}`;
+        // --- Fim Autor ---
 
-    const authorAvatarHtml = `
-        <img 
-            src="${trendData.authorAvatarUrl || 'assets/imagens/autores/placeholder-avatar.png'}" 
-            alt="${trendData.authorName ? 'Avatar de ' + trendData.authorName : 'Avatar Padrão'}" 
-            class="trend-author-avatar" 
-            loading="lazy">
-    `;
-    // --- Fim Autor ---
-
-        // Estrutura do Card Menor (inspirado na BBC / seu trends.js da index)
+        // Estrutura do Card Menor
         article.innerHTML = `
-           <div class="trend-card-item__image-container">
-          <a href="${trendData.link || '#'}" target="_blank" rel="noopener noreferrer" aria-label="Ver artigo completo sobre ${trendData.title || 'Tendência'}">
-            <img src="${trendData.image || 'assets/imagens/geral/placeholder.png'}" alt="${trendData.alt || `Imagem ${trendData.title || 'Tendência'}`}" loading="lazy">
-          </a>
-        </div>
-        <div class="card-content">
-          <h3 class="card-title">
-            <a href="${trendData.link || '#'}" target="_blank" rel="noopener noreferrer" title="${trendData.title || ''}">
-                ${trendData.title || 'Sem Título'}
-            </a>
-          </h3>
-          <p class="card-excerpt">${trendData.excerpt || ''}</p>
-          
-          <!-- <<< NOVA ESTRUTURA META >>> -->
-          <div class="card-meta-new"> 
-              ${authorAvatarHtml}
-              <div class="trend-meta-text">
-                  <span class="trend-author-name">${authorNameHtml}</span> 
-                  <time datetime="${dateTimeAttr}" class="trend-relative-time">${relativeTime}</time> 
+            <div class="trend-card-item__image-container">
+              <!-- Link da imagem também aponta para o detalhe -->
+              <a href="${linkDetalheTendencia}" aria-label="Ver detalhes sobre ${trendData.title || 'Tendência'}">
+                <img src="${trendData.image || 'assets/imagens/geral/placeholder.png'}" alt="${trendData.alt || `Imagem ${trendData.title || 'Tendência'}`}" loading="lazy">
+              </a>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">
+                 <!-- Link do título também aponta para o detalhe -->
+                <a href="${linkDetalheTendencia}" title="${trendData.title || ''}">
+                    ${trendData.title || 'Sem Título'}
+                </a>
+              </h3>
+              <p class="card-excerpt">${trendData.excerpt || ''}</p>
+              <div class="card-meta-new"> 
+                  ${authorAvatarHtml}
+                  <div class="trend-meta-text">
+                      <span class="trend-author-name">${authorNameHtml}</span> 
+                      <time datetime="${dateTimeAttr}" class="trend-relative-time">${relativeTime}</time> 
+                  </div>
               </div>
-          </div>
-          <!-- <<< FIM NOVA ESTRUTURA META >>> -->
-        </div>
-      `;
-    return article;
-}
+            </div>
+          `;
+        return article;
+    }
 
     // --- Função Auxiliar para Atualizar Controles de Paginação ---
     function updatePaginationControls(page, totalItems) {
