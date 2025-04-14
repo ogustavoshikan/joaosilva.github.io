@@ -246,24 +246,27 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- Função para Limpar Todos os Filtros (MODIFICADA) ---
+    // --- Função para Limpar Todos os Filtros (CORRIGIDA) ---
     function clearAllFilters() {
-        console.log("Limpando filtros...");
-        activeSectionFilter = null; // Limpa filtro de seção
+        console.log("Limpando todos os filtros...");
+        activeSectionFilter = null; 
         activeCategoryFilter = null;
         activeTagFilter = null;
         if (searchInput) searchInput.value = ''; 
         if (clearButton) clearButton.style.display = 'none';
 
+        // Reseta a URL para a visualização padrão de notícias
         if (window.history.pushState) {
-            // Leva para a URL base de notícias (sem parâmetros)
-            const newUrl = window.location.pathname.replace(/\/$/, '') + '/noticias'; // Garante que termine com /noticias
-            window.history.pushState({path:newUrl}, '', newUrl);
-            console.log("URL resetada para /noticias");
+            const baseUrl = '/noticias'; // <<< URL CORRETA para a listagem principal
+            // Evita adicionar ao histórico se já estiver na URL correta
+            if (window.location.pathname !== baseUrl || window.location.search !== '') { 
+                 window.history.pushState({path:baseUrl}, '', baseUrl);
+                 console.log(`URL resetada para ${baseUrl}`);
+            }
         }
         
-        updatePageTitle(); // Reseta o título para "Últimas Notícias"
-        applyFiltersAndSort(); // Re-aplica (agora mostrará só notícias normais por padrão)
+        updatePageTitle(); // Reseta o título da página
+        applyFiltersAndSort(); // Re-aplica (mostrará tudo por padrão agora)
     }
 
 
@@ -277,7 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- Função para Filtrar por Busca (MODIFICADA) ---
+    // --- Função para Filtrar por Busca (CORRIGIDA) ---
     function filterNewsBySearch() {
         console.log("Filtrando por busca do input...");
         // Limpa filtros de URL se uma busca for feita
@@ -286,8 +289,10 @@ document.addEventListener('DOMContentLoaded', () => {
             activeCategoryFilter = null;
             activeTagFilter = null;
             if (window.history.pushState) {
-                const newUrl = window.location.pathname.replace(/\/$/, '') + '/noticias';
-                window.history.pushState({path:newUrl}, '', newUrl);
+                const baseUrl = '/noticias'; // <<< USA A MESMA URL BASE
+                 if (window.location.pathname !== baseUrl || window.location.search !== '') { 
+                    window.history.pushState({path:baseUrl}, '', baseUrl);
+                 }
             }
             updatePageTitle(); // Reseta título
         }
