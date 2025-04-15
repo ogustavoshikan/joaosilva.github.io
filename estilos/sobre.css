@@ -6,21 +6,74 @@ body.about-page main {
     padding-top: 60px; /* Garante espaço para o header fixo */
 }
 
-/* Container Principal da Página Sobre */
-.about-container {
-  width: 100%;
-  max-width: 1150px; /* Largura um pouco diferente para variar */
-  margin: 40px auto 60px auto; /* Margem superior/inferior e centralizado */
-  padding: 0 15px; 
-}
-
-/* Seção principal "Sobre" */
-.about-section {
-    /* Pode adicionar um fundo sutil aqui se quiser */
-    /* background-color: rgba(255, 255, 255, 0.03); */
-    /* border-radius: 8px; */
-    /* padding: 30px; */
-}
+/* --- Estilos para a Nova Seção Hero 'Sobre' --- */
+.about-hero-section {
+    position: relative; /* Necessário para o overlay */
+    width: 100%;
+    height: 103vh; /* Altura (ajuste conforme necessário - view height) */
+    display: flex;
+    align-items: center; /* Centraliza conteúdo verticalmente */
+    justify-content: center; /* Centraliza conteúdo horizontalmente */
+    overflow: hidden; /* Evita que a imagem vaze */
+    text-align: center; /* Centraliza o texto */
+    color: #ffffff; /* Cor do texto padrão no hero */
+  }
+  
+  .about-hero-background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cobre toda a área, cortando se necessário */
+    object-position: center center; /* Tenta manter o centro da imagem visível */
+    z-index: 1; /* Fica atrás do overlay e do conteúdo */
+  }
+  
+  .about-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.65); /* Overlay escuro (ajuste a opacidade) */
+    z-index: 2; /* Fica entre a imagem e o conteúdo */
+  }
+  
+  .about-hero-content {
+    position: relative; /* Para ficar acima do overlay */
+    z-index: 3;
+    max-width: 800px; /* Largura máxima do conteúdo de texto */
+    padding: 20px;
+  }
+  
+  .about-hero-text h1 {
+    font-size: 2.8rem; /* Tamanho do título */
+    font-family: var(--heading-font, Orbitron, sans-serif);
+    margin-bottom: 15px;
+    color: #fff; /* Garante cor branca */
+    font-weight: 700;
+  }
+  
+  .about-hero-text p {
+    font-size: 1.1rem; /* Tamanho do parágrafo */
+    line-height: 1.7;
+    margin-bottom: 1.5em;
+    color: #eee; /* Cor um pouco menos brilhante que o título */
+    max-width: 650px; /* Limita largura do parágrafo */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Estilo para os botões CTA dentro do Hero (reutiliza .hero-buttons?) */
+  .about-hero-section .hero-buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center; /* Centraliza botões */
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  /* Estilos de .btn, .btn-primary, .btn-secondary devem vir do style.css */
 
 .page-about-active {
     color: #F44336;
@@ -32,7 +85,7 @@ body.about-page main {
   }
 
 /* Breadcrumbs (Reutiliza estilo global, ajuste de margem) */
-.about-page .breadcrumbs {
+/*.about-page .breadcrumbs {
   margin-bottom: 35px; 
 }
 
@@ -98,64 +151,6 @@ body.about-page main {
     padding-left: 8px; /* Adiciona espaço após o último separador '>' */
   }
 
-/* Layout principal (Imagem + Texto) */
-.about-layout {
-    display: flex;
-    flex-wrap: wrap; /* Permite empilhar */
-    gap: 40px; /* Espaço entre imagem e texto */
-    align-items: center; /* Alinha verticalmente */
-    margin-bottom: 50px; /* Espaço antes da seção do criador */
-}
-
-/* Coluna da Imagem */
-.about-image-column {
-    flex: 1; /* Ocupa espaço disponível */
-    min-width: 300px; /* Largura mínima antes de empilhar */
-    max-width: 450px; /* Limita o tamanho máximo da imagem */
-}
-
-.about-image-column img {
-    display: block;
-    width: 100%;
-    height: auto;
-    border-radius: 8px; /* Bordas arredondadas */
-    /* object-fit: cover; */ /* Use se a imagem tiver proporção estranha */
-}
-
-/* Coluna do Texto */
-.about-text-column {
-    flex: 1.5; /* Dá um pouco mais de espaço para o texto */
-    min-width: 300px;
-}
-
-.about-text-column h1 {
-    font-size: 2.5rem; 
-    font-family: var(--heading-font, Orbitron, sans-serif);
-    color: var(--heading-color);
-    margin-bottom: 20px;
-    line-height: 1.3;
-}
-
-.about-text-column p {
-    font-size: 1rem;
-    color: var(--text-color);
-    line-height: 1.7;
-    margin-bottom: 1.5em;
-    font-family: 'Roboto', sans-serif;
-}
-
-.about-text-column h2, 
-.about-text-column h3 { /* Estilos para subtítulos no texto */
-    font-family: var(--heading-font);
-    color: var(--heading-color);
-    margin-top: 2em;
-    margin-bottom: 1em;
-    line-height: 1.3;
-}
-.about-text-column h2 { font-size: 1.6rem; }
-.about-text-column h3 { font-size: 1.3rem; }
-
-
 /* Botões Call-to-Action */
 .about-cta {
     margin-top: 30px;
@@ -166,34 +161,40 @@ body.about-page main {
 /* Estilos dos botões .btn .btn-primary .btn-secondary devem vir do style.css global */
 
 
-/* --- Seção Opcional: O Criador --- */
-.creator-section {
-    margin-top: 60px; /* Espaço acima */
-    padding-top: 40px; /* Espaço interno */
-    border-top: 1px solid var(--border-color, #333); /* Linha separadora */
-}
-
-.creator-section h2 {
-    font-size: 1.8rem;
-    font-family: var(--heading-font);
-    color: var(--heading-color);
-    text-align: center; /* Centraliza o título da seção */
-    margin-bottom: 30px;
-}
-
-/* Reutiliza ou adapta .author-box */
-.about-creator-box {
-    max-width: 700px; /* Limita a largura da caixa do autor */
-    margin: 0 auto; /* Centraliza */
-    background-color: var(--card-background-darker, #0f0f0f); /* Fundo ligeiramente diferente */
-    border: 1px solid var(--border-color-light, #282828);
-    /* Herda ou ajusta estilos de .author-box (display: flex, gap, padding, etc.) */
-     display: flex;
-     align-items: center;
-     gap: 25px;
-     padding: 25px;
-     border-radius: 6px;
-}
+/* --- Seção O Criador (Mantida, mas agora dentro de .about-container) --- */
+/* Container para o conteúdo abaixo do Hero */
+.about-container {
+    width: 100%;
+    max-width: 900px; /* Largura mais estreita para o conteúdo textual abaixo */
+    margin: 40px auto 60px auto; 
+    padding: 0 15px; 
+  }
+  
+  .creator-section {
+      margin-top: 50px; 
+      padding-top: 30px; 
+      border-top: 1px solid var(--border-color, #333); 
+  }
+  
+  .creator-section h2 {
+      font-size: 1.8rem;
+      font-family: var(--heading-font);
+      color: var(--heading-color);
+      text-align: center; 
+      margin-bottom: 30px;
+  }
+  
+  .about-creator-box {
+      max-width: 700px; 
+      margin: 0 auto; 
+      background-color: var(--card-background-darker, #0f0f0f); 
+      border: 1px solid var(--border-color-light, #282828);
+       display: flex;
+       align-items: center;
+       gap: 25px;
+       padding: 25px;
+       border-radius: 6px;
+  }
 
 .about-creator-box .author-avatar {
     width: 90px; /* Avatar um pouco maior */
@@ -218,38 +219,15 @@ body.about-page main {
 }
 
 
-/* --- Responsividade para a Página Sobre --- */
-
+/* --- Responsividade --- */
 @media (max-width: 768px) {
-  .about-layout {
-    gap: 30px; /* Reduz espaço */
+    .about-hero-section { height: auto; min-height: 50vh; padding: 60px 0; } /* Altura automática, padding */
+    .about-hero-text h1 { font-size: 2.2rem; }
+    .about-hero-text p { font-size: 1rem; }
+    .about-creator-box { flex-direction: column; text-align: center; gap: 15px; }
+    .about-creator-box .author-avatar { margin-bottom: 10px; }
   }
-  .about-image-column {
-     max-width: 100%; /* Permite imagem ocupar largura total */
-     order: 1; /* Coloca imagem primeiro */
-     margin-bottom: 20px; /* Espaço se empilhado */
-   }
-   .about-text-column {
-     order: 2; /* Texto depois */
-   }
-   .about-text-column h1 { font-size: 2rem; }
-
-   .creator-section { margin-top: 40px; padding-top: 30px; }
-   .about-creator-box { flex-direction: column; text-align: center; gap: 15px; padding: 20px;}
-   .about-creator-box .author-avatar { margin-bottom: 10px; width: 80px; height: 80px;}
-}
-
-@media (max-width: 480px) {
-    .about-text-column h1 { font-size: 1.8rem; }
-    .about-text-column p { font-size: 0.95rem; }
-    .about-cta { justify-content: center; } /* Centraliza botões */
-    .creator-section h2 { font-size: 1.5rem; }
-}
-
-
-/* --- Estilos Light Mode --- */
-body.light-mode .about-text-column p { color: #333; }
-body.light-mode .about-creator-box { background-color: #f9f9f9; border-color: #e0e0e0; }
-body.light-mode .about-creator-box .author-info h4 { color: #222; }
-body.light-mode .about-creator-box .author-info p { color: #555; }
-/* Adicione outros estilos light mode conforme necessário */
+  
+  @media (max-width: 480px) {
+    .about-hero-text h1 { font-size: 1.9rem; }
+  }

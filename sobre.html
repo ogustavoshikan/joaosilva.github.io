@@ -44,53 +44,57 @@
   </header> 
 
     <main id="main-content">
-        <section class="about-section">
-            <div class="about-container"> <!-- Container específico -->
-                 
-                <!-- Breadcrumbs -->
-                <nav aria-label="breadcrumb" class="breadcrumbs">
-                    <ol>
-                        <li>
-                            <img src="assets/imagens/geral/home-icon.png" alt="" class="breadcrumb-home-icon">
-                            <a href="/">Página Inicial</a>
-                        </li>
-                        <li aria-current="page">Sobre</li> <!-- Conteúdo virá do JS -->
-                    </ol>
-                </nav>
+        <!-- Breadcrumbs -->
+        <!--<nav aria-label="breadcrumb" class="breadcrumbs">
+            <ol>
+                <li>
+                    <img src="assets/imagens/geral/home-icon.png" alt="" class="breadcrumb-home-icon">
+                    <a href="/">Página Inicial</a>
+                </li>
+                <li aria-current="page">Sobre</li> <!- Conteúdo virá do JS -->
+            <!--</ol>
+        <!-</nav>-->
 
-                 <div class="about-layout"> <!-- Layout Imagem + Texto -->
-                    <div class="about-image-column">
-                        <img src="assets/imagens/geral/sobre-background.webp" alt="Ilustração de um robô humanoide representando IA" loading="lazy">
+        <!-- <<< NOVA SEÇÃO HERO PARA 'SOBRE' >>> -->
+        <section class="about-hero-section">
+            <div class="about-hero-overlay"></div> <!-- Overlay escuro -->
+            <img 
+                src="assets/imagens/geral/sobre-background.webp" 
+                alt="Inteligência Artificial olhando para o futuro" 
+                class="about-hero-background-image"
+                loading="lazy">
+            <div class="about-hero-content">
+                <div class="about-hero-text">
+                    <h1>Sobre o Technology AI</h1>
+                    <p>No começo, era apenas uma página estática com criativos que faço com a utilização e a potencialização que temos com o uso da IA...</p>
+                    <p>Mas, conforme mergulhei nesse universo em constante evolução, percebi que a inteligência artificial vai muito além da criação visual. Ela está moldando o presente e reconfigurando o futuro – da arte à ciência, da educação à comunicação, do entretenimento aos negócios.</p>
+                    <p>Foi assim que o Technology AI nasceu de verdade: como um portal para explorar, compartilhar e acompanhar de perto as transformações que a IA vem provocando no mundo.</p>
+                    <!-- Adicionar mais parágrafos se necessário -->
+
+                     <!-- Botões CTA (opcional dentro do hero) -->
+                    <div class="about-cta hero-buttons"> <!-- Reutiliza classe hero-buttons? -->
+                         <a href="/noticias" class="btn btn-primary">Explorar Notícias</a>
+                         <a href="/designs" class="btn btn-secondary">Ver Designs</a>
                     </div>
-                    <div class="about-text-column">
-                        <h1>Sobre o Technology AI</h1>
-                        <p>No começo, era apenas uma página estática com criativos que faço com a utilização e a potencialização que temos com o uso da IA...</p>
-                        <p>Mas, conforme mergulhei nesse universo em constante evolução...</p>
-                         <!-- Adicionar mais parágrafos e talvez subtítulos H2/H3 -->
-
-                         <!-- Exemplo de CTA -->
-                         <div class="about-cta">
-                             <a href="/noticias" class="btn btn-primary">Explorar Notícias</a>
-                             <a href="/designs" class="btn btn-secondary">Ver Designs</a>
-                         </div>
-                    </div>
-                 </div>
-
-                 <!-- Opcional: Seção "O Criador" -->
-                 <section class="creator-section">
-                     <h2>O Criador</h2>
-                     <div class="author-box about-creator-box"> <!-- Reutiliza ou adapta .author-box -->
-                         <img src="assets/imagens/autores/gustavo-g.webp" alt="Foto de Gustavo G." class="author-avatar">
-                         <div class="author-info">
-                             <h4>Gustavo G.</h4>
-                             <p>Entusiasta de tecnologia e especialista em Inteligência Artificial, explorando o futuro da inovação e compartilhando insights através do Technology AI.</p>
-                             <!-- Links Sociais do Autor -->
-                         </div>
-                     </div>
-                 </section>
-
-            </div> <!-- Fim .about-container -->
+                </div>
+            </div>
         </section>
+        <!-- Container para o restante do conteúdo (se houver) -->
+        <div class="about-container">
+            
+                <!-- Seção O Criador -->
+             <section class="creator-section">
+                <h2>O Criador</h2>
+                <div class="author-box about-creator-box">
+                    <img src="assets/imagens/autores/gustavo-g.webp" alt="Foto de Gustavo G." class="author-avatar">
+                    <div class="author-info">
+                        <h4>Gustavo G.</h4>
+                        <p>Entusiasta de tecnologia e especialista em Inteligência Artificial, explorando o futuro da inovação e compartilhando insights através do Technology AI.</p>
+                    </div>
+                </div>
+            </section>
+
+       </div> <!-- Fim .about-container -->
     </main>
 
     <footer class="site-footer">
