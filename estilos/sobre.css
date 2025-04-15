@@ -1,0 +1,255 @@
+/* estilos/sobre.css */
+/* Estilos específicos para a página Sobre */
+
+/* Classe do Body */
+body.about-page main {
+    padding-top: 60px; /* Garante espaço para o header fixo */
+}
+
+/* Container Principal da Página Sobre */
+.about-container {
+  width: 100%;
+  max-width: 1150px; /* Largura um pouco diferente para variar */
+  margin: 40px auto 60px auto; /* Margem superior/inferior e centralizado */
+  padding: 0 15px; 
+}
+
+/* Seção principal "Sobre" */
+.about-section {
+    /* Pode adicionar um fundo sutil aqui se quiser */
+    /* background-color: rgba(255, 255, 255, 0.03); */
+    /* border-radius: 8px; */
+    /* padding: 30px; */
+}
+
+.page-about-active {
+    color: #F44336;
+    font-family: "Anta", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1rem;
+    position: relative;
+  }
+
+/* Breadcrumbs (Reutiliza estilo global, ajuste de margem) */
+.about-page .breadcrumbs {
+  margin-bottom: 35px; 
+}
+
+/* --- Breadcrumbs --- */
+.breadcrumbs {
+    margin-bottom: 30px;
+    font-size: 0.85rem;
+    color: var(--text-color2); /* Cor mais suave */
+  }
+  
+  .breadcrumbs ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: inline; /* Ajuda a alinhar o ícone */
+    align-items: center; /* Alinha verticalmente */
+    margin-top: 0rem;
+  }
+  
+  .breadcrumbs li {
+    display: contents; /* Mantém o comportamento anterior para o separador */
+  }
+  
+  /* Estilo para o ícone home no breadcrumb */
+  .breadcrumb-home-icon {
+    height: 0.99em; /* Ajusta a altura do ícone com base no tamanho da fonte */
+    width: auto;
+    margin-right: 3px; /* Espaço entre o ícone e o texto */
+    vertical-align: middle; /* Tenta alinhar melhor com o texto */
+    position: relative; /* Ajuste fino da posição vertical se necessário */
+    top: -1px; /* Exemplo de ajuste fino */
+  }
+  
+  .breadcrumbs li:first-child a { /* Garante que o link após o ícone ainda se alinhe */
+      display: inline-flex;
+      align-items: center;
+  }
+  
+  
+  .breadcrumbs li + li::before { /* Adiciona o separador '>' */
+    content: ">";
+    margin: 0 8px;
+    color: #6c757d;
+  }
+  
+  .breadcrumbs a {
+    font-family: Anta, sans-serif;
+    color: var(--text-color2);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .breadcrumbs a:hover {
+    color: #F44336; /* Cor de destaque no hover */
+  }
+  
+  .breadcrumbs li[aria-current="page"] { /* Estilo para o item atual */
+    font-family: 'Roboto';
+    font-size: 0.9rem;
+    color: var(--text-color); /* Cor principal para o título atual */
+    font-weight: 400;
+    padding-left: 8px; /* Adiciona espaço após o último separador '>' */
+  }
+
+/* Layout principal (Imagem + Texto) */
+.about-layout {
+    display: flex;
+    flex-wrap: wrap; /* Permite empilhar */
+    gap: 40px; /* Espaço entre imagem e texto */
+    align-items: center; /* Alinha verticalmente */
+    margin-bottom: 50px; /* Espaço antes da seção do criador */
+}
+
+/* Coluna da Imagem */
+.about-image-column {
+    flex: 1; /* Ocupa espaço disponível */
+    min-width: 300px; /* Largura mínima antes de empilhar */
+    max-width: 450px; /* Limita o tamanho máximo da imagem */
+}
+
+.about-image-column img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px; /* Bordas arredondadas */
+    /* object-fit: cover; */ /* Use se a imagem tiver proporção estranha */
+}
+
+/* Coluna do Texto */
+.about-text-column {
+    flex: 1.5; /* Dá um pouco mais de espaço para o texto */
+    min-width: 300px;
+}
+
+.about-text-column h1 {
+    font-size: 2.5rem; 
+    font-family: var(--heading-font, Orbitron, sans-serif);
+    color: var(--heading-color);
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+.about-text-column p {
+    font-size: 1rem;
+    color: var(--text-color);
+    line-height: 1.7;
+    margin-bottom: 1.5em;
+    font-family: 'Roboto', sans-serif;
+}
+
+.about-text-column h2, 
+.about-text-column h3 { /* Estilos para subtítulos no texto */
+    font-family: var(--heading-font);
+    color: var(--heading-color);
+    margin-top: 2em;
+    margin-bottom: 1em;
+    line-height: 1.3;
+}
+.about-text-column h2 { font-size: 1.6rem; }
+.about-text-column h3 { font-size: 1.3rem; }
+
+
+/* Botões Call-to-Action */
+.about-cta {
+    margin-top: 30px;
+    display: flex;
+    gap: 15px; /* Espaço entre botões */
+    flex-wrap: wrap; /* Permite quebrar linha se necessário */
+}
+/* Estilos dos botões .btn .btn-primary .btn-secondary devem vir do style.css global */
+
+
+/* --- Seção Opcional: O Criador --- */
+.creator-section {
+    margin-top: 60px; /* Espaço acima */
+    padding-top: 40px; /* Espaço interno */
+    border-top: 1px solid var(--border-color, #333); /* Linha separadora */
+}
+
+.creator-section h2 {
+    font-size: 1.8rem;
+    font-family: var(--heading-font);
+    color: var(--heading-color);
+    text-align: center; /* Centraliza o título da seção */
+    margin-bottom: 30px;
+}
+
+/* Reutiliza ou adapta .author-box */
+.about-creator-box {
+    max-width: 700px; /* Limita a largura da caixa do autor */
+    margin: 0 auto; /* Centraliza */
+    background-color: var(--card-background-darker, #0f0f0f); /* Fundo ligeiramente diferente */
+    border: 1px solid var(--border-color-light, #282828);
+    /* Herda ou ajusta estilos de .author-box (display: flex, gap, padding, etc.) */
+     display: flex;
+     align-items: center;
+     gap: 25px;
+     padding: 25px;
+     border-radius: 6px;
+}
+
+.about-creator-box .author-avatar {
+    width: 90px; /* Avatar um pouco maior */
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.about-creator-box .author-info h4 {
+    margin: 0 0 8px 0;
+    font-size: 1.3rem;
+    color: var(--heading-color);
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.about-creator-box .author-info p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--text-color2);
+    line-height: 1.6;
+}
+
+
+/* --- Responsividade para a Página Sobre --- */
+
+@media (max-width: 768px) {
+  .about-layout {
+    gap: 30px; /* Reduz espaço */
+  }
+  .about-image-column {
+     max-width: 100%; /* Permite imagem ocupar largura total */
+     order: 1; /* Coloca imagem primeiro */
+     margin-bottom: 20px; /* Espaço se empilhado */
+   }
+   .about-text-column {
+     order: 2; /* Texto depois */
+   }
+   .about-text-column h1 { font-size: 2rem; }
+
+   .creator-section { margin-top: 40px; padding-top: 30px; }
+   .about-creator-box { flex-direction: column; text-align: center; gap: 15px; padding: 20px;}
+   .about-creator-box .author-avatar { margin-bottom: 10px; width: 80px; height: 80px;}
+}
+
+@media (max-width: 480px) {
+    .about-text-column h1 { font-size: 1.8rem; }
+    .about-text-column p { font-size: 0.95rem; }
+    .about-cta { justify-content: center; } /* Centraliza botões */
+    .creator-section h2 { font-size: 1.5rem; }
+}
+
+
+/* --- Estilos Light Mode --- */
+body.light-mode .about-text-column p { color: #333; }
+body.light-mode .about-creator-box { background-color: #f9f9f9; border-color: #e0e0e0; }
+body.light-mode .about-creator-box .author-info h4 { color: #222; }
+body.light-mode .about-creator-box .author-info p { color: #555; }
+/* Adicione outros estilos light mode conforme necessário */
