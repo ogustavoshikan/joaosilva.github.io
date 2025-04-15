@@ -10,7 +10,7 @@ body.trend-detail-page main {
 .trend-detail-container {
   width: 100%;
   max-width: 1268px; /* Um pouco mais estreito que outras páginas */
-  margin: 30px auto 50px auto; /* Margem superior/inferior e centralizado */
+  margin: 30px auto 0px auto; /* Margem superior/inferior e centralizado */
   padding: 9px 20px;
 }
 
@@ -95,6 +95,95 @@ body.trend-detail-page main {
   color: var(--text-color2);
 }
 
+/* Estilos para Social Share na página de Tendência */
+.trend-social-share {
+    margin-top: 0px; /* Espaço após os meta dados */
+    margin-bottom: 15px; /* Espaço antes da imagem */
+    /* Remove padding-left se existia alinhamento anterior */
+    padding-left: 0; 
+    /* Garante alinhamento à esquerda */
+    text-align: left;
+  }
+  
+  /* Reutiliza estilos base de .social-share de style.css */
+  .trend-social-share a {
+    /* Herda estilos de .social-share a */
+    font-size: 1rem; /* Pode ajustar o tamanho aqui se quiser diferente */
+    margin-right: 8px; /* Espaço entre ícones */
+    margin-left: 0; /* Sem margem extra à esquerda */
+    /* Restante dos estilos (padding, hover) devem vir do global style.css */
+  }
+
+  /* Estilos base */
+.trend-social-share .social-icon {
+    font-size: 1.1rem;
+    border-radius: 4px;
+    padding: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    line-height: 1;
+    /* transition: background-color 0.3s ease, color 0.3s ease; */
+    margin-right: 8px;
+  }
+  
+  /* Twitter/X */
+  .trend-social-share .social-icon.x {
+    background-color: #55555500;
+  }
+  .trend-social-share .social-icon.x i {
+    color: #FFFFFF;
+  }
+  .trend-social-share .social-icon.x:hover {
+    background-color: #e3e3e3;
+  }
+  .trend-social-share .social-icon.x:hover i {
+    color: #000000;
+  }
+  
+  /* WhatsApp */
+  .trend-social-share .social-icon.whatsapp {
+    background-color: #128c7e00;
+  }
+  .trend-social-share .social-icon.whatsapp i {
+    color: #25D366;
+  }
+  .trend-social-share .social-icon.whatsapp:hover {
+    background-color: #25D366;
+  }
+  .trend-social-share .social-icon.whatsapp:hover i {
+    color: #FFFFFF;
+  }
+  
+  /* Facebook */
+  .trend-social-share .social-icon.facebook {
+    background-color: #0e5dc900;
+  }
+  .trend-social-share .social-icon.facebook i {
+    color: #1877F2;
+  }
+  .trend-social-share .social-icon.facebook:hover {
+    background-color: #1877F2;
+  }
+  .trend-social-share .social-icon.facebook:hover i {
+    color: #FFFFFF;
+  }
+  
+  /* LinkedIn */
+  .trend-social-share .social-icon.linkedin {
+    background-color: #084b8a00;
+  }
+  .trend-social-share .social-icon.linkedin i {
+    color: #0A66C2;
+  }
+  .trend-social-share .social-icon.linkedin:hover {
+    background-color: #0A66C2;
+  }
+  .trend-social-share .social-icon.linkedin:hover i {
+    color: #FFFFFF;
+  }
+  
 /* Imagem de Destaque */
 .trend-featured-image {
   margin-bottom: 25px;
@@ -165,6 +254,7 @@ body.trend-detail-page main {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 4 colunas como na BBC */
     gap: 25px;
+    margin-bottom: 1rem; /* Espaço abaixo */
 }
 
 .more-trend-item {
@@ -464,3 +554,17 @@ body.trend-detail-page.light-mode main {
     background-color: #cecdcd;
     border: 1px solid #aaa9a9;
 }
+
+/* X */
+.light-mode .social-share a.x {
+    background-color: transparent; /* Fundo transparente */
+  }
+  .light-mode .social-share a.x i {
+    color: #000000;
+  }
+  .light-mode .social-share a.x:hover {
+    background-color: #000000;
+  }
+  .light-mode .social-share a.x:hover i {
+    color: #ffffff;
+  }
