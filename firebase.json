@@ -5,38 +5,52 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
-    ], // <<< ADICIONAR/MODIFICAR A PARTIR DAQUI >>>
-    "cleanUrls": true, // Remove automaticamente a extensão .html das URLs
-    "trailingSlash": false, // Opcional: Remove barras finais (ex: /noticias/ vira /noticias)
+    ],
+    "cleanUrls": true, 
+    "trailingSlash": false, 
     "rewrites": [
+      // <<< REGRA DE MANUTENÇÃO (ADICIONADA NO TOPO) >>>
+      // Direciona TODAS as requisições para a página de manutenção.
+      // Exceção: Não redireciona a própria página de manutenção ou arquivos essenciais (CSS/JS/Imagens)
+      // Se você precisar que CSS/JS/Imagens carreguem na página de manutenção,
+      // ajuste o "source" para ser mais específico ou use "negative glob" se souber.
+      // Para simplificar, vamos assumir que manutencao.html tem CSS/imagens inline ou não precisa de muitos assets.
       {
-        "source": "/noticias", // Quando alguém acessar /noticias
-        "destination": "/news.html" // Sirva o conteúdo de /news.html
+        "source": "/!(@(manutencao.html|assets/**|estilos/**|scripts/global.js))", // Captura tudo EXCETO manutencao.html e pastas de assets/estilos/script global
+        "destination": "/manutencao.html" 
+      },
+      // <<< FIM DA REGRA DE MANUTENÇÃO >>>
+
+      // --- Regras Originais (ficam abaixo da regra de manutenção) ---
+      {
+        "source": "/noticias", 
+        "destination": "/news.html" 
       },
       {
-        "source": "/designs", // Quando alguém acessar /designs
-        "destination": "/designs.html" // Sirva o conteúdo de /designs.html
+        "source": "/designs", 
+        "destination": "/designs.html" 
       },
       {
-         "source": "/sobre", // Quando alguém acessar /sobre
-         "destination": "/sobre.html" // Sirva o conteúdo de /sobre.html (quando criar)
+         "source": "/sobre", 
+         "destination": "/sobre.html" 
       },
       {
-        // Opcional: Para links de artigos, se quiser URL /noticia/slug-do-artigo
-        // Isso é mais avançado, pois precisa passar o slug para o JS
-        // Vamos manter noticia.html?artigo=... por enquanto, é mais simples.
-         "source": "/noticia/**", // Captura qualquer coisa depois de /noticia/
-         "destination": "/noticia.html" // Serve sempre noticia.html (o JS pega o slug da URL real)
+         "source": "/noticia/**", 
+         "destination": "/noticia.html"
       },
       {
-        "source": "/tendencias", // Quando alguém acessar /tendencias
-        "destination": "/tendencias.html" // Sirva o conteúdo de /tendencias.html
+        "source": "/tendencia/**", // <<< Adicionada regra para detalhe da tendência
+        "destination": "/tendencia.html" 
       },
       {
-        "source": "/tendências", // Quando alguém acessar /tendências
-        "destination": "/tendencias.html" // Sirva o conteúdo de /tendencias.html
+        "source": "/tendencias", // Mantida
+        "destination": "/tendencias.html" 
       }
-      // Adicione mais regras se tiver outras páginas
+      // Mapeamento extra para URL com acento (se necessário, mas geralmente evitado)
+      // {
+      //   "source": "/tendências", 
+      //   "destination": "/tendencias.html" 
+      // }
     ]
   }
 }
