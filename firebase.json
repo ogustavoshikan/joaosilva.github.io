@@ -6,51 +6,13 @@
       "**/.*",
       "**/node_modules/**"
     ],
-    "cleanUrls": true, 
-    "trailingSlash": false, 
+    "cleanUrls": true,
+    "trailingSlash": false,
     "rewrites": [
-      // <<< REGRA DE MANUTENÇÃO (ADICIONADA NO TOPO) >>>
-      // Direciona TODAS as requisições para a página de manutenção.
-      // Exceção: Não redireciona a própria página de manutenção ou arquivos essenciais (CSS/JS/Imagens)
-      // Se você precisar que CSS/JS/Imagens carreguem na página de manutenção,
-      // ajuste o "source" para ser mais específico ou use "negative glob" se souber.
-      // Para simplificar, vamos assumir que manutencao.html tem CSS/imagens inline ou não precisa de muitos assets.
       {
-        "source": "/!(@(manutencao.html|assets/**|estilos/**|scripts/global.js))", // Captura tudo EXCETO manutencao.html e pastas de assets/estilos/script global
-        "destination": "/manutencao.html" 
-      },
-      // <<< FIM DA REGRA DE MANUTENÇÃO >>>
-
-      // --- Regras Originais (ficam abaixo da regra de manutenção) ---
-      {
-        "source": "/noticias", 
-        "destination": "/news.html" 
-      },
-      {
-        "source": "/designs", 
-        "destination": "/designs.html" 
-      },
-      {
-         "source": "/sobre", 
-         "destination": "/sobre.html" 
-      },
-      {
-         "source": "/noticia/**", 
-         "destination": "/noticia.html"
-      },
-      {
-        "source": "/tendencia/**", // <<< Adicionada regra para detalhe da tendência
-        "destination": "/tendencia.html" 
-      },
-      {
-        "source": "/tendencias", // Mantida
-        "destination": "/tendencias.html" 
+        "source": "**",
+        "destination": "/manutencao.html"
       }
-      // Mapeamento extra para URL com acento (se necessário, mas geralmente evitado)
-      // {
-      //   "source": "/tendências", 
-      //   "destination": "/tendencias.html" 
-      // }
     ]
   }
 }
