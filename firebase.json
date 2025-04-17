@@ -1,11 +1,43 @@
 {
   "hosting": {
-    "public": "public",
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ], // <<< ADICIONAR/MODIFICAR A PARTIR DAQUI >>>
+    "cleanUrls": true, // Remove automaticamente a extensão .html das URLs
+    "trailingSlash": false, // Opcional: Remove barras finais (ex: /noticias/ vira /noticias)
     "rewrites": [
       {
-        "source": "**",
-        "destination": "/manutencao.html"
+        "source": "/noticias", // Quando alguém acessar /noticias
+        "destination": "/news.html" // Sirva o conteúdo de /news.html
+      },
+      {
+        "source": "/designs", // Quando alguém acessar /designs
+        "destination": "/designs.html" // Sirva o conteúdo de /designs.html
+      },
+      {
+         "source": "/sobre", // Quando alguém acessar /sobre
+         "destination": "/sobre.html" // Sirva o conteúdo de /sobre.html (quando criar)
+      },
+      {
+        // Opcional: Para links de artigos, se quiser URL /noticia/slug-do-artigo
+        // Isso é mais avançado, pois precisa passar o slug para o JS
+        // Vamos manter noticia.html?artigo=... por enquanto, é mais simples.
+         "source": "/noticia/**", // Captura qualquer coisa depois de /noticia/
+         "destination": "/noticia.html" // Serve sempre noticia.html (o JS pega o slug da URL real)
+      },
+      {
+        "source": "/tendencias", // Quando alguém acessar /tendencias
+        "destination": "/tendencias.html" // Sirva o conteúdo de /tendencias.html
+      },
+      {
+        "source": "/tendências", // Quando alguém acessar /tendências
+        "destination": "/tendencias.html" // Sirva o conteúdo de /tendencias.html
       }
+      // Adicione mais regras se tiver outras páginas
     ]
   }
 }
+
