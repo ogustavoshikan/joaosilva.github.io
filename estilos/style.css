@@ -417,7 +417,7 @@ main {
   font-size: 1rem;
   border-radius: 5px;
   text-decoration: none;
-  transition: background-color 0.3s ease-in-out;
+  transition: background-color 0.1s ease-in-out;
   background-color: #000000;
   color: #ffffff;
   border: 1px solid #ffffff;
@@ -1934,7 +1934,7 @@ main {
   padding: 10px 50px;
   font-size: 1.2rem;
   border-radius: 5px;
-  /*transition: background-color 0.3s ease;*/
+  transition: background-color 0.1s ease;
   border: 1px solid #464646;
 }
 
@@ -4059,7 +4059,7 @@ body.light-mode .icon-sun {
   padding: 12px 50px;
   font-size: 1.2rem;
   border-radius: 8px;
-  /*transition: background-color 0.3s ease;*/
+  transition: background-color 0.1s ease;
   border: 1px solid #c4c4c4;
 }
 
