@@ -1178,7 +1178,6 @@ main {
   font-size: 1.2rem;
   border-radius: 8px;
   /* transition: background-color 0.1s ease; */
-  se; */
   border: 1px solid #464646;
   border: 1px solid #313131;
 }
@@ -1482,7 +1481,7 @@ main {
 @media (prefers-reduced-motion: reduce) {
   .art-section .swiper-slide img {
     transition: 0.2s ease;
-    move transições para usuários que preferem movimento reduzido */
+    /*move transições para usuários que preferem movimento reduzido */
   }
 
   .art-section .swiper-button-prev,
