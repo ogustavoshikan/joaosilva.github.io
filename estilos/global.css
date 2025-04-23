@@ -1,0 +1,963 @@
+/* Mantendo os estilos existentes da Página Inicial */
+.home-back-to-top-container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1000;
+}
+
+#home-back-to-top {
+  background-color: #ffffff;
+  border: 0px;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease, background-color 0.1s ease;
+}
+
+#home-back-to-top .back-to-top-icon {
+  color: #000000;
+  width: 25px;
+  height: 25px;
+}
+
+#home-back-to-top:hover {
+  background-color: #F44336;
+}
+
+#home-back-to-top:hover .back-to-top-icon {
+  color: #ffffff;
+}
+
+#home-back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ============================================== */
+/* == MODO LIGHT - SEÇÃO NOTÍCIAS (HOME - SEM VAR) == */
+/* ============================================== */
+
+/* --- Fundo da Seção --- */
+.light-mode .news-section {
+    background-color: #000000f7; /* Fundo principal claro */
+  }
+  
+  /* --- Título da Seção --- */
+  /* .section-title é global, mas vamos garantir a cor aqui também */
+  .light-mode .section-title {
+    color: #000000; /* Cor primária escura */
+  }
+  
+  /* --- Cards (Base) --- */
+  .light-mode .news-card {
+    border: 1px solid #232221; /* Borda clara */
+    /*background-color: #ffffff; /* Fundo branco */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Sombra sutil */
+  }
+  
+  /* --- Imagens (Hover) --- */
+  /* O efeito de brilho pode ser mantido ou ajustado se necessário */
+  .light-mode .news-card.featured .news-image-top img:hover,
+  .light-mode .news-card.side .news-image-top img:hover {
+    filter: brightness(0.85); /* Leve escurecimento no hover */
+    transition: filter 0.1s ease;
+  }
+  .light-mode .news-card.bottom .news-image img:hover {
+    filter: brightness(0.9); /* Um pouco mais escuro para cards menores */
+  }
+  
+  /* --- Título Sobreposto (Cards Superiores) --- */
+  .light-mode .news-overlay-title {
+    /* Gradiente de branco semi-transparente para transparente */
+    background: linear-gradient(0deg, rgb(0 0 0 / 95%) 15%, rgb(0 0 0 / 70%) 50%, transparent 100%);
+    color: #ffffff; /* Texto escuro */
+  }
+  
+  /* Ajuste do gradiente no mobile (exemplo) */
+  @media (max-width: 768px) {
+    .light-mode .news-card.featured .news-overlay-title {
+      background: linear-gradient(0deg, #090808 50%, rgba(9, 8, 8, 0));  
+    }
+  }
+  
+  
+  /* Hover e Foco do Título Sobreposto */
+  .light-mode .title-link:hover .news-overlay-title {
+    color: #ffffff; /* Preto sólido no hover */
+    text-decoration: underline;
+  }
+  .light-mode .title-link:focus-visible .news-overlay-title {
+    outline: 2px solid #F44336; /* Outline vermelho (cor de destaque) */
+    outline-offset: 2px;
+  }
+  
+  
+  /* --- Conteúdo dos Cards Inferiores --- */
+  .light-mode .news-card.bottom .news-content {
+    background: #ffffff; /* Fundo branco */
+  }
+  
+  /* Data (Inferior) */
+  .light-mode .news-card.bottom .news-date {
+    color: #484444; /* Texto secundário (cinza) */
+  }
+  
+  /* Título (Inferior) */
+  .light-mode .news-card.bottom .news-title {
+    color: #212529; /* Texto primário (escuro) */
+  }
+  
+  /* Link do Título (Inferior) */
+  .light-mode .news-card.bottom .news-title a {
+    color: #000000; /* Texto primário (escuro) */
+  }
+  .light-mode .news-card.bottom .news-title a:hover {
+    color: #000000; /* Preto sólido no hover */
+    text-decoration: underline;
+  }
+  .light-mode .news-card.bottom .news-title a:focus-visible {
+    outline: 2px solid #F44336; /* Outline vermelho */
+    outline-offset: 2px;
+  }
+  
+  /* Resumo (Inferior) */
+  .light-mode .news-card.bottom .news-excerpt {
+    color: #484444; /* Texto secundário (cinza) */
+  }
+  
+  /* Autor (Inferior) */
+  .light-mode .news-author-info .author-link {
+    font-size: 0.75rem;
+    font-family: 'Anta', sans-serif;
+    color: #000000;
+    margin-bottom: 0.5rem;
+    }
+  
+  .light-mode .news-author-info .author-link:hover {
+    text-decoration: underline;
+    color: #000000;
+  }
+  
+  .light-mode .news-card.bottom .news-author-info {
+    color: #484444;
+  }
+  /* --- Fallback de Carregamento --- */
+  .light-mode .loading-fallback {
+    color: #6c757d; /* Texto secundário (cinza) */
+  }
+  
+  /* ============================================== */
+  /* ========== ESTILOS PARA O MODO LIGHT ========== */
+  /* ============================================== */
+  
+  /* Aplica as regras quando a classe .light-mode está presente */
+  .light-mode {
+    /* Cores base para o light mode */
+    --light-bg-primary: #f8f9fa; /* Fundo principal ligeiramente cinza */
+    --light-bg-secondary: #ffffff; /* Fundo de cards/sidebar branco */
+    --light-border-color: #dee2e6; /* Cor da borda sutil */
+    --light-text-primary: #212529; /* Cor do texto principal (escuro) */
+    --light-text-secondary: #6c757d; /* Cor do texto secundário (cinza) */
+    --light-text-link: #0d6efd; /* Cor padrão de link (azul) - opcional, pode usar text-primary */
+    --light-accent-color: #F44336; /* Cor de destaque (vermelho) - mantida */
+    --light-hover-bg: #e9ecef; /* Fundo de hover para botões/itens */
+  }
+  
+  /* --- Seção Principal de Notícias --- */
+  .light-mode .news2-section {
+    background-color: #ffffff;
+    padding: 1rem 0 2rem;
+    border-bottom: 1px solid #151515;
+  }
+  
+  .light-mode .page-title-news {
+    font-size: 2.5rem;
+    font-family: var(--heading-font, Orbitron, sans-serif);
+    color: #000000;
+    text-align: center;
+    margin-bottom: 25px;
+    margin-top: 10px;
+  }
+  
+  /* --- Breadcrumb --- */
+  .light-mode .news2-section .breadcrumb,
+  .light-mode .news2-section .breadcrumb span {
+    color: #484444;
+  }
+  
+  .light-mode .news2-section .breadcrumb .current-page {
+    color: var(--light-text-primary);
+  }
+  
+  .light-mode .news2-section .breadcrumb .current-page:hover {
+    color: #000000; /* Usa accent no hover */
+    text-decoration: underline;
+  }
+  
+  .light-mode .news2-section .breadcrumb i {
+    color: var(--light-accent-color); /* Mantém o ícone de seta com a cor de destaque */
+  }
+  
+  /* --- Cabeçalho da Listagem (Pesquisa e Filtro) --- */
+  .light-mode .news2-section .news-search input {
+    background-color: var(--light-bg-secondary);
+    color: var(--light-text-primary);
+    border: 1px solid var(--light-border-color);
+  }
+  
+  .light-mode .news2-section .news-search input::placeholder {
+    color: var(--light-text-secondary);
+  }
+  
+  .light-mode .news2-section .news-search input:focus {
+    background-color: var(--light-bg-secondary);
+    border-color: #aaa9a9; /* Cor de foco similar ao Bootstrap */
+    outline: 0;
+    /*box-shadow: 0 0 0 0.1rem rgba(160, 160, 160, 0.25); /* Sombra de foco */
+  }
+  
+  .light-mode .news2-section .news-search button {
+    background-color: var(--light-hover-bg);
+    border: 1px solid var(--light-border-color);
+  }
+  
+  .light-mode .news2-section .news-search #news-clear-button {
+    background-color: var(--light-hover-bg);
+    border: 1px solid var(--light-border-color);
+  }
+  
+  .light-mode .news2-section .news-search button i {
+    color: var(--light-text-primary);
+  }
+  
+  /* Hover dos botões de busca/limpar */
+  .light-mode .news2-section .news-search button:hover {
+    background-color: #2196F3;
+    border: 1px solid #a9a9a9;
+  }
+  
+  .light-mode .news2-section .news-search #news-clear-button:hover {
+    background-color: #F44336;
+    color: #000000;
+    border: 1px solid #a9a9a9;
+  }
+  
+  .light-mode .news2-section .news-search button:hover i,
+  .light-mode .news2-section .news-search #news-clear-button:hover i {
+    color: #000000; /* Ícone branco no fundo vermelho */
+  }
+  
+  .light-mode .news-search #news-clear-button i {
+    color: #000000;
+    font-size: 1rem;
+  }
+  
+  .light-mode .news2-section .news-filter label {
+    color: var(--light-text-primary);
+  }
+  
+  .light-mode .news2-section .news-filter select {
+    background-color: var(--light-bg-secondary);
+    color: var(--light-text-primary);
+    border: 1px solid var(--light-border-color);
+  }
+  
+  .light-mode .news2-section .news-filter select:hover,
+  .light-mode .news2-section .news-filter select:focus {
+    background-color: var(--light-bg-secondary);
+    border-color: #aaa9a9; /* Cor de foco */
+  }
+  
+  /* --- Grid de Notícias e Cards --- */
+  .light-mode .news2-section .tech-news-card {
+    border: 1px solid var(--light-border-color);
+    background-color: var(--light-bg-secondary);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Sombra muito sutil nos cards */
+  }
+  
+  .light-mode .news2-section .tech-news-card .tech-news-image {
+    border: 1px solid var(--light-border-color); /* Mantém borda na imagem, ajustada para light */
+  }
+  
+  /* Efeito hover na imagem pode ser mantido ou ajustado */
+  /* .light-mode .news2-section .tech-news-card .tech-news-image img:hover { filter: brightness(0.95); } */
+  
+  .light-mode .news2-section .tech-news-card .tech-news-title a {
+    color: #000000;
+  }
+  
+  .light-mode .news2-section .tech-news-card .tech-news-title a:hover {
+    color: #000000; /* Usa accent no hover do título */
+    text-decoration: underline;
+  }
+  
+  .light-mode .news2-section .tech-news-card .tech-news-excerpt {
+    color: #484444;
+  }
+  
+  .light-mode .news2-section .tech-news-card .tech-news-author,
+  .light-mode .news2-section .tech-news-card .tech-news-author span,
+  .light-mode .news2-section .tech-news-card .tech-news-date {
+    color: #484444; /* Autor e data com cor secundária */
+  }
+  
+  .light-mode .news2-section .tech-news-card .tech-news-author a {
+    color: #000000; /* Link do autor com cor primária */
+    text-decoration: none;
+  }
+  
+  .light-mode .news2-section .tech-news-card .tech-news-author a:hover {
+    color: #000000; /* Accent no hover do link do autor */
+    text-decoration: underline;
+  }
+  
+  /*Redes Sociais compartilhamento Light Mode*/
+  /* Estilo icones de compartilhamento - Light Mode */
+  .light-mode .news2-section .tech-news-card .social-icon {
+    border-radius: 4px;
+    padding: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    line-height: 1;
+    background-color: #ffffff;
+    /*transition: background-color 0.3s ease, color 0.3s ease;*/
+  }
+  
+  /* X (Twitter/X) - Light Mode */
+  .light-mode .news2-section .tech-news-card .social-icon.x {
+    background-color: #eeeeee00;
+  }
+  .light-mode .news2-section .tech-news-card .social-icon.x i {
+    color: #000000;
+  }
+  .light-mode .news2-section .tech-news-card .social-icon.x:hover {
+    background-color: #121212;
+  }
+  .light-mode .news2-section .tech-news-card .social-icon.x:hover i {
+    color: #ffffff;
+  }
+  
+  /* WhatsApp - Light Mode */
+  .light-mode .news2-section .tech-news-card .social-icon.whatsapp {
+    background-color: #d3f6e900; /* tom claro de verde com branco */
+  }
+  .light-mode .news2-section .tech-news-card .social-icon.whatsapp i {
+    color: #25D366;
+  }
+  .light-mode .news2-section .tech-news-card .social-icon.whatsapp:hover {
+    background-color: #25D366;
+  }
+  .light-mode .news2-section .tech-news-card .social-icon.whatsapp:hover i {
+    color: #ffffff;
+  }
+  
+  /* Facebook - Light Mode */
+  .light-mode .news2-section .tech-news-card .social-icon.facebook {
+    background-color: #d6e6fb00; /* azul claro */
+  }
+  .light-mode .news2-section .tech-news-card .social-icon.facebook i {
+    color: #1877F2;
+  }
+  .light-mode .news2-section .tech-news-card .social-icon.facebook:hover {
+    background-color: #1877F2;
+  }
+  .light-mode .news2-section .tech-news-card .social-icon.facebook:hover i {
+    color: #ffffff;
+  }
+  
+  /* LinkedIn - Light Mode */
+  .light-mode .news2-section .tech-news-card .social-icon.linkedin {
+    background-color: #d0e5f900; /* azul claro */
+  }
+  .light-mode .news2-section .tech-news-card .social-icon.linkedin i {
+    color: #0A66C2;
+  }
+  .light-mode .news2-section .tech-news-card .social-icon.linkedin:hover {
+    background-color: #0A66C2;
+  }
+  .light-mode .news2-section .tech-news-card .social-icon.linkedin:hover i {
+    color: #ffffff;
+  }
+  
+  /* As cores de WhatsApp, Facebook, LinkedIn são mantidas do CSS original */
+  
+  
+  /* --- Sidebar --- */
+  .light-mode .news2-section .tech-news-sidebar {
+    background-color: var(--light-bg-secondary);
+    color: var(--light-text-primary);
+    border: 1px solid var(--light-border-color);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Sombra sutil */
+  }
+  
+  .light-mode .news2-section .tech-news-sidebar h3 {
+    color: var(--light-text-primary);
+  }
+  
+  .light-mode .news2-section .tech-news-sidebar .popular-news a {
+    color: var(--light-text-secondary); /* Links populares com cor secundária */
+  }
+  
+  .light-mode .news2-section .tech-news-sidebar .popular-news a:hover {
+    color: #000000; /* Accent no hover */
+    text-decoration: underline;
+  }
+  
+  /* --- Paginação --- */
+  .light-mode .news2-section .pagination-controls button {
+    background-color: #dddddd;
+    color: var(--light-text-primary);
+    border: 1px solid #b0b0b0;
+    padding: 0.438rem 1.0001rem;
+  }
+  
+  .light-mode .news2-section .pagination-controls button:disabled {
+    background-color: var(--light-hover-bg);
+    color: var(--light-text-secondary); /* Texto mais claro para desabilitado */
+    opacity: 0.8;
+    cursor: not-allowed;
+  }
+  
+  .light-mode .news2-section .pagination-controls button:hover:not(:disabled) {
+    background-color: #cecdcd;
+    color: #000000;
+    border-color: #aaa9a9;
+  }
+  
+  .light-mode .news2-section .pagination-controls .page-number {
+    font-family: 'Roboto Condensed', sans-serif;
+    color: var(--light-text-primary);
+    font-size: 15px;
+  }
+  
+  /* --- Mensagem "Sem Resultados" --- */
+  .light-mode .news2-section .no-results {
+    color: var(--light-text-secondary); /* Cor secundária para a mensagem */
+    background-color: transparent; /* Sem fundo extra */
+  }
+  
+  /* --- Indicador de Carregamento --- */
+  .light-mode .loading {
+    color: var(--light-text-primary);
+  }
+  
+  /* --- Botão Voltar ao Topo --- */
+  /* O botão já tem fundo branco, mas ajustamos a borda e o ícone */
+  .light-mode #news-back-to-top {
+    background-color: var(--light-bg-secondary); /* Fundo branco */
+    border: 1px solid var(--light-border-color); /* Borda clara */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15); /* Sombra para destacar */
+  }
+  
+  .light-mode #news-back-to-top .back-to-top-icon {
+    color: var(--light-text-primary); /* Ícone escuro */
+  }
+  
+  .light-mode #news-back-to-top:hover {
+    background-color: #cecdcd; /* Fundo vermelho no hover */
+    border-color: #b0aeae;
+  }
+  
+  .light-mode #news-back-to-top:hover .back-to-top-icon {
+    color: #000000; /* Ícone branco no hover */
+  }
+  
+  .light-mode .news2-active{
+    color: #f44336;
+    font-family: "Anta", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1rem;
+    position: relative;
+  }
+  
+  .theme-toggle {
+    background: none;
+    border: none;
+    padding: 0px; /* Ajuste o padding conforme necessário */
+    cursor: pointer;
+    display: inline-flex; /* Para alinhar o SVG corretamente */
+    align-items: center;
+    justify-content: center;
+    color: var(--icon-color); /* Usa a variável de cor do ícone */
+    border-radius: 50%; /* Torna o fundo (se houver) redondo */
+    transition: background-color 0.2s ease, color 0.2s ease;
+    margin-top: 6px;
+  }
+  
+  .theme-toggle:hover {
+    background-color: transparent; /* Leve fundo cinza no hover */
+  }
+  
+  .theme-icon {
+    width: 30px;  /* Tamanho do ícone */
+    height: 30px; /* Tamanho do ícone */
+    color: #ffffff;
+  }
+  
+  /* 4. Controle de Visibilidade dos Ícones */
+  /* Por padrão (dark mode), mostra a lua e esconde o sol */
+  body:not(.light-mode) .icon-sun {
+    display: none;
+  }
+  body:not(.light-mode) .icon-moon {
+    display: inline-block; /* Ou block, dependendo do seu layout */
+    color: white;
+  }
+  
+  /* Quando em light mode, mostra o sol e esconde a lua */
+  body.light-mode .icon-moon {
+    display: none;
+  }
+  body.light-mode .icon-sun {
+    display: inline-block; /* Ou block */
+  }
+  /* --- Fim dos Estilos Light Mode --- */
+  
+  /* ============================================== */
+  /* ====== MODO LIGHT - SEÇÃO TÓPICOS (HOME) ====== */
+  /* ============================================== */
+  
+  /* --- Fundo Geral da Seção --- */
+  .light-mode .topics-section {
+    /* Usa o fundo principal claro, se diferente de branco puro */
+    background-color: #ffffff;
+  }
+  
+  /* --- Cabeçalhos "Comece por aqui" e "Tópicos em Destaque" --- */
+  .light-mode .topics-section-left,
+  .light-mode .topics-section-right {
+    background-color: var(--light-bg-secondary, #ffffff); /* Fundo branco/claro */
+    border-top: 2px solid var(--light-border-color, #dee2e6); /* Borda clara */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* Sombra sutil */
+  }
+  
+  .light-mode .topics-section-left i.fas.fa-play,
+  .light-mode .topics-section-right i.fas.fa-newspaper {
+    color: var(--light-text-secondary, #6c757d); /* Cor secundária para ícones */
+  }
+  
+  .light-mode .topics-section-title {
+    color: #000000; /* Cor de texto principal */
+  }
+  
+  /* Link "Ver todos" - Mantém cor de destaque */
+  .light-mode .topics-section-link {
+    color: var(--light-accent-color, #F44336);
+  }
+  .light-mode .topics-section-link .material-symbols-outlined {
+     color: var(--light-accent-color, #F44336);
+  }
+  
+  .light-mode .topics-section-link:hover {
+    color: var(--light-text-primary, #212529); /* Cor primária no hover */
+  }
+  
+  .light-mode .topics-section-link:hover .material-symbols-outlined {
+    color: var(--light-text-primary, #212529); /* Cor primária no hover */
+  }
+  
+  
+  /* --- Card Médio (Carrossel) --- */
+  .light-mode .medium-topic-card {
+    background-color: var(--light-bg-secondary, #ffffff); /* Fundo branco */
+    border: 1px solid var(--light-border-color, #dee2e6); /* Borda sutil */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08); /* Sombra um pouco mais visível */
+  }
+  
+  .light-mode .medium-card-overlay {
+    /* Gradiente de branco semi-transparente para transparente */
+    /* Ajuste a opacidade (0.95, 0.7) conforme necessário para legibilidade */
+    background: transparent;
+  }
+  
+  .light-mode .medium-title-link {
+    color: var(--light-text-primary, #212529); /* Cor de texto principal */
+  }
+  
+  .light-mode .medium-title-link:hover .medium-card-title {
+    color: #ffffff; /* Mantém cor primária com sublinhado */
+    text-decoration: underline;
+  }
+  
+  .light-mode .medium-card-title {
+     color: #ffffff; /* Cor do título */
+  }
+  
+  .light-mode .medium-card-description {
+    color: #a8a8a8; /* Cor de texto secundária */
+  }
+  
+  /* Botões de Navegação do Carrossel */
+  .light-mode .medium-nav-button {
+    /* Fundo branco semi-transparente para contraste com imagens */
+    background-color: rgba(255, 255, 255, 0.8);
+    color: var(--light-text-primary, #212529); /* Ícone escuro */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra sutil no botão */
+  }
+  
+  .light-mode .medium-nav-button:hover {
+    background-color: var(--light-bg-secondary, #ffffff); /* Fundo branco sólido */
+    color: var(--light-accent-color, #F44336); /* Ícone vermelho no hover */
+  }
+  
+  /* Indicadores do Carrossel */
+  .light-mode .slider-indicator {
+    background-color: var(--light-border-color, #dee2e6); /* Cor clara para inativo */
+  }
+  
+  .light-mode .slider-indicator.active {
+    background-color: var(--light-accent-color, #F44336); /* Mantém cor de destaque para ativo */
+  }
+  
+  /* Instrução "Navegue deslizando" no mobile */
+  .light-mode .medium-card-container .swipe-instruction {
+      /* Cor escura para contraste com o overlay claro */
+      color: #a8a8a8;
+  }
+  
+  /* --- Cards Pequenos --- */
+  .light-mode .small-topic-card,
+  .light-mode .ethics-card,
+  .light-mode .business-card,
+  .light-mode .small-topic-card.stats-card-4, /* Seletores específicos mantidos */
+  .light-mode .small-topic-card.stats-card-8 {
+    background-color: var(--light-bg-secondary, #ffffff); /* Fundo branco/claro */
+    /* Adiciona uma borda inferior para separar os cards, já que o gap é 0 */
+    border-bottom: 1px solid var(--light-border-color, #f1f1f1);
+    border-top: 0px solid var(--light-border-color, #f1f1f1);
+  }
+  /* Remove a borda do último card para evitar duplicação com a próxima seção */
+  .light-mode .small-topic-row:last-child .small-topic-card:last-child {
+      border-bottom: 1px solid var(--light-border-color, #f1f1f1);
+  }
+  
+  
+  .light-mode .small-card-title-link {
+    color: azure; /* Link usa cor primária */
+  }
+  
+  .light-mode .small-card-title {
+    color: #000000; /* Título usa cor primária */
+  }
+  
+  .light-mode .small-card-title-link:hover .small-card-title {
+    color: #000000; /* Mantém cor primária com sublinhado */
+    text-decoration: underline;
+  }
+  
+  .light-mode .small-card-description {
+    color: #484444; /* Descrição usa cor secundária */
+  }
+  
+  
+  /* --- Cards de Estatísticas e Newsletter --- */
+  .light-mode .icon-newsletter i,
+  .light-mode .icon-comments i {
+    color: var(--light-text-secondary, #6c757d); /* Ícones com cor secundária */
+  }
+  
+  .light-mode .topics-count,
+  .light-mode .comments-count {
+    color: var(--light-text-primary, #212529); /* Números com cor primária */
+  }
+  
+  .light-mode .stats-label {
+    color: #484444; /* Label com cor secundária */
+  }
+  
+  .light-mode .icon-newsletter-sign i {
+    color: var(--light-text-secondary, #6c757d); /* Ícone grande com cor secundária */
+  }
+  
+  .light-mode .newsletter-link:hover .icon-newsletter-sign i {
+    color: var(--light-text-primary, #212529); /* Ícone grande com cor primária no hover */
+  }
+  
+  /* --- Sidebar Card (se usado em desktop) --- */
+  .light-mode .sidebar-card {
+    background-color: var(--light-bg-secondary, #ffffff);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  }
+  
+  .light-mode .topics-sidebar-button {
+      /* Mantém cores originais ou ajusta conforme preferência */
+      color: #007bff; /* Azul mais padrão para light mode */
+      border: 1px solid #007bff;
+  }
+  .light-mode .topics-sidebar-button:hover {
+      background-color: #007bff;
+      color: #ffffff; /* Texto branco no hover */
+  }
+  
+  
+  /* --- Fallback de Carregamento --- */
+  .light-mode .loading-fallback {
+    color: var(--light-text-secondary, #6c757d); /* Cor secundária */
+  }
+  
+  /* ============================================== */
+  /* ==== MODO LIGHT - SEÇÃO TENDÊNCIAS (HOME) ==== */
+  /* ============================================== */
+  
+  /* --- Fundo da Seção --- */
+  .light-mode .trends-section {
+    background-color: #fbfbfbf7; /* Fundo principal claro */
+  }
+  
+  .light-mode .trends-section-title {
+    color: #000000;
+  }
+  
+  /* --- Cards de Tendências --- */
+  .light-mode .trends-card {
+    background-color: var(--light-bg-secondary, #ffffff); /* Fundo do card claro */
+    border: 1px solid #cfcfcf; /* Borda clara */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Sombra sutil */
+  }
+  
+  /* Foco visível no card */
+  .light-mode .trends-card:focus-visible {
+    /* Usar cor de destaque ou primária para o outline */
+    outline: 2px solid var(--light-accent-color, #F44336);
+    outline-offset: 2px;
+  }
+  
+  /* --- Conteúdo do Card --- */
+  .light-mode .card-content {
+    /* Pode usar o mesmo fundo do card ou o primário da página */
+    background: var(--light-bg-secondary, #ffffff);
+  }
+  
+  /* --- Data --- */
+  .light-mode .card-date {
+    color: #484444; /* Cor secundária */
+  }
+  
+  /* --- Título do Card --- */
+  .light-mode .card-title {
+    color: var(--light-text-primary, #212529); /* Cor primária */
+  }
+  
+  /* Link do Título */
+  .light-mode .card-title a {
+    color: #000000; /* Cor primária */
+  }
+  
+  /* Foco visível no Link do Título */
+  .light-mode .card-title a:focus-visible {
+    /* Usar cor de destaque ou primária para o outline */
+    outline: 2px solid var(--light-accent-color, #F44336);
+    outline-offset: 2px;
+  }
+  
+  /* --- Excerto / Resumo --- */
+  .light-mode .card-excerpt {
+    color: #484444; /* Cor secundária */
+  }
+  
+  /* --- Autor --- */
+  .light-mode .card-author-info {
+    color: #484444; /* Cor secundária */
+    /* Ou se preferir mais destaque: color: var(--light-text-primary, #212529); */
+  }
+  
+  .light-mode .card-author-info a.author-link {
+      font-size: 0.75rem;
+      font-family: 'Anta', sans-serif;
+      color: #000000;
+      margin-bottom: 0.5rem;
+      display: block;
+  }
+  
+  .light-mode #home-back-to-top {
+    background-color: var(--light-bg-secondary); /* Fundo branco */
+    border: 1px solid var(--light-border-color); /* Borda clara */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15); /* Sombra para destacar */
+  }
+  
+  .light-mode #home-back-to-top .back-to-top-icon {
+    color: #000000; /* Ícone escuro */
+  }
+  
+  .light-mode #home-back-to-top:hover {
+    background-color: #cecdcd; /* Fundo vermelho no hover */
+    border-color: #b0aeae;
+  }
+  
+  .light-mode .trends-load-more-link {
+    font-family: 'Roboto Condensed';
+    font-weight: 500;
+    display: inline-block;
+    background-color: #dddddd;
+    color: #000000;
+    text-decoration: none;
+    padding: 10px 50px;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    /*transition: background-color 0.1s ease;*/
+    border: 1px solid #c4c4c4;
+  }
+  
+  .light-mode .trends-load-more-link:hover {
+    background-color: #cecdcd;
+    border: 1px solid #aaa9a9;
+  }
+  
+  /* --- Fallback de Carregamento (se aplicável nesta seção) --- */
+  /* Assumindo que .loading-fallback global já foi tratado. Se não, adicione: */
+  /* .light-mode .loading-fallback {
+       color: var(--light-text-secondary, #6c757d);
+     } */
+  
+  /* A media query @media (prefers-color-scheme: dark) é ignorada no light-mode */
+  
+  /* ============================================== */
+  /* ====== MODO LIGHT - SEÇÃO ARTE (HOME) ====== */
+  /* ============================================== */
+  
+  /* --- Fundo da Seção --- */
+  .light-mode .art-section {
+    background-color: #ffffff; /* Fundo principal claro */
+    /* Se quiser uma borda sutil para separar da seção anterior/posterior */
+  }
+  
+  /* --- Título da Seção (H2) --- */
+  .light-mode .art-section h2 {
+    color: #000000; /* Cor de texto primária */
+  }
+  
+  /* --- Parágrafo Introdutório --- */
+  /* A cor base já é a de destaque (#f44336), então só ajustamos o link e seu hover/focus */
+  .light-mode .art-section .section-intro {
+     color: var(--light-accent-color, #f44336); /* Mantém cor de destaque */
+  }
+  .light-mode .art-section .section-intro-link {
+     color: #F44336; /* Mantém cor de destaque */
+  }
+  .light-mode .art-section .section-intro-link:hover {
+    color: var(--light-text-primary, #212529); /* Cor primária no hover */
+  }
+  .light-mode .art-section .section-intro-link:focus-visible {
+    outline: 2px solid var(--light-accent-color, #F44336); /* Outline vermelho */
+    outline-offset: 2px;
+  }
+  
+  /* --- Link "Mais" --- */
+  /* A cor base já é a de destaque (#f44336), então só ajustamos o hover/focus */
+  .light-mode .art-section .more-link {
+    color: var(--light-accent-color, #f44336); /* Mantém cor de destaque */
+  }
+  .light-mode .art-section .more-link:hover {
+    color: var(--light-text-primary, #212529); /* Cor primária no hover */
+  }
+  .light-mode .art-section .more-link:focus-visible {
+    outline: 2px solid var(--light-accent-color, #F44336); /* Outline vermelho */
+    outline-offset: 2px;
+  }
+  
+  /* Ícone da seta dentro do link "Mais" */
+  /* A classe .material-symbols-outlined é global, mas aqui garantimos a cor dentro deste link */
+  .light-mode .art-section .more-link .material-symbols-outlined {
+     color: var(--light-accent-color, #f44336); /* Mantém cor de destaque */
+  }
+  .light-mode .art-section .more-link:hover .material-symbols-outlined {
+    color: var(--light-text-primary, #212529); /* Cor primária no hover */
+  }
+  
+  
+  /* --- Botões de Navegação do Carrossel (Swiper) --- */
+  .light-mode .art-section .swiper-button-prev,
+  .light-mode .art-section .swiper-button-next {
+    color: #000000; /* Cor escura para os ícones das setas */
+    /* O fundo já é transparente, mantemos assim */
+    /* background-color: #23222100; */
+  }
+  
+  .light-mode .art-section .swiper-button-prev:hover,
+  .light-mode .art-section .swiper-button-next:hover {
+    /* background-color: #00b8eb00;  -- Mantém fundo transparente */
+    color: var(--light-accent-color, #f44336); /* Cor de destaque no hover */
+  }
+  
+  .light-mode .art-section .swiper-button-prev:focus-visible,
+  .light-mode .art-section .swiper-button-next:focus-visible {
+    outline: 2px solid var(--light-accent-color, #F44336); /* Outline vermelho */
+    outline-offset: 2px;
+  }
+  
+  /* --- Paginação do Carrossel (Swiper) --- */
+  .light-mode .art-section .swiper-pagination-bullet {
+    background: #b1b1b1; /* Cor clara/cinza para inativos */
+    opacity: 1; /* Opacidade pode ser ajustada */
+  }
+  
+  .light-mode .art-section .swiper-pagination-bullet-active {
+    background: var(--light-accent-color, #f44336); /* Mantém cor de destaque para ativo */
+    opacity: 1;
+  }
+  
+  .light-mode .art-section .swiper-pagination-bullet:focus-visible {
+    outline: 2px solid var(--light-accent-color, #F44336); /* Outline vermelho */
+    outline-offset: 2px;
+  }
+  
+  /* --- Texto "Navegue deslizando" --- */
+  .light-mode .art-section .swipe-instruction {
+      color: #000000; /* Cor de texto secundária */
+  }
+  
+  /* ============================================== */
+  /* == MODO LIGHT - SUBSEÇÃO CRIAÇÕES (ART SECTION) == */
+  /* ============================================== */
+  
+  /* --- Título da Subseção (H3) --- */
+  .light-mode .art-section .creations-section h3 {
+    color: #000000; /* Cor de texto primária */
+  }
+  
+  .art-section .creation-icon {
+    width: 80px;
+    height: 80px;
+    background-color: transparent;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+  }
+  
+  /* --- Label/Texto abaixo do Ícone --- */
+  .light-mode .art-section .creation-label {
+    color: #242222; /* Cor de texto secundária */
+  }
+  
+  /* O efeito de hover .creation-item:hover { transform: translateY(-5px); } pode ser mantido,
+     pois não depende diretamente das cores. */
+  
+     .light-mode .creations-outro-text {
+      font-family: 'Rajdhani';
+      font-weight: 600;
+      text-align: center;
+      margin-top: 50px;
+      margin-bottom: 20px;
+      color: #000000;
+      font-size: 1.5em;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+  }
