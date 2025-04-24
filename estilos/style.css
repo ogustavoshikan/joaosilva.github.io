@@ -1068,8 +1068,7 @@ main {
   }
 
   .trends-cards-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+    flex-direction: column;
     gap: 1rem;
   }
 
