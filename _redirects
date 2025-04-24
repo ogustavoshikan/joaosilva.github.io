@@ -8,3 +8,4 @@
 
 # Redirecionamento para URL com acento (Boa prática)
 /tendências   /tendencias      301!
+/tend%C3%AAncias /tendencias  301!
