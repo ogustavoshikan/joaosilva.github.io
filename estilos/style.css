@@ -596,7 +596,7 @@ main {
 }
 
 .news-card.side .news-image-top img {
-  height: 225px;
+  height: 235px;
   object-fit: cover;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -612,7 +612,6 @@ main {
 /* Estilos para as imagens dos cards inferiores */
 .news-image {
   /* Herda de .news-image-base */
-  height: 170px;
 }
 
 .news-image img {
@@ -1118,7 +1117,7 @@ main {
   }
 
   .card-image {
-    height: 195px; /* Aumentado de 215px para 220px */
+    height: 220px; /* Aumentado de 215px para 220px */
   }
 
   .card-content {
