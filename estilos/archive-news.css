@@ -346,7 +346,7 @@
 
 @media (max-width: 768px) {
   .hero-section {
-    padding: 8rem 0;
+    padding: 0rem 0;
   }
 
   .news2-section .tech-news-card {
@@ -391,7 +391,7 @@
 /* Script necessário para gerar os cartões de notícias */
 @media (max-width: 480px) {
   .hero-section {
-    padding: 6rem 0;
+    padding: 0rem 0;
   }
 }
 

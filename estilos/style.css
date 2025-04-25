@@ -926,8 +926,8 @@ main {
   background-color: #1a1a1a;
   overflow: hidden;
   position: relative;
-  flex: 1 1 calc(33.33% - 1rem);
-  max-width: 407px;
+  flex: 1 1 calc(33.33% - 1rem); /* Base para 3 colunas (desktop) */
+  max-width: 407px; /* Ajustado ao flex-basis aproximado */
   border: 1px solid #232221;
   border-radius: 5px;
 }
@@ -1029,15 +1029,15 @@ main {
   gap: 0.5rem;
 }
 
-.card-author-info a.author-link {
+a.author-link { /* Ajustado para aplicar a todos os links de autor se necessário */
   font-size: 0.75rem;
   font-family: 'Anta', sans-serif;
   color: #ffffff;
-  margin-bottom: 0.5rem;
-  display: block;
+  /* margin-bottom removido daqui, controlado pelo container .card-author-info */
+  display: block; /* ou inline, dependendo do seu layout */
 }
 
-.card-author-info a.author-link:hover {
+a.author-link:hover {
   text-decoration: underline
 }
 
@@ -1052,77 +1052,106 @@ main {
 
 /* Responsividade */
 @media (max-width: 1262px) {
+  /* Esta regra já define 2 colunas para telas médias/tablets */
   .trends-cards-container {
     justify-content: center;
   }
 
   .trends-card {
-    flex: 1 1 calc(50% - 1rem);
-    max-width: 50%;
+    flex: 1 1 calc(50% - 1rem); /* Ajustado para considerar o gap de 1rem */
+    max-width: calc(50% - 1rem); /* Ajustado para considerar o gap de 1rem */
   }
 }
 
+/* ===== INÍCIO DAS MODIFICAÇÕES PARA 2 COLUNAS NO MOBILE ===== */
 @media (max-width: 768px) {
   .trends-section {
     padding: 1rem 1.7rem 1rem 1.7rem;
   }
 
   .trends-cards-container {
-    flex-direction: column;
-    gap: 1rem;
+    /* REMOVIDO: flex-direction: column; */
+    gap: 1rem; /* Mantido o espaçamento */
+    justify-content: center; /* Adicionado para centralizar se a última linha tiver 1 card */
+     /* flex-wrap: wrap; já é herdado do estilo base */
   }
 
   .trends-card {
-    flex: 1 1 100%;
-    max-width: 100%;
+    /* ALTERADO para 2 colunas */
+    flex: 1 1 calc(50% - 0.5rem); /* 50% da largura menos metade do gap */
+    max-width: calc(50% - 0.5rem); /* Garante o limite de largura */
+    /* REMOVIDO: flex: 1 1 100%; */
+    /* REMOVIDO: max-width: 100%; */
   }
 
+  /* Estilos visuais internos do card mantidos como no original */
   .card-image {
-    height: 210px; /* Aumentado de 200px para 210px */
-  }
-
-  .card-content {
-    padding: 0.5rem; /* Ajustado para 0.5rem para consistência */
-    min-height: 180px; /* Reduzido de 206px para 180px, já que os espaçamentos foram diminuídos */
-  }
-
-  .card-date {
-    font-size: 0.7rem;
-    margin-bottom: 0.1rem; /* Reduzido de 0.3rem para 0.1rem */
-  }
-
-  .card-title {
-    font-size: 1.25rem;
-    margin-bottom: 0.2rem; /* Reduzido de 0.5rem para 0.2rem */
-  }
-
-  .card-excerpt {
-    font-size: 0.85rem;
-    margin-bottom: 0.2rem; /* Reduzido de 0.5rem para 0.2rem */
-  }
-
-  .card-author {
-    font-size: 0.75rem;
-    margin-bottom: 0.1rem; /* Reduzido de 0.5rem para 0.1rem */
-  }
-
-  .section-title {
-    font-size: 2rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .section-title {
-    font-size: 2.5rem;
-  }
-
-  .card-image {
-    height: 220px; /* Aumentado de 215px para 220px */
+    height: 210px;
   }
 
   .card-content {
     padding: 0.5rem;
-    min-height: 160px; /* Reduzido de 180px para 160px para telas menores */
+    min-height: 180px; /* Pode precisar de ajuste visual */
+  }
+
+  .card-date {
+    font-size: 0.7rem;
+    margin-bottom: 0.1rem;
+  }
+
+  .card-title {
+    font-size: 1.25rem; /* Pode precisar de ajuste visual */
+    margin-bottom: 0.2rem;
+  }
+
+  .card-excerpt {
+    font-size: 0.85rem; /* Pode precisar de ajuste visual */
+    margin-bottom: 0.2rem;
+    -webkit-line-clamp: 3; /* Aumentado ligeiramente como sugestão */
+  }
+
+  .card-author-info { /* Mantido como no original */
+    font-size: 0.75rem;
+    color: #999999;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: flex-start;
+    gap: 0.5rem;
+  }
+
+   a.author-link { /* Mantido como no original */
+     font-size: 0.75rem;
+     font-family: 'Anta', sans-serif;
+     color: #ffffff;
+     display: block;
+   }
+
+   a.author-link:hover { /* Mantido como no original */
+     text-decoration: underline;
+   }
+
+  .trends-section-title { /* Corrigido para usar o nome correto da classe */
+    font-size: 2rem;
+  }
+}
+/* ===== FIM DAS MODIFICAÇÕES PARA 2 COLUNAS NO MOBILE ===== */
+
+@media (max-width: 480px) {
+  /* Ajustes para telas ainda menores - Nenhuma mudança feita aqui */
+  /* O layout de 2 colunas definido em max-width: 768px continuará valendo */
+  /* a menos que seja sobrescrito aqui. */
+
+  .trends-section-title { /* Corrigido para usar o nome correto da classe */
+    font-size: 2.5rem; /* No seu original estava section-title */
+  }
+
+  .card-image {
+    height: 220px;
+  }
+
+  .card-content {
+    padding: 0.5rem;
+    min-height: 200px;
   }
 
   .card-title {
@@ -1140,13 +1169,16 @@ main {
     margin-bottom: 0.1rem;
   }
 
-  .card-author {
-    font-size: 0.7rem;
-    margin-bottom: 0.1rem;
+  .card-author-info { /* Usando .card-author-info que existe */
+      font-size: 0.7rem; /* Aplicado ao container, verifique se é o desejado */
+      margin-bottom: 0.1rem;
   }
+  /* .card-author não existe no seu HTML/CSS original, removido */
 }
 
+
 @media (prefers-color-scheme: dark) {
+  /* Nenhuma mudança feita aqui */
   .trends-section {
     background-color: #000000;
   }
@@ -1157,11 +1189,13 @@ main {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  /* Nenhuma mudança feita aqui */
   .card-image img {
     transition: none;
   }
 }
 
+/* Botão Ver Mais - Nenhuma mudança feita aqui */
 .trends-button-wrapper {
   text-align: center;
   margin-top: 20px;
@@ -1178,8 +1212,7 @@ main {
   font-size: 1.2rem;
   border-radius: 8px;
   /* transition: background-color 0.1s ease; */
-  border: 1px solid #464646;
-  border: 1px solid #313131;
+  border: 1px solid #313131; /* Simplificado para uma borda */
 }
 
 .trends-load-more-link:hover {
@@ -1859,7 +1892,7 @@ textarea.form-control {
 
   .btn-submit {
     width: 100%;
-    padding: 12px;
+    padding: 20px;
   }
 }
 
