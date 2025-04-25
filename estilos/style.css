@@ -1066,14 +1066,14 @@ a.author-link:hover {
 /* ===== INÍCIO DAS MODIFICAÇÕES PARA 2 COLUNAS NO MOBILE ===== */
 @media (max-width: 768px) {
   .trends-section {
-    padding: 1rem 1.7rem 1rem 1.7rem;
+    padding: 1rem 1.063rem 1rem 1.063rem;
   }
 
   .trends-cards-container {
     /* REMOVIDO: flex-direction: column; */
-    gap: 1rem; /* Mantido o espaçamento */
+    gap: 10px; /* Mantido o espaçamento */
     justify-content: center; /* Adicionado para centralizar se a última linha tiver 1 card */
-     /* flex-wrap: wrap; já é herdado do estilo base */
+    /* flex-wrap: wrap; já é herdado do estilo base */
   }
 
   .trends-card {
@@ -1146,7 +1146,7 @@ a.author-link:hover {
   }
 
   .card-image {
-    height: 220px;
+    height: 111.88px;
   }
 
   .card-content {
