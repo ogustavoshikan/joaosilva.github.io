@@ -300,7 +300,7 @@ body.trend-detail-page main {
 
 @media (max-width: 576px) {
     .more-trends-grid {
-        grid-template-columns:1fr
+        grid-template-columns:repeat(2, 1fr);
     }
 
     .trend-title {
