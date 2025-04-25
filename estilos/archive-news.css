@@ -305,7 +305,8 @@
   background-color: #232221;
   color: #ffffff;
   border: none;
-  padding: 0.5rem 1.063rem;
+  width: 6rem;
+  height: 2.2rem;
   border-radius: 5px;
   cursor: pointer;
   border: 1px solid #464646;
@@ -313,10 +314,11 @@
 
 .news2-section .pagination-controls button:disabled {
   background-color: #232221;
-  border: 1px solid #585858;
+  border: 1px solid #464646;
   cursor: not-allowed;
   color: #ffffff;
-  padding: 0.5rem 1.132rem;
+  width: 6rem;
+  height: 2.2rem;
 }
 
 .news2-section .pagination-controls button:hover:not(:disabled) {

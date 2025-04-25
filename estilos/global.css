@@ -325,7 +325,7 @@
   /* Estilo icones de compartilhamento - Light Mode */
   .light-mode .news2-section .tech-news-card .social-icon {
     border-radius: 4px;
-    padding: 7px;
+    padding: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -425,7 +425,7 @@
   
   .light-mode .news2-section .pagination-controls button:disabled {
     background-color: var(--light-hover-bg);
-    color: var(--light-text-secondary); /* Texto mais claro para desabilitado */
+    /*color: var(--light-text-secondary);*/
     opacity: 0.8;
     cursor: not-allowed;
   }
@@ -831,7 +831,7 @@
   /* --- Fundo da Seção --- */
   .light-mode .art-section {
     background-color: #ffffff; /* Fundo principal claro */
-    /* Se quiser uma borda sutil para separar da seção anterior/posterior */
+    border-bottom: 1px solid #c9c7c5;
   }
   
   /* --- Título da Seção (H2) --- */
@@ -961,3 +961,124 @@
       margin-right: auto;
       line-height: 1.6;
   }
+
+  /* ============================================== */
+/* ======== MODO LIGHT - PÁGINA CONTATO ========= */
+/* ============================================== */
+
+/* --- Fundo da Seção --- */
+.light-mode .contact-section {
+  background-color: var(--light-bg-primary, #f8f9fa); /* Fundo principal claro */
+  border-bottom: 1px solid #151515;
+}
+
+/* --- Cabeçalho --- */
+.light-mode .contact-header h1 {
+  color: #000000; /* Cor primária */
+}
+
+.light-mode .contact-header p {
+  color: #000000; /* Cor secundária */
+}
+
+/* --- Bloco de Informações --- */
+.light-mode .contact-info {
+  background-color: var(--light-bg-secondary, #ffffff); /* Fundo branco */
+  border: 1px solid var(--light-border-color, #dee2e6); /* Borda clara */
+}
+
+.light-mode .contact-info h3 {
+  color: var(--light-text-primary, #212529); /* Cor primária */
+}
+
+.light-mode .info-item h4 {
+    color: var(--light-text-primary, #212529); /* Cor primária para o título do item */
+}
+
+.light-mode .info-item h4 svg {
+   /* Assumindo que a cor do SVG é controlada por 'fill' ou 'stroke' */
+   /* Tente 'currentColor' se a cor do h4 já for a desejada */
+   fill: currentColor; /* Ou stroke: currentColor; */
+   /* Ou defina uma cor específica: */
+   /* fill: var(--light-text-secondary, #6c757d); */
+}
+
+.light-mode .info-item p,
+.light-mode .info-item a {
+  color: var(--light-text-secondary, #6c757d); /* Cor secundária */
+}
+
+.light-mode .info-item a:hover {
+  color: var(--light-accent-color, #F44336); /* Cor de destaque no hover */
+}
+
+/* --- Links Sociais --- */
+.light-mode .social-links h4 {
+  color:#212529;
+}
+
+.light-mode .home-social-links h4 {
+   color: var(--light-text-primary, #212529); /* Cor primária */
+}
+
+.light-mode .home-social-icons .home-social-icon {
+  background-color: var(--light-hover-bg, #e9ecef); /* Fundo cinza claro */
+   /* Cor do ícone social dentro (se for font icon) */
+  color: var(--light-text-secondary, #6c757d);
+}
+/* Cor do ícone SVG (se for SVG) */
+.light-mode .home-social-icons .home-social-icon svg {
+    fill: var(--light-text-secondary, #6c757d); /* Ou stroke */
+}
+
+
+.light-mode .home-social-icon:hover {
+  background-color: #d8dfe4; /* Cinza um pouco mais escuro */
+   color: var(--light-text-primary, #212529); /* Ícone fica mais escuro */
+}
+.light-mode .home-social-icon:hover svg {
+    fill: var(--light-text-primary, #212529); /* Ícone SVG fica mais escuro */
+}
+
+/* --- Formulário --- */
+.light-mode .contact-form {
+  background-color: var(--light-bg-secondary, #ffffff); /* Fundo branco */
+  border: 1px solid var(--light-border-color, #dee2e6); /* Borda clara */
+}
+
+.light-mode .contact-form h3 {
+  color: var(--light-text-primary, #212529); /* Cor primária */
+}
+
+.light-mode .form-group label {
+  color: var(--light-text-primary, #212529); /* Cor primária */
+}
+
+.light-mode .form-control {
+  background-color: var(--light-bg-secondary, #ffffff); /* Fundo branco */
+  border: 1px solid var(--light-border-color, #ced4da); /* Borda padrão clara */
+  color: var(--light-text-primary, #212529); /* Texto escuro */
+}
+
+.light-mode .form-control::placeholder { /* Estilo do placeholder */
+    color: var(--light-text-secondary, #6c757d);
+    opacity: 1; /* Garante visibilidade */
+}
+
+.light-mode .form-control:focus {
+  border-color: #aaa9a9;
+  background-color: #ededed;
+  outline: 0;
+}
+
+/* --- Botão Submit --- */
+.light-mode .btn-submit {
+  background-color: #dddddd; /* Cor de destaque */
+  color: #000000; /* Texto branco */
+  border: 1px solid #c4c4c4;
+}
+
+.light-mode .btn-submit:hover {
+  background-color: #cecdcd;
+  border: 1px solid #aaa9a9;
+}

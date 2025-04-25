@@ -650,7 +650,7 @@ body {
 .site-footer {
     font-family: Roboto,sans-serif;
     font-weight: 400;
-    padding: 3rem 1.5rem 1.05rem;
+    padding: 3rem 1.5rem 0.05rem;
     max-width: 1200px;
     margin: 0 auto
 }
