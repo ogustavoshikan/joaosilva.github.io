@@ -735,7 +735,7 @@ body {
 
 @media (max-width: 480px) {
     .featured-image img {
-        height:250px
+        height:270px
     }
 
     .article-body .image-in-article img {
