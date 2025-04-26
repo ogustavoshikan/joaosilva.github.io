@@ -603,9 +603,9 @@
   /* Botões de Navegação do Carrossel */
   .light-mode .medium-nav-button {
     /* Fundo branco semi-transparente para contraste com imagens */
-    background-color: rgba(255, 255, 255, 0.8);
-    color: var(--light-text-primary, #212529); /* Ícone escuro */
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra sutil no botão */
+    background-color: rgb(255 255 255 / 0%);
+    color: #ffffff; /* Ícone escuro */
+    /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); */1); */ /* Sombra sutil no botão */
   }
   
   .light-mode .medium-nav-button:hover {
