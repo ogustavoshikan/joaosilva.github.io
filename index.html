@@ -522,30 +522,36 @@
           </div>
 
           <div class="contact-form">
-              <h3>Envie-nos uma Mensagem</h3>
-              <form id="contactForm">
-                  <div class="form-group">
-                      <label for="name">Nome Completo</label>
-                      <input type="text" id="name" name="name" class="form-control" required>
-                  </div>
-
-                  <div class="form-group">
-                      <label for="email">Email</label>
-                      <input type="email" id="email" name="email" class="form-control" required>
-                  </div>
-
-                  <div class="form-group">
-                      <label for="subject">Assunto</label>
-                      <input type="text" id="subject" name="subject" class="form-control" required>
-                  </div>
-
-                  <div class="form-group">
-                      <label for="message">Mensagem</label>
-                      <textarea id="message" name="message" class="form-control" required></textarea>
-                  </div>
-
-                  <button type="submit" class="btn-submit">Enviar Mensagem</button>
-              </form>
+            <h3>Envie-nos uma Mensagem</h3>
+            <!-- Adicionar method="POST" e data-netlify="true" -->
+            <form name="contato" method="POST" data-netlify="true" id="contactForm"> 
+                <div class="form-group">
+                    <label for="name">Nome Completo</label>
+                    <input type="text" id="name" name="name" class="form-control" required>
+                </div>
+  
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" class="form-control" required>
+                </div>
+  
+                <div class="form-group">
+                    <label for="subject">Assunto</label>
+                    <input type="text" id="subject" name="subject" class="form-control" required>
+                </div>
+  
+                <div class="form-group">
+                    <label for="message">Mensagem</label>
+                    <textarea id="message" name="message" class="form-control" rows="4" required></textarea> <!-- Adicionado rows -->
+                </div>
+  
+                <!-- Opcional: Adicionar campo honeypot para spam -->
+                <div data-netlify-honeypot="bot-field" style="display: none;">
+                   <label>Não preencha se você for humano: <input name="bot-field"></label>
+                </div>
+  
+                <button type="submit" class="btn-submit">Enviar Mensagem</button>
+            </form>
           </div>
       </div>
   </div>

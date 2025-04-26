@@ -759,6 +759,9 @@ main {
   color: #999999;
   margin-top: auto;
   margin-bottom: 0;
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.5rem;
 }
 
 
