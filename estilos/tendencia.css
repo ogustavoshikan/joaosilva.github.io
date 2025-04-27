@@ -74,7 +74,7 @@ body.trend-detail-page main {
 
 .trend-author-name .trend-author-link-meta {
     color: inherit;
-    text-decoration: none
+    text-decoration: none;
 }
 
 .more-trend-item:hover .more-trend-title,.trend-author-name .trend-author-link-meta:hover {
@@ -133,7 +133,7 @@ body.trend-detail-page main {
 }
 
 .light-mode .more-trend-item .more-trend-title,.light-mode .social-share a.x i,.light-mode .trend-author-name,.light-mode .trend-author-name .trend-author-link-meta:hover,.trend-social-share .social-icon.x:hover i {
-    color: #000
+    color: #000000
 }
 
 .trend-social-share .social-icon.whatsapp {
@@ -188,7 +188,7 @@ body.trend-detail-page main {
     height: auto;
     aspect-ratio: 16/9;
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: 5px;
 }
 
 .trend-excerpt {
@@ -260,7 +260,7 @@ body.trend-detail-page main {
     display: block;
     width: 100%;
     aspect-ratio: 16/9;
-    object-fit: cover
+    object-fit: cover;
 }
 
 .more-trend-item img:hover {
@@ -376,7 +376,7 @@ body.trend-detail-page main {
 }
 
 .light-mode .more-trends-title,.light-mode .trend-body-content,.light-mode .trend-excerpt,.light-mode .trend-title {
-    color: var(--light-text-primary,#212529)
+    color: #000000;
 }
 
 .light-mode .more-trend-item {

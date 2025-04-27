@@ -605,12 +605,12 @@
     /* Fundo branco semi-transparente para contraste com imagens */
     background-color: rgb(255 255 255 / 0%);
     color: #ffffff; /* Ícone escuro */
-    /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); */; /* Sombra sutil no botão */
+    /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); */ /* Sombra sutil no botão */
   }
   
   .light-mode .medium-nav-button:hover {
-    background-color: var(--light-bg-secondary, #ffffff); /* Fundo branco sólido */
-    color: var(--light-accent-color, #F44336); /* Ícone vermelho no hover */
+    /* background-color: var(--light-bg-secondary, #ffffff); */ /* Fundo branco sólido */
+    color: #000000; /* Ícone vermelho no hover */
   }
   
   /* Indicadores do Carrossel */
@@ -887,7 +887,7 @@
   /* --- Botões de Navegação do Carrossel (Swiper) --- */
   .light-mode .art-section .swiper-button-prev,
   .light-mode .art-section .swiper-button-next {
-    color: #000000; /* Cor escura para os ícones das setas */
+    color: #ffffff; /* Cor escura para os ícones das setas */
     /* O fundo já é transparente, mantemos assim */
     /* background-color: #23222100; */
   }
@@ -895,7 +895,7 @@
   .light-mode .art-section .swiper-button-prev:hover,
   .light-mode .art-section .swiper-button-next:hover {
     /* background-color: #00b8eb00;  -- Mantém fundo transparente */
-    color: var(--light-accent-color, #f44336); /* Cor de destaque no hover */
+    color: #000000; /* Cor de destaque no hover */
   }
   
   .light-mode .art-section .swiper-button-prev:focus-visible,

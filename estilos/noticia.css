@@ -370,8 +370,8 @@ main {
 }
 
 .featured-image figcaption {
-    font-size: .8rem;
-    color: var(--text-color2,#aaa);
+    font-size: .8125rem;
+    color: #828282;
     text-align: center;
     margin-top: 5px;
     font-style: italic;
@@ -387,7 +387,7 @@ main {
 
 .article-body p {
     margin-bottom: 1.5em;
-    font-size: 1rem;
+    font-size: 1.125rem;
     font-family: Roboto,sans-serif;
     text-align: justify
 }
@@ -450,7 +450,7 @@ main {
 
 .article-body .image-in-article figcaption {
     font-size: .85rem;
-    color: var(--text-color2,#aaa);
+    color: #828282;
     margin-top: .5em;
     font-style: italic
 }
@@ -631,7 +631,7 @@ main {
 }
 
 body.light-mode .article-body .image-in-article figcaption,body.light-mode .featured-image figcaption {
-    color: #666
+    color: #4c4c4c;
 }
 
 :root {
