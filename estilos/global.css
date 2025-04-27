@@ -605,7 +605,7 @@
     /* Fundo branco semi-transparente para contraste com imagens */
     background-color: rgb(255 255 255 / 0%);
     color: #ffffff; /* Ícone escuro */
-    /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); */1); */ /* Sombra sutil no botão */
+    /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); */; /* Sombra sutil no botão */
   }
   
   .light-mode .medium-nav-button:hover {
@@ -726,9 +726,9 @@
     background-color: var(--light-bg-secondary, #ffffff); /* Fundo do card claro */
     border: 1px solid #cfcfcf; /* Borda clara */
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Sombra sutil */
-    flex: 1 1 calc(33.33% - 1rem);
-    max-width: 407px;
-    max-height: 428px;
+    /* flex: 1 1 calc(33.33% - 1rem); */
+    /* max-width: 407px; */
+    /* max-height: 428px; */
   }
   
   /* Foco visível no card */
@@ -752,7 +752,7 @@
   /* --- Título do Card --- */
   .light-mode .card-title {
     color: var(--light-text-primary, #212529); /* Cor primária */
-    margin-top: 3px;
+    /* margin-top: 3px; */
   }
   
   /* Link do Título */
@@ -770,21 +770,21 @@
   /* --- Excerto / Resumo --- */
   .light-mode .card-excerpt {
     color: #484444; /* Cor secundária */
-    margin-top: 3px;
+    /* margin-top: 3px; */
   }
   
   /* --- Autor --- */
   .light-mode .card-author-info {
     color: #484444; /* Cor secundária */
     /* Ou se preferir mais destaque: color: var(--light-text-primary, #212529); */
-    margin-top: 4px;
+    /* margin-top: 4px; */
   }
   
   .light-mode .card-author-info a.author-link {
       font-size: 0.75rem;
       font-family: 'Anta', sans-serif;
       color: #000000;
-      margin-bottom: 0.5rem;
+      /* margin-bottom: 0.5rem; */
       display: block;
   }
   

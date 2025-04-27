@@ -16,8 +16,8 @@
         "avatarUrl": "assets/imagens/autores/gustavo-g.webp",
         "bio": "Entusiasta de tecnologia e especialista em Inteligência Artificial, explorando o futuro da inovação."
       },
-      "imagemCard": "assets/imagens/noticias/chatgpt-4.5-card.webp",
-      "imagemBanner": "assets/imagens/noticias/chatgpt-4.5-card.webp",
+      "imagemCard": "assets/imagens/noticias/Design sem nome.png",
+      "imagemBanner": "assets/imagens/noticias/Design sem nome.png",
       "altImagem": "Logotipo OpenAI GPT-4.5",
       "legendaImagemBanner": "Imagem conceitual da interface GPT-4.5",
       "categorias": ["Modelos de Linguagem", "OpenAI", "IA Conversacional"],
@@ -286,7 +286,7 @@
         "avatarUrl": "assets/imagens/autores/placeholder-avatar.png",
         "bio": "Focado em desmistificar a IA."
       },
-      "imagemCard": "assets/imagens/topicos/llm-intro-card.webp",
+      "imagemCard": "assets/imagens/topicos/modelos-ia.webp",
       "imagemBanner": "assets/imagens/topicos/llm-intro-banner.webp",
       "altImagem": "Diagrama explicando o conceito de LLM",
       "legendaImagemBanner": "Arquitetura básica de um LLM.",

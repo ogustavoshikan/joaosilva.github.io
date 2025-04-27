@@ -1173,7 +1173,7 @@ a.author-link:hover {
   }
 
   .card-author-info { /* Usando .card-author-info que existe */
-      font-size: 0.7rem; /* Aplicado ao container, verifique se é o desejado */
+      /*font-size: 0.7rem; /* Aplicado ao container, verifique se é o desejado */
       margin-bottom: 0.1rem;
   }
   /* .card-author não existe no seu HTML/CSS original, removido */
@@ -2015,4 +2015,95 @@ body {
     .footer-content {
         grid-template-columns: 1fr;
     }
+}
+
+/* Formulário de Newsletter */
+.newsletter-signup {
+  margin-top: 1.5rem;
+}
+
+.newsletter-signup h5 {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+  color: #ffffff;
+}
+
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.newsletter-form input[type="email"] {
+  padding: 0.75rem;
+  border-radius: 4px;
+  border: 1px solid #3a3a3a;
+  background-color: #2a2a2a;
+  color: #ffffff;
+  font-size: 0.9rem;
+  width: 100%;
+}
+
+.newsletter-form input[type="email"]::placeholder {
+  color: #888888;
+}
+
+.newsletter-form input[type="email"]:focus {
+  outline: none;
+  border-color: #4a4a4a;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+}
+
+.newsletter-form button {
+  padding: 0.75rem;
+  border-radius: 4px;
+  border: none;
+  background-color: #0066ff;
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.newsletter-form button:hover {
+  background-color: #0055dd;
+}
+
+/* Rodapé inferior */
+.footer-bottom {
+  max-width: 1200px;
+  margin: 2rem auto 0;
+  padding: 1.5rem 1.5rem 0;
+  border-top: 1px solid #2a2a2a;
+  text-align: center;
+}
+
+.footer-bottom .copyright {
+  font-size: 0.85rem;
+  color: #888888;
+  margin-bottom: 0.5rem;
+}
+
+.footer-bottom .tagline {
+  font-size: 0.8rem;
+  color: #666666;
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+  .footer-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+  }
+  
+  .newsletter-form {
+      max-width: 100%;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .footer-content {
+      grid-template-columns: repeat(2, 1fr);
+  }
 }
