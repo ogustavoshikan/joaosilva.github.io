@@ -270,8 +270,9 @@ function inicializarCardsTopicos() {
                      `;
                  } else if (item.type === 'stats') {
                       topicCard.classList.add(`stats-card`);
-                      topicCard.innerHTML = `
-                        <div class="small-card-stats">
+                  // Link do WhatsApp com mensagem pré-definida
+                  const whatsappLink = `https://wa.me/5561982006013?text=${encodeURIComponent('Quero Ficar por Dentro do que Acontece no Mundo da Inteligência Artificial com a Newsletter da Technology AI')}`; 
+                  topicCard.innerHTML = `                        <div class="small-card-stats">
                           <div class="stats-topics">
                              <div class="icon-newsletter-container">
                                <span class="icon-newsletter" aria-hidden="true"><i class="fas fa-newspaper"></i></span>
@@ -286,9 +287,9 @@ function inicializarCardsTopicos() {
                               </div>
                               <p class="stats-label">COMENTÁRIOS</p>
                           </div>
-                           <a href="${item.link || '#'}" class="newsletter-link" target="_blank" rel="noopener noreferrer" aria-label="Assinar Newsletter para mais tópicos">
-                             <span class="icon-newsletter-sign" aria-hidden="true"><i class="fas fa-envelope"></i></span>
-                           </a>
+                           <a href="${whatsappLink}" class="newsletter-link" target="_blank" rel="noopener noreferrer" aria-label="Inscrever-se na Newsletter via WhatsApp">
+                         <span class="icon-newsletter-sign" aria-hidden="true"><i class="fas fa-envelope"></i></span>
+                       </a>
                         </div>
                       `;
                  } else {

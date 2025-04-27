@@ -620,11 +620,17 @@
           
           <!-- Adicionando o campo de email e botão para assinar newsletter -->
           <div class="newsletter-signup">
-              <h5>Assine a Newsletter</h5>
-              <form class="newsletter-form">
-                  <input type="email" placeholder="Seu email" required>
-                  <button type="submit">Assinar</button>
-              </form>
+            <h5>Assine a Newsletter</h5>
+            <!-- Adicionar method, data-netlify e name ao form -->
+            <form class="newsletter-form" name="footer-newsletter" method="POST" data-netlify="true"> 
+                <!-- Adicionar name="email" ao input -->
+                <input type="email" name="email" placeholder="Seu email" required> 
+                <!-- Opcional: Campo Honeypot -->
+                <div data-netlify-honeypot="bot-field" style="display: none;">
+                    <label>Não preencha: <input name="bot-field"></label>
+                </div>
+                <button type="submit">Assinar</button>
+            </form>
           </div>
       </div>
   </div>
