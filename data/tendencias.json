@@ -2,6 +2,7 @@
   "trends": [
     {
       "slug": "espanha-supervisao-ia",
+      "topico": "Regulamentação",
       "title": "Espanha Fortalece Supervisão de IA com Nova Agência",
       "excerpt": "A Agência Espanhola de Supervisão da Inteligência Artificial (AESIA)...",
       "date": "2025-03-12",
@@ -21,6 +22,7 @@
     },
     {
       "slug": "russia-alianca-ia",
+      "topico": "Geopolítica da IA",
       "title": "Rússia Lidera Aliança de IA com Países Emergentes",
       "excerpt": "Rússia desafia EUA e China com nova aliança para completar a segunda linha do excerpt.",
       "date": "2025-03-12",
@@ -36,6 +38,7 @@
     },
      {
       "slug": "sam-altman-missao-openai",
+      "topico": "LLMs",
       "title": "Nossa missão é garantir que a AGI beneficie toda a humanidade",
       "excerpt": "Sam Altman, o atual CEO da OpenAI, fala sobre a missão da empresa...",
       "date": "2025-04-08",
@@ -51,6 +54,7 @@
     },
     {
       "slug": "etica-ia",
+      "topico": "Empresas e Visão",
       "title": "Ética na IA: Desafios e Soluções",
       "excerpt": "Especialistas discutem os desafios éticos que podemos enfrentar com a utilização da Inteligência Artificial...",
       "date": "2025-04-09",
@@ -66,6 +70,7 @@
     },
     {
       "slug": "ia-generativa-e-o-futuro",
+      "topico": "Empresas e Visão",
       "title": "IA Generativa: O Futuro da Criação de Conteúdo",
       "excerpt": "Ferramentas de IA generativa estão transformando a criação de conteúdo, permitindo que artistas e criadores inovem de formas nunca vistas.",
       "date": "2025-03-13",
@@ -81,6 +86,7 @@
     },
     {
       "slug": "espanha-supervisao-ia",
+      "topico": "Empresas e Visão",
       "title": "Modelos de IA: O Que São e Como Funcionam",
       "excerpt": "Entenda o que são modelos de inteligência artificial e como eles estão sendo usados em diversas indústrias para resolver problemas complexos.",
       "date": "2025-03-17",
@@ -96,6 +102,7 @@
     },
     {
       "slug": "espanha-supervisao-ia",
+      "topico": "Empresas e Visão",
       "title": "Modelos de IA: O Que São e Como Funcionam",
       "excerpt": "Entenda o que são modelos de inteligência artificial e como eles estão sendo usados em diversas indústrias para resolver problemas complexos.",
       "date": "2025-03-17",
@@ -111,6 +118,7 @@
     },
     {
       "slug": "espanha-supervisao-ia",
+      "topico": "Empresas e Visão",
       "title": "Modelos de IA: O Que São e Como Funcionam",
       "excerpt": "Entenda o que são modelos de inteligência artificial e como eles estão sendo usados em diversas indústrias para resolver problemas complexos.",
       "date": "2025-03-17",
@@ -126,6 +134,7 @@
     },
     {
       "slug": "espanha-supervisao-ia",
+      "topico": "Empresas e Visão",
       "title": "Modelos de IA: O Que São e Como Funcionam",
       "excerpt": "Entenda o que são modelos de inteligência artificial e como eles estão sendo usados em diversas indústrias para resolver problemas complexos.",
       "date": "2025-03-17",

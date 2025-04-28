@@ -1,3 +1,62 @@
+/* Container das Seções de Tópicos */
+#topic-sections-container {
+    /* Espaçamento entre as seções */
+    display: flex;
+    flex-direction: column;
+    gap: 40px; 
+}
+
+/* Seção Individual de Tópico */
+.topic-section {
+    /* border-top: 1px solid var(--border-color-light, #333); */ /* Linha separadora opcional */
+    /* padding-top: 30px; */
+}
+
+/* Título da Seção de Tópico (H2) */
+.topic-section-title {
+    font-size: 1.7rem; 
+    font-family: var(--heading-font);
+    color: var(--heading-color);
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--secondary-color); /* Destaque no título */
+    display: inline-block; /* Para a borda ficar só no texto */
+}
+
+/* Container do Botão "Carregar Mais" */
+.load-more-container {
+    text-align: center; /* Centraliza o botão */
+    margin-top: 30px; /* Espaço acima do botão */
+}
+
+/* Botão "Carregar Mais" (Reutiliza estilo .pagination-button ou cria um novo) */
+.load-more-button {
+    /* Herda de .pagination-button ou define aqui: */
+     background-color: var(--button-bg, #232221);
+     color: var(--button-text, #ffffff);
+     border: 1px solid var(--button-border, #444);
+     padding: 10px 25px;
+     border-radius: 5px;
+     cursor: pointer;
+     font-size: 0.9rem;
+     font-weight: 500;
+     transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.load-more-button:hover:not(:disabled) {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+     color: #000; /* Ajuste a cor do texto no hover se necessário */
+}
+
+.load-more-button:disabled {
+    background-color: var(--button-disabled-bg, #1a1a1a);
+    border-color: #333;
+    color: #666;
+    cursor: not-allowed;
+}
+
+
 .breadcrumbs ol,.sidebar-widget ul,.trends-sidebar .popular-news-widget ul {
     list-style: none;
     padding: 0;
@@ -67,9 +126,8 @@ body.trends-page main {
 
 .trends-cards-container-grid {
     display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 15px;
-    margin-bottom: 40px
+    grid-template-columns: repeat(3,1fr);
+    gap: 25px;
 }
 
 .trend-card-item {
@@ -423,7 +481,7 @@ body.trends-page main {
 }
 
 .light-mode .breadcrumbs li[aria-current=page],.light-mode .trend-card-item .card-title,.light-mode .trends-header .section-title {
-    color: var(--light-text-primary,#212529)
+    color: #000000;
 }
 
 .light-mode .breadcrumbs,.light-mode .breadcrumbs a,.light-mode .breadcrumbs li+li::before,.light-mode .loading-placeholder,.light-mode .product-card-placeholder p,.light-mode .sidebar-widget a,.light-mode .trend-card-item .card-meta .author-link,.light-mode .trends-sidebar .popular-news-widget a {
@@ -498,4 +556,8 @@ body.trends-page main {
     font-weight: 600;
     color: #000;
     text-decoration: none
+}
+
+.light-mode .topic-section-title {
+    color: #000000;
 }

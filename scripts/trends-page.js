@@ -3,27 +3,25 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM da página de tendências pronto.");
 
+    // --- Configurações ---
+    const trendsPerLoad = 4; // Quantas tendências carregar por vez em cada seção
+    
     // --- Variáveis Globais ---
-    let currentPage = 1;
-    const trendsPerPage = 12; // Ajuste: 12 = 3 linhas de 4 cards
     let allTrends = [];
-    let allTrendsFiltered = []; // Para futura busca/filtro
+    let groupedTrends = {}; // Objeto para guardar tendências agrupadas por tópico
+    let loadedCounts = {}; // Objeto para rastrear quantos foram carregados por tópico
 
     // --- Seletores DOM ---
     const loadingElement = document.getElementById('loading-trends');
-    const container = document.querySelector('.trends-cards-container-grid'); 
-    const prevPageButton = document.querySelector('.prev-page');
-    const nextPageButton = document.querySelector('.next-page');
-    const paginationContainer = document.querySelector('.pagination-controls');
-    // Adicionar seletores para busca/ordenação aqui se/quando implementar
+    const topicsContainer = document.getElementById('topic-sections-container'); 
 
     // --- Validação Inicial ---
-    if (!container) {
-        console.error('Erro Crítico: Container de tendências (.trends-cards-container-grid) não encontrado!');
-        if(loadingElement) loadingElement.textContent = 'Erro ao carregar layout.';
+    if (!topicsContainer) {
+        console.error('Erro Crítico: Container de seções (#topic-sections-container) não encontrado!');
+        if (loadingElement) loadingElement.textContent = 'Erro de layout.';
         return;
     }
-    
+        
     // --- Função para Calcular Tempo Relativo ---
 function formatRelativeTime(isoDateTimeString) {
     if (!isoDateTimeString) return ''; // Retorna vazio se não houver data/hora
@@ -77,6 +75,7 @@ function formatRelativeTime(isoDateTimeString) {
     // --- Função Principal de Inicialização ---
     async function inicializarPaginaTendencias() {
         if (loadingElement) loadingElement.style.display = 'block';
+        topicsContainer.innerHTML = ''; 
 
         try {
             const response = await fetch('data/tendencias.json?v=' + Date.now());
@@ -85,69 +84,98 @@ function formatRelativeTime(isoDateTimeString) {
             if (!data || !Array.isArray(data.trends)) throw new Error("Formato inválido em tendencias.json");
 
             allTrends = data.trends;
-            console.log(`Total de ${allTrends.length} tendências carregadas.`);
-
-            // Ordena por data (mais recentes primeiro) - Ajuste o campo de data se necessário
-            allTrends.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0)); 
-
-            // Aplica filtros (nenhum por enquanto)c
-            applyFiltersAndSort(); 
-
-            // Configura listeners
-            setupEventListeners();
-
+            allTrends.sort((a, b) => new Date(b.dateTimeIso || b.date || 0) - new Date(a.dateTimeIso || a.date || 0)); 
+            groupedTrends = groupTrendsByTopic(allTrends);
+            renderTopicSections(groupedTrends);
+            setupLoadMoreListener();
+            
         } catch (error) {
-            console.error('Erro ao carregar tendências:', error);
-            container.innerHTML = '<p class="error-fallback" role="alert">Erro ao carregar tendências.</p>';
+            console.error('Erro ao carregar/processar tendências:', error);
+            topicsContainer.innerHTML = '<p class="error-fallback" role="alert">Erro ao carregar tendências.</p>';
         } finally {
             if (loadingElement) loadingElement.style.display = 'none';
         }
     }
 
-    // --- Função para Aplicar Filtros e Ordenação (Placeholder) ---
-    function applyFiltersAndSort() {
-        // Por enquanto, apenas copia e ordena
-        allTrendsFiltered = [...allTrends];
-        sortTrendsInternal('recent'); // Ordenação padrão
-        
-        // Exibe a primeira página
-        currentPage = 1;
-        displayTrendsPage(currentPage);
+    // --- Função para Agrupar Tendências por Tópico ---
+    function groupTrendsByTopic(trends) {
+        const groups = {};
+        trends.forEach(trend => {
+            const topic = trend.topico || "Outros"; 
+            if (!groups[topic]) { groups[topic] = []; }
+            groups[topic].push(trend); 
+        });
+        console.log("Tendências agrupadas:", groups);
+        return groups;
     }
-    
-     // --- Lógica Interna de Ordenação ---
-     function sortTrendsInternal(order) {
-        console.log(`Ordenando tendências por: ${order}`);
-        if (order === 'recent') {
-         allTrendsFiltered.sort((a, b) => new Date(b.dateTimeIso || b.date || 0) - new Date(a.dateTimeIso || a.date || 0));
-     } else if (order === 'oldest') {
-         allTrendsFiltered.sort((a, b) => new Date(a.dateTimeIso || a.date || 0) - new Date(b.dateTimeIso || b.date || 0));
-     }
- }
 
-
-    // --- Função para Exibir Tendências da Página Atual ---
-    function displayTrendsPage(page) {
-        console.log(`Exibindo página ${page} de tendências...`);
-        if (!container) return;
-        container.innerHTML = ''; // Limpa o container
-
-        if (allTrendsFiltered.length === 0) {
-            container.innerHTML = '<p class="no-results">Nenhuma tendência encontrada.</p>';
-            updatePaginationControls(page, 0);
-            return;
-        }
-
-        const start = (page - 1) * trendsPerPage;
-        const end = start + trendsPerPage;
-        const paginatedTrends = allTrendsFiltered.slice(start, end);
-
-        paginatedTrends.forEach(trend => {
-            const article = criarCardTendenciaHtml(trend); // Usa a nova função
-            container.appendChild(article);
+    // --- Função para Renderizar as Seções e Cards Iniciais ---
+    function renderTopicSections(groupedData) {
+        topicsContainer.innerHTML = ''; 
+        const topicOrder = ["LLMs", "Regulamentação", "Geopolítica da IA", "Empresas e Visão", "Ética na IA"]; // <<< AJUSTE A ORDEM COMO QUISER
+        const sortedTopics = Object.keys(groupedData).sort((a, b) => {
+            const indexA = topicOrder.indexOf(a);
+            const indexB = topicOrder.indexOf(b);
+            if (indexA !== -1 && indexB !== -1) return indexA - indexB;
+            if (indexA !== -1) return -1; 
+            if (indexB !== -1) return 1;
+            return a.localeCompare(b); 
         });
 
-        updatePaginationControls(page, allTrendsFiltered.length);
+        sortedTopics.forEach(topicName => {
+            const trendsInTopic = groupedData[topicName];
+            if (!trendsInTopic || trendsInTopic.length === 0) return; 
+
+            const section = document.createElement('section');
+            section.className = 'topic-section';
+            section.id = `topic-${formatForUrl(topicName)}`; 
+            
+            const title = document.createElement('h2');
+            title.className = 'topic-section-title';
+            title.textContent = topicName;
+
+            const gridContainer = document.createElement('div');
+            // Adiciona classe base e classe específica do tópico
+            gridContainer.className = `trends-cards-container-grid topic-${formatForUrl(topicName)}-grid`; 
+
+            section.appendChild(title);
+            section.appendChild(gridContainer);
+            renderMoreTrends(topicName, gridContainer, 0); // Renderiza os primeiros cards
+            topicsContainer.appendChild(section); 
+        });
+    }
+
+     // --- Função para Renderizar MAIS Tendências em uma Seção ---
+     function renderMoreTrends(topicName, gridContainer, startIndex) {
+        const trendsToRender = groupedTrends[topicName]?.slice(startIndex, startIndex + trendsPerLoad) || [];
+        let newCardsHtml = '';
+        trendsToRender.forEach(trend => {
+             const articleElement = criarCardTendenciaHtml(trend);
+             newCardsHtml += articleElement.outerHTML; 
+         });
+        gridContainer.insertAdjacentHTML('beforeend', newCardsHtml); 
+        loadedCounts[topicName] = (loadedCounts[topicName] || 0) + trendsToRender.length;
+        addOrUpdateLoadMoreButton(topicName, gridContainer.parentNode); // Passa a <section>
+    }
+
+    // --- Função para Adicionar/Atualizar o Botão "Carregar Mais" ---
+    function addOrUpdateLoadMoreButton(topicName, sectionElement) {
+        const totalInTopic = groupedTrends[topicName]?.length || 0;
+        const currentlyLoaded = loadedCounts[topicName] || 0;
+        let loadMoreContainer = sectionElement.querySelector('.load-more-container');
+        if (loadMoreContainer) loadMoreContainer.remove(); // Remove botão antigo
+
+        if (currentlyLoaded < totalInTopic) { // Adiciona só se houver mais
+             loadMoreContainer = document.createElement('div');
+             loadMoreContainer.className = 'load-more-container';
+             const button = document.createElement('button');
+             button.className = 'load-more-button pagination-button'; // Reutiliza estilo
+             button.textContent = 'Carregar Mais';
+             button.dataset.topic = topicName; 
+             button.dataset.loaded = currentlyLoaded; 
+             loadMoreContainer.appendChild(button);
+             sectionElement.appendChild(loadMoreContainer); 
+        }
     }
 
     // --- Função Auxiliar para Criar o HTML do Card de Tendência (Grid) ---
@@ -196,54 +224,41 @@ function formatRelativeTime(isoDateTimeString) {
           `;
         return article;
     }
-
-    // --- Função Auxiliar para Atualizar Controles de Paginação ---
-    function updatePaginationControls(page, totalItems) {
-        console.log(`Atualizando paginação tendências: page=${page}, totalItems=${totalItems}`);
-        const pageNumberDisplay = document.querySelector('.page-number');
-        // Re-seleciona os botões dentro da função para garantir
-        const currentPrevButton = document.querySelector('.prev-page');
-        const currentNextButton = document.querySelector('.next-page');
-
-        if (!paginationContainer) return;
-
-        const totalPages = Math.ceil(totalItems / trendsPerPage);
-
-        if (totalItems === 0 || totalPages <= 1) {
-            paginationContainer.style.display = 'none';
-        } else {
-            paginationContainer.style.display = 'flex';
-            if (pageNumberDisplay) pageNumberDisplay.textContent = `Página ${page} de ${totalPages}`;
-            if (currentPrevButton) currentPrevButton.disabled = (page === 1);
-            if (currentNextButton) currentNextButton.disabled = (page >= totalPages);
-        }
+    
+    // --- Função Auxiliar para Formatar URL (precisa existir aqui) ---
+    function formatForUrl(text) { 
+        if (!text) return '';
+        return text.toLowerCase()
+                   .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                   .replace(/[^a-z0-9.]+/g, '-') // Mantém ponto
+                   .replace(/-+/g, '-')
+                   .replace(/^-+|-+$/g, '');
     }
-
-    // --- Configuração dos Event Listeners ---
-    function setupEventListeners() {
-        // Paginação
-        if (prevPageButton) {
-            prevPageButton.addEventListener('click', () => {
-                if (currentPage > 1) {
-                    currentPage--;
-                    displayTrendsPage(currentPage);
-                    window.scrollTo({ top: container.offsetTop - 100, behavior: 'smooth' }); // Rola para o topo da lista
-                }
-            });
-        }
-        if (nextPageButton) {
-            nextPageButton.addEventListener('click', () => {
-                const totalPages = Math.ceil(allTrendsFiltered.length / trendsPerPage);
-                if (currentPage < totalPages) {
-                    currentPage++;
-                    displayTrendsPage(currentPage);
-                    window.scrollTo({ top: container.offsetTop - 100, behavior: 'smooth' }); // Rola para o topo da lista
-                }
-            });
-        }
-        // Adicionar listeners para busca/ordenação aqui no futuro
+    
+    // --- Configuração do Listener para "Carregar Mais" ---
+    function setupLoadMoreListener() {
+         topicsContainer.addEventListener('click', function(event) {
+             if (event.target && event.target.classList.contains('load-more-button')) {
+                 const button = event.target;
+                 const topic = button.dataset.topic;
+                 const alreadyLoaded = parseInt(button.dataset.loaded || '0', 10);
+                 // Encontra o grid DENTRO da seção pai do botão
+                 const gridContainer = button.closest('.topic-section')?.querySelector('.trends-cards-container-grid'); 
+                 
+                 if (topic && gridContainer) {
+                      console.log(`Carregando mais ${topic} a partir de ${alreadyLoaded}`);
+                      button.disabled = true; 
+                      button.textContent = 'Carregando...'; 
+                      setTimeout(() => { // Delay apenas para feedback visual
+                         renderMoreTrends(topic, gridContainer, alreadyLoaded);
+                      }, 200); 
+                 } else {
+                      console.error("Não foi possível encontrar o tópico ou o grid para carregar mais.");
+                 }
+             }
+         });
     }
-
+        
     // --- Inicia o processo ---
     inicializarPaginaTendencias();
 

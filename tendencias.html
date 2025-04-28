@@ -87,26 +87,23 @@
           <!-- Área de Conteúdo Principal -->
           <div class="trends-main-content">
 
-            <header class="trends-header"> <!-- Usar header semântico -->
-              <h1 class="section-title">Últimas Tendências</h1> 
+            <header class="trends-header"> 
+              <h1 class="section-title" id="trends-main-title">Últimas Tendências por Tópico</h1> <!-- Adicionado ID para aria -->
             </header>
             
-            <!-- Indicador de Carregamento -->
+            <!-- Indicador de Carregamento Geral -->
             <div id="loading-trends" class="loading-placeholder" style="display: block; text-align: center; padding: 30px 0;">
-                Carregando tendências...
-            </div> 
+              Carregando tendências...
+          </div> 
             
-            <!-- Container para os Cards em Grid -->
-            <div class="trends-cards-container-grid" role="region" aria-live="polite" aria-labelledby="trends-main-title"> 
-              <!-- Cards inseridos pelo JS -->
+            <!-- <<< CONTAINER ONDE AS SEÇÕES DE TÓPICOS SERÃO INSERIDAS >>> -->
+            <div id="topic-sections-container">
+              <!-- O JS popula aqui -->
             </div>
+            <!-- <<< FIM CONTAINER >>> -->
 
-            <!-- Paginação -->
-            <nav class="pagination-controls trends-pagination" aria-label="Navegação de páginas de tendências" style="display: none;">
-              <button class="prev-page pagination-button" disabled aria-label="Página anterior">Anterior</button>
-              <span class="page-number" aria-live="polite">Página 1 de 1</span>
-              <button class="next-page pagination-button" disabled aria-label="Próxima página">Próxima</button>
-            </nav>
+            <!-- REMOVIDO: Paginação antiga -->
+            <!-- REMOVIDO: Container de grid antigo -->
 
           </div>
 
