@@ -1953,9 +1953,20 @@ textarea.form-control {
   padding: 16px !important;
   flex: 1 1 auto !important;
   overflow-y: auto !important;
-  background:#0055dd !important;
 }
 
+#iubenda-cs-banner .iubenda-cs-brand-badge {
+  background: transparent !important;
+  color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+#iubenda-cs-banner .iubenda-cs-brand-badge:hover {
+  background: transparent !important;
+  color: transparent !important;
+  border: none !important;
+}
 
 /*ESTILO DA FOOTER*/
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
