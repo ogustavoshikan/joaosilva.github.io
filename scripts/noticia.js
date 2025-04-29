@@ -338,7 +338,7 @@ if (socialShareContainer) {
     if (relatedGrid && relatedSection) {
 
         // Encontrar até 5 mais relevantes e escolher 2 aleatoriamente
-        const relatedNews = findRelatedNewsOptionC(noticia, todasNoticias, 5, 2); // <<< CHAMA OPÇÃO C
+        const relatedNews = findRelatedNewsOptionC(noticia, todasNoticias, 5, 4); // <<< CHAMA OPÇÃO C
 
         if (relatedNews.length > 0) {
             relatedGrid.innerHTML = relatedNews.map(rel => `
