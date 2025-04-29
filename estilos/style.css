@@ -481,28 +481,28 @@ main {
   position: relative; 
 } 
 
-.news-grid { 
-  display: flex; 
-  flex-direction: column; 
-  gap: 1rem; 
-  justify-content: center; 
-  align-items: center; 
+.news-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
 } 
 
 /* Ajustar o container para permitir maior largura */
 .container-news-container {
-  max-width: 1300px;
+  max-width: 1285px;
   width: 100%;
   padding: 12px 1rem;
   margin: 0 auto;
 } 
 
 /* Container para os cards superiores (destaque + 2 menores) */ 
-.top-cards-container { 
-  display: flex; 
-  width: 100%; 
-  gap: 1rem; 
-  justify-content: center; 
+.top-cards-container {
+  display: flex;
+  width: 100%;
+  gap: 1rem;
+  justify-content: center;
 } 
 
 /* Estilo base para todos os cards */ 
@@ -533,10 +533,10 @@ main {
 } 
 
 /* Estilo para os cards laterais - MODIFICADO */ 
-.news-card.side { 
-  flex: 1; 
-  min-height: 140px; /* Ajustado para manter proporção com o card principal */
-  height: 140px; /* Altura fixa para cada card lateral */
+.news-card.side {
+  flex: 1;
+  min-height: 230px; /* Ajustado para manter proporção com o card principal */
+   /* Altura fixa para cada card lateral */
 }
 
 /* Container para os cards inferiores */
@@ -583,7 +583,7 @@ main {
 }
 
 .news-card.featured .news-image-top img {
-  height: 490px;
+  height: 488px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   border-bottom-left-radius: 5px;
@@ -596,7 +596,7 @@ main {
 }
 
 .news-card.side .news-image-top img {
-  height: 235px;
+  height: 235;
   object-fit: cover;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -822,6 +822,7 @@ main {
   .bottom-cards-container {
     flex-direction: column;
     gap: 1.5rem;
+    width: 100%;
   }
 
   /* FEATURED */
@@ -847,7 +848,7 @@ main {
   .news-card.bottom {
     flex: 0 0 100%;
     max-width: 100%;
-    min-height: 250px;
+    min-height: 237px;
   }
 
   .news-card.side .news-image-top img {
@@ -949,7 +950,7 @@ main {
 }
 
 .trends-section .container {
-  max-width: 1263.5px;
+  max-width: 1243.5px;
   margin: 0 auto;
   padding: 0;
 }
