@@ -2,6 +2,7 @@
   "noticias": [
     {
       "slug": "openai-gpt-4.5",
+      "tipoConteudo": "Nenhum",
       "chapeu": "Modelo reduz alucinações",
       "titulo": "OpenAI Lança Modelo GPT-4.5 com Inteligência Emocional Avançada",
       "tituloCurto": "OpenAI lança GPT-4.5 Emocional",
@@ -22,7 +23,7 @@
       "altImagem": "Logotipo OpenAI GPT-4.5",
       "legendaImagemBanner": "Imagem conceitual da interface GPT-4.5",
       "categorias": ["Modelos de Linguagem", "OpenAI", "IA Conversacional"],
-      "tags": ["GPT-4.5", "Inteligência Emocional", "OpenAI", "LLM", "API", "PNL", "ChatGPT", "Ética", "Lançamento"],
+      "tags": ["GPT-4.5", "Inteligência Emocional", "OpenAI", "LLM", "API", "PNL", "ChatGPT", "Ética", "Lançamento","Text","Image"],
       "tempoLeituraEstimado": "8 min",
       "corpoHtml": [
   "<p>A <strong>OpenAI</strong> anunciou nesta quinta-feira, 27 de fevereiro de 2025, o lançamento oficial do <strong>GPT-4.5</strong>, uma nova versão do seu já popular modelo de linguagem. A grande novidade da atualização está na introdução de recursos avançados de <em>inteligência emocional</em>, capazes de tornar as interações com o modelo ainda mais naturais, empáticas e contextualmente sensíveis.</p>",
@@ -46,6 +47,7 @@
     },
     {
       "slug": "claude-sonnet-3.7",
+      "tipoConteudo": "Nenhum",
       "chapeu": "Modelo reduz alucinações",
       "titulo": "Claude Sonnet 3.7: A Nova Fronteira da IA que Supera OpenAI e Grok 3",
       "tituloCurto": "Claude Sonnet 3.7 Supera Concorrência",
@@ -66,7 +68,7 @@
       "altImagem": "Logotipo da Anthropic Claude 3.7",
       "legendaImagemBanner": "Representação conceitual do Claude Sonnet 3.7",
       "categorias": ["Modelos de Linguagem", "Anthropic", "Benchmark"],
-      "tags": ["Claude 3.7", "Anthropic", "LLM", "Benchmark", "IA Forte", "Segurança em IA"],
+      "tags": ["Claude 3.7", "Anthropic", "LLM", "Benchmark", "IA Forte", "Segurança em IA","Image"],
       "tempoLeituraEstimado": "6 min",
        "corpoHtml": "<p>A Anthropic surpreendeu o mercado de inteligência artificial nesta terça-feira (4) com o lançamento do Claude Sonnet 3.7, seu modelo de linguagem de nova geração. Com avanços expressivos em compreensão de linguagem, raciocínio lógico e segurança, o Claude 3.7 já é apontado por especialistas como o novo líder entre os grandes modelos de linguagem (LLMs), ultrapassando concorrentes como o GPT-4 Turbo da OpenAI e o Grok 3 da xAI.</p><h2>Performance</h2><p>Benchmarks indicam que o Claude 3.7 apresenta um desempenho superior em diversas tarefas críticas de linguagem natural, como compreensão de contexto, geração de texto criativo e capacidade de seguir instruções complexas. Em testes internos, o modelo obteve resultados 12% melhores que o GPT-4 Turbo em tarefas de QA (perguntas e respostas) e 9% superiores ao Grok 3 em geração de código e interpretação multimodal.</p><p>Segundo a Anthropic, uma das maiores inovações está na arquitetura híbrida do Claude Sonnet 3.7, que combina redes neurais de última geração com um sistema de alinhamento baseado em princípios de segurança interpretável. Essa combinação resulta em respostas mais seguras, menos enviesadas e com maior transparência quanto às fontes de informação utilizadas.</p><h2>Integrações e Usos</h2><p>O Claude 3.7 já está disponível para empresas por meio da API da Anthropic e em integrações com plataformas como Notion, Slack e ferramentas de produtividade personalizadas. O modelo também se destaca por sua eficiência energética e tempo de resposta reduzido, tornando-o uma opção viável para uso em tempo real em aplicativos empresariais e de consumo.</p><h2>O que vem por aí</h2><p>A Anthropic afirmou que essa versão faz parte de uma nova geração de modelos Claude, com o objetivo de lançar uma IA assistiva cada vez mais confiável e proativa. Rumores indicam que uma versão multimodal mais avançada — capaz de processar imagens e vídeos com precisão — já está em desenvolvimento, com previsão de lançamento para o segundo semestre de 2025.</p><p>Com o Claude Sonnet 3.7, a Anthropic não apenas reforça sua posição no topo da corrida pela inteligência artificial mais capaz e ética, mas também levanta o padrão para todo o setor.</p>",
       "destaqueHome": "side",
@@ -74,6 +76,7 @@
     },
     {
       "slug": "elon-musk-grok-3",
+      "tipoConteudo": "Nenhum",
       "chapeu": "Modelo reduz alucinações",
       "titulo": "Elon Musk Lança Grok 3: A 'IA Mais Inteligente da Terra'",
        "tituloCurto": "Elon Musk lança Grok 3",
@@ -102,6 +105,7 @@
     },
     {
       "slug": "tencent-hunyuan-turbo-s",
+      "tipoConteudo": "Nenhum",
       "titulo": "Tencent Lança Hunyuan Turbo S, Nova Plataforma Que Promete Competir com DeepSeek",
       "tituloCurto": "Tencent Lança Hunyuan Turbo S",
       "metaDescription": "A Tencent lançou o Hunyuan Turbo S, uma nova plataforma de IA projetada para competir com a DeepSeek.",
@@ -131,6 +135,7 @@
     },
     {
       "slug": "meta-supercomputacao",
+      "tipoConteudo": "Nenhum",
       "titulo": "Meta Investe Bilhões em Supercomputação: A Nova Era da Inteligência Artificial",
       "tituloCurto": "Meta Investe em Supercomputação",
       "metaDescription": "A Meta investe US$ 18 bilhões em 600.000 GPUs Nvidia H100 para criar uma inteligência geral acessível, integrando IA e metaverso.",
@@ -160,6 +165,7 @@
     },
     {
       "slug": "anthropic-avaliacao-61b",
+      "tipoConteudo": "Nenhum",
       "titulo": "Anthropic Triplica Avaliação para US$ 61,5 Bilhões em Rodada de Financiamento de IA",
       "tituloCurto": "Anthropic Triplica Avaliação",
       "metaDescription": "A Anthropic arrecadou US$ 3,5 bilhões, triplicando sua avaliação para US$ 61,5 bilhões, liderada pela Lightspeed Venture Partners.",
@@ -189,6 +195,7 @@
     },
     {
       "slug": "nvidia-nova-gpu",
+      "tipoConteudo": "Nenhum",
       "titulo": "Nvidia Anuncia Nova GPU para Treinamento de IA em Escala Global",
       "tituloCurto": "Nvidia Anuncia Nova GPU IA",
       "metaDescription": "A Nvidia revelou uma nova GPU projetada para acelerar o treinamento de modelos de IA em larga escala, com eficiência energética recorde.",
@@ -218,6 +225,7 @@
     },
     {
       "slug": "conf-ia-2025",
+      "tipoConteudo": "topico-playground-ai",
       "titulo": "Primeira Conferência de IA do Ano",
       "tituloCurto": "Primeira Conferência de IA 2025",
       "metaDescription": "A primeira conferência de inteligência artificial de 2025 reuniu especialistas globais para discutir avanços e ética.",
@@ -247,6 +255,7 @@
     },
     {
       "slug": "ia-medicina-diagnostico",
+      "tipoConteudo": "Nenhum",
       "titulo": "IA na Medicina: Diagnósticos Mais Rápidos",
       "tituloCurto": "IA Acelera Diagnósticos Médicos",
       "metaDescription": "Estudo demonstra como a IA pode acelerar diagnósticos médicos com alta precisão, analisando exames de imagem.",

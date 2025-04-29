@@ -135,9 +135,13 @@
                                  <p></p> 
                              </div>
                         </div>
+                        <div id="disqus_thread"></div>
                         <section class="related-news" style="display: none;"> 
                             <h3>Notícias Relacionadas</h3>
                             <div class="related-news-grid"></div>
+                            <div class="trends-button-wrapper">
+                                <a href="/noticias" class="trends-load-more-link">Ver todas as notícias</a>                               
+                              </div>
                         </section>
                     </div>
                 </article>
@@ -178,7 +182,7 @@
 
   </main>
 
-  <<!-- FOOTER -->
+  <!-- FOOTER -->
 <footer class="site-footer">
     <div class="footer-content">
         <div class="footer-section brand">
@@ -202,10 +206,27 @@
               <li><a href="#">Newsletter</a></li> <!-- Link futuro ou remover se já tem o signup -->
               <li><a href="https://wa.me/61982006013" target="_blank" rel="noopener noreferrer">Contato</a></li> <!-- Adicionado target blank -->
               
-              <!-- Item da Lista para Política de Privacidade -->
-              <li> 
-                <a href="https://www.iubenda.com/privacy-policy/95000863" class="iubenda-black iubenda-noiframe iubenda-embed iubenda-noiframe " title="Política de Privacidade ">Política de Privacidade</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
-            </li>
+              <!-- Item da Lista para Política de Privacidade (MODIFICADO) -->
+        <li> 
+          <!-- Link Original Iubenda (Escondido) -->
+          <a href="https://www.iubenda.com/privacy-policy/95000863" 
+             class="iubenda-black iubenda-noiframe iubenda-embed iubenda-noiframe " 
+             title="Política de Privacidade "
+             style="display: none !important; visibility: hidden !important; width: 0 !important; height: 0 !important; overflow: hidden !important; position: absolute !important; left: -9999px !important;">
+             Política de Privacidade 
+          </a>
+          <!-- Script Iubenda (Mantido) -->
+          <script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+          
+          <!-- <<< NOSSO PRÓPRIO LINK (Visível) >>> -->
+          <a href="https://www.iubenda.com/privacy-policy/95000863" 
+             class="footer-link-custom"
+             title="Política de Privacidade"
+             target="_blank" rel="noopener noreferrer"> <!-- Adiciona target blank -->
+             Política de Privacidade
+          </a>
+          <!-- <<< FIM DO NOSSO LINK >>> -->
+      </li>
   
               <!-- Item da Lista para Política de Cookies (MODIFICADO) -->
               <li> 
@@ -219,14 +240,14 @@
                 <!-- Script Iubenda (Mantido para funcionalidade, se houver) -->
                 <script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
                 
-                <!-- <<< NOSSO PRÓPRIO LINK (Visível) >>> -->
-                <a href="https://www.iubenda.com/privacy-policy/95000863/cookie-policy" 
-                   class="footer-link-custom" 
-                   title="Política de Cookies">
-                   Política de Cookies
-                </a>
-                <!-- <<< FIM DO NOSSO LINK >>> -->
-            </li>
+                <!-- NOSSO PRÓPRIO LINK (Visível) -->
+            <a href="https://www.iubenda.com/privacy-policy/95000863/cookie-policy" 
+            class="footer-link-custom"
+            title="Política de Cookies"
+            target="_blank" rel="noopener noreferrer"> <!-- Adiciona target blank -->
+            Política de Cookies
+         </a>
+     </li>
   
             <!-- Item da Lista para Termos de Uso (Se voltar a usar) -->
             <!-- <li><a href="/termos-uso">Termos de Uso</a></li> -->

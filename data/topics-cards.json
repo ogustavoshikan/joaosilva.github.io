@@ -39,7 +39,7 @@
       "title": "Insights e Experimentos",
       "description": "Descubra as tendências e inovações que moldarão o futuro da Inteligência Artificial.",
       "image": "assets/imagens/secoes/topicos/futuro-ia.webp",
-      "link": "#futuro-ia",
+      "link": "/news.html?secao=topico-insights-e-experimentos",
       "alt": "Imagem ilustrativa sobre o futuro da Inteligência Artificial"
     },
     {
@@ -53,7 +53,7 @@
       "title": "Playground AI",
       "description": "Saiba como a IA está revolucionando estratégias e processos no mundo corporativo.",
       "image": "assets/imagens/secoes/topicos/ia-negocios.webp",
-      "link": "/news.html?secao=topico-playground",
+      "link": "/news.html?secao=topico-playground-ai",
       "alt": "Imagem ilustrativa sobre Inteligência Artificial em negócios"
     },
     {

@@ -379,9 +379,43 @@ if (socialShareContainer) {
               recentPostsList.innerHTML = '<li>Erro ao carregar.</li>';
          }
      }
+     
+     // ==================================
+        // <<< CONFIGURAÇÃO DISQUS >>>
+        // ==================================
+        const disqusContainer = document.getElementById('disqus_thread');
+        if (disqusContainer) {
+            // Limpa config anterior
+            if (window.DISQUS) { try { DISQUS.reset({ reload: true }); } catch (e) { console.warn("Erro Disqus reset:", e); } }
 
-    console.log("Conteúdo da notícia preenchido no HTML.");
-}
+            // CONFIGURAÇÃO DINÂMICA
+            window.disqus_config = function () { // Usa window. para garantir escopo global
+                this.page.url = window.location.href; // URL da notícia atual
+                this.page.identifier = noticia.slug; // Slug único da notícia atual
+                this.page.title = noticia.titulo || document.title; // Título da notícia
+            };
+
+            // Carrega script embed.js (se não carregado)
+            if (!document.getElementById('disqus-script')) { 
+                console.log("Carregando script Disqus...");
+                (function() { 
+                var d = document, s = d.createElement('script');
+                s.id = 'disqus-script'; 
+                s.src = 'https://technologyai-site.disqus.com/embed.js'; // SEU SHORTNAME AQUI
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+                })();
+            } else {
+                 console.log("Script Disqus já existe, resetando configuração.");
+                 if(window.DISQUS) { // Tenta resetar com nova config
+                    DISQUS.reset({ reload: true, config: window.disqus_config });
+                 }
+            }
+
+        } else { console.warn("#disqus_thread não encontrado."); }
+
+    console.log("Conteúdo da notícia preenchido no HTML, incluindo Disqus.");
+} // Fim da função preencherConteudoNoticia
 
 // ===========================================================
 // <<< NOVA Função Auxiliar para Encontrar Relacionados (Opção C) >>>
