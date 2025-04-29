@@ -1960,6 +1960,7 @@ textarea.form-control {
   color: transparent !important;
   border: none !important;
   box-shadow: none !important;
+  align-self: normal !important;
 }
 
 #iubenda-cs-banner .iubenda-cs-brand-badge:hover {
