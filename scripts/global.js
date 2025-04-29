@@ -197,6 +197,72 @@ document.addEventListener('DOMContentLoaded', () => {
     // <<< FIM: Header Auto-Hide (V2) >>>
     // =================================================
     
+    // ================================================
+    // <<< NOVO: Forçar Estilo em Links Iubenda >>>
+    // ================================================
+    // Espera um pouco mais para garantir que o script Iubenda possa ter rodado
+    // Use window.onload ou um setTimeout. window.onload é mais seguro.
+    window.addEventListener('load', () => { 
+        console.log("Global: Tentando forçar estilo nos links Iubenda...");
+        
+        // Seleciona TODOS os links Iubenda DENTRO da seção de recursos do footer
+        const iubendaLinks = document.querySelectorAll('.footer-section.resources ul li a.iubenda-embed');
+        
+        if (iubendaLinks.length > 0) {
+            console.log(`Encontrados ${iubendaLinks.length} links Iubenda para estilizar.`);
+            iubendaLinks.forEach(link => {
+                try {
+                    // Aplica os estilos desejados diretamente no elemento, forçando com 'important'
+                    link.style.setProperty('font-size', '16px', 'important');
+                    link.style.setProperty('font-family', "'Roboto', sans-serif", 'important'); // Note as aspas extras para a fonte
+                    link.style.setProperty('color', '#9ca3af', 'important'); // Sua cor padrão
+                    link.style.setProperty('font-weight', '400', 'important'); 
+                    link.style.setProperty('text-decoration', 'none', 'important');
+                    link.style.setProperty('background-color', 'transparent', 'important');
+                    link.style.setProperty('background-image', 'none', 'important');
+                    link.style.setProperty('border', 'none', 'important');
+                    link.style.setProperty('padding', '0', 'important');
+                    link.style.setProperty('margin', '0', 'important');
+                    link.style.setProperty('display', 'inline', 'important');
+                    link.style.setProperty('box-shadow', 'none', 'important');
+                    link.style.setProperty('text-shadow', 'none', 'important');
+                    link.style.setProperty('vertical-align', 'baseline', 'important');
+                    link.style.setProperty('line-height', 'inherit', 'important');
+                    link.style.setProperty('white-space', 'normal', 'important');
+                    link.style.setProperty('-webkit-appearance', 'none', 'important');
+                    link.style.setProperty('-moz-appearance', 'none', 'important');
+                    link.style.setProperty('appearance', 'none', 'important');
+                    link.style.setProperty('cursor', 'pointer', 'important'); 
+
+                    // Adiciona listener para o hover (opcional, mas garante consistência)
+                    link.addEventListener('mouseenter', () => {
+                        link.style.setProperty('color', '#ffffff', 'important');
+                       // link.style.setProperty('text-decoration', 'underline', 'important'); // Adicione se quiser sublinhado no hover
+                    });
+                    link.addEventListener('mouseleave', () => {
+                        link.style.setProperty('color', '#9ca3af', 'important');
+                       // link.style.setProperty('text-decoration', 'none', 'important');
+                    });
+
+                    console.log("Estilos forçados para:", link.textContent);
+
+                } catch (err) {
+                    console.error("Erro ao aplicar estilo forçado ao link Iubenda:", err, link);
+                }
+            });
+        } else {
+            console.log("Nenhum link Iubenda encontrado no footer para estilização forçada.");
+        }
+
+         // Esconder o script (se ainda não foi feito pelo CSS) - Redundante talvez
+         const iubendaScripts = document.querySelectorAll('.footer-section.resources ul li script');
+         iubendaScripts.forEach(script => script.style.display = 'none');
+
+    }); // Fim do window.onload
+    // ================================================
+    // <<< FIM: Forçar Estilo Iubenda >>>
+    // ================================================
+    
 
     console.log("Global scripts: Inicialização concluída.");
 }); // Fim do DOMContentLoaded

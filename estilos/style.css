@@ -889,6 +889,55 @@ main {
   }
 }
 
+/* Estilos para o Chapéu/Tag nos Cards de Notícia (Index) */
+.news-image-top, 
+.news-image[data-chapeu] { /* Aplica a ambos os tipos de card se tiverem o atributo */
+  position: relative; 
+  overflow: hidden; 
+}
+
+/* Cria o pseudo-elemento ::before para o chapéu */
+.news-image-top::before,
+.news-image[data-chapeu]::before {
+  content: attr(data-chapeu); /* Pega o texto do atributo data-chapeu */
+  
+  /* Estilos visuais (iguais aos do span anterior) */
+  position: absolute;
+  top: 15px;    
+  left: 10px;   
+  z-index: 2; 
+/*  background-color: var(--secondary-color, #00BCD4); */
+  background-color: transparent; /* Cor de fundo do chapéu */
+  color: #ffffff;
+  text-shadow: rgb(0 0 0) 0px 1px 3px;
+  padding: 5px 8px;
+  border-radius: 4px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: none;
+  line-height: 1.2;
+  display: inline-block; 
+  
+  /* Impede seleção de texto */
+  user-select: none; 
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE/Edge */
+  
+  /* Esconde se o atributo data-chapeu estiver vazio */
+  visibility: hidden; 
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+/* Mostra o ::before apenas se o atributo data-chapeu tiver conteúdo */
+.news-image-top[data-chapeu]::before,
+.news-image[data-chapeu][data-chapeu]:not([data-chapeu=""])::before {
+   visibility: visible;
+   opacity: 1;
+}
+
 /* ===== SEÇÃO TENDÊNCIAS EM IA ===== */
 .trends-section {
   background-color: #000000;
@@ -1843,10 +1892,10 @@ textarea.form-control {
   border: none;
   padding: 12px 25px;
   font-size: 1rem;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
   /*transition: background-color 0.1s ease;*/
-  border: 1px solid #232221;
+  border: 1px solid #313131;
 }
 
 .btn-submit:hover {
@@ -1899,6 +1948,14 @@ textarea.form-control {
   }
 }
 
+#iubenda-cs-banner .iubenda-banner-content {
+  font-weight: 300 !important;
+  padding: 16px !important;
+  flex: 1 1 auto !important;
+  overflow-y: auto !important;
+  background:#0055dd !important;
+}
+
 
 /*ESTILO DA FOOTER*/
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
@@ -1919,102 +1976,117 @@ body {
 }
 
 .site-footer {
-    background-color: var(--bg-dark);
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    color: #ffffff;
-    padding: 3rem 1.5rem 0.05rem;
-    max-width: 1200px;
-    margin: 0 auto;
+  background-color: var(--bg-dark, #000000); /* Usando sua variável ou fallback */
+  font-family: 'Roboto', sans-serif; /* Fonte base */
+  color: var(--text-gray, #9ca3af); /* Cor padrão do texto */
+  padding: 3rem 1.5rem 1.5rem; /* Aumentado padding superior/inferior */
+  max-width: 1200px;
+  margin: 40px auto 0 auto; /* Margem acima */
 }
 
 .footer-content {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
+  display: grid;
+  /* Ajustado para auto-fit, mínimo 180px, máximo 1fr */
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+  gap: 2rem 1.5rem; /* Espaço vertical e horizontal */
 }
 
-.footer-section h3,
-.footer-section h4 {
-    margin-bottom: 1rem;
-    font-weight: 600;
+.footer-section {
+ /* Nenhum estilo base específico necessário */
 }
 
+/* Títulos H3 e H4 das Seções */
+.footer-section h3, /* Para .brand */
+.footer-section h4 { /* Para .navigation, .resources, .social */
+  font-size: 18px; /* Conforme solicitado */
+  font-family: 'Roboto', sans-serif; /* Conforme solicitado */
+  color: #FFFFFF; /* Conforme solicitado */
+  margin-top: 0;
+  margin-bottom: 1.2rem; /* Aumenta espaço abaixo */
+  font-weight: 600; /* Peso para destaque */
+  padding-bottom: 0; /* Remove padding-bottom */
+  border-bottom: none; /* <<< REMOVIDA A BORDA ABAIXO DOS TÍTULOS >>> */
+}
+
+/* Parágrafo na seção Brand */
 .footer-section.brand p {
-    color: var(--text-gray);
-    font-size: 0.875rem;
+  color: var(--text-gray, #9ca3af);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin: 0;
 }
 
-.footer-section ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+/* Estilos UNIFICADOS para Listas (ul) */
+.footer-section.navigation ul,
+.footer-section.resources ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.footer-section ul li {
-    margin-bottom: 0.5rem;
+/* Estilos UNIFICADOS para Itens de Lista (li) */
+.footer-section.navigation ul li,
+.footer-section.resources ul li {
+  margin-bottom: 0.7rem; /* Espaçamento entre itens */
 }
 
-.footer-section ul li a {
-    color: var(--text-gray);
-    text-decoration: none;
-    transition: color 0.3s ease;
+/* Estilos UNIFICADOS para Links PADRÃO (a) */
+/* Aplica a todos os 'a' dentro de 'li' em navigation e resources */
+.footer-section.navigation ul li a,
+.footer-section.resources ul li a {
+  color: #9ca3af; /* Conforme solicitado */
+  font-size: 16px; /* Conforme solicitado */
+  font-family: 'Roboto', sans-serif; /* Garante a fonte */
+  text-decoration: none; /* Sem sublinhado por padrão */
+  transition: color 0.1s ease;
+  /* Resets para garantir */
+  background: none;
+  border: none;
+  padding: 0;
+  display: inline; 
 }
 
-.footer-section ul li a:hover {
-    color: var(--text-light);
+/* Efeito Hover UNIFICADO para Links PADRÃO */
+.footer-section.navigation ul li a:hover,
+.footer-section.resources ul li a:hover {
+  color: #ffffff;
+  /* text-decoration: underline; */ /* REMOVIDO sublinhado do hover, se não desejar */
+}
+
+/* Aplica a QUALQUER link com .iubenda-embed dentro da lista de recursos */
+.footer-section.resources ul li a.iubenda-embed {
+  background-color: transparent !important; 
+}
+
+/* Esconder o script */
+.footer-section.resources ul li script {
+  display: none !important;
 }
 
 .social-icons {
-    display: flex;
-    gap: 1rem;
+  display: flex;
+  gap: 0.8rem; 
+  flex-wrap: wrap; 
+  margin-bottom: 1.5rem; 
 }
-
 .social-icon {
-    color: var(--text-gray);
-    text-decoration: none;
-    transition: color 0.3s ease;
+  color: var(--text-gray, #9ca3af); 
+  transition: color 0.2s ease;
+  display: inline-flex; /* Ajuda no alinhamento do SVG */
+  align-items: center;
 }
-
 .social-icon svg {
-    width: 1.5rem;
-    height: 1.5rem;
-    fill: currentColor;
+  width: 1.4rem; 
+  height: 1.4rem;
+  fill: currentColor;
 }
-
 .social-icon:hover {
-    color: var(--text-light);
+  color: #ffffff; /* Mantido conforme solicitado */
 }
 
-.footer-bottom {
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid #151515;
-    text-align: center;
-}
-
-.footer-bottom .copyright {
-    color: var(--text-gray);
-    font-size: 0.875rem;
-    margin-bottom: 0.5rem;
-}
-
-.footer-bottom .tagline {
-    color: var(--text-dark-gray);
-    font-size: 0.75rem;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-    .footer-content {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 480px) {
-    .footer-content {
-        grid-template-columns: 1fr;
-    }
+/* Seleciona o link 'a' DENTRO do LI na seção de recursos */
+.footer-section.resources ul li .iubenda-embed.iubenda-black:not(.no-brand):not(.iubenda-nostyle) {
+    background-image: none !important; /* Remove o ícone */
 }
 
 /* Formulário de Newsletter */

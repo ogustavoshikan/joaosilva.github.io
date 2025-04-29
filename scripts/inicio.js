@@ -414,10 +414,17 @@ function carregarNoticiasDestaque() {
         });
 }
 
-// --- Função Auxiliar para Criar o HTML do Card de Notícia (MODIFICADA DATA/HORA) ---
+// <<< COPIAR OU IMPORTAR A FUNÇÃO formatForUrl >>>
+// (Necessária para o link do chapéu)
+function formatForUrl(text) { 
+    if (!text) return '';
+    return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9.]+/g, '-').replace(/-+/g, '-').replace(/^-+|-+$/g, '');
+}
+
+// --- Função Auxiliar para Criar o HTML do Card de Notícia (MODIFICADA V3 - com Chapéu) ---
 function criarCardNoticiaHtml(cardData, tipoCard) {
     const article = document.createElement('article');
-    article.classList.add('news-card', tipoCard);
+    article.classList.add('news-card', tipoCard); 
 
     const linkNoticia = `noticia.html?artigo=${cardData.slug}`; 
     const titulo = cardData.titulo || 'Sem Título';
@@ -426,6 +433,7 @@ function criarCardNoticiaHtml(cardData, tipoCard) {
     const altImagem = cardData.altImagem || `Imagem para ${titulo}`;
     const autorNome = cardData.autor?.nome || ''; 
     const autorLink = cardData.autor?.link || '#';
+    const isoDateTimeString = cardData.dateTimeIso || cardData.isoDate;
     
     // --- Lógica de Formatação de Data/Hora (Formato: DD Fev AAAA às HHhMM) ---
     let dataHoraFormatada = '';
@@ -475,11 +483,22 @@ function criarCardNoticiaHtml(cardData, tipoCard) {
              <a href="${autorLink}" class="author-link" ${autorLink !== '#' ? 'target="_blank" rel="noopener noreferrer"' : ''}>${autorNome}</a>
            </div>`
         : '';
-
-    // Estrutura HTML (Usando a nova data/hora formatada)
+        
+         // --- NOVO: HTML do Chapéu ---
+    let chapeuHtml = '';
+    // Pega o texto do campo 'chapeu'
+    const chapeuText = cardData.chapeu; 
+    if (chapeuText) {
+         // Cria apenas um SPAN, sem link
+         chapeuHtml = `<span class="news-card-chapeu">${chapeuText}</span>`; 
+    }
+    // --- FIM HTML Chapéu ---
+        
+    // Estrutura HTML (Adiciona atributo data-chapeu)
     if (tipoCard === 'featured' || tipoCard === 'side') {
         article.innerHTML = `
-          <div class="news-image-top">
+          <div class="news-image-top" ${chapeuText ? `data-chapeu="${chapeuText}"` : ''}> <!-- <<< ATRIBUTO ADICIONADO AQUI >>> -->
+            <!-- REMOVIDO: chapeuHtml daqui -->
             <a href="${linkNoticia}" aria-label="Leia sobre ${titulo}">
               <img src="${imagemSrc}" alt="${altImagem}" loading="lazy">
             </a>
@@ -488,7 +507,6 @@ function criarCardNoticiaHtml(cardData, tipoCard) {
             </a>
           </div>
           <div class="news-content">
-            <!-- Usa a nova variável dataHoraFormatada -->
             <time datetime="${dateTimeAttr}" class="news-date">${dataHoraFormatada}</time> 
             <h3 class="news-title">
               <a href="${linkNoticia}" aria-label="Leia sobre ${titulo}" title="Leia o artigo completo: ${titulo}">
@@ -500,14 +518,16 @@ function criarCardNoticiaHtml(cardData, tipoCard) {
           </div>
         `;
     } else if (tipoCard === 'bottom') {
-        article.innerHTML = `
-          <div class="news-image">
+        // Adicionar data-chapeu aqui também se quiser no card bottom
+         article.innerHTML = `
+          <div class="news-image" ${chapeuText ? `data-chapeu="${chapeuText}"` : ''}> <!-- <<< ATRIBUTO ADICIONADO AQUI (opcional) >>> -->
             <a href="${linkNoticia}" aria-label="Leia sobre ${titulo}">
               <img src="${imagemSrc}" alt="${altImagem}" loading="lazy">
             </a>
           </div>
           <div class="news-content">
-             <!-- Usa a nova variável dataHoraFormatada -->
+             <!-- Pode adicionar o chapéu aqui se quiser -->
+             <!-- ${chapeuHtml} --> 
             <time datetime="${dateTimeAttr}" class="news-date">${dataHoraFormatada}</time>
             <h3 class="news-title">
               <a href="${linkNoticia}" aria-label="Leia sobre ${titulo}" title="Leia o artigo completo: ${titulo}">
@@ -522,5 +542,6 @@ function criarCardNoticiaHtml(cardData, tipoCard) {
 
     return article;
 }
+
 // --- Chama a função principal quando o DOM estiver pronto ---
 document.addEventListener('DOMContentLoaded', inicializarPaginaInicial);

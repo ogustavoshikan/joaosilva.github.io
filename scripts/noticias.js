@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function updatePageTitle() {
         if (!pageTitleElement) return; // Sai se não encontrar o elemento H1
 
-        let title = "Últimas Notícias"; // Título padrão
+        let title = "Todas as Notícias"; // Título padrão
         if (activeSectionFilter) {
              // Mapeia o slug da seção para um nome amigável
              if (activeSectionFilter === 'topico-modelos-ia') title = "Tópico: Modelos de IA - LLMs";

@@ -92,7 +92,7 @@
             <a href="https://technologyai.com.br/noticias" class="current-page">Últimas Notícias</a>
           </div>
           !-- >>> TÍTULO PRINCIPAL DINÂMICO <<< -->
-      <h1 class="page-title-news">Últimas Notícias</h1> 
+      <h1 class="page-title-news">Todas as Notícias</h1> 
       <!-- O JS vai atualizar o texto aqui -->
       <!-- >>> FIM DO TÍTULO <<< -->
           <!-- Container para o cabeçalho (pesquisa e filtro) -->
@@ -164,22 +164,50 @@
       <div class="footer-section navigation">
           <h4>Navegação</h4>
           <ul>
-              <li><a href="/">Página inicial</a></li>
-              <li><a href="#">Notícias</a></li>
-              <li><a href="https://technologyai.com.br/#trends-heading">Tendências em IA</a></li>
+              <li><a href="#">Página inicial</a></li>
+              <li><a href="/noticias">Notícias</a></li>
+              <li><a href="/tendencias">Tendências em IA</a></li>
               <li><a href="/designs">Designs</a></li>
           </ul>
       </div>
       
       <div class="footer-section resources">
-          <h4>Recursos</h4>
-          <ul>
-              <li><a href="#">Newsletter</a></li>
-              <li><a href="#">Política de Privacidade</a></li>
-              <li><a href="https://wa.me/61982006013">Contato</a></li>
-              <li><a href="#">Sobre Nós</a></li>
-          </ul>
-      </div>
+        <h4>Recursos</h4>
+        <ul>
+            <li><a href="#">Newsletter</a></li> <!-- Link futuro ou remover se já tem o signup -->
+            <li><a href="https://wa.me/61982006013" target="_blank" rel="noopener noreferrer">Contato</a></li> <!-- Adicionado target blank -->
+            
+            <!-- Item da Lista para Política de Privacidade -->
+            <li> 
+              <a href="https://www.iubenda.com/privacy-policy/95000863" class="iubenda-black iubenda-noiframe iubenda-embed iubenda-noiframe " title="Política de Privacidade ">Política de Privacidade</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+          </li>
+
+            <!-- Item da Lista para Política de Cookies (MODIFICADO) -->
+            <li> 
+              <!-- Link Original Iubenda (Escondido) -->
+              <a href="https://www.iubenda.com/privacy-policy/95000863/cookie-policy" 
+                 class="iubenda-black iubenda-noiframe iubenda-embed iubenda-noiframe " 
+                 title="Política de Cookies "
+                 style="display: none !important; visibility: hidden !important; width: 0 !important; height: 0 !important; overflow: hidden !important; position: absolute !important; left: -9999px !important;">
+                 Política de Cookies 
+              </a>
+              <!-- Script Iubenda (Mantido para funcionalidade, se houver) -->
+              <script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+              
+              <!-- <<< NOSSO PRÓPRIO LINK (Visível) >>> -->
+              <a href="https://www.iubenda.com/privacy-policy/95000863/cookie-policy" 
+                 class="footer-link-custom" 
+                 title="Política de Cookies">
+                 Política de Cookies
+              </a>
+              <!-- <<< FIM DO NOSSO LINK >>> -->
+          </li>
+
+          <!-- Item da Lista para Termos de Uso (Se voltar a usar) -->
+          <!-- <li><a href="/termos-uso">Termos de Uso</a></li> -->
+          
+      </ul>
+  </div>
       
       <div class="footer-section social">
           <h4>Conecte-se</h4>
@@ -187,22 +215,37 @@
             <!-- Instagram -->
             <a href="https://instagram.com/ogustavogoncalvess" class="social-icon instagram" aria-label="Siga-nos no Instagram">
                 <svg viewBox="0 0 24 24">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.148 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.148-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98C0 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 24 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.98-6.98C24 15.668 24 15.259 24 12c0-3.259-.014-3.667-.072-4.947-.2-4.354-2.617-6.78-6.98-6.98C15.668 0 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/>
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.148 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.148-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98C0 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 24 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.98-6.98C24 15.668 24 15.259 24 12c0-3.259-.014-3.667-.072-4.947-.2-4.354-2.617-6.78-6.98-6.98C15.668 0 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"></path>
                 </svg>
             </a>
             <!-- X (antigo Twitter) -->
             <a href="https://x.com/gustavoshikan" class="social-icon x" aria-label="Siga-nos no X">
                 <svg viewBox="0 0 24 24">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
                 </svg>
             </a>
             <!-- WhatsApp -->
             <a href="https://wa.me/61982006013" class="social-icon whatsapp" aria-label="Siga-nos no WhatsApp">
                 <svg viewBox="0 0 24 24">
-                    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.134.563 4.133 1.54 5.88l-1.52 5.52 5.66-1.48A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.92 0-3.69-.563-5.18-1.52l-.36-.18-3.36.88.9-3.27-.21-.36A9.956 9.956 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10zm5.88-6.54c-.32-.16-1.88-.93-2.17-1.04-.29-.11-.5-.16-.71.16-.21.32-.82 1.04-.99 1.25-.18.21-.36.23-.67.07-.31-.16-1.32-.49-2.51-1.57-.93-.84-1.55-1.88-1.73-2.19-.18-.31-.02-.47.13-.62.14-.14.31-.36.47-.54.16-.18.21-.31.31-.52.11-.21.05-.39-.02-.54-.07-.16-.71-1.71-.97-2.34-.25-.62-.5-.53-.71-.53h-.61c-.21 0-.54.07-.82.39-.29.32-1.09 1.07-1.09 2.61 0 1.54 1.12 3.02 1.27 3.23.16.21 2.21 3.37 5.36 4.72.75.33 1.33.53 1.79.68.75.24 1.43.21 1.97.12.6-.1 1.88-.77 2.14-1.51.27-.74.27-1.37.19-1.51-.08-.14-.29-.22-.61-.38z"/>
+                    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.134.563 4.133 1.54 5.88l-1.52 5.52 5.66-1.48A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.92 0-3.69-.563-5.18-1.52l-.36-.18-3.36.88.9-3.27-.21-.36A9.956 9.956 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10zm5.88-6.54c-.32-.16-1.88-.93-2.17-1.04-.29-.11-.5-.16-.71.16-.21.32-.82 1.04-.99 1.25-.18.21-.36.23-.67.07-.31-.16-1.32-.49-2.51-1.57-.93-.84-1.55-1.88-1.73-2.19-.18-.31-.02-.47.13-.62.14-.14.31-.36.47-.54.16-.18.21-.31.31-.52.11-.21.05-.39-.02-.54-.07-.16-.71-1.71-.97-2.34-.25-.62-.5-.53-.71-.53h-.61c-.21 0-.54.07-.82.39-.29.32-1.09 1.07-1.09 2.61 0 1.54 1.12 3.02 1.27 3.23.16.21 2.21 3.37 5.36 4.72.75.33 1.33.53 1.79.68.75.24 1.43.21 1.97.12.6-.1 1.88-.77 2.14-1.51.27-.74.27-1.37.19-1.51-.08-.14-.29-.22-.61-.38z"></path>
                 </svg>
             </a>
-        </div>
+          </div>
+          
+          <!-- Adicionando o campo de email e botão para assinar newsletter -->
+          <div class="newsletter-signup">
+            <h5>Assine a Newsletter</h5>
+            <!-- Adicionar method, data-netlify e name ao form -->
+            <form class="newsletter-form" name="footer-newsletter" method="POST" data-netlify="true"> 
+                <!-- Adicionar name="email" ao input -->
+                <input type="email" name="email" placeholder="Seu email" required> 
+                <!-- Opcional: Campo Honeypot -->
+                <div data-netlify-honeypot="bot-field" style="display: none;">
+                    <label>Não preencha: <input name="bot-field"></label>
+                </div>
+                <button type="submit">Assinar</button>
+            </form>
+          </div>
       </div>
   </div>
   

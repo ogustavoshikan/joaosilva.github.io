@@ -7,18 +7,18 @@ body.trend-detail-page main {
     width: 100%;
     max-width: 1268px;
     margin: 30px auto 0;
-    padding: 9px 20px
+    padding: 9px 20px;
 }
 
 .trend-detail-page .breadcrumbs {
-    margin-bottom: 30px
+    margin-bottom: 30px;
 }
 
 .trend-content {
     max-width: 750px;
     margin: 0 auto 40px;
     border-bottom: 1px solid var(--border-color-light,#333);
-    padding-bottom: 30px
+    padding-bottom: 30px;
 }
 
 .trend-content .loading-placeholder {
@@ -27,13 +27,13 @@ body.trend-detail-page main {
     min-height: 200px;
     display: flex;
     align-items: center;
-    justify-content: center
+    justify-content: center;
 }
 
 .trend-content .trend-dynamic-content {
     visibility: hidden;
     opacity: 0;
-    transition: opacity .3s ease-in-out
+    transition: opacity .1 s ease-in-out;
 }
 
 .trend-title {
@@ -42,14 +42,14 @@ body.trend-detail-page main {
     color: var(--heading-color);
     line-height: 1.25;
     margin-bottom: 15px;
-    font-weight: 700
+    font-weight: 700;
 }
 
 .trend-meta {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 25px
+    margin-bottom: 25px;
 }
 
 .trend-author-avatar-meta {
@@ -57,19 +57,19 @@ body.trend-detail-page main {
     height: 36px;
     border-radius: 50%;
     object-fit: cover;
-    flex-shrink: 0
+    flex-shrink: 0;
 }
 
 .trend-meta-text {
     display: flex;
     flex-direction: column;
-    gap: 2px
+    gap: 2px;
 }
 
 .trend-author-name {
     font-size: .9rem;
     font-weight: 500;
-    color: var(--text-color)
+    color: var(--text-color);
 }
 
 .trend-author-name .trend-author-link-meta {
@@ -79,25 +79,25 @@ body.trend-detail-page main {
 
 .more-trend-item:hover .more-trend-title,.trend-author-name .trend-author-link-meta:hover {
     color: #fff;
-    text-decoration: underline
+    text-decoration: underline;
 }
 
 .trend-relative-time {
     font-size: .8rem;
-    color: var(--text-color2)
+    color: var(--text-color2);
 }
 
 .trend-social-share {
     margin-top: 0;
     margin-bottom: 15px;
     padding-left: 0;
-    text-align: left
+    text-align: left;
 }
 
 .trend-social-share a {
     font-size: 1rem;
     margin-right: 8px;
-    margin-left: 0
+    margin-left: 0;
 }
 
 .trend-social-share .social-icon {
@@ -109,7 +109,7 @@ body.trend-detail-page main {
     justify-content: center;
     cursor: pointer;
     line-height: 1;
-    margin-right: 8px
+    margin-right: 8px;
 }
 
 .light-mode .trend-source-link.btn,.trend-source-link.btn {
@@ -117,68 +117,68 @@ body.trend-detail-page main {
     font-style: italic;
     display: inline-block;
     padding: 10px 20px;
-    transition: none
+    transition: none;
 }
 
 .trend-social-share .social-icon.x {
-    background-color: #55555500
+    background-color: #55555500;
 }
 
 .light-mode .social-share a.x:hover i,.trend-social-share .social-icon.facebook:hover i,.trend-social-share .social-icon.linkedin:hover i,.trend-social-share .social-icon.whatsapp:hover i,.trend-social-share .social-icon.x i {
-    color: #fff
+    color: #fff;
 }
 
 .trend-social-share .social-icon.x:hover {
-    background-color: #e3e3e3
+    background-color: #e3e3e3;
 }
 
 .light-mode .more-trend-item .more-trend-title,.light-mode .social-share a.x i,.light-mode .trend-author-name,.light-mode .trend-author-name .trend-author-link-meta:hover,.trend-social-share .social-icon.x:hover i {
-    color: #000000
+    color: #000000;
 }
 
 .trend-social-share .social-icon.whatsapp {
-    background-color: #128c7e00
+    background-color: #128c7e00;
 }
 
 .trend-social-share .social-icon.whatsapp i {
-    color: #25d366
+    color: #25d366;
 }
 
 .trend-social-share .social-icon.whatsapp:hover {
-    background-color: #25d366
+    background-color: #25d366;
 }
 
 .trend-social-share .social-icon.facebook {
-    background-color: #0e5dc900
+    background-color: #0e5dc900;
 }
 
 .trend-social-share .social-icon.facebook i {
-    color: #1877f2
+    color: #1877f2;
 }
 
 .trend-social-share .social-icon.facebook:hover {
-    background-color: #1877f2
+    background-color: #1877f2;
 }
 
 .trend-social-share .social-icon.linkedin {
-    background-color: #084b8a00
+    background-color: #084b8a00;
 }
 
 .trend-social-share .social-icon.linkedin i {
-    color: #0a66c2
+    color: #0a66c2;
 }
 
 .breadcrumbs a:hover,.light-mode .breadcrumbs a:hover {
-    color: #f44336
+    color: #f44336;
 }
 
 .trend-social-share .social-icon.linkedin:hover {
-    background-color: #0a66c2
+    background-color: #0a66c2;
 }
 
 .trend-featured-image {
     margin-bottom: 25px;
-    width: 100%
+    width: 100%;
 }
 
 .trend-featured-image img {
@@ -196,12 +196,12 @@ body.trend-detail-page main {
     color: var(--text-color);
     line-height: 1.7;
     margin-bottom: 30px;
-    font-family: Roboto,sans-serif
+    font-family: Roboto,sans-serif;
 }
 
 .trend-source-link-container {
     margin-bottom: 30px;
-    text-align: center
+    text-align: center;
 }
 
 .trend-source-link.btn {
@@ -211,16 +211,16 @@ body.trend-detail-page main {
     border: 1px solid #464646;
     background-color: #232221;
     text-decoration: none;
-    color: #fff
+    color: #fff;
 }
 
 .trend-source-link.btn:hover {
     background-color: #343434;
-    border: 1px solid #585858
+    border: 1px solid #585858;
 }
 
 .more-trends-section {
-    margin-top: 40px
+    margin-top: 40px;
 }
 
 .more-trends-title {
@@ -236,24 +236,24 @@ body.trend-detail-page main {
     display: grid;
     grid-template-columns: repeat(4,1fr);
     gap: 25px;
-    margin-bottom: 1rem
+    margin-bottom: 1rem;
 }
 
 .more-trend-item {
     display: block;
     text-decoration: none;
     color: inherit;
-    border-radius: 8px;
+    border-radius: 5px;
     overflow: hidden;
-    transition: border-color .2s
+    transition: border-color .2s;
 }
 
 .more-trend-item:hover {
-    border-color: var(--secondary-color,#00bcd4)
+    border-color: var(--secondary-color,#00bcd4);
 }
 
 .light-mode .trend-content {
-    border-bottom: 1px solid var(--light-border-color,#dee2e6)
+    border-bottom: 1px solid var(--light-border-color,#dee2e6);
 }
 
 .more-trend-item img {
@@ -265,7 +265,7 @@ body.trend-detail-page main {
 
 .more-trend-item img:hover {
     filter: brightness(.85);
-    transition: filter .1s
+    transition: filter .1s;
 }
 
 .more-trend-item .more-trend-title {
@@ -274,7 +274,7 @@ body.trend-detail-page main {
     padding: 12px 0;
     line-height: 1.4;
     color: var(--heading-color);
-    margin: 0
+    margin: 0;
 }
 
 @media (max-width: 768px) {
@@ -285,16 +285,16 @@ body.trend-detail-page main {
     }
 
     .trend-title {
-        font-size: 1.8rem
+        font-size: 1.8rem;
     }
 
     .trend-excerpt {
-        font-size: 1rem
+        font-size: 1rem;
     }
 
     .more-trends-grid {
         grid-template-columns: repeat(2,1fr);
-        gap: 20px
+        gap: 20px;
     }
 }
 
@@ -304,14 +304,14 @@ body.trend-detail-page main {
     }
 
     .trend-title {
-        font-size: 1.6rem
+        font-size: 1.6rem;
     }
 }
 
 .breadcrumbs {
     margin-bottom: 30px;
     font-size: .85rem;
-    color: var(--text-color2)
+    color: var(--text-color2);
 }
 
 .breadcrumbs ol {
@@ -319,17 +319,17 @@ body.trend-detail-page main {
     padding: 0;
     margin: 0;
     display: inline;
-    align-items: center
+    align-items: center;
 }
 
 .breadcrumbs li {
-    display: contents
+    display: contents;
 }
 
 .breadcrumbs li+li::before {
     content: ">";
     margin: 0 8px;
-    color: #6c757d
+    color: #6c757d;
 }
 
 .breadcrumbs a {
@@ -337,7 +337,7 @@ body.trend-detail-page main {
     color: var(--text-color2);
     font-size: .9rem;
     text-decoration: none;
-    transition: color .3s
+    transition: color .3s;
 }
 
 .breadcrumbs li[aria-current=page] {
@@ -345,14 +345,14 @@ body.trend-detail-page main {
     font-size: .9rem;
     color: var(--text-color);
     font-weight: 400;
-    padding-left: 8px
+    padding-left: 8px;
 }
 
 .light-mode .breadcrumbs a,.light-mode .breadcrumbs a:hover {
     font-family: Anta,sans-serif;
     transition: color .3s;
     font-size: .9rem;
-    text-decoration: none
+    text-decoration: none;
 }
 
 .trend-body-content {
@@ -360,19 +360,19 @@ body.trend-detail-page main {
     line-height: 1.7;
     color: var(--text-color);
     margin-top: -10px;
-    margin-bottom: 30px
+    margin-bottom: 30px;
 }
 
 .trend-body-content p {
-    margin-bottom: 1em
+    margin-bottom: 1em;
 }
 
 .light-mode .trend-detail-section,body.trend-detail-page.light-mode main {
-    background: #fff
+    background: #fff;
 }
 
 .light-mode .trend-content .loading-placeholder,.light-mode .trend-relative-time {
-    color: var(--light-text-secondary,#6c757d)
+    color: var(--light-text-secondary,#6c757d);
 }
 
 .light-mode .more-trends-title,.light-mode .trend-body-content,.light-mode .trend-excerpt,.light-mode .trend-title {
@@ -381,12 +381,12 @@ body.trend-detail-page main {
 
 .light-mode .more-trend-item {
     background-color: var(--light-bg-secondary,#fff);
-    box-shadow: 0 1px 2px rgba(0,0,0,.04)
+    box-shadow: 0 1px 2px rgba(0,0,0,.04);
 }
 
 .light-mode .more-trend-item:hover .more-trend-title {
     color: #000;
-    text-decoration: underline
+    text-decoration: underline;
 }
 
 .breadcrumb-home-icon {
@@ -395,16 +395,16 @@ body.trend-detail-page main {
     margin-right: 3px;
     vertical-align: middle;
     position: relative;
-    top: -1px
+    top: -1px;
 }
 
 .breadcrumbs li:first-child a {
     display: inline-flex;
-    align-items: center
+    align-items: center;
 }
 
 .light-mode .breadcrumbs a {
-    color: #6c757d
+    color: #6c757d;
 }
 
 .light-mode .breadcrumbs li[aria-current=page] {
@@ -412,7 +412,7 @@ body.trend-detail-page main {
     font-size: .9rem;
     color: #212529;
     font-weight: 400;
-    padding-left: 8px
+    padding-left: 8px;
 }
 
 .light-mode .trend-source-link.btn {
@@ -422,18 +422,18 @@ body.trend-detail-page main {
     border: 1px solid #c4c4c4;
     background-color: #ddd;
     text-decoration: none;
-    color: #000
+    color: #000;
 }
 
 .light-mode .trend-source-link.btn:hover {
     background-color: #cecdcd;
-    border: 1px solid #aaa9a9
+    border: 1px solid #aaa9a9;
 }
 
 .light-mode .social-share a.x {
-    background-color: transparent
+    background-color: transparent;
 }
 
 .light-mode .social-share a.x:hover {
-    background-color: #000
+    background-color: #000000;
 }

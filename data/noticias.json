@@ -2,6 +2,7 @@
   "noticias": [
     {
       "slug": "openai-gpt-4.5",
+      "chapeu": "Modelo reduz alucinações",
       "titulo": "OpenAI Lança Modelo GPT-4.5 com Inteligência Emocional Avançada",
       "tituloCurto": "OpenAI lança GPT-4.5 Emocional",
       "metaDescription": "Descubra o novo GPT-4.5 da OpenAI...",
@@ -45,6 +46,7 @@
     },
     {
       "slug": "claude-sonnet-3.7",
+      "chapeu": "Modelo reduz alucinações",
       "titulo": "Claude Sonnet 3.7: A Nova Fronteira da IA que Supera OpenAI e Grok 3",
       "tituloCurto": "Claude Sonnet 3.7 Supera Concorrência",
       "metaDescription": "Conheça o Claude 3.7 Sonnet da Anthropic...",
@@ -72,6 +74,7 @@
     },
     {
       "slug": "elon-musk-grok-3",
+      "chapeu": "Modelo reduz alucinações",
       "titulo": "Elon Musk Lança Grok 3: A 'IA Mais Inteligente da Terra'",
        "tituloCurto": "Elon Musk lança Grok 3",
        "metaDescription": "Grok 3 da xAI promete superar GPT-4o...",
