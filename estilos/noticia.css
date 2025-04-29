@@ -441,7 +441,7 @@ main {
 .article-body .image-in-article img {
     display: block;
     max-width: 100%;
-    width: 100%;
+    width: 90%;
     height: 420px;
     object-fit: cover;
     margin: 0 auto;
