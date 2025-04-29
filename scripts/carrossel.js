@@ -35,7 +35,7 @@ async function loadArtCarousel() {
 
       // Inicializa o Swiper após adicionar os slides
       const swiper = new Swiper('.art-section .swiper', {
-        slidesPerView: 6, // Mostra 5 slides por vez
+        slidesPerView: 5, // Mostra 5 slides por vez
         spaceBetween: 10, // Espaço entre os slides
         loop: true, // Carrossel em loop
         navigation: {
