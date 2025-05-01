@@ -5,6 +5,8 @@
 /tendencias   /tendencias.html   200
 /tendencia/*  /tendencia.html    200 
 /noticia/*    /noticia.html      200
+/obrigado-contato      /obrigado-contato.html     200
+/obrigado-newsletter   /obrigado-newsletter.html  200
 /politica-privacidade   /https://www.iubenda.com/privacy-policy/95000863   200
 /termos-uso            /termos-uso.html             200
 

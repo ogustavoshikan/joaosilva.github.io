@@ -126,8 +126,8 @@ body.trends-page main {
 
 .trends-cards-container-grid {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 25px;
+    grid-template-columns: repeat(4,1fr);
+    gap: 15px;
 }
 
 .trend-card-item {

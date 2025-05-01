@@ -185,131 +185,155 @@ function inicializarSliderMedio() {
 }
 
 
-// === 4. Carregar os Cards Menores da Seção "Tópicos" ===
-// Mantemos essa lógica como está, pois usa 'topics-cards.json'
+// === 4. Carregar os Cards Menores da Seção "Tópicos" (COM CONTAGEM DINÂMICA DE ARTIGOS POR TÓPICO) ===
 function inicializarCardsTopicos() {
-     fetch('data/topics-cards.json')
-        .then(response => response.ok ? response.json() : Promise.reject(`HTTP error! status: ${response.status}`))
-        .then(data => {
-            const container = document.querySelector('.small-topics-container');
-            if(!container) {
-                 console.error("Container de tópicos (.small-topics-container) não encontrado.");
-                 return;
-            }
-             if (!data || !Array.isArray(data.topics)) {
-                throw new Error("Dados inválidos ou ausentes em topics-cards.json");
-            }
+     Promise.all([
+         fetch('data/topics-cards.json?v=' + Date.now()).then(res => res.ok ? res.json() : Promise.reject('Falha topics-cards.json')),
+         fetch('data/noticias.json?v=' + Date.now()).then(res => res.ok ? res.json() : Promise.reject('Falha noticias.json'))
+     ])
+     .then(([topicsData, newsData]) => {
+         const container = document.querySelector('.small-topics-container');
+         if(!container) { console.error("Container .small-topics-container não encontrado."); return; }
+         if (!topicsData || !Array.isArray(topicsData.topics)) throw new Error("Dados inválidos topics-cards.json");
+         if (!newsData || !Array.isArray(newsData.noticias)) throw new Error("Dados inválidos noticias.json");
 
-            container.innerHTML = ''; // Limpa o container
-
-            // Adiciona o card da sidebar primeiro, se existir
-            const sidebarData = data.topics.find(item => item.type === 'sidebar');
-            if (sidebarData) {
-                const sidebarCard = document.createElement('article');
-                sidebarCard.classList.add('sidebar-card', 'stats-card');
-                 sidebarCard.innerHTML = `
-                  <div class="sidebar-card-stats">
-                    <div class="stats-topics">
-                      <div class="icon-newsletter-container">
-                        <span class="icon-newsletter" aria-hidden="true"><i class="fas fa-newspaper"></i></span>
-                        <span class="topics-count">${sidebarData.topicsCount || 0}</span>
-                      </div>
-                      <p class="stats-label">TÓPICOS</p>
-                    </div>
-                    <div class="stats-comments">
-                      <div class="icon-comments-container">
-                        <span class="icon-comments" aria-hidden="true"><i class="fas fa-comments"></i></span>
-                        <span class="comments-count">${sidebarData.commentsCount || 0}</span>
-                      </div>
-                      <p class="stats-label">COMENTÁRIOS</p>
-                    </div>
-                  </div>
-                  <a href="${sidebarData.link || '#'}" class="topics-sidebar-button" target="_blank" rel="noopener noreferrer" aria-label="Veja mais detalhes sobre tópicos e comentários">
-                    <span class="topics-sidebar-button-text">Saiba Mais</span> <!-- Adicionado texto dentro do span -->
-                  </a>
-                `;
-                container.appendChild(sidebarCard);
-            }
-
-            // Cria as linhas para os cards de tópicos
-             let row = document.createElement('div');
-             row.classList.add('small-topic-row');
-             container.appendChild(row);
-             let itemsInRow = 0;
-
-             data.topics.forEach(item => {
-                // Ignora o tipo sidebar aqui, já foi adicionado
-                if (item.type === 'sidebar') return;
-
-                 // Adiciona uma nova linha a cada 2 cards de tópico/stats
-                 if (itemsInRow > 0 && itemsInRow % 2 === 0) {
-                    row = document.createElement('div');
-                    row.classList.add('small-topic-row');
-                    container.appendChild(row);
-                 }
-
-                let topicCard = document.createElement('article');
-                topicCard.classList.add('small-topic-card');
-
-                 if (item.type === 'topic') {
-                     topicCard.classList.add(`${(item.title || 'default').toLowerCase().replace(/[^a-z0-9]+/g, '-')}-card`); // Gera classe baseada no título
-                     topicCard.innerHTML = `
-                       <div class="small-card-link-container">
-                         <a href="${item.link || '#'}" class="small-card-image-link" target="_blank" rel="noopener noreferrer" aria-label="Veja mais sobre ${item.title || 'Tópico'}">
-                           <img src="${item.image || 'assets/imagens/geral/placeholder.png'}" alt="${item.alt || `Imagem ${item.title || 'Tópico'}`}" class="small-card-image" loading="lazy">
-                         </a>
-                         <div class="small-card-content">
-                           <h4>
-                             <a href="${item.link || '#'}" class="small-card-title-link" target="_blank" rel="noopener noreferrer" aria-label="Leia mais sobre ${item.title || 'Tópico'}" title="${item.title || 'Tópico'}">
-                               <span class="small-card-title">${item.title || 'Sem Título'}</span>
-                             </a>
-                           </h4>
-                           <p class="small-card-description">${item.description || ''}</p>
-                         </div>
-                       </div>
-                     `;
-                 } else if (item.type === 'stats') {
-                      topicCard.classList.add(`stats-card`);
-                  // Link do WhatsApp com mensagem pré-definida
-                  const whatsappLink = `https://wa.me/5561982006013?text=${encodeURIComponent('Quero Ficar por Dentro do que Acontece no Mundo da Inteligência Artificial com a Newsletter da Technology AI')}`; 
-                  topicCard.innerHTML = `                        <div class="small-card-stats">
-                          <div class="stats-topics">
-                             <div class="icon-newsletter-container">
-                               <span class="icon-newsletter" aria-hidden="true"><i class="fas fa-newspaper"></i></span>
-                               <span class="topics-count">${item.topicsCount || 0}</span>
-                              </div>
-                              <p class="stats-label">TÓPICOS</p>
-                          </div>
-                          <div class="stats-comments">
-                              <div class="icon-comments-container">
-                                <span class="icon-comments" aria-hidden="true"><i class="fas fa-comments"></i></span>
-                                <span class="comments-count">${item.commentsCount || 0}</span>
-                              </div>
-                              <p class="stats-label">COMENTÁRIOS</p>
-                          </div>
-                           <a href="${whatsappLink}" class="newsletter-link" target="_blank" rel="noopener noreferrer" aria-label="Inscrever-se na Newsletter via WhatsApp">
-                         <span class="icon-newsletter-sign" aria-hidden="true"><i class="fas fa-envelope"></i></span>
-                       </a>
-                        </div>
-                      `;
-                 } else {
-                     console.warn("Tipo de card de tópico desconhecido:", item.type);
-                     topicCard = null; // Ignora cards de tipo desconhecido
-                 }
-
-                if(topicCard) {
-                     row.appendChild(topicCard);
-                     itemsInRow++;
-                }
-            });
-        })
-        .catch(error => {
-            console.error('Erro ao carregar os cards de tópicos:', error);
-             const container = document.querySelector('.small-topics-container');
-             if (container) {
-                 container.innerHTML = '<p class="error-fallback" role="alert">Não foi possível carregar os tópicos.</p>';
+         // --- Calcular Contagem de Artigos por Tópico ---
+         const allNewsAndArticles = newsData.noticias;
+         const topicArticleCounts = {}; 
+         allNewsAndArticles.forEach(item => {
+             if (item.tipoConteudo && item.tipoConteudo.startsWith('topico-')) {
+                 topicArticleCounts[item.tipoConteudo] = (topicArticleCounts[item.tipoConteudo] || 0) + 1;
              }
-        });
+         });
+         console.log("Contagem de Artigos por Tópico:", topicArticleCounts);
+         // --- Fim Contagem ---
+
+         container.innerHTML = ''; // Limpa o container
+         let row = document.createElement('div');
+         row.classList.add('small-topic-row');
+         container.appendChild(row);
+         let itemsInRow = 0;
+
+         // Itera sobre a ESTRUTURA definida em topics-cards.json
+         topicsData.topics.forEach(item => {
+             // Adiciona nova linha a cada 2 itens (igual antes)
+             if (item.type !== 'sidebar' && itemsInRow > 0 && itemsInRow % 2 === 0) {
+                 row = document.createElement('div');
+                 row.classList.add('small-topic-row');
+                 container.appendChild(row);
+             }
+
+             let cardElement = document.createElement('article');
+             
+             // --- Card Principal de Estatísticas (type: "sidebar") ---
+             if (item.type === 'sidebar') { 
+                 cardElement.classList.add('sidebar-card', 'stats-card');
+                 // Usa as contagens TOTAIS de tópicos e comentários DEFINIDAS NO topics-cards.json
+                 const topicsDisplayCount = item.topicsCount || 0; // Pega do JSON
+                 const commentsDisplayCount = item.commentsCount || 0; // Pega do JSON
+
+                 cardElement.innerHTML = `
+                   <div class="sidebar-card-stats">
+                     <div class="stats-topics">
+                       <div class="icon-newsletter-container"> 
+                         <span class="icon-newsletter" aria-hidden="true"><i class="fas fa-newspaper"></i></span> 
+                         <span class="topics-count">${topicsDisplayCount}</span> <!-- Do topics-cards.json -->
+                       </div>
+                       <p class="stats-label">TÓPICOS</p>
+                     </div>
+                     <div class="stats-comments"> 
+                       <div class="icon-comments-container"> 
+                          <span class="icon-comments" aria-hidden="true"><i class="fas fa-comments"></i></span> 
+                         <span class="comments-count">${commentsDisplayCount}</span> <!-- Do topics-cards.json -->
+                       </div>
+                       <p class="stats-label">COMENTÁRIOS</p> 
+                     </div>
+                   </div>
+                   <a href="${item.link || '/noticias'}" class="topics-sidebar-button" target="_blank" rel="noopener noreferrer">
+                     <span class="topics-sidebar-button-text">Saiba Mais</span>
+                   </a>
+                 `;
+                 // Adiciona este card diretamente ao container (ele não entra nas rows)
+                 container.insertBefore(cardElement, container.firstChild); // Coloca no início
+                 return; // Pula para o próximo item do forEach
+             } 
+             
+             // Card de Tópico Específico
+             else if (item.type === 'topic') { 
+                  cardElement.classList.add('small-topic-card', `${formatForUrl(item.title || 'default')}-card`);
+                  cardElement.innerHTML = `
+                    <div class="small-card-link-container">
+                      <a href="${item.link || '#'}" class="small-card-image-link" aria-label="Veja ${item.title || 'Tópico'}">
+                        <img src="${item.image || 'assets/imagens/geral/placeholder.png'}" alt="${item.alt || ''}" class="small-card-image" loading="lazy">
+                      </a>
+                      <div class="small-card-content">
+                        <h4>
+                          <a href="${item.link || '#'}" class="small-card-title-link" title="${item.title || ''}">
+                            <span class="small-card-title">${item.title || 'Sem Título'}</span>
+                          </a>
+                        </h4>
+                        <p class="small-card-description">${item.description || ''}</p>
+                        <!-- REMOVIDA a div .topic-stats-info מכאן -->
+                      </div>
+                    </div>
+                  `;
+             }
+
+                  // Card Menor de Estatísticas (Direita do Tópico)
+             else if (item.type === 'stats') {
+                  cardElement.classList.add(`stats-card`, `small-stats-card`);
+                  
+                  // Pega o SLUG do tópico ANTERIOR na estrutura do JSON para saber a contagem
+                  const previousItemIndex = topicsData.topics.indexOf(item) - 1;
+                  let topicSlugForCount = '';
+                  if (previousItemIndex >= 0 && topicsData.topics[previousItemIndex].type === 'topic') {
+                       try { topicSlugForCount = new URL(topicsData.topics[previousItemIndex].link, window.location.origin).searchParams.get('secao'); } 
+                       catch {}
+                  }
+                  
+                  // Pega a contagem de artigos DINÂMICA para este tópico
+                  const topicsDisplayCount = topicArticleCounts[topicSlugForCount] || 0; 
+                  // Pega a contagem de comentários ESTÁTICA do topics-cards.json para este item
+                  const commentsDisplayCount = item.commentsCount || 0; 
+                  
+                  const whatsappLink = `https://wa.me/5561982006013?text=${encodeURIComponent('Quero Ficar por Dentro com a Newsletter da Technology AI')}`; 
+                  
+                  cardElement.innerHTML = `
+                    <div class="small-card-stats">
+                      <div class="stats-topics">
+                         <div class="icon-newsletter-container">
+                           <span class="icon-newsletter"><i class="fas fa-newspaper"></i></span>
+                           <!-- CONTAGEM DE TÓPICOS DINÂMICA -->
+                           <span class="topics-count">${topicsDisplayCount}</span> 
+                          </div>
+                          <p class="stats-label">TÓPICOS</p>
+                      </div>
+                      <div class="stats-comments">
+                          <div class="icon-comments-container">
+                            <span class="icon-comments"><i class="fas fa-comments"></i></span>
+                            <!-- CONTAGEM DE COMENTÁRIOS ESTÁTICA -->
+                            <span class="comments-count">${commentsDisplayCount}</span> 
+                          </div>
+                          <p class="stats-label">COMENTÁRIOS</p>
+                      </div>
+                       <a href="${whatsappLink}" class="newsletter-link whatsapp-join-link" target="_blank" rel="noopener noreferrer" aria-label="Inscrever-se na Newsletter via WhatsApp">
+                         <span class="icon-newsletter-sign"><i class="fas fa-envelope"></i></span>
+                       </a>
+                    </div>
+                  `;
+             } else { cardElement = null; }
+
+             if (cardElement) {
+                  row.appendChild(cardElement);
+                  itemsInRow++;
+             }
+         });
+     })
+     .catch(error => { 
+         console.error('Erro ao carregar ou processar JSON para cards de tópicos:', error);
+         const container = document.querySelector('.small-topics-container');
+         if (container) container.innerHTML = '<p class="error-fallback">Erro ao carregar tópicos.</p>';
+      });
 }
 
 // === 5. Carregar os Cards da Seção "Notícias em Destaque" ===

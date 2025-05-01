@@ -31,11 +31,12 @@
 }
 
 #home-back-to-top:hover {
-  background-color: #F44336;
+  background-color: #b3b0b0;
+  color: #000000;
 }
 
 #home-back-to-top:hover .back-to-top-icon {
-  color: #ffffff;
+  color: #000000;
 }
 
 #home-back-to-top.visible {
