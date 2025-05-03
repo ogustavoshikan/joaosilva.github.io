@@ -8,7 +8,7 @@
 }
 
 .topics-section .container {
-  max-width: 1243.5px;
+  max-width: 1268;
   margin: 0 auto;
   padding: 5px 0;
   display: grid;
@@ -81,7 +81,7 @@
   display: flex;
   gap: 1.5rem;
   width: 100%;
-  max-width: 1263.5px;
+  max-width: 1268;
   justify-content: space-between;
   flex-direction: row;
   min-height: 408px;
@@ -92,7 +92,7 @@
   position: relative;
   flex: 0 0 49%;
   max-width: 49%;
-  height: 400px; /* Abaixado de 450px para 400px no desktop */
+  height: 413px; /* Abaixado de 450px para 413px no desktop */
   background-color: #1a1a1a;
   border-radius: 5px;
   border: transparent;
@@ -536,7 +536,7 @@
   }
 
   .medium-topic-card {
-    flex: 0 0 48%;
+    flex: 0 0 49%;
     max-width: 50%;
   }
 

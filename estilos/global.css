@@ -731,6 +731,10 @@
     /* max-width: 407px; */
     /* max-height: 428px; */
   }
+
+  .light-mode .trends-card:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
   
   /* Foco visível no card */
   .light-mode .trends-card:focus-visible {
@@ -1088,4 +1092,109 @@
 .light-mode .btn-submit:hover {
   background-color: #cecdcd;
   border: 1px solid #aaa9a9;
+}
+
+/* ============================================== */
+/* == MODO LIGHT - SEÇÃO ÚLTIMAS NOTÍCIAS (Novo Layout) == */
+/* ============================================== */
+
+/* --- Fundo e Borda da Seção --- */
+.light-mode .latest-news-section {
+  background-color: var(--light-bg-primary, #f8f9fa); /* Fundo claro */
+  border-bottom: 1px solid var(--light-border-color, #dee2e6); /* Borda clara */
+}
+
+/* --- Cabeçalho da Seção --- */
+.light-mode .latest-news-section .section-header h2 {
+  color: var(--light-text-primary, #212529); /* Texto primário */
+}
+
+.light-mode .latest-news-section .section-header .view-all-link {
+  color: var(--light-accent-color, #F44336); /* Mantém cor de destaque */
+}
+
+.light-mode .latest-news-section .section-header .view-all-link:hover,
+.light-mode .latest-news-section .section-header .view-all-link:focus {
+  color: var(--light-text-primary, #212529); /* Texto primário no hover/focus */
+}
+
+/* --- Mensagens de Estado (Loading, Erro, Sem Notícias) --- */
+.light-mode .latest-news-grid.loading .loading-message,
+.light-mode .latest-news-grid .no-news-fallback {
+  color: var(--light-text-secondary, #6c757d); /* Cor secundária */
+}
+
+.light-mode .latest-news-grid .error-fallback {
+  /* Cor de erro para modo light (vermelho mais escuro talvez) */
+  color: #b02a37; /* Exemplo: um vermelho mais escuro */
+  /* Ou use uma variável se tiver: var(--light-error-color, #b02a37); */
+}
+
+/* --- Card Individual --- */
+.light-mode .latest-news-card {
+  /* O fundo transparente pode ser mantido, mas o conteúdo interno precisa de cor */
+  background-color: var(--light-bg-secondary, #ffffff); /* Fundo branco para o card */
+  border: 1px solid var(--light-border-color, #dee2e6); /* Borda clara */
+}
+
+.light-mode .latest-news-card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Sombra um pouco mais visível no light */
+}
+
+/* --- Imagem --- */
+/* O hover filter: brightness(0.85) geralmente funciona bem em ambos os modos */
+/* .light-mode .latest-news-card:hover .latest-news-image-wrapper img {
+    filter: brightness(0.9); /* Levemente mais claro se 0.85 for muito escuro */
+/* } */
+
+/* --- Wrapper do Conteúdo --- */
+.light-mode .latest-news-content-wrapper {
+  background: var(--light-bg-secondary, #ffffff); /* Fundo branco */
+}
+
+/* --- Chapeu/Tag --- */
+.light-mode .latest-news-chapeu {
+  /* Usando a cor de destaque para fundo e texto branco */
+  background-color: rgb(0 123 255 / 26%);
+  color: #0063cd;
+  /* Alternativa: fundo claro, texto escuro */
+  /* background-color: rgba(244, 67, 54, 0.1); */
+  /* color: var(--light-accent-color, #F44336); */
+  /* border: 1px solid var(--light-accent-color, #f44336); */
+}
+
+/* --- Título --- */
+.light-mode .latest-news-title {
+  color: var(--light-text-primary, #212529); /* Texto primário */
+}
+
+.light-mode .latest-news-title a {
+  /* Cor herdada */
+}
+
+.light-mode .latest-news-title a:hover,
+.light-mode .latest-news-title a:focus {
+  color: var(--light-accent-color, #F44336); /* Cor de destaque no hover/focus */
+  /* Ou use a cor azul original se preferir: #007bff */
+  /* color: #007bff; */
+}
+
+/* --- Data --- */
+.light-mode .latest-news-date {
+  color: var(--light-text-secondary, #6c757d); /* Cor secundária */
+}
+
+/* --- Excerpt --- */
+.light-mode .latest-news-excerpt {
+  color: var(--light-text-secondary, #6c757d); /* Cor secundária */
+}
+
+/* --- Link Ler Mais --- */
+.light-mode .latest-news-readmore {
+  color: var(--light-accent-color, #f44236); /* Mantém cor de destaque */
+}
+
+.light-mode .latest-news-readmore:hover,
+.light-mode .latest-news-readmore:focus {
+  color: var(--light-text-primary, #212529); /* Texto primário no hover/focus */
 }
