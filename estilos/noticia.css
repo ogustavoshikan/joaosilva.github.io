@@ -671,7 +671,7 @@ main {
 @media (max-width: 720px) {
     .featured-image img {
         width:auto;
-        height: 240px;
+        height: auto;
     }
 
     .featured-image figcaption {
@@ -693,7 +693,7 @@ main {
 @media (max-width: 720px) {
     .article-body .image-in-article img {
         width:auto;
-        height: 200px;
+        height: 225px;
     }
 
     .featured-image figcaption {
