@@ -110,7 +110,7 @@
   
   /* Data (Inferior) */
   .light-mode .news-card.bottom .news-date {
-    color: #484444; /* Texto secundário (cinza) */
+    color: #6c757d; /* Texto secundário (cinza) */
   }
   
   /* Título (Inferior) */
@@ -133,7 +133,7 @@
   
   /* Resumo (Inferior) */
   .light-mode .news-card.bottom .news-excerpt {
-    color: #484444; /* Texto secundário (cinza) */
+    color: #484848; /* Texto secundário (cinza) */
   }
   
   /* Autor (Inferior) */
@@ -660,7 +660,7 @@
   }
   
   .light-mode .small-card-description {
-    color: #484444; /* Descrição usa cor secundária */
+    color: #484848; /* Descrição usa cor secundária */
   }
   
   
@@ -689,7 +689,7 @@
   
   /* --- Sidebar Card (se usado em desktop) --- */
   .light-mode .sidebar-card {
-    background-color: var(--light-bg-secondary, #ffffff);
+    background-color: #ffffff;
     box-shadow: 0 1px 2px rgba(0,0,0,0.05);
   }
   
@@ -702,7 +702,15 @@
       background-color: #007bff;
       color: #ffffff; /* Texto branco no hover */
   }
-  
+
+.light-mode .fa-newspaper:before {
+    content: "\f1ea";
+    color: #6c757d;
+}
+
+.light-mode i.fas.fa-comments::before{
+  color:#6c757d;
+}
   
   /* --- Fallback de Carregamento --- */
   .light-mode .loading-fallback {
@@ -751,7 +759,7 @@
   
   /* --- Data --- */
   .light-mode .card-date {
-    color: #484444; /* Cor secundária */
+    color: #6c757d; /* Cor secundária */
   }
   
   /* --- Título do Card --- */
@@ -774,7 +782,7 @@
   
   /* --- Excerto / Resumo --- */
   .light-mode .card-excerpt {
-    color: #484444; /* Cor secundária */
+    color: #484848; /* Cor secundária */
     /* margin-top: 3px; */
   }
   
@@ -1106,7 +1114,7 @@
 
 /* --- Cabeçalho da Seção --- */
 .light-mode .latest-news-section .section-header h2 {
-  color: var(--light-text-primary, #212529); /* Texto primário */
+  color: #000000; /* Texto primário */
 }
 
 .light-mode .latest-news-section .section-header .view-all-link {
@@ -1165,7 +1173,7 @@
 
 /* --- Título --- */
 .light-mode .latest-news-title {
-  color: var(--light-text-primary, #212529); /* Texto primário */
+  color: #000000; /* Texto primário */
 }
 
 .light-mode .latest-news-title a {
@@ -1174,7 +1182,7 @@
 
 .light-mode .latest-news-title a:hover,
 .light-mode .latest-news-title a:focus {
-  color: var(--light-accent-color, #F44336); /* Cor de destaque no hover/focus */
+  color: #000000; /* Cor de destaque no hover/focus */
   /* Ou use a cor azul original se preferir: #007bff */
   /* color: #007bff; */
 }
@@ -1186,7 +1194,7 @@
 
 /* --- Excerpt --- */
 .light-mode .latest-news-excerpt {
-  color: var(--light-text-secondary, #6c757d); /* Cor secundária */
+  color: #484848; /* Cor secundária */
 }
 
 /* --- Link Ler Mais --- */
@@ -1197,4 +1205,23 @@
 .light-mode .latest-news-readmore:hover,
 .light-mode .latest-news-readmore:focus {
   color: var(--light-text-primary, #212529); /* Texto primário no hover/focus */
+}
+
+.light-mode .latest-news-load-more-link {
+  font-family: 'Roboto Condensed';
+  font-weight: 500;
+  display: inline-block;
+  background-color: #dddddd;
+  color: #000000;
+  text-decoration: none;
+  padding: 10px 50px;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  /*transition: background-color 0.1s ease;*/
+  border: 1px solid #c4c4c4;
+}
+
+.light-mode .latest-news-load-more-link:hover {
+  background-color: #cecdcd;
+  border: 1px solid #aaa9a9;
 }

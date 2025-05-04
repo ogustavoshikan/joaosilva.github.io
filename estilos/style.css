@@ -950,24 +950,26 @@ main {
 }
 
 .latest-news-section .container {
-  max-width: 1268px;
+  max-width: 1298px;
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 0 auto;
 }
 
 .latest-news-section .section-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
-  padding-bottom: 15px;
+  /* margin-bottom: 10px; */
+  /* padding-bottom: 15px; */
 }
 
 .latest-news-section .section-header h2 {
-  font-size: 2rem;
+  font-size: 2.5rem;
+  font-family: "Rajdhani", serif;
+  font-weight: 700;
   color: #ffffff;
   margin: 0;
-  font-weight: 600;
+  margin-bottom: 1rem;
 }
 
 .latest-news-section .section-header .view-all-link {
@@ -1020,7 +1022,7 @@ main {
   transition: transform 0.1s ease, box-shadow 0.1s ease;
   display: flex; /* MANTÉM FLEX ROW */
   border: 1px solid #232221;
-  width: 612px; /* Largura base desktop */
+  width: 626px; /* Largura base desktop */
   height: 212px; /* Altura base desktop */
 }
 
@@ -1043,8 +1045,8 @@ main {
   transition: transform 0.1s ease, filter 0.1s ease;
 }
 
-.latest-news-card:hover .latest-news-image-wrapper img {
-   filter: brightness(0.85);
+.latest-news-image-wrapper a:hover img {
+  filter: brightness(0.85); /* Aplica o filtro SÓ quando o link da imagem é hover */
 }
 
 /* Wrapper do Conteúdo */
@@ -1072,6 +1074,7 @@ main {
 
 /* Título */
 .latest-news-title {
+  font-family: 'Roboto Condensed', sans-serif;
   font-size: 1.4rem;
   font-weight: 600;
   margin: 0 0 8px 0;
@@ -1093,7 +1096,7 @@ main {
 
 .latest-news-title a:hover,
 .latest-news-title a:focus {
-  color: #007bff;
+  color: #ffffff;
   text-decoration: underline;
 }
 
@@ -1117,7 +1120,7 @@ main {
   color: #999999;
   line-height: 1.5;
   margin-bottom: 15px; /* Pode remover ou reduzir se quiser mais espaço */
-  flex-grow: 1; /* Mantém para ocupar espaço vertical */
+  /* flex-grow: 1; */ /* Mantém para ocupar espaço vertical */
   display: -webkit-box;
   -webkit-line-clamp: 2; /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< ALTERADO */
   -webkit-box-orient: vertical;
@@ -1164,7 +1167,7 @@ main {
 /* Telas Pequenas (Celulares) */
 @media (max-width: 768px) {
   .latest-news-image-wrapper {
-      flex: 0 0 40%;
+      flex: 0 0 45%;
       min-height: 100px;
   }
 
@@ -1215,7 +1218,7 @@ main {
       font-size: 1.6rem;
   }
    .latest-news-image-wrapper {
-      flex: 0 0 35%;
+      flex: 0 0 38%;
       min-height: 80px;
   }
   .latest-news-content-wrapper {
@@ -1230,6 +1233,31 @@ main {
       -webkit-line-clamp: 2; /* Garante 2 linhas */
       min-height: calc(1.4em * 2); /* Ajuste para font-size/line-height se mudar */
    }
+}
+
+/* Botão Ver Mais - Nenhuma mudança feita aqui */
+.latest-news-button-wrapper {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.latest-news-load-more-link {
+  font-family: 'Roboto Condensed';
+  font-weight: 500;
+  display: inline-block;
+  background-color: #232221;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 10px 50px;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  /* transition: background-color 0.1s ease; */
+  border: 1px solid #313131; /* Simplificado para uma borda */
+}
+
+.latest-news-load-more-link:hover {
+  background-color: #343434;
+  /* border: 1px solid #585858; */
 }
 
 /* ===== SEÇÃO TENDÊNCIAS EM IA ===== */
@@ -1254,7 +1282,7 @@ main {
   font-family: "Rajdhani", serif;
   font-weight: 700;
   color: #ffffff;
-  text-align: left;
+  text-align: center;
   margin-bottom: 1rem;
   position: relative;
   margin-top: 1rem;
@@ -1631,7 +1659,7 @@ a.author-link:hover {
 /* Estilo para o contêiner do link "Mais" */
 .art-section .more-link-wrapper {
   text-align: right; /* Alinha o link à direita */
-  margin-top: 1rem; /* Espaço acima do link, abaixo dos marcadores de paginação */
+  margin-top: 0rem; /* Espaço acima do link, abaixo dos marcadores de paginação */
 }
 
 /* Estilo para o link "Mais" e a seta */
