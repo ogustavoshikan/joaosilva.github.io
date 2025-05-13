@@ -1,6 +1,6 @@
 # Netlify Rewrites para servir HTML (URLs Limpas)
 /noticias     /news.html       200
-/designs      /designs.html      200
+/designs      /404.html      200
 /sobre        /sobre.html        200
 /tendencias   /tendencias.html   200
 /tendencia/*  /tendencia.html    200 
