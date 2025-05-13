@@ -1,0 +1,22 @@
+# MODO MANUTENÇÃO: Redireciona tudo para a página 404
+/*    /404.html    200
+
+# ----------------------------------------------------
+# Suas regras originais (não serão alcançadas enquanto a regra acima estiver ativa)
+# ----------------------------------------------------
+
+# Netlify Rewrites para servir HTML (URLs Limpas)
+/noticias /news.html 200
+/designs /designs.html 200 # Esta regra agora é redundante se a de cima estiver ativa
+/sobre /sobre.html 200
+/tendencias /tendencias.html 200
+/tendencia/* /tendencia.html 200
+/noticia/* /noticia.html 200
+/obrigado-contato /obrigado-contato.html 200
+/obrigado-newsletter /obrigado-newsletter.html 200
+/politica-privacidade /https://www.iubenda.com/privacy-policy/95000863 200
+/termos-uso /termos-uso.html 200
+
+# Redirecionamento para URL com acento (Boa prática)
+/tendências /tendencias 301!
+/tend%C3%AAncias /tendencias 301!
